@@ -231,6 +231,18 @@
         </a>
       {%- endif -%}
     </div>
+
+    <div class="asfpl-hero__blocks-wrapper" style="width:100%; z-index: 10; position:relative; display:flex; flex-direction:column; align-items:center; margin-top:2rem;">
+      {%- for block in section.blocks -%}
+        {%- case block.type -%}
+          {%- when '@app' -%}
+            {% render block %}
+          {%- when '@theme' -%}
+            {% render block %}
+        {%- endcase -%}
+      {%- endfor -%}
+    </div>
+
   </div>
 </div>
 
@@ -490,6 +502,14 @@
       "unit": "px",
       "label": "Bottom padding",
       "default": 36
+    }
+  ],
+  "blocks": [
+    {
+      "type": "@theme"
+    },
+    {
+      "type": "@app"
     }
   ],
   "presets": [
