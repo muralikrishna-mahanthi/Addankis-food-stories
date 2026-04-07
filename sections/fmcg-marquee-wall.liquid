@@ -58,23 +58,17 @@
   }
 
   .fmcg-marquee-wall__logo {
-    height: 1em;
+    height: 1.1em;
     width: auto;
     margin: 0 1rem;
     object-fit: contain;
     display: inline-block;
   }
 
-  /* Per-Row Colors */
-  .fmcg-marquee-wall__row-1 { color: {{ section.settings.color_1 }}; }
-  .fmcg-marquee-wall__row-2 { color: {{ section.settings.color_2 }}; }
-  .fmcg-marquee-wall__row-3 { color: {{ section.settings.color_3 }}; }
-  .fmcg-marquee-wall__row-4 { color: {{ section.settings.color_4 }}; }
-
   /* Outline Style */
   .fmcg-marquee-wall--outline .fmcg-marquee-wall__text {
     -webkit-text-stroke: 1.5px currentColor;
-    color: transparent;
+    color: transparent !important;
   }
   .fmcg-marquee-wall--outline .fmcg-marquee-wall__logo {
     filter: drop-shadow(0 0 1px currentColor);
@@ -85,28 +79,40 @@
 <div class="fmcg-marquee-wall-{{ section.id }} {% if section.settings.use_outline %}fmcg-marquee-wall--outline{% endif %}" id="FmcgMarqueeWall-{{ section.id }}">
   
   {%- for i in (1..4) -%}
-    {%- capture row_text_key -%}text_{{ i }}{%- endcapture -%}
     {%- capture row_dir_key -%}dir_{{ i }}{%- endcapture -%}
     {%- capture row_logo_key -%}logo_{{ i }}{%- endcapture -%}
-    
-    {%- assign row_text = section.settings[row_text_key] -%}
     {%- assign row_logo = section.settings[row_logo_key] -%}
-    {%- assign row_words = row_text | split: ',' -%}
     
     <div class="fmcg-marquee-wall__row fmcg-marquee-wall__row-{{ i }}" 
          data-direction="{{ section.settings[row_dir_key] }}"
          id="Row-{{ section.id }}-{{ i }}">
-      {%- comment -%}Render many items to ensure seamless loop{%- endcomment -%}
-      {%- for j in (1..15) -%}
-        {%- for word in row_words -%}
-          <div class="fmcg-marquee-wall__item">
-            <span class="fmcg-marquee-wall__text">{{ word | strip }}</span>
-            {%- if row_logo != blank -%}
-              {{ row_logo | image_url: width: 400 | image_tag: class: 'fmcg-marquee-wall__logo', loading: 'lazy' }}
-            {%- endif -%}
-          </div>
+      
+      {%- capture row_content -%}
+        {%- for block in section.blocks -%}
+          {%- assign row_num = block.settings.row_number | plus: 0 -%}
+          {%- if row_num == i -%}
+            <div class="fmcg-marquee-wall__item" {{ block.shopify_attributes }}>
+              <span class="fmcg-marquee-wall__text" style="color: {{ block.settings.color }};">
+                {{ block.settings.text | strip }}
+              </span>
+              {%- if row_logo != blank -%}
+                {{ row_logo | image_url: width: 400 | image_tag: class: 'fmcg-marquee-wall__logo', loading: 'lazy' }}
+              {%- endif -%}
+            </div>
+          {%- endif -%}
         {%- endfor -%}
-      {%- endfor -%}
+      {%- endcapture -%}
+
+      {%- if row_content != blank -%}
+        {%- for j in (1..15) -%}
+          {{ row_content }}
+        {%- endfor -%}
+      {%- else -%}
+        {%- comment -%}Placeholder if no blocks{%- endcomment -%}
+        <div class="fmcg-marquee-wall__item">
+          <span class="fmcg-marquee-wall__text">Add Blocks to Row {{ i }}</span>
+        </div>
+      {%- endif -%}
     </div>
   {%- endfor -%}
 
@@ -118,38 +124,37 @@
     if (!section) return;
 
     const rows = section.querySelectorAll('.fmcg-marquee-wall__row');
-    const intensity = {{ section.settings.scroll_speed | default: 0.8 }};
-    let lastScrollY = window.scrollY;
-    let ticking = false;
-
-    function upgradeMarquee() {
-      const scrolled = window.scrollY;
+    const intensity = {{ section.settings.scroll_speed | default: 1.0 }};
+    const lerpFactor = {{ section.settings.lerp_factor | default: 0.1 }};
+    
+    let targetScrollY = window.scrollY;
+    let currentScrollY = window.scrollY;
+    
+    function updatePositions() {
+      // Smooth interpolation (LERP)
+      currentScrollY += (targetScrollY - currentScrollY) * lerpFactor;
       
-      rows.forEach((row, index) => {
+      rows.forEach((row) => {
         const direction = row.dataset.direction === 'left' ? -1 : 1;
-        // Optimization: Use translate3d for hardware acceleration
-        // Using modulo 2000 to keep the offset in a manageable range for the repeated items
-        const offset = (scrolled * intensity * direction) % 3000;
+        const offset = (currentScrollY * intensity * direction) % 3000;
         row.style.transform = `translate3d(${offset}px, 0, 0)`;
       });
       
-      ticking = false;
+      requestAnimationFrame(updatePositions);
     }
 
-    function onScroll() {
-      if (!ticking) {
-        window.requestAnimationFrame(upgradeMarquee);
-        ticking = true;
-      }
-    }
-
-    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('scroll', () => {
+      targetScrollY = window.scrollY;
+    }, { passive: true });
     
-    // Initial call
-    upgradeMarquee();
+    // Start the smooth loop
+    requestAnimationFrame(updatePositions);
 
-    // Re-patching on Shopify Theme Editor events
-    document.addEventListener('shopify:section:load', upgradeMarquee);
+    // Initial sync
+    document.addEventListener('shopify:section:load', () => {
+      targetScrollY = window.scrollY;
+      currentScrollY = window.scrollY;
+    });
   })();
 </script>
 
@@ -178,42 +183,40 @@
     { "type": "color", "id": "bg_color", "label": "Section Background", "default": "#ffffff" },
     { "type": "checkbox", "id": "use_outline", "label": "Enable Outline (Ghost) Mode", "default": false },
     { "type": "range", "id": "scroll_speed", "label": "Scroll Animation Intensity", "min": 0.1, "max": 3.0, "step": 0.1, "default": 1.0 },
+    { "type": "range", "id": "lerp_factor", "label": "Smoothness (LERP)", "min": 0.01, "max": 0.5, "step": 0.01, "default": 0.1, "info": "Lower is smoother/floatier." },
     {
       "type": "header",
-      "content": "Row 1 Configuration"
+      "content": "Row Direction & Logos"
     },
-    { "type": "textarea", "id": "text_1", "label": "Row 1 Text (comma separated)", "default": "ORGANIC, HEALTH, WEALTH, TASTE" },
-    { "type": "image_picker", "id": "logo_1", "label": "Row 1 Logo" },
-    { "type": "color", "id": "color_1", "label": "Row 1 Color", "default": "#000000" },
     { "type": "select", "id": "dir_1", "label": "Row 1 Direction", "options": [{"value":"left","label":"Left"},{"value":"right","label":"Right"}], "default": "left" },
-    {
-      "type": "header",
-      "content": "Row 2 Configuration"
-    },
-    { "type": "textarea", "id": "text_2", "label": "Row 2 Text", "default": "CRUNCH, SIP, SAVOR, SNACK" },
-    { "type": "image_picker", "id": "logo_2", "label": "Row 2 Logo" },
-    { "type": "color", "id": "color_2", "label": "Row 2 Color", "default": "#000000" },
+    { "type": "image_picker", "id": "logo_1", "label": "Row 1 Logo" },
     { "type": "select", "id": "dir_2", "label": "Row 2 Direction", "options": [{"value":"left","label":"Left"},{"value":"right","label":"Right"}], "default": "right" },
-    {
-      "type": "header",
-      "content": "Row 3 Configuration"
-    },
-    { "type": "textarea", "id": "text_3", "label": "Row 3 Text", "default": "NATURAL, PURE, CLEAN, BOLD" },
-    { "type": "image_picker", "id": "logo_3", "label": "Row 3 Logo" },
-    { "type": "color", "id": "color_3", "label": "Row 3 Color", "default": "#000000" },
+    { "type": "image_picker", "id": "logo_2", "label": "Row 2 Logo" },
     { "type": "select", "id": "dir_3", "label": "Row 3 Direction", "options": [{"value":"left","label":"Left"},{"value":"right","label":"Right"}], "default": "left" },
+    { "type": "image_picker", "id": "logo_3", "label": "Row 3 Logo" },
+    { "type": "select", "id": "dir_4", "label": "Row 4 Direction", "options": [{"value":"left","label":"Left"},{"value":"right","label":"Right"}], "default": "right" },
+    { "type": "image_picker", "id": "logo_4", "label": "Row 4 Logo" }
+  ],
+  "blocks": [
     {
-      "type": "header",
-      "content": "Row 4 Configuration"
-    },
-    { "type": "textarea", "id": "text_4", "label": "Row 4 Text", "default": "DELICIOUS, ICONIC, FRESH, GOOD" },
-    { "type": "image_picker", "id": "logo_4", "label": "Row 4 Logo" },
-    { "type": "color", "id": "color_4", "label": "Row 4 Color", "default": "#000000" },
-    { "type": "select", "id": "dir_4", "label": "Row 4 Direction", "options": [{"value":"left","label":"Left"},{"value":"right","label":"Right"}], "default": "right" }
+      "type": "word",
+      "name": "Custom Word",
+      "settings": [
+        { "type": "text", "id": "text", "label": "Word", "default": "BRAND" },
+        { "type": "color", "id": "color", "label": "Word Color", "default": "#000000" },
+        { "type": "select", "id": "row_number", "label": "Row Assignment", "options": [{"value":"1","label":"Row 1"},{"value":"2","label":"Row 2"},{"value":"3","label":"Row 3"},{"value":"4","label":"Row 4"}], "default": "1" }
+      ]
+    }
   ],
   "presets": [
     {
-      "name": "FMCG Marquee Wall"
+      "name": "FMCG Marquee Wall",
+      "blocks": [
+        { "type": "word", "settings": { "text": "ORGANIC", "row_number": "1" } },
+        { "type": "word", "settings": { "text": "HEALTHY", "row_number": "1" } },
+        { "type": "word", "settings": { "text": "CRUNCHY", "row_number": "2" } },
+        { "type": "word", "settings": { "text": "SNACKY", "row_number": "2" } }
+      ]
     }
   ]
 }
