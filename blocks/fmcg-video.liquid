@@ -1,0 +1,34 @@
+{%- style -%}
+  .univ-anim-scale { animation: univScale 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; opacity: 0; transform: scale(0.95); }
+  @keyframes univScale { to { opacity: 1; transform: scale(1); } }
+
+  #UnivBlock-{{ block.id }} {
+    width: 100%; border-radius: {{ block.settings.radius }}px; overflow: hidden; 
+    aspect-ratio: {{ block.settings.aspect_ratio | replace: ':', '/' }}; 
+    box-shadow: 0 {{ block.settings.shadow }}px {{ block.settings.shadow | times: 2 }}px rgba(0,0,0,0.15);
+    margin-bottom: {{ block.settings.mb | default: 24 }}px;
+  }
+{%- endstyle -%}
+
+<div id="UnivBlock-{{ block.id }}" class="univ-anim-{{ block.settings.animation | default: 'none' }}" {{ block.shopify_attributes }}>
+  {%- if block.settings.video != blank -%}
+    {{ block.settings.video | video_tag: autoplay: true, loop: true, muted: true, controls: false, image_size: '2000x', style: 'width: 100%; height: 100%; object-fit: cover;' }}
+  {%- else -%}
+    <div style="width: 100%; height: 100%; background: #ccc; display: flex; align-items:center; justify-content:center;">No Video Selected</div>
+  {%- endif -%}
+</div>
+
+{% schema %}
+{
+  "name": "FMCG Video Loop",
+  "target": "section",
+  "settings": [
+    { "type": "video", "id": "video", "label": "Background Video" },
+    { "type": "text", "id": "aspect_ratio", "label": "Aspect Ratio", "default": "16:9", "info": "e.g., 16:9, 1:1, 4:5" },
+    { "type": "range", "id": "radius", "label": "Border Radius", "min": 0, "max": 60, "step": 2, "default": 20 },
+    { "type": "range", "id": "shadow", "label": "Drop Shadow Level", "min": 0, "max": 20, "step": 2, "default": 10 },
+    { "type": "select", "id": "animation", "label": "Scroll Reveal Animation", "options": [{"value":"none","label":"None"},{"value":"fade-in","label":"Fade In"},{"value":"scale","label":"Scale Up"}], "default": "scale" },
+    { "type": "range", "id": "mb", "label": "Margin Bottom", "min": 0, "max": 100, "step": 4, "default": 24 }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,24 @@
+{%- style -%}
+  #UnivBlock-{{ block.id }} .univ-spacer-desktop { display: none; }
+  #UnivBlock-{{ block.id }} .univ-spacer-mobile { height: {{ block.settings.height_mobile }}px; width: 100%; display:block;}
+  @media (min-width: 750px) {
+    #UnivBlock-{{ block.id }} .univ-spacer-mobile { display: none; }
+    #UnivBlock-{{ block.id }} .univ-spacer-desktop { display: block; height: {{ block.settings.height }}px; width: 100%;}
+  }
+{%- endstyle -%}
+
+<div id="UnivBlock-{{ block.id }}" {{ block.shopify_attributes }}>
+  <div class="univ-spacer-mobile"></div>
+  <div class="univ-spacer-desktop"></div>
+</div>
+
+{% schema %}
+{
+  "name": "FMCG Spacer Utility",
+  "target": "section",
+  "settings": [
+    { "type": "range", "id": "height", "label": "Desktop Height (px)", "min": 0, "max": 200, "step": 10, "default": 60 },
+    { "type": "range", "id": "height_mobile", "label": "Mobile Height (px)", "min": 0, "max": 200, "step": 10, "default": 40 }
+  ]
+}
+{% endschema %}

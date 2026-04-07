@@ -84,7 +84,7 @@
     color: {{ section.settings.text_color }};
     display: flex;
     flex-wrap: wrap;
-    justify-content: {{ section.settings.text_alignment == 'center' ? 'center' : (section.settings.text_alignment == 'right' ? 'flex-end' : 'flex-start') }};
+    justify-content: {% if section.settings.text_alignment == 'center' %}center{% elsif section.settings.text_alignment == 'right' %}flex-end{% else %}flex-start{% endif %};
     align-items: center;
     gap: 0.3em;
   }
@@ -136,7 +136,7 @@
     display: flex;
     gap: 1rem;
     flex-wrap: wrap;
-    justify-content: {{ section.settings.text_alignment == 'center' ? 'center' : (section.settings.text_alignment == 'right' ? 'flex-end' : 'flex-start') }};
+    justify-content: {% if section.settings.text_alignment == 'center' %}center{% elsif section.settings.text_alignment == 'right' %}flex-end{% else %}flex-start{% endif %};
   }
 
   .asfpl-hero__btn {
@@ -290,6 +290,9 @@
   "name": "ASFPL Hero",
   "tag": "section",
   "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
   "settings": [
     {
       "type": "header",
@@ -491,8 +494,7 @@
   ],
   "presets": [
     {
-      "name": "ASFPL Hero",
-      "category": "Image"
+      "name": "ASFPL Hero"
     }
   ]
 }

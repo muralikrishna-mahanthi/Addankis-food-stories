@@ -1,0 +1,35 @@
+{%- style -%}
+  .univ-anim-scale { animation: univScale 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; opacity: 0; transform: scale(0.95); }
+  @keyframes univScale { to { opacity: 1; transform: scale(1); } }
+
+  #UnivBlock-{{ block.id }} {
+    width: 100%; max-width: {{ block.settings.max_width | default: '100%' }}; 
+    margin-left: auto; margin-right: auto;
+    margin-bottom: {{ block.settings.mb | default: 24 }}px;
+    border-radius: {{ block.settings.radius }}px; overflow: hidden; 
+    box-shadow: 0 {{ block.settings.shadow }}px {{ block.settings.shadow | times: 2 }}px rgba(0,0,0,0.15);
+  }
+{%- endstyle -%}
+
+<div id="UnivBlock-{{ block.id }}" class="univ-anim-{{ block.settings.animation | default: 'none' }}" {{ block.shopify_attributes }}>
+  {%- if block.settings.image != blank -%}
+    {{ block.settings.image | image_url: width: 2000 | image_tag: style: 'width: 100%; height: auto; display: block;', loading: 'lazy' }}
+  {%- else -%}
+    {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+  {%- endif -%}
+</div>
+
+{% schema %}
+{
+  "name": "FMCG Image",
+  "target": "section",
+  "settings": [
+    { "type": "image_picker", "id": "image", "label": "Image" },
+    { "type": "text", "id": "max_width", "label": "Max Width", "default": "100%" },
+    { "type": "range", "id": "radius", "label": "Border Radius", "min": 0, "max": 60, "step": 2, "default": 0 },
+    { "type": "range", "id": "shadow", "label": "Drop Shadow Level", "min": 0, "max": 20, "step": 2, "default": 0 },
+    { "type": "select", "id": "animation", "label": "Scroll Reveal Animation", "options": [{"value":"none","label":"None"},{"value":"fade-in","label":"Fade In"},{"value":"scale","label":"Scale Up"}], "default": "none" },
+    { "type": "range", "id": "mb", "label": "Margin Bottom", "min": 0, "max": 100, "step": 4, "default": 24 }
+  ]
+}
+{% endschema %}

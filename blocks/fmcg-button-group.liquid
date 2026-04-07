@@ -1,0 +1,75 @@
+{%- style -%}
+  .univ-anim-none { }
+  .univ-anim-slide-up { animation: univSlideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; opacity: 0; transform: translateY(30px); }
+  @keyframes univSlideUp { to { opacity: 1; transform: translateY(0); } }
+
+  #UnivBlock-{{ block.id }} {
+    width: 100%; box-sizing: border-box; margin-bottom: {{ block.settings.mb | default: 24 }}px;
+    display: flex; gap: {{ block.settings.gap }}px; flex-wrap: wrap; 
+    justify-content: {% if block.settings.alignment == 'left' %}flex-start{% elsif block.settings.alignment == 'right' %}flex-end{% else %}center{% endif %};
+  }
+  
+  {%- for i in (1..2) -%}
+    {%- assign show_key = 'btn_' | append: i | append: '_show' -%}
+    {%- if block.settings[show_key] -%}
+      {%- assign bg = 'btn_' | append: i | append: '_bg' -%}
+      {%- assign color = 'btn_' | append: i | append: '_color' -%}
+      {%- assign border = 'btn_' | append: i | append: '_border' -%}
+      {%- assign hover_bg = 'btn_' | append: i | append: '_hover_bg' -%}
+      {%- assign hover_color = 'btn_' | append: i | append: '_hover_color' -%}
+      .univ-btn-{{ block.id }}-{{ i }} { 
+        display: inline-flex; align-items: center; justify-content: center; text-decoration: none; 
+        padding: {{ block.settings.py }}px {{ block.settings.px }}px; 
+        border-radius: {{ block.settings.radius }}px; 
+        font-weight: bold; font-size: {{ block.settings.fs }}rem; text-transform: uppercase; 
+        background: {{ block.settings[bg] }}; color: {{ block.settings[color] }}; 
+        border: 2px solid {{ block.settings[border] }}; transition: all 0.3s ease; 
+      }
+      .univ-btn-{{ block.id }}-{{ i }}:hover { 
+        background: {{ block.settings[hover_bg] }}; color: {{ block.settings[hover_color] }}; 
+        transform: translateY(-3px); box-shadow: 0 8px 15px rgba(0,0,0,0.15); 
+      }
+    {%- endif -%}
+  {%- endfor -%}
+{%- endstyle -%}
+
+<div id="UnivBlock-{{ block.id }}" class="univ-anim-{{ block.settings.animation | default: 'slide-up' }}" {{ block.shopify_attributes }}>
+  {%- if block.settings.btn_1_show -%}<a href="{{ block.settings.btn_1_link }}" class="univ-btn-{{ block.id }}-1">{{ block.settings.btn_1_label }}</a>{%- endif -%}
+  {%- if block.settings.btn_2_show -%}<a href="{{ block.settings.btn_2_link }}" class="univ-btn-{{ block.id }}-2">{{ block.settings.btn_2_label }}</a>{%- endif -%}
+</div>
+
+{% schema %}
+{
+  "name": "FMCG Button Group",
+  "target": "section",
+  "settings": [
+    { "type": "header", "content": "Button 1" },
+    { "type": "checkbox", "id": "btn_1_show", "label": "Show Button 1", "default": true },
+    { "type": "text", "id": "btn_1_label", "label": "Label", "default": "Shop Now" },
+    { "type": "url", "id": "btn_1_link", "label": "Link" },
+    { "type": "color", "id": "btn_1_bg", "label": "Background", "default": "#000000" },
+    { "type": "color", "id": "btn_1_color", "label": "Text Color", "default": "#ffffff" },
+    { "type": "color", "id": "btn_1_border", "label": "Border Color", "default": "#000000" },
+    { "type": "color", "id": "btn_1_hover_bg", "label": "Hover Background", "default": "#ffffff" },
+    { "type": "color", "id": "btn_1_hover_color", "label": "Hover Text Color", "default": "#000000" },
+    { "type": "header", "content": "Button 2" },
+    { "type": "checkbox", "id": "btn_2_show", "label": "Show Button 2", "default": true },
+    { "type": "text", "id": "btn_2_label", "label": "Label", "default": "Learn More" },
+    { "type": "url", "id": "btn_2_link", "label": "Link" },
+    { "type": "color", "id": "btn_2_bg", "label": "Background", "default": "transparent" },
+    { "type": "color", "id": "btn_2_color", "label": "Text Color", "default": "#000000" },
+    { "type": "color", "id": "btn_2_border", "label": "Border Color", "default": "#000000" },
+    { "type": "color", "id": "btn_2_hover_bg", "label": "Hover Background", "default": "#000000" },
+    { "type": "color", "id": "btn_2_hover_color", "label": "Hover Text Color", "default": "#ffffff" },
+    { "type": "header", "content": "General Settings" },
+    { "type": "select", "id": "alignment", "label": "Alignment", "options": [{"value":"left","label":"Left"},{"value":"center","label":"Center"},{"value":"right","label":"Right"}], "default": "center" },
+    { "type": "range", "id": "gap", "label": "Gap between buttons", "min": 0, "max": 40, "step": 4, "default": 16 },
+    { "type": "range", "id": "px", "label": "Padding X", "min": 10, "max": 60, "step": 2, "default": 32 },
+    { "type": "range", "id": "py", "label": "Padding Y", "min": 10, "max": 30, "step": 2, "default": 16 },
+    { "type": "range", "id": "fs", "label": "Font Size (rem)", "min": 0.8, "max": 2, "step": 0.1, "default": 1.0 },
+    { "type": "range", "id": "radius", "label": "Border Radius", "min": 0, "max": 50, "step": 2, "default": 50 },
+    { "type": "select", "id": "animation", "label": "Animation", "options": [{"value":"none","label":"None"},{"value":"fade-in","label":"Fade In"},{"value":"slide-up","label":"Slide Up"}], "default": "slide-up" },
+    { "type": "range", "id": "mb", "label": "Margin Bottom", "min": 0, "max": 100, "step": 4, "default": 24 }
+  ]
+}
+{% endschema %}

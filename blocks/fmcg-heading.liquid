@@ -1,0 +1,65 @@
+{%- style -%}
+  .univ-anim-none { }
+  .univ-anim-fade-in { animation: univFadeIn 0.8s ease forwards; opacity: 0; }
+  .univ-anim-slide-up { animation: univSlideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; opacity: 0; transform: translateY(30px); }
+  .univ-anim-scale { animation: univScale 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; opacity: 0; transform: scale(0.95); }
+  @keyframes univFadeIn { to { opacity: 1; } }
+  @keyframes univSlideUp { to { opacity: 1; transform: translateY(0); } }
+  @keyframes univScale { to { opacity: 1; transform: scale(1); } }
+
+  #UnivBlock-{{ block.id }} {
+    width: 100%; box-sizing: border-box; text-align: {{ block.settings.alignment }};
+    margin-top: {{ block.settings.mt_mobile | default: 0 }}px;
+    margin-bottom: {{ block.settings.mb | default: 24 }}px;
+  }
+  @media screen and (min-width: 750px) {
+    #UnivBlock-{{ block.id }} { margin-top: {{ block.settings.mt | default: 0 }}px; margin-bottom: {{ block.settings.mb | default: 24 }}px; }
+  }
+
+  #UnivBlock-{{ block.id }} .univ-heading {
+    font-size: {{ block.settings.fs_mobile }}rem;
+    color: {{ block.settings.color }};
+    font-weight: {{ block.settings.weight }};
+    line-height: {{ block.settings.line_height | default: 1.2 }};
+    letter-spacing: {{ block.settings.letter_spacing | default: 0 }}px;
+    text-transform: {{ block.settings.text_transform }};
+    margin: 0;
+  }
+  {%- if block.settings.use_gradient -%}
+  #UnivBlock-{{ block.id }} .univ-heading {
+    background: linear-gradient({{ block.settings.gradient_angle | default: 90 }}deg, {{ block.settings.gradient_start }}, {{ block.settings.gradient_end }});
+    background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; display: inline-block;
+  }
+  {%- endif -%}
+  @media screen and (min-width: 750px) {
+    #UnivBlock-{{ block.id }} .univ-heading { font-size: {{ block.settings.fs }}rem; }
+  }
+{%- endstyle -%}
+
+<div id="UnivBlock-{{ block.id }}" class="univ-anim-{{ block.settings.animation | default: 'none' }}" {{ block.shopify_attributes }}>
+  <{{ block.settings.html_tag | default: 'h2' }} class="univ-heading">
+    {{ block.settings.title }}
+  </{{ block.settings.html_tag | default: 'h2' }}>
+</div>
+
+{% schema %}
+{
+  "name": "FMCG Advanced Heading",
+  "target": "section",
+  "settings": [
+    { "type": "text", "id": "title", "label": "Heading", "default": "Elevate Your Brand" },
+    { "type": "select", "id": "html_tag", "label": "HTML Tag", "options": [{"value":"h1","label":"H1"},{"value":"h2","label":"H2"},{"value":"h3","label":"H3"},{"value":"h4","label":"H4"}], "default": "h2" },
+    { "type": "color", "id": "color", "label": "Text Color", "default": "#000000" },
+    { "type": "select", "id": "weight", "label": "Font Weight", "options": [{"value":"normal","label":"Normal"},{"value":"bold","label":"Bold"},{"value":"900","label":"Black (900)"}], "default": "900" },
+    { "type": "range", "id": "fs", "label": "Desktop Size (rem)", "min": 1, "max": 10, "step": 0.5, "default": 4 },
+    { "type": "range", "id": "fs_mobile", "label": "Mobile Size (rem)", "min": 1, "max": 6, "step": 0.5, "default": 2.5 },
+    { "type": "select", "id": "text_transform", "label": "Text Transform", "options": [{"value":"none","label":"None"},{"value":"uppercase","label":"Uppercase"}], "default": "uppercase" },
+    { "type": "select", "id": "alignment", "label": "Alignment", "options": [{"value":"left","label":"Left"},{"value":"center","label":"Center"},{"value":"right","label":"Right"}], "default": "center" },
+    { "type": "checkbox", "id": "use_gradient", "label": "Use Gradient Color", "default": false },
+    { "type": "color", "id": "gradient_start", "label": "Gradient Start", "default": "#3b82f6" },
+    { "type": "color", "id": "gradient_end", "label": "Gradient End", "default": "#ec4899" },
+    { "type": "select", "id": "animation", "label": "Animation", "options": [{"value":"none","label":"None"},{"value":"fade-in","label":"Fade In"},{"value":"slide-up","label":"Slide Up"},{"value":"scale","label":"Scale Pop"}], "default": "slide-up" },
+    { "type": "range", "id": "mb", "label": "Margin Bottom", "min": 0, "max": 100, "step": 4, "default": 24 }
+  ]
+}
+{% endschema %}

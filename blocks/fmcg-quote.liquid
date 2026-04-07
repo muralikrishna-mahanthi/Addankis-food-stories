@@ -1,0 +1,50 @@
+{%- style -%}
+  .univ-anim-none { }
+  .univ-anim-slide-up { animation: univSlideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; opacity: 0; transform: translateY(30px); }
+  @keyframes univSlideUp { to { opacity: 1; transform: translateY(0); } }
+
+  #UnivBlock-{{ block.id }} { 
+    text-align: {{ block.settings.alignment }}; padding: {{ block.settings.py }}px {{ block.settings.px }}px; 
+    background: {{ block.settings.bg_color }}; border-radius: {{ block.settings.radius }}px; 
+    position: relative; overflow:hidden; margin-bottom: {{ block.settings.mb | default: 24 }}px;
+  }
+  #UnivBlock-{{ block.id }}::before { 
+    content: '"'; font-family: serif; font-size: 8rem; position: absolute; 
+    top: -10px; left: 20px; opacity: 0.1; line-height: 1; color: {{ block.settings.text_color }}; 
+  }
+  #UnivBlock-{{ block.id }} .univ-quote-text { 
+    font-size: {{ block.settings.fs }}rem; color: {{ block.settings.text_color }}; 
+    font-style: italic; font-weight: 500; line-height: 1.4; position: relative; z-index: 2; margin-bottom: 20px; 
+  }
+  #UnivBlock-{{ block.id }} .univ-quote-author { 
+    font-size: {{ block.settings.author_fs }}rem; color: {{ block.settings.author_color }}; 
+    font-weight: 800; text-transform: uppercase; letter-spacing: 2px;
+  }
+{%- endstyle -%}
+
+<div id="UnivBlock-{{ block.id }}" class="univ-anim-{{ block.settings.animation }}" {{ block.shopify_attributes }}>
+  <div class="univ-quote-text">{{ block.settings.text }}</div>
+  <div class="univ-quote-author">- {{ block.settings.author }}</div>
+</div>
+
+{% schema %}
+{
+  "name": "FMCG Ethos Quote",
+  "target": "section",
+  "settings": [
+    { "type": "textarea", "id": "text", "label": "Quote Text", "default": "Quality ingredients make quality products. It's that simple." },
+    { "type": "text", "id": "author", "label": "Author/Source", "default": "Our Founder" },
+    { "type": "color", "id": "bg_color", "label": "Background Color", "default": "#f9fafb" },
+    { "type": "color", "id": "text_color", "label": "Text Color", "default": "#111827" },
+    { "type": "color", "id": "author_color", "label": "Author Color", "default": "#6b7280" },
+    { "type": "range", "id": "fs", "label": "Quote Size (rem)", "min": 1, "max": 4, "step": 0.1, "default": 1.5 },
+    { "type": "range", "id": "author_fs", "label": "Author Size (rem)", "min": 0.8, "max": 2, "step": 0.1, "default": 0.9 },
+    { "type": "select", "id": "alignment", "label": "Alignment", "options": [{"value":"left","label":"Left"},{"value":"center","label":"Center"},{"value":"right","label":"Right"}], "default": "center" },
+    { "type": "range", "id": "px", "label": "Horizontal Padding", "min": 20, "max": 100, "step": 4, "default": 40 },
+    { "type": "range", "id": "py", "label": "Vertical Padding", "min": 20, "max": 100, "step": 4, "default": 40 },
+    { "type": "range", "id": "radius", "label": "Border Radius", "min": 0, "max": 40, "step": 2, "default": 20 },
+    { "type": "select", "id": "animation", "label": "Animation", "options": [{"value":"none","label":"None"},{"value":"slide-up","label":"Slide Up"}], "default": "slide-up" },
+    { "type": "range", "id": "mb", "label": "Margin Bottom", "min": 0, "max": 100, "step": 4, "default": 24 }
+  ]
+}
+{% endschema %}

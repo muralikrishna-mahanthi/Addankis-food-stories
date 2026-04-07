@@ -1,0 +1,58 @@
+{%- style -%}
+  .univ-anim-fade-in { animation: univFadeIn 0.8s ease forwards; opacity: 0; }
+  @keyframes univFadeIn { to { opacity: 1; } }
+
+  #UnivBlock-{{ block.id }} { 
+    display: flex; align-items: {% if block.settings.layout == 'column' %}center{% else %}flex-start{% endif %}; 
+    gap: {{ block.settings.gap }}px; flex-direction: {{ block.settings.layout }}; 
+    margin-bottom: {{ block.settings.mb | default: 24 }}px;
+  }
+  #UnivBlock-{{ block.id }} .univ-icon { 
+    flex-shrink: 0; width: {{ block.settings.icon_size }}px; height: {{ block.settings.icon_size }}px; 
+    border-radius: {{ block.settings.icon_radius }}px; background: {{ block.settings.icon_bg }}; 
+    display: flex; align-items: center; justify-content: center; color: {{ block.settings.icon_color }}; overflow:hidden; 
+  }
+  #UnivBlock-{{ block.id }} .univ-icon svg { width: 60%; height: 60%; }
+  #UnivBlock-{{ block.id }} .univ-icon-content { text-align: {% if block.settings.layout == 'column' %}center{% else %}left{% endif %}; }
+  #UnivBlock-{{ block.id }} .univ-title { font-size: {{ block.settings.title_fs }}rem; font-weight: bold; color: {{ block.settings.title_color }}; margin-bottom: 4px; line-height: 1.2; }
+  #UnivBlock-{{ block.id }} .univ-desc { font-size: {{ block.settings.desc_fs }}rem; color: {{ block.settings.desc_color }}; line-height: 1.5; margin:0;}
+{%- endstyle -%}
+
+<div id="UnivBlock-{{ block.id }}" class="univ-anim-{{ block.settings.animation }}" {{ block.shopify_attributes }}>
+  <div class="univ-icon">
+      {% if block.settings.image != blank %}
+        {{ block.settings.image | image_url: width: 200 | image_tag: style: 'width:100%; height:100%; object-fit:cover;', loading: 'lazy' }}
+      {% elsif block.settings.svg_code != blank %}
+        {{ block.settings.svg_code }}
+      {% endif %}
+  </div>
+  <div class="univ-icon-content">
+      {% if block.settings.title != blank %}<div class="univ-title">{{ block.settings.title }}</div>{% endif %}
+      {% if block.settings.text != blank %}<div class="univ-desc">{{ block.settings.text }}</div>{% endif %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "FMCG Icon With Text",
+  "target": "section",
+  "settings": [
+    { "type": "image_picker", "id": "image", "label": "Icon Image", "info": "Overrides SVG code if set." },
+    { "type": "html", "id": "svg_code", "label": "Icon SVG Code" },
+    { "type": "text", "id": "title", "label": "Title", "default": "Certified Organic" },
+    { "type": "textarea", "id": "text", "label": "Text", "default": "Sourced from the best organic farms." },
+    { "type": "select", "id": "layout", "label": "Layout", "options": [{"value":"row","label":"Side by side"},{"value":"column","label":"Stacked"}], "default": "row" },
+    { "type": "range", "id": "icon_size", "label": "Icon Size (px)", "min": 20, "max": 150, "step": 2, "default": 60 },
+    { "type": "range", "id": "icon_radius", "label": "Icon Border Radius", "min": 0, "max": 50, "step": 2, "default": 50 },
+    { "type": "color", "id": "icon_bg", "label": "Icon Background", "default": "#eff6ff" },
+    { "type": "color", "id": "icon_color", "label": "Icon Color (if SVG)", "default": "#3b82f6" },
+    { "type": "color", "id": "title_color", "label": "Title Color", "default": "#000000" },
+    { "type": "color", "id": "desc_color", "label": "Text Color", "default": "#666666" },
+    { "type": "range", "id": "title_fs", "label": "Title Size (rem)", "min": 0.8, "max": 2.5, "step": 0.1, "default": 1.2 },
+    { "type": "range", "id": "desc_fs", "label": "Text Size (rem)", "min": 0.8, "max": 2.0, "step": 0.1, "default": 1.0 },
+    { "type": "range", "id": "gap", "label": "Gap", "min": 0, "max": 40, "step": 2, "default": 16 },
+    { "type": "select", "id": "animation", "label": "Animation", "options": [{"value":"none","label":"None"},{"value":"fade-in","label":"Fade In"}], "default": "fade-in" },
+    { "type": "range", "id": "mb", "label": "Margin Bottom", "min": 0, "max": 100, "step": 4, "default": 24 }
+  ]
+}
+{% endschema %}
