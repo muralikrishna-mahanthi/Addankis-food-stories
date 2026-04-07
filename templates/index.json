@@ -134,10 +134,12 @@
       "type": "fmcg-marquee-wall",
       "name": "FMCG Marquee Wall",
       "settings": {
+        "font_family": "assistant_n4",
         "fs_desktop": 12,
         "fs_mobile": 4,
         "fw": "700",
         "ls": -2,
+        "text_transform": "uppercase",
         "row_gap": 0,
         "section_height": "100vh",
         "bg_color": "#ffffff",
@@ -156,11 +158,74 @@
         "color_4": "#ff6e00",
         "dir_4": "right"
       }
+    },
+    "fmcg_leadership_Rd7yEL": {
+      "type": "fmcg-leadership",
+      "blocks": {
+        "founder_94rd4A": {
+          "type": "founder",
+          "settings": {
+            "name": "Shivaji Addanki",
+            "role": "Founder & CMO",
+            "bio": "<p>Shivaji Addanki is an entrepreneur with extensive experience in <strong>FMCG<br/>sales, distribution development, and market expansion</strong>.</p>",
+            "responsibilities": "<p>hihih</p>"
+          }
+        },
+        "founder_LyLN6Y": {
+          "type": "founder",
+          "settings": {
+            "name": "Sevyamana Taliyakula",
+            "role": "Co-Founder - CEO",
+            "bio": "<p>Experience in sales and distribution development across South India.</p>",
+            "responsibilities": ""
+          }
+        },
+        "founder_mthG6J": {
+          "type": "founder",
+          "settings": {
+            "name": "Rajkumar Muppidi",
+            "role": "COO",
+            "bio": "<p>Experience in sales and distribution development across South India.</p>",
+            "responsibilities": ""
+          }
+        },
+        "founder_LdHynj": {
+          "type": "founder",
+          "settings": {
+            "name": "Nithish Reddy",
+            "role": "CFO",
+            "bio": "<p>Experience in sales and distribution development across South India.</p>",
+            "responsibilities": ""
+          }
+        }
+      },
+      "block_order": [
+        "founder_94rd4A",
+        "founder_LyLN6Y",
+        "founder_mthG6J",
+        "founder_LdHynj"
+      ],
+      "name": "FMCG Leadership",
+      "settings": {
+        "title": "Our Leadership",
+        "subtitle": "The experienced team driving the vision of Addanki’s Food Stories.",
+        "columns_desktop": 4,
+        "bg_color": "#f9f9f9",
+        "card_bg": "#ffffff",
+        "title_color": "#000000",
+        "subtitle_color": "#666666",
+        "accent_color": "#3b82f6",
+        "card_title_color": "#000000",
+        "card_text_color": "#333333",
+        "padding_top": 100,
+        "padding_bottom": 100
+      }
     }
   },
   "order": [
     "asfpl_hero_8fNkUE",
     "1775551419ea380de6",
-    "fmcg_marquee_wall_jG9bmF"
+    "fmcg_marquee_wall_jG9bmF",
+    "fmcg_leadership_Rd7yEL"
   ]
 }
