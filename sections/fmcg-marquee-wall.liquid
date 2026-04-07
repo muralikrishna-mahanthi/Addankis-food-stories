@@ -1,0 +1,181 @@
+{%- style -%}
+  .fmcg-marquee-wall-{{ section.id }} {
+    --bg-color: {{ section.settings.bg_color }};
+    --text-color-1: {{ section.settings.color_1 }};
+    --text-color-2: {{ section.settings.color_2 }};
+    --text-color-3: {{ section.settings.color_3 }};
+    --text-color-4: {{ section.settings.color_4 }};
+    --fs-desktop: {{ section.settings.fs_desktop }}rem;
+    --fs-mobile: {{ section.settings.fs_mobile }}rem;
+    --font-weight: {{ section.settings.fw }};
+    --letter-spacing: {{ section.settings.ls }}px;
+    --row-gap: {{ section.settings.row_gap }}px;
+
+    background-color: var(--bg-color);
+    width: 100%;
+    min-height: {{ section.settings.section_height }};
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    padding: 4rem 0;
+    position: relative;
+    user-select: none;
+  }
+
+  .fmcg-marquee-wall__row {
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    line-height: 1;
+    margin-bottom: var(--row-gap);
+    transition: transform 0.1s ease-out;
+    will-change: transform;
+    text-transform: uppercase;
+  }
+
+  .fmcg-marquee-wall__row:last-child { margin-bottom: 0; }
+
+  .fmcg-marquee-wall__text {
+    font-size: var(--fs-mobile);
+    font-weight: var(--font-weight);
+    letter-spacing: var(--letter-spacing);
+    padding: 0 2rem;
+  }
+
+  @media screen and (min-width: 750px) {
+    .fmcg-marquee-wall__text {
+      font-size: var(--fs-desktop);
+    }
+  }
+
+  .fmcg-marquee-wall__row-1 { color: var(--text-color-1); }
+  .fmcg-marquee-wall__row-2 { color: var(--text-color-2); }
+  .fmcg-marquee-wall__row-3 { color: var(--text-color-3); }
+  .fmcg-marquee-wall__row-4 { color: var(--text-color-4); }
+
+  /* Outline Style Option */
+  .fmcg-marquee-wall--outline .fmcg-marquee-wall__text {
+    -webkit-text-stroke: 1px currentColor;
+    color: transparent;
+  }
+
+{%- endstyle -%}
+
+<div class="fmcg-marquee-wall-{{ section.id }} {% if section.settings.use_outline %}fmcg-marquee-wall--outline{% endif %}" id="FmcgMarqueeWall-{{ section.id }}">
+  
+  {%- for i in (1..4) -%}
+    {%- capture row_text_key -%}text_{{ i }}{%- endcapture -%}
+    {%- capture row_dir_key -%}dir_{{ i }}{%- endcapture -%}
+    {%- assign row_text = section.settings[row_text_key] -%}
+    {%- assign row_words = row_text | split: ',' -%}
+    
+    <div class="fmcg-marquee-wall__row fmcg-marquee-wall__row-{{ i }}" 
+         data-direction="{{ section.settings[row_dir_key] }}"
+         id="Row-{{ section.id }}-{{ i }}">
+      {%- for j in (1..10) -%}
+        {%- for word in row_words -%}
+          <span class="fmcg-marquee-wall__text">{{ word | strip }}</span>
+        {%- endfor -%}
+      {%- endfor -%}
+    </div>
+  {%- endfor -%}
+
+</div>
+
+<script>
+  (function() {
+    const section = document.getElementById('FmcgMarqueeWall-{{ section.id }}');
+    if (!section) return;
+
+    const rows = section.querySelectorAll('.fmcg-marquee-wall__row');
+    const speed = {{ section.settings.scroll_speed | default: 0.5 }};
+
+    function handleScroll() {
+      const rect = section.getBoundingClientRect();
+      const inView = rect.top < window.innerHeight && rect.bottom > 0;
+      
+      if (!inView) return;
+
+      const scrolled = window.scrollY;
+      
+      rows.forEach((row, index) => {
+        const direction = row.dataset.direction === 'left' ? -1 : 1;
+        // Stagger the movement relative to scroll position
+        const offset = (scrolled * speed * direction) % 1000;
+        row.style.transform = `translateX(${offset}px)`;
+      });
+    }
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll(); // Initial position
+
+    // Re-run on resize or Shopify Editor updates
+    document.addEventListener('shopify:section:load', handleScroll);
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "FMCG Marquee Wall",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Typography & Layout"
+    },
+    { "type": "range", "id": "fs_desktop", "label": "Desktop Font Size (rem)", "min": 2, "max": 15, "step": 0.5, "default": 8 },
+    { "type": "range", "id": "fs_mobile", "label": "Mobile Font Size (rem)", "min": 1.5, "max": 8, "step": 0.5, "default": 4 },
+    { "type": "select", "id": "fw", "label": "Font Weight", "options": [{"value":"400","label":"Normal"},{"value":"700","label":"Bold"},{"value":"900","label":"Black"}], "default": "900" },
+    { "type": "range", "id": "ls", "label": "Letter Spacing (px)", "min": -5, "max": 20, "step": 1, "default": -2 },
+    { "type": "range", "id": "row_gap", "label": "Row Gap", "min": 0, "max": 100, "step": 4, "default": 20 },
+    { "type": "select", "id": "section_height", "label": "Section Height", "options": [{"value":"50vh","label":"Small"},{"value":"75vh","label":"Medium"},{"value":"100vh","label":"Full"}], "default": "100vh" },
+    {
+      "type": "header",
+      "content": "Colors & Styles"
+    },
+    { "type": "color", "id": "bg_color", "label": "Background Color", "default": "#ffffff" },
+    { "type": "checkbox", "id": "use_outline", "label": "Use Outline Style", "default": false },
+    { "type": "color", "id": "color_1", "label": "Row 1 Text Color", "default": "#000000" },
+    { "type": "color", "id": "color_2", "label": "Row 2 Text Color", "default": "#000000" },
+    { "type": "color", "id": "color_3", "label": "Row 3 Text Color", "default": "#000000" },
+    { "type": "color", "id": "color_4", "label": "Row 4 Text Color", "default": "#000000" },
+    {
+      "type": "header",
+      "content": "Animation Settings"
+    },
+    { "type": "range", "id": "scroll_speed", "label": "Scroll Intensity", "min": 0.1, "max": 2.0, "step": 0.1, "default": 0.5 },
+    {
+      "type": "header",
+      "content": "Content - Row 1"
+    },
+    { "type": "textarea", "id": "text_1", "label": "Words (comma separated)", "default": "Energy, Flavor, Health, Taste" },
+    { "type": "select", "id": "dir_1", "label": "Direction", "options": [{"value":"left","label":"Left"},{"value":"right","label":"Right"}], "default": "left" },
+    {
+      "type": "header",
+      "content": "Content - Row 2"
+    },
+    { "type": "textarea", "id": "text_2", "label": "Words (comma separated)", "default": "CRUNCH, SIP, SAVOR, SNACK" },
+    { "type": "select", "id": "dir_2", "label": "Direction", "options": [{"value":"left","label":"Left"},{"value":"right","label":"Right"}], "default": "right" },
+    {
+      "type": "header",
+      "content": "Content - Row 3"
+    },
+    { "type": "textarea", "id": "text_3", "label": "Words (comma separated)", "default": "NATURAL, ORGANIC, PURE, FRESH" },
+    { "type": "select", "id": "dir_3", "label": "Direction", "options": [{"value":"left","label":"Left"},{"value":"right","label":"Right"}], "default": "left" },
+    {
+      "type": "header",
+      "content": "Content - Row 4"
+    },
+    { "type": "textarea", "id": "text_4", "label": "Words (comma separated)", "default": "DELICIOUS, ICONIC, REFRESHING, BOLD" },
+    { "type": "select", "id": "dir_4", "label": "Direction", "options": [{"value":"left","label":"Left"},{"value":"right","label":"Right"}], "default": "right" }
+  ],
+  "presets": [
+    {
+      "name": "FMCG Marquee Wall"
+    }
+  ]
+}
+{% endschema %}
