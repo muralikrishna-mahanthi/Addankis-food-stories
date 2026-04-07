@@ -132,12 +132,13 @@
     },
     "fmcg_marquee_wall_jG9bmF": {
       "type": "fmcg-marquee-wall",
+      "custom_css": [],
       "name": "FMCG Marquee Wall",
       "settings": {
-        "font_family": "assistant_n4",
+        "font_family": "mochiy_pop_p_one_n4",
         "fs_desktop": 12,
         "fs_mobile": 4,
-        "fw": "700",
+        "fw": "900",
         "ls": -2,
         "text_transform": "uppercase",
         "row_gap": 0,
@@ -146,6 +147,7 @@
         "use_outline": false,
         "scroll_speed": 0.2,
         "text_1": "Energy, Flavor, Health, Taste",
+        "logo_1": "shopify://shop_images/Gemini_Generated_Image_rfbfeorfbfeorfbf.png",
         "color_1": "#4fa230",
         "dir_1": "left",
         "text_2": "CRUNCH, SIP, SAVOR, SNACK",
