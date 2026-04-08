@@ -26,18 +26,30 @@
     display: grid !important;
     grid-template-columns: 1fr auto 1fr !important;
     align-items: center !important;
-    padding: 0.5rem 4rem !important;
+    padding: {{ section.settings.header_padding_vertical }}px {{ section.settings.header_padding_horizontal }}px !important;
     background: #ffffff !important;
-    border-radius: 6rem !important;
-    margin: 1.5rem auto !important;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.08) !important;
     transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1) !important;
-    max-width: 95% !important;
-    width: fit-content !important;
-    min-width: 80% !important;
     position: relative !important;
     z-index: 10 !important;
   }
+
+  {%- if section.settings.header_layout_style == 'pill' -%}
+    .header {
+      border-radius: {{ section.settings.pill_border_radius }}px !important;
+      margin: 1.5rem auto !important;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08) !important;
+      max-width: {{ section.settings.header_max_width }}% !important;
+      width: fit-content !important;
+      min-width: 80% !important;
+    }
+  {%- else -%}
+    .header {
+      width: 100% !important;
+      max-width: 100% !important;
+      margin: 0 !important;
+      border-radius: 0 !important;
+    }
+  {%- endif -%}
 
   .section-header {
     position: sticky !important;
@@ -349,17 +361,23 @@
           </localization-form>
         {%- endif -%}
       </div>
+      {% if section.settings.show_careers %}
       <a href="{{ section.settings.careers_link | default: '#' }}" class="header__utility-link link link--text focus-inset">
         Careers
       </a>
+      {% endif %}
+      {% if section.settings.show_contact %}
       <a href="{{ section.settings.contact_link | default: '#' }}" class="header__utility-link link link--text focus-inset">
         Contact
       </a>
+      {% endif %}
+      {% if section.settings.show_globe %}
       <a href="{{ section.settings.globe_link | default: '#' }}" class="header__icon header__icon--globe link focus-inset">
         <span class="svg-wrapper">
           <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-globe"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
         </span>
       </a>
+      {% endif %}
       {% render 'header-search', input_id: 'Search-In-Modal' %}
 
       {%- if shop.customer_accounts_enabled -%}
@@ -398,7 +416,7 @@
         {%- endcase -%}
       {%- endfor -%}
 
-      {%- unless template.name == 'index' -%}
+      {%- unless template.name == 'index' or section.settings.show_cart == false -%}
         <a href="{{ routes.cart_url }}" class="header__icon header__icon--cart link focus-inset" id="cart-icon-bubble">
           {% if cart == empty %}
             <span class="svg-wrapper">{{ 'icon-cart-empty.svg' | inline_asset_content }}</span>
@@ -601,6 +619,84 @@
       "type": "url",
       "id": "contact_link",
       "label": "Contact Link"
+    },
+    {
+      "type": "header",
+      "content": "Custom Branding & Layout"
+    },
+    {
+      "type": "select",
+      "id": "header_layout_style",
+      "options": [
+        { "value": "standard", "label": "Standard Full Width" },
+        { "value": "pill", "label": "Branded Pill" }
+      ],
+      "default": "pill",
+      "label": "Header Layout Style"
+    },
+    {
+      "type": "range",
+      "id": "pill_border_radius",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Pill Border Radius",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "header_max_width",
+      "min": 70,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Header Max Width",
+      "default": 95
+    },
+    {
+      "type": "checkbox",
+      "id": "show_globe",
+      "default": true,
+      "label": "Show Globe Icon"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_careers",
+      "default": true,
+      "label": "Show Careers Link"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_contact",
+      "default": true,
+      "label": "Show Contact Link"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_cart",
+      "default": true,
+      "label": "Show Cart Icon"
+    },
+    {
+       "type": "range",
+       "id": "header_padding_horizontal",
+       "min": 0,
+       "max": 100,
+       "step": 2,
+       "unit": "px",
+       "label": "Horizontal Padding",
+       "default": 40
+    },
+    {
+       "type": "range",
+       "id": "header_padding_vertical",
+       "min": 0,
+       "max": 40,
+       "step": 2,
+       "unit": "px",
+       "label": "Vertical Padding",
+       "default": 8
     },
     {
       "type": "select",
