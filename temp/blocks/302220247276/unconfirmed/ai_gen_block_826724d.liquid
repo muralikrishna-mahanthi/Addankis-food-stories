@@ -1,6 +1,292 @@
+{% doc %}
+  @prompt
+    create a hero section for image and heading on that image and make the heading on that image should be center below and give customize settings of padding for heading as full size on image and make it animate like while scrolling the bar image should move fast and text should move slowly to top, give font family and font weight to bolder max for heading and size of heading settings also, GIVE font weight settings like light, bold, bolder, and extra large bold settings and make the image move inside the given screen size only and don't make any background color or space while the image animation happens, give font family
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-parallax-hero-{{ ai_gen_id }} {
+    position: relative;
+    width: 100%;
+    height: {{ block.settings.hero_height }}vh;
+    overflow: hidden;
+    display: block;
+  }
+
+  .ai-parallax-hero__image-wrapper-{{ ai_gen_id }} {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .ai-parallax-hero__image-{{ ai_gen_id }} {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    will-change: transform;
+  }
+
+  .ai-parallax-hero__placeholder-{{ ai_gen_id }} {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #f4f4f4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ai-parallax-hero__placeholder-{{ ai_gen_id }} svg {
+    width: 100%;
+    height: 100%;
+    max-width: 500px;
+    max-height: 500px;
+  }
+
+  .ai-parallax-hero__content-{{ ai_gen_id }} {
+    position: absolute;
+    bottom: {{ block.settings.heading_padding_bottom }}%;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 20px;
+    will-change: transform;
+    z-index: 2;
+  }
+
+  .ai-parallax-hero__heading-{{ ai_gen_id }} {
+    color: {{ block.settings.heading_color }};
+    font-size: {{ block.settings.heading_size }}px;
+    font-weight: {{ block.settings.heading_weight }};
+    font-family: {{ block.settings.heading_font.family }}, {{ block.settings.heading_font.fallback_families }};
+    font-style: {{ block.settings.heading_font.style }};
+    text-align: center;
+    margin: 0;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-parallax-hero__heading-{{ ai_gen_id }} {
+      font-size: calc({{ block.settings.heading_size }}px * 0.6);
+    }
+  }
+{% endstyle %}
+
+<parallax-hero-{{ ai_gen_id }}
+  class="ai-parallax-hero-{{ ai_gen_id }}"
+  data-image-speed="{{ block.settings.image_speed }}"
+  data-text-speed="{{ block.settings.text_speed }}"
+  {{ block.shopify_attributes }}
+>
+  <div class="ai-parallax-hero__image-wrapper-{{ ai_gen_id }}">
+    {% if block.settings.hero_image %}
+      <img
+        src="{{ block.settings.hero_image | image_url: width: 2000 }}"
+        alt="{{ block.settings.hero_image.alt | escape }}"
+        loading="lazy"
+        width="{{ block.settings.hero_image.width }}"
+        height="{{ block.settings.hero_image.height }}"
+        class="ai-parallax-hero__image-{{ ai_gen_id }}"
+      >
+    {% else %}
+      <div class="ai-parallax-hero__placeholder-{{ ai_gen_id }}">
+        {{ 'hero-apparel-1' | placeholder_svg_tag }}
+      </div>
+    {% endif %}
+  </div>
+
+  {% if block.settings.heading != blank %}
+    <div class="ai-parallax-hero__content-{{ ai_gen_id }}">
+      <h1 class="ai-parallax-hero__heading-{{ ai_gen_id }}">{{ block.settings.heading }}</h1>
+    </div>
+  {% endif %}
+</parallax-hero-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class ParallaxHero{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+        this.imageWrapper = this.querySelector('.ai-parallax-hero__image-wrapper-{{ ai_gen_id }}');
+        this.image = this.querySelector('.ai-parallax-hero__image-{{ ai_gen_id }}');
+        this.content = this.querySelector('.ai-parallax-hero__content-{{ ai_gen_id }}');
+        this.imageSpeed = parseFloat(this.dataset.imageSpeed) || 0.5;
+        this.textSpeed = parseFloat(this.dataset.textSpeed) || 0.3;
+        this.ticking = false;
+      }
+
+      connectedCallback() {
+        this.handleScroll = this.handleScroll.bind(this);
+        window.addEventListener('scroll', this.handleScroll, { passive: true });
+        this.handleScroll();
+      }
+
+      disconnectedCallback() {
+        window.removeEventListener('scroll', this.handleScroll);
+      }
+
+      handleScroll() {
+        if (!this.ticking) {
+          window.requestAnimationFrame(() => {
+            this.updateParallax();
+            this.ticking = false;
+          });
+          this.ticking = true;
+        }
+      }
+
+      updateParallax() {
+        const rect = this.getBoundingClientRect();
+        const scrolled = window.pageYOffset || document.documentElement.scrollTop;
+        const elementTop = rect.top + scrolled;
+        const elementHeight = this.offsetHeight;
+        const windowHeight = window.innerHeight;
+
+        if (rect.bottom > 0 && rect.top < windowHeight) {
+          const scrollProgress = (scrolled - elementTop + windowHeight) / (elementHeight + windowHeight);
+          const clampedProgress = Math.max(0, Math.min(1, scrollProgress));
+
+          const imageOffset = (clampedProgress - 0.5) * elementHeight * this.imageSpeed;
+          const textOffset = (clampedProgress - 0.5) * elementHeight * this.textSpeed;
+
+          if (this.image) {
+            this.image.style.transform = `translate3d(0, ${imageOffset}px, 0)`;
+          }
+
+          if (this.content) {
+            this.content.style.transform = `translate3d(0, ${-textOffset}px, 0)`;
+          }
+        }
+      }
+    }
+
+    customElements.define('parallax-hero-{{ ai_gen_id }}', ParallaxHero{{ ai_gen_id }});
+  })();
+</script>
+
 {% schema %}
- {
-   "name": "AI_Block",
-   "tag": "shopify-ai-generated-block"
- }
+{
+  "name": "Parallax hero",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_image",
+      "label": "Hero image"
+    },
+    {
+      "type": "range",
+      "id": "hero_height",
+      "min": 40,
+      "max": 100,
+      "step": 5,
+      "unit": "vh",
+      "label": "Hero height",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "image_speed",
+      "min": 0,
+      "max": 1,
+      "step": 0.1,
+      "label": "Image scroll speed",
+      "default": 0.5
+    },
+    {
+      "type": "header",
+      "content": "Heading"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Welcome to our store"
+    },
+    {
+      "type": "font_picker",
+      "id": "heading_font",
+      "label": "Heading font",
+      "default": "assistant_n4"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "min": 20,
+      "max": 120,
+      "step": 5,
+      "unit": "px",
+      "label": "Heading size",
+      "default": 60
+    },
+    {
+      "type": "select",
+      "id": "heading_weight",
+      "label": "Heading weight",
+      "options": [
+        {
+          "value": "300",
+          "label": "Light"
+        },
+        {
+          "value": "700",
+          "label": "Bold"
+        },
+        {
+          "value": "800",
+          "label": "Bolder"
+        },
+        {
+          "value": "900",
+          "label": "Extra bold"
+        }
+      ],
+      "default": "900"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "heading_padding_bottom",
+      "min": 0,
+      "max": 50,
+      "step": 5,
+      "unit": "%",
+      "label": "Heading bottom position",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "text_speed",
+      "min": 0,
+      "max": 1,
+      "step": 0.1,
+      "label": "Text scroll speed",
+      "default": 0.3
+    }
+  ],
+  "presets": [
+    {
+      "name": "Parallax hero"
+    }
+  ]
+}
 {% endschema %}
