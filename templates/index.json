@@ -190,38 +190,34 @@
         "video": "shopify://files/videos/7301195-uhd_3840_2160_25fps.mp4",
         "video_text": "",
         "video_overlay_bg": "rgba(0,0,0,0)",
-        "video_overlay_opacity": 50,
+        "video_overlay_opacity": 0,
         "bg_color": "rgba(0,0,0,0)"
       }
     },
     "1775636785470845c7": {
       "type": "_blocks",
       "blocks": {
-        "ai_gen_block_cd4db26_PXJYr8": {
-          "type": "ai_gen_block_cd4db26",
+        "ai_gen_block_0ab00f8_HEVbqF": {
+          "type": "ai_gen_block_0ab00f8",
           "settings": {
             "marquee_text": "LIFESTYLE.  FOOD. SMILES.",
-            "text_color": "#81e683",
+            "background_color": "#144900",
+            "text_color": "#6df26f",
             "font_size": 60,
             "font_weight": "800",
-            "letter_spacing": 0,
-            "background_color": "#144900",
             "padding_top": 10,
             "padding_bottom": 10,
             "padding_left": 0,
             "padding_right": 0,
-            "show_separator": false,
-            "separator_color": "#ffffff",
-            "separator_size": 6,
-            "animation_speed": 20,
             "item_spacing": 10,
+            "animation_speed": 60,
             "pause_on_hover": false
           },
           "blocks": {}
         }
       },
       "block_order": [
-        "ai_gen_block_cd4db26_PXJYr8"
+        "ai_gen_block_0ab00f8_HEVbqF"
       ],
       "settings": {}
     }
