@@ -170,6 +170,9 @@
     },
     "fmcg_brand_reveal_KKRFzy": {
       "type": "fmcg-brand-reveal",
+      "custom_css": [
+        "p{font-size: 15px; letter-spacing: 1px;}"
+      ],
       "name": "FMCG Brand Reveal",
       "settings": {
         "image": "shopify://shop_images/VSH8288.webp",
@@ -201,7 +204,7 @@
           "type": "ai_gen_block_0ab00f8",
           "settings": {
             "marquee_text": "LIFESTYLE.  FOOD. SMILES.",
-            "background_color": "#144900",
+            "background_color": "#1f7000",
             "text_color": "#6df26f",
             "font_size": 60,
             "font_weight": "800",
