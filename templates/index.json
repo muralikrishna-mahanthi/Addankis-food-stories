@@ -23,19 +23,17 @@
         "animation_speed": 2000,
         "heading_color": "#ffffff",
         "heading_size": 5,
-        "heading_size_mobile": 2.5,
-        "heading_weight": "700",
         "heading_line_height": 1.1,
         "heading_letter_spacing": -0.5,
+        "heading_size_mobile": 2.5,
         "heading_transform": "uppercase",
         "heading_animation": "blur-in",
         "heading_delay": 300,
         "description": "<p>Addanki’s Food Stories Pvt. Ltd. is an emerging Indian FMCG company focused on building scalable consumer brands and enabling strong distribution networks across urban and rural markets.</p>",
         "description_color": "#ffffff",
         "description_size": 1.5,
-        "description_size_mobile": 1,
-        "description_weight": "400",
         "description_line_height": 1.6,
+        "description_size_mobile": 1,
         "description_max_width": 500,
         "description_animation": "slide-up",
         "description_delay": 500,
@@ -187,12 +185,44 @@
         "video_overlay_opacity": 50,
         "bg_color": "rgba(0,0,0,0)"
       }
+    },
+    "1775636785470845c7": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_cd4db26_PXJYr8": {
+          "type": "ai_gen_block_cd4db26",
+          "settings": {
+            "marquee_text": "LIFESTYLE.  FOOD. SMILES.",
+            "text_color": "#81e683",
+            "font_size": 60,
+            "font_weight": "800",
+            "letter_spacing": 0,
+            "background_color": "#144900",
+            "padding_top": 10,
+            "padding_bottom": 10,
+            "padding_left": 0,
+            "padding_right": 0,
+            "show_separator": false,
+            "separator_color": "#ffffff",
+            "separator_size": 6,
+            "animation_speed": 20,
+            "item_spacing": 10,
+            "pause_on_hover": false
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_cd4db26_PXJYr8"
+      ],
+      "settings": {}
     }
   },
   "order": [
     "asfpl_hero_8fNkUE",
     "1775551419ea380de6",
     "fmcg_marquee_wall_jG9bmF",
-    "fmcg_brand_reveal_KKRFzy"
+    "fmcg_brand_reveal_KKRFzy",
+    "1775636785470845c7"
   ]
 }
