@@ -1,0 +1,227 @@
+{%- style -%}
+  .strategy-scroller-{{ section.id }} {
+    position: relative;
+    /* Height determines how 'long' the horizontal scroll feels */
+    height: 400vh; 
+    background: {{ section.settings.bg_color }};
+  }
+
+  .strategy-scroller__sticky {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .strategy-scroller__header {
+    padding: 0 4rem;
+    margin-bottom: 4rem;
+    z-index: 10;
+  }
+
+  .strategy-scroller__heading {
+    font-size: clamp(3rem, 10vw, 12rem);
+    font-weight: 950;
+    line-height: 0.9;
+    letter-spacing: -0.04em;
+    text-transform: uppercase;
+    color: {{ section.settings.text_color }};
+  }
+
+  .strategy-scroller__track-wrapper {
+    width: 100%;
+    overflow: visible;
+  }
+
+  .strategy-scroller__track {
+    display: flex;
+    padding-left: 4rem;
+    will-change: transform;
+    gap: 4rem;
+  }
+
+  .strategy-scroller__card {
+    flex-shrink: 0;
+    width: 70vw;
+    max-width: 600px;
+    height: 60vh;
+    position: relative;
+    border-radius: 2rem;
+    overflow: hidden;
+    background: #1a1a1a;
+    transition: transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+  }
+
+  .strategy-scroller__card-media {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .strategy-scroller__card-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.6;
+    transition: transform 1s ease;
+  }
+
+  .strategy-scroller__card:hover .strategy-scroller__card-media img {
+    transform: scale(1.1);
+  }
+
+  .strategy-scroller__card-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 3rem;
+    z-index: 5;
+    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+    color: #ffffff;
+  }
+
+  .strategy-scroller__card-step {
+    font-size: 1.4rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    display: block;
+    color: {{ section.settings.accent_color | default: '#3b82f6' }};
+  }
+
+  .strategy-scroller__card-title {
+    font-size: 3.2rem;
+    font-weight: 900;
+    margin-bottom: 1rem;
+    line-height: 1.1;
+  }
+
+  .strategy-scroller__card-text {
+    font-size: 1.6rem;
+    line-height: 1.4;
+    opacity: 0.8;
+  }
+
+  @media screen and (max-width: 749px) {
+    .strategy-scroller__card {
+      width: 85vw;
+      height: 50vh;
+    }
+    .strategy-scroller__heading {
+      font-size: 5rem;
+    }
+  }
+{%- endstyle -%}
+
+<div class="strategy-scroller-{{ section.id }} strategy-scroller" id="StrategyScroller-{{ section.id }}">
+  <div class="strategy-scroller__sticky">
+    
+    <div class="strategy-scroller__header">
+      <h2 class="strategy-scroller__heading">{{ section.settings.heading }}</h2>
+    </div>
+
+    <div class="strategy-scroller__track-wrapper">
+      <div class="strategy-scroller__track" id="StrategyTrack-{{ section.id }}">
+        
+        {%- for block in section.blocks -%}
+          <div class="strategy-scroller__card" {{ block.shopify_attributes }}>
+            <div class="strategy-scroller__card-media">
+              {%- if block.settings.image != blank -%}
+                {{ block.settings.image | image_url: width: 1200 | image_tag: loading: 'lazy' }}
+              {%- else -%}
+                {{ 'collection-' | append: forloop.index | placeholder_svg_tag: 'placeholder-svg' }}
+              {%- endif -%}
+            </div>
+            <div class="strategy-scroller__card-info">
+              <span class="strategy-scroller__card-step">Pillar 0{{ forloop.index }}</span>
+              <h3 class="strategy-scroller__card-title">{{ block.settings.title }}</h3>
+              <p class="strategy-scroller__card-text">{{ block.settings.text }}</p>
+            </div>
+          </div>
+        {%- endfor -%}
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  (function() {
+    const scroller = document.getElementById('StrategyScroller-{{ section.id }}');
+    const track = document.getElementById('StrategyTrack-{{ section.id }}');
+    if (!scroller || !track) return;
+
+    function handleScroll() {
+      const scrollY = window.scrollY;
+      const offsetTop = scroller.offsetTop;
+      const height = scroller.offsetHeight;
+      const stickyHeight = window.innerHeight;
+      
+      // Calculate progress (0 to 1) through the 400vh section
+      let progress = (scrollY - offsetTop) / (height - stickyHeight);
+      progress = Math.max(0, Math.min(1, progress));
+
+      // Calculate translation
+      // Total translation is track width minus viewport width
+      const trackWidth = track.scrollWidth;
+      const viewportWidth = window.innerWidth;
+      const maxTranslate = trackWidth - viewportWidth + 100; // Extra padding
+      
+      const translate = progress * maxTranslate;
+      track.style.transform = `translate3d(${-translate}px, 0, 0)`;
+    }
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    
+    // Initial call
+    handleScroll();
+
+    document.addEventListener('shopify:section:load', () => {
+      handleScroll();
+    });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "ASFPL Strategy Scroller",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    { "type": "color", "id": "bg_color", "label": "Background", "default": "#000000" },
+    { "type": "color", "id": "text_color", "label": "Text Color", "default": "#ffffff" },
+    { "type": "color", "id": "accent_color", "label": "Accent Color", "default": "#3b82f6" },
+    { "type": "text", "id": "heading", "label": "Section Heading", "default": "OUR STRATEGY" }
+  ],
+  "blocks": [
+    {
+      "type": "pillar",
+      "name": "Strategy Pillar",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Pillar Image" },
+        { "type": "text", "id": "title", "label": "Title", "default": "Sustainability" },
+        { "type": "textarea", "id": "text", "label": "Description", "default": "Building a positive value chain for every sip and every bite." }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "ASFPL Strategy Scroller",
+      "blocks": [
+        { "type": "pillar", "settings": { "title": "Positive Value Chain" } },
+        { "type": "pillar", "settings": { "title": "Circular Economy" } },
+        { "type": "pillar", "settings": { "title": "Community Joy" } }
+      ]
+    }
+  ]
+}
+{% endschema %}
