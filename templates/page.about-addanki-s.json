@@ -95,11 +95,107 @@
         "ai_gen_block_4ff1c27_8DpUDV"
       ],
       "settings": {}
+    },
+    "asfpl_history_reveal_dM3fGm": {
+      "type": "asfpl-history-reveal",
+      "blocks": {
+        "milestone_gGh6gE": {
+          "type": "milestone",
+          "settings": {
+            "year": "2023",
+            "title": "Foundation",
+            "text": "<p>Where our story first began with a simple vision of flavor and quality.</p>"
+          }
+        },
+        "milestone_jgV66J": {
+          "type": "milestone",
+          "settings": {
+            "year": "2024",
+            "title": "Expansion",
+            "text": "<p>Where our story first began with a simple vision of flavor and quality.</p>"
+          }
+        },
+        "milestone_36DFig": {
+          "type": "milestone",
+          "settings": {
+            "year": "2025",
+            "title": "Market Leader",
+            "text": "<p>Where our story first began with a simple vision of flavor and quality.</p>"
+          }
+        },
+        "milestone_76zy9T": {
+          "type": "milestone",
+          "settings": {
+            "year": "2026",
+            "title": "Digital Future",
+            "text": "<p>Where our story first began with a simple vision of flavor and quality.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "milestone_gGh6gE",
+        "milestone_jgV66J",
+        "milestone_36DFig",
+        "milestone_76zy9T"
+      ],
+      "name": "ASFPL History Reveal",
+      "settings": {
+        "bg_color": "#ff6e00",
+        "text_color": "#ffe470",
+        "accent_color": "#ffe470",
+        "heading": "OUR JOURNEY",
+        "padding_top": 100,
+        "padding_bottom": 100
+      }
+    },
+    "asfpl_strategy_scroller_7WBE9g": {
+      "type": "asfpl-strategy-scroller",
+      "blocks": {
+        "pillar_LqkYTA": {
+          "type": "pillar",
+          "settings": {
+            "image": "shopify://shop_images/fruits_sliced_by_a_person_on_a_table_wearing_head_mask_hand_gloves_and_mask_on_the_face.jpg",
+            "title": "Positive Value Chain",
+            "text": "Building a positive value chain for every sip and every bite."
+          }
+        },
+        "pillar_D78b7e": {
+          "type": "pillar",
+          "settings": {
+            "image": "shopify://shop_images/gemini-3.1-flash-image-preview_nano-banana-2__a_remove_the_navigatio_-_Edited.png",
+            "title": "Circular Economy",
+            "text": "Building a positive value chain for every sip and every bite."
+          }
+        },
+        "pillar_x4t7tt": {
+          "type": "pillar",
+          "settings": {
+            "image": "shopify://shop_images/ChatGPTImageDec23_2025_04_12_30PM.jpg",
+            "title": "Community Joy",
+            "text": "Building a positive value chain for every sip and every bite."
+          }
+        }
+      },
+      "block_order": [
+        "pillar_LqkYTA",
+        "pillar_D78b7e",
+        "pillar_x4t7tt"
+      ],
+      "custom_css": [],
+      "name": "ASFPL Strategy Scroller",
+      "settings": {
+        "bg_color": "#000000",
+        "text_color": "#ffffff",
+        "accent_color": "#3b82f6",
+        "heading": "OUR STRATEGY"
+      }
     }
   },
   "order": [
     "main",
     "17756460369904a3fd",
-    "177564547279babe52"
+    "177564547279babe52",
+    "asfpl_strategy_scroller_7WBE9g",
+    "asfpl_history_reveal_dM3fGm"
   ]
 }
