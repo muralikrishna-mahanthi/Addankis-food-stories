@@ -171,7 +171,8 @@
     "fmcg_brand_reveal_KKRFzy": {
       "type": "fmcg-brand-reveal",
       "custom_css": [
-        "p{font-size: 15px; letter-spacing: 1px;}"
+        "h2{font-weight: bolder;}",
+        "p {font-size: 15px; letter-spacing: 1px}"
       ],
       "name": "FMCG Brand Reveal",
       "settings": {
