@@ -138,10 +138,10 @@
       "name": "FMCG Marquee Wall",
       "settings": {
         "font_family": "mochiy_pop_p_one_n4",
-        "fs_desktop": 12,
+        "fs_desktop": 14,
         "fs_mobile": 4,
         "fw": "900",
-        "ls": -2,
+        "ls": -4,
         "text_transform": "uppercase",
         "row_gap": 0,
         "section_height": "100vh",
@@ -157,7 +157,7 @@
         "text_3": "Natural, Organic, Pure, Fresh",
         "color_3": "#4fa230",
         "dir_3": "left",
-        "text_4": "DELICIOUS, ICONIC, REFRESHING, BOLD",
+        "text_4": "Iconic, Harvest, Fresh, Feel",
         "color_4": "#ff6e00",
         "dir_4": "right"
       }
