@@ -1,0 +1,247 @@
+{%- style -%}
+  .history-reveal-{{ section.id }} {
+    padding: {{ section.settings.padding_top }}px 0 {{ section.settings.padding_bottom }}px;
+    background: {{ section.settings.bg_color }};
+    overflow: hidden;
+  }
+
+  .history-reveal__container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    position: relative;
+  }
+
+  .history-reveal__main-title {
+    text-align: center;
+    margin-bottom: 8rem;
+  }
+
+  .history-reveal__heading {
+    font-size: clamp(3rem, 7vw, 7rem);
+    font-weight: 950;
+    line-height: 0.9;
+    text-transform: uppercase;
+    letter-spacing: -0.04em;
+    color: {{ section.settings.text_color }};
+  }
+
+  /* Vertical Line */
+  .history-reveal__line {
+    position: absolute;
+    top: 150px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: calc(100% - 300px);
+    background: rgba(255,255,255,0.1);
+    z-index: 1;
+  }
+
+  .history-reveal__line-progress {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 0%;
+    background: {{ section.settings.accent_color | default: '#3b82f6' }};
+    transition: height 0.5s ease-out;
+  }
+
+  .history-reveal__items {
+    position: relative;
+    z-index: 2;
+  }
+
+  .history-reveal__item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12rem;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 1s cubic-bezier(0.19, 1, 0.22, 1);
+  }
+
+  .history-reveal__item.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .history-reveal__item--left {
+    flex-direction: row;
+  }
+
+  .history-reveal__item--right {
+    flex-direction: row-reverse;
+  }
+
+  .history-reveal__content {
+    width: 42%;
+  }
+
+  .history-reveal__year {
+    font-size: clamp(4rem, 8vw, 10rem);
+    font-weight: 950;
+    line-height: 1;
+    color: {{ section.settings.accent_color | default: '#3b82f6' }};
+    margin-bottom: 1rem;
+    letter-spacing: -0.05em;
+  }
+
+  .history-reveal__title {
+    font-size: 2.4rem;
+    font-weight: 800;
+    color: {{ section.settings.text_color }};
+    margin-bottom: 1.5rem;
+    line-height: 1.1;
+  }
+
+  .history-reveal__text {
+    font-size: 1.6rem;
+    line-height: 1.5;
+    color: {{ section.settings.text_color }};
+    opacity: 0.7;
+  }
+
+  .history-reveal__dot {
+    width: 20px;
+    height: 20px;
+    background: {{ section.settings.bg_color }};
+    border: 4px solid {{ section.settings.accent_color | default: '#3b82f6' }};
+    border-radius: 50%;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: 0 0 20px {{ section.settings.accent_color | default: '#3b82f6' }}44;
+  }
+
+  @media screen and (max-width: 749px) {
+    .history-reveal__line {
+      left: 20px;
+      transform: none;
+    }
+    .history-reveal__item {
+      flex-direction: column !important;
+      align-items: flex-start;
+      padding-left: 50px;
+      text-align: left;
+      margin-bottom: 8rem;
+    }
+    .history-reveal__content {
+      width: 100%;
+    }
+    .history-reveal__dot {
+      left: 20px;
+      transform: translateX(-50%);
+    }
+    .history-reveal__heading {
+      font-size: 4rem;
+    }
+  }
+{%- endstyle -%}
+
+<section class="history-reveal-{{ section.id }} history-reveal">
+  <div class="history-reveal__container">
+    
+    <div class="history-reveal__main-title">
+      <h2 class="history-reveal__heading">{{ section.settings.heading }}</h2>
+    </div>
+
+    <div class="history-reveal__line">
+      <div class="history-reveal__line-progress" id="HistoryLine-{{ section.id }}"></div>
+    </div>
+
+    <div class="history-reveal__items">
+      {%- for block in section.blocks -%}
+        <div class="history-reveal__item history-reveal-reveal history-reveal__item--{% cycle 'left', 'right' %}" {{ block.shopify_attributes }}>
+          <div class="history-reveal__content">
+            <div class="history-reveal__year">{{ block.settings.year }}</div>
+            <h3 class="history-reveal__title">{{ block.settings.title }}</h3>
+            <div class="history-reveal__text">{{ block.settings.text }}</div>
+          </div>
+          <div class="history-reveal__dot"></div>
+        </div>
+      {%- endfor -%}
+    </div>
+
+  </div>
+</section>
+
+<script>
+  (function() {
+    const section = document.querySelector('.history-reveal-{{ section.id }}');
+    const lineProgress = document.getElementById('HistoryLine-{{ section.id }}');
+    
+    if (!section || !lineProgress) return;
+
+    function upgradeTimeline() {
+      const rect = section.getBoundingClientRect();
+      const viewportHeight = window.innerHeight;
+      
+      // Calculate how much of the section has been scrolled through
+      let progress = (viewportHeight / 2 - rect.top) / rect.height;
+      progress = Math.max(0, Math.min(1, progress));
+      
+      lineProgress.style.height = (progress * 100) + '%';
+    }
+
+    const observerOptions = {
+      root: null,
+      threshold: 0.2
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.history-reveal-reveal').forEach((item) => {
+      observer.observe(item);
+    });
+
+    window.addEventListener('scroll', upgradeTimeline, { passive: true });
+    upgradeTimeline(); // Initial check
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "ASFPL History Reveal",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    { "type": "color", "id": "bg_color", "label": "Background", "default": "#000000" },
+    { "type": "color", "id": "text_color", "label": "Text Color", "default": "#ffffff" },
+    { "type": "color", "id": "accent_color", "label": "Accent Color", "default": "#3b82f6" },
+    { "type": "text", "id": "heading", "label": "Section Heading", "default": "OUR JOURNEY" },
+    { "type": "range", "id": "padding_top", "min": 0, "max": 120, "step": 4, "unit": "px", "label": "Top Padding", "default": 100 },
+    { "type": "range", "id": "padding_bottom", "min": 0, "max": 120, "step": 4, "unit": "px", "label": "Bottom Padding", "default": 100 }
+  ],
+  "blocks": [
+    {
+      "type": "milestone",
+      "name": "Milestone",
+      "settings": [
+        { "type": "text", "id": "year", "label": "Year", "default": "2024" },
+        { "type": "text", "id": "title", "label": "Event Title", "default": "The Beginning" },
+        { "type": "richtext", "id": "text", "label": "Description", "default": "<p>Where our story first began with a simple vision of flavor and quality.</p>" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "ASFPL History Reveal",
+      "blocks": [
+        { "type": "milestone", "settings": { "year": "2021", "title": "Foundation" } },
+        { "type": "milestone", "settings": { "year": "2022", "title": "Expansion" } },
+        { "type": "milestone", "settings": { "year": "2023", "title": "Market Leader" } },
+        { "type": "milestone", "settings": { "year": "2024", "title": "Digital Future" } }
+      ]
+    }
+  ]
+}
+{% endschema %}
