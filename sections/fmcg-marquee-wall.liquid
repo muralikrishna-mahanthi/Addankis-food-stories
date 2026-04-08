@@ -59,12 +59,21 @@
     }
   }
 
-  .fmcg-marquee-wall__logo {
+  .fmcg-marquee-wall__logo,
+  .fmcg-marquee-wall__svg {
     height: 1.1em;
     width: auto;
-    margin: 0 1rem;
+    margin: 0 1.2rem;
     object-fit: contain;
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    vertical-align: middle;
+  }
+
+  .fmcg-marquee-wall__svg svg {
+    height: 1.1em;
+    width: auto;
+    display: block;
   }
 
   /* Outline Style */
@@ -97,7 +106,14 @@
               <span class="fmcg-marquee-wall__text" style="color: {{ block.settings.color }};">
                 {{ block.settings.text | strip }}
               </span>
-              {%- if row_logo != blank -%}
+              
+              {%- if block.settings.svg_code != blank -%}
+                <div class="fmcg-marquee-wall__svg" style="color: {{ block.settings.color }};">
+                  {{ block.settings.svg_code }}
+                </div>
+              {%- elsif block.settings.icon != blank -%}
+                {{ block.settings.icon | image_url: width: 400 | image_tag: class: 'fmcg-marquee-wall__logo', loading: 'lazy' }}
+              {%- elsif row_logo != blank -%}
                 {{ row_logo | image_url: width: 400 | image_tag: class: 'fmcg-marquee-wall__logo', loading: 'lazy' }}
               {%- endif -%}
             </div>
@@ -239,6 +255,8 @@
       "settings": [
         { "type": "text", "id": "text", "label": "Word", "default": "BRAND" },
         { "type": "color", "id": "color", "label": "Word Color", "default": "#000000" },
+        { "type": "image_picker", "id": "icon", "label": "Custom Icon" },
+        { "type": "textarea", "id": "svg_code", "label": "Custom SVG Code", "info": "Paste <svg>...</svg> code here for sharpest logos." },
         { "type": "select", "id": "row_number", "label": "Row Assignment", "options": [{"value":"1","label":"Row 1"},{"value":"2","label":"Row 2"},{"value":"3","label":"Row 3"},{"value":"4","label":"Row 4"}], "default": "1" }
       ]
     }
