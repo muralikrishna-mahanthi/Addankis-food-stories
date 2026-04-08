@@ -35,6 +35,8 @@
     text-transform: {{ section.settings.text_transform }};
     pointer-events: none;
     width: fit-content;
+    backface-visibility: hidden;
+    transform-style: preserve-3d;
   }
 
   .fmcg-marquee-wall__row:last-child { margin-bottom: 0; }
@@ -104,9 +106,11 @@
       {%- endcapture -%}
 
       {%- if row_content != blank -%}
-        {%- for j in (1..15) -%}
-          {{ row_content }}
-        {%- endfor -%}
+        <div class="fmcg-marquee-wall__row-items">
+          {%- for j in (1..4) -%}
+            <div class="fmcg-marquee-wall__group">{{ row_content }}</div>
+          {%- endfor -%}
+        </div>
       {%- else -%}
         {%- comment -%}Placeholder if no blocks{%- endcomment -%}
         <div class="fmcg-marquee-wall__item">
@@ -123,37 +127,67 @@
     const section = document.getElementById('FmcgMarqueeWall-{{ section.id }}');
     if (!section) return;
 
-    const rows = section.querySelectorAll('.fmcg-marquee-wall__row');
+    const rowEls = section.querySelectorAll('.fmcg-marquee-wall__row');
     const intensity = {{ section.settings.scroll_speed | default: 1.0 }};
+    const autoSpeed = {{ section.settings.auto_speed | default: 30 }} / 60; // Convert to per-frame
     const lerpFactor = {{ section.settings.lerp_factor | default: 0.1 }};
     
     let targetScrollY = window.scrollY;
-    let currentScrollY = window.scrollY;
+    let currentScrollValue = window.scrollY;
+    let lastScrollValue = window.scrollY;
+    
+    // Initialize rows
+    const rows = [...rowEls].map(row => {
+      const group = row.querySelector('.fmcg-marquee-wall__group');
+      return {
+        el: row,
+        width: group ? group.offsetWidth : 3000,
+        dir: row.dataset.direction === 'left' ? -1 : 1,
+        pos: Math.random() * 1000 // Random start for organic look
+      };
+    });
     
     function updatePositions() {
-      // Smooth interpolation (LERP)
-      currentScrollY += (targetScrollY - currentScrollY) * lerpFactor;
+      // Smooth interpolation (LERP) for scroll value
+      currentScrollValue += (targetScrollY - currentScrollValue) * lerpFactor;
+      const scrollDelta = currentScrollValue - lastScrollValue;
       
-      rows.forEach((row) => {
-        const direction = row.dataset.direction === 'left' ? -1 : 1;
-        const offset = (currentScrollY * intensity * direction) % 3000;
-        row.style.transform = `translate3d(${offset}px, 0, 0)`;
+      rows.forEach((r) => {
+        // Combined pos: Auto-scroll + Scroll-linked Delta
+        r.pos += (autoSpeed * r.dir) + (scrollDelta * intensity * r.dir);
+        
+        // Dynamic seamless loop
+        const wrapWidth = r.width;
+        r.pos = ((r.pos % wrapWidth) + wrapWidth) % wrapWidth;
+        
+        r.el.style.transform = `translate3d(${-r.pos}px, 0, 0)`;
       });
       
+      lastScrollValue = currentScrollValue;
       requestAnimationFrame(updatePositions);
     }
 
-    window.addEventListener('scroll', () => {
+    const onScroll = () => {
       targetScrollY = window.scrollY;
-    }, { passive: true });
+    };
+
+    window.addEventListener('scroll', onScroll, { passive: true });
     
-    // Start the smooth loop
+    // Initial and periodic sync
     requestAnimationFrame(updatePositions);
 
-    // Initial sync
+    // Refresh widths on resize
+    window.addEventListener('resize', () => {
+      rows.forEach(r => {
+        const group = r.el.querySelector('.fmcg-marquee-wall__group');
+        if (group) r.width = group.offsetWidth;
+      });
+    });
+
     document.addEventListener('shopify:section:load', () => {
       targetScrollY = window.scrollY;
-      currentScrollY = window.scrollY;
+      currentScrollValue = window.scrollY;
+      lastScrollValue = window.scrollY;
     });
   })();
 </script>
@@ -182,8 +216,9 @@
     },
     { "type": "color", "id": "bg_color", "label": "Section Background", "default": "#ffffff" },
     { "type": "checkbox", "id": "use_outline", "label": "Enable Outline (Ghost) Mode", "default": false },
-    { "type": "range", "id": "scroll_speed", "label": "Scroll Animation Intensity", "min": 0.1, "max": 3.0, "step": 0.1, "default": 1.0 },
-    { "type": "range", "id": "lerp_factor", "label": "Smoothness (LERP)", "min": 0.01, "max": 0.5, "step": 0.01, "default": 0.1, "info": "Lower is smoother/floatier." },
+    { "type": "range", "id": "scroll_speed", "label": "Scroll Influence Intensity", "min": 0, "max": 5.0, "step": 0.1, "default": 1.2, "info": "How much scrolling speeds up the marquee." },
+    { "type": "range", "id": "auto_speed", "label": "Base Auto-Scroll Speed", "min": 0, "max": 300, "step": 5, "default": 60, "info": "Pixels per second when not scrolling." },
+    { "type": "range", "id": "lerp_factor", "label": "Animation Smoothness", "min": 0.01, "max": 0.5, "step": 0.01, "default": 0.08, "info": "Lower is smoother/floatier." },
     {
       "type": "header",
       "content": "Row Direction & Logos"
