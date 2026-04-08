@@ -96,48 +96,6 @@
       ],
       "settings": {}
     },
-    "asfpl_strategy_scroller_7WBE9g": {
-      "type": "asfpl-strategy-scroller",
-      "blocks": {
-        "pillar_LqkYTA": {
-          "type": "pillar",
-          "settings": {
-            "image": "shopify://shop_images/fruits_sliced_by_a_person_on_a_table_wearing_head_mask_hand_gloves_and_mask_on_the_face.jpg",
-            "title": "Positive Value Chain",
-            "text": "Building a positive value chain for every sip and every bite."
-          }
-        },
-        "pillar_D78b7e": {
-          "type": "pillar",
-          "settings": {
-            "image": "shopify://shop_images/gemini-3.1-flash-image-preview_nano-banana-2__a_remove_the_navigatio_-_Edited.png",
-            "title": "Circular Economy",
-            "text": "Building a positive value chain for every sip and every bite."
-          }
-        },
-        "pillar_x4t7tt": {
-          "type": "pillar",
-          "settings": {
-            "image": "shopify://shop_images/ChatGPTImageDec23_2025_04_12_30PM.jpg",
-            "title": "Community Joy",
-            "text": "Building a positive value chain for every sip and every bite."
-          }
-        }
-      },
-      "block_order": [
-        "pillar_LqkYTA",
-        "pillar_D78b7e",
-        "pillar_x4t7tt"
-      ],
-      "custom_css": [],
-      "name": "ASFPL Strategy Scroller",
-      "settings": {
-        "bg_color": "#000000",
-        "text_color": "#ffffff",
-        "accent_color": "#3b82f6",
-        "heading": "OUR STRATEGY"
-      }
-    },
     "asfpl_history_reveal_dM3fGm": {
       "type": "asfpl-history-reveal",
       "blocks": {
@@ -195,7 +153,6 @@
     "main",
     "17756460369904a3fd",
     "177564547279babe52",
-    "asfpl_strategy_scroller_7WBE9g",
     "asfpl_history_reveal_dM3fGm"
   ]
 }
