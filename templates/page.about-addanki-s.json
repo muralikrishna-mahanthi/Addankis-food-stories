@@ -12,12 +12,91 @@
     "main": {
       "type": "main-page",
       "settings": {
-        "padding_top": 28,
-        "padding_bottom": 28
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "177564437619ae52f9": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_c5ef51f_jkLTGK": {
+          "type": "ai_gen_block_c5ef51f",
+          "settings": {
+            "hero_image": "shopify://shop_images/ripe-red-strawberries-in-a-white-bowl.jpg",
+            "hero_height": 550,
+            "heading": "ABOUT ADDANKI'S",
+            "heading_font": "bungee_n4",
+            "font_weight": "800",
+            "heading_size": 74,
+            "heading_color": "#ffffff",
+            "heading_background_color": "rgba(0,0,0,0.0)",
+            "heading_inner_padding": 0,
+            "heading_border_radius": 0,
+            "heading_padding_top": 0,
+            "heading_padding_bottom": 30,
+            "heading_padding_horizontal": 0,
+            "text_shadow_horizontal": -10,
+            "text_shadow_vertical": -10,
+            "text_shadow_blur": 0,
+            "text_shadow_color": "rgba(0,0,0,0)",
+            "image_scroll_speed": 2,
+            "text_scroll_speed": 0.4
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_c5ef51f_jkLTGK"
+      ],
+      "settings": {}
+    },
+    "rich_text_BhXNxJ": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_nLcfHb": {
+          "type": "heading",
+          "settings": {
+            "heading": "Talk about your brand",
+            "heading_size": "h1"
+          }
+        },
+        "text_9YizTq": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Share information about your brand with your customers. Describe a product, make announcements, or welcome customers to your store.</p>"
+          }
+        },
+        "button_A7DVYN": {
+          "type": "button",
+          "settings": {
+            "button_label": "Button label",
+            "button_link": "",
+            "button_style_secondary": false,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_nLcfHb",
+        "text_9YizTq",
+        "button_A7DVYN"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
       }
     }
   },
   "order": [
-    "main"
+    "main",
+    "177564437619ae52f9",
+    "rich_text_BhXNxJ"
   ]
 }
