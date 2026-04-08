@@ -75,12 +75,16 @@
   }
 
   .asfpl-hero__heading {
+    {% if section.settings.heading_font != blank %}
+      font-family: {{ section.settings.heading_font.family }}, {{ section.settings.heading_font.fallback_families }};
+      {{ section.settings.heading_font | font_face: display: 'swap' }}
+    {% endif %}
     font-size: {{ section.settings.heading_size_mobile }}rem;
-    font-weight: {{ section.settings.heading_weight }};
-    line-height: {{ section.settings.heading_line_height }};
+    font-weight: {{ section.settings.heading_weight_mobile }};
+    line-height: {{ section.settings.heading_line_height_mobile }};
     margin-bottom: 2rem;
     text-transform: {{ section.settings.heading_transform }};
-    letter-spacing: {{ section.settings.heading_letter_spacing }}px;
+    letter-spacing: {{ section.settings.heading_letter_spacing_mobile }}px;
     color: {{ section.settings.heading_color | default: section.settings.text_color }};
     display: flex;
     flex-wrap: wrap;
@@ -92,6 +96,9 @@
   @media screen and (min-width: 750px) {
     .asfpl-hero__heading {
       font-size: {{ section.settings.heading_size }}rem;
+      font-weight: {{ section.settings.heading_weight_desktop }};
+      line-height: {{ section.settings.heading_line_height }};
+      letter-spacing: {{ section.settings.heading_letter_spacing }}px;
     }
   }
 
@@ -126,16 +133,18 @@
 
   .asfpl-hero__description {
     font-size: {{ section.settings.description_size_mobile }}rem;
+    font-weight: {{ section.settings.description_weight_mobile }};
     max-width: {{ section.settings.description_max_width }}px;
     margin: 0 auto 3rem;
-    line-height: {{ section.settings.description_line_height }};
+    line-height: {{ section.settings.description_line_height_mobile }};
     color: {{ section.settings.description_color | default: section.settings.text_color }};
-    font-weight: {{ section.settings.description_weight }};
   }
 
   @media screen and (min-width: 750px) {
     .asfpl-hero__description {
       font-size: {{ section.settings.description_size }}rem;
+      font-weight: {{ section.settings.description_weight_desktop }};
+      line-height: {{ section.settings.description_line_height }};
     }
   }
 
@@ -353,11 +362,27 @@
     { "type": "color", "id": "dynamic_word_color", "label": "Word Color", "default": "#3b82f6" },
     { "type": "range", "id": "animation_speed", "min": 1000, "max": 5000, "step": 500, "unit": "ms", "label": "Word Speed", "default": 2000 },
     { "type": "color", "id": "heading_color", "label": "Heading Color", "default": "#ffffff" },
-    { "type": "range", "id": "heading_size", "min": 2, "max": 10, "step": 0.5, "unit": "rem", "label": "Desktop Size", "default": 5.5 },
-    { "type": "range", "id": "heading_size_mobile", "min": 1.5, "max": 6, "step": 0.5, "unit": "rem", "label": "Mobile Size", "default": 2.5 },
-    { "type": "select", "id": "heading_weight", "label": "Weight", "options": [{"value":"400","label":"Normal"},{"value":"700","label":"Bold"},{"value":"900","label":"Black"}], "default": "900" },
-    { "type": "range", "id": "heading_line_height", "min": 0.8, "max": 1.5, "step": 0.1, "label": "Line Height", "default": 1.1 },
-    { "type": "range", "id": "heading_letter_spacing", "min": -5, "max": 10, "step": 0.5, "unit": "px", "label": "Letter Spacing", "default": -1 },
+    { "type": "font_picker", "id": "heading_font", "label": "Heading Font Family", "default": "assistant_n4" },
+    {
+      "type": "header",
+      "content": "Heading - Desktop"
+    },
+    { "type": "range", "id": "heading_size", "min": 2, "max": 15, "step": 0.5, "unit": "rem", "label": "Desktop Size", "default": 5.5 },
+    { "type": "select", "id": "heading_weight_desktop", "label": "Desktop Weight", "options": [{"value":"400","label":"Normal"},{"value":"700","label":"Bold"},{"value":"900","label":"Black 900"},{"value":"950","label":"Extra Black 950"}], "default": "900" },
+    { "type": "range", "id": "heading_line_height", "min": 0.8, "max": 1.5, "step": 0.1, "label": "Desktop Line Height", "default": 1.1 },
+    { "type": "range", "id": "heading_letter_spacing", "min": -5, "max": 20, "step": 0.5, "unit": "px", "label": "Desktop Letter Spacing", "default": -1 },
+    {
+      "type": "header",
+      "content": "Heading - Mobile"
+    },
+    { "type": "range", "id": "heading_size_mobile", "min": 1, "max": 10, "step": 0.5, "unit": "rem", "label": "Mobile Size", "default": 2.5 },
+    { "type": "select", "id": "heading_weight_mobile", "label": "Mobile Weight", "options": [{"value":"400","label":"Normal"},{"value":"700","label":"Bold"},{"value":"900","label":"Black 900"},{"value":"950","label":"Extra Black 950"}], "default": "900" },
+    { "type": "range", "id": "heading_line_height_mobile", "min": 0.8, "max": 1.5, "step": 0.1, "label": "Mobile Line Height", "default": 1.1 },
+    { "type": "range", "id": "heading_letter_spacing_mobile", "min": -5, "max": 10, "step": 0.5, "unit": "px", "label": "Mobile Letter Spacing", "default": -1 },
+    {
+      "type": "header",
+      "content": "Heading - Effects & Animation"
+    },
     { "type": "select", "id": "heading_transform", "label": "Text Transform", "options": [{"value":"none","label":"None"},{"value":"uppercase","label":"Uppercase"},{"value":"capitalize","label":"Capitalize"}], "default": "uppercase" },
     { "type": "select", "id": "heading_animation", "label": "Animation", "options": [{"value":"fade-in","label":"Fade In"},{"value":"slide-up","label":"Slide Up"},{"value":"slide-down","label":"Slide Down"},{"value":"zoom-in","label":"Zoom In"},{"value":"blur-in","label":"Blur In"}], "default": "slide-up" },
     { "type": "range", "id": "heading_delay", "min": 0, "max": 2000, "step": 100, "unit": "ms", "label": "Delay", "default": 200 },
@@ -367,11 +392,21 @@
     },
     { "type": "richtext", "id": "description", "label": "Description", "default": "<p>Experience the taste and energy of our iconic brands.</p>" },
     { "type": "color", "id": "description_color", "label": "Description Color", "default": "#ffffff" },
-    { "type": "range", "id": "description_size", "min": 0.8, "max": 3, "step": 0.1, "unit": "rem", "label": "Desktop Size", "default": 1.2 },
-    { "type": "range", "id": "description_size_mobile", "min": 0.8, "max": 2.5, "step": 0.1, "unit": "rem", "label": "Mobile Size", "default": 1.0 },
-    { "type": "select", "id": "description_weight", "label": "Weight", "options": [{"value":"400","label":"Normal"},{"value":"500","label":"Medium"},{"value":"700","label":"Bold"}], "default": "400" },
-    { "type": "range", "id": "description_line_height", "min": 1, "max": 2, "step": 0.1, "label": "Line Height", "default": 1.6 },
-    { "type": "range", "id": "description_max_width", "min": 400, "max": 1200, "step": 100, "unit": "px", "label": "Max Width", "default": 800 },
+    {
+      "type": "header",
+      "content": "Description - Desktop"
+    },
+    { "type": "range", "id": "description_size", "min": 0.8, "max": 5, "step": 0.1, "unit": "rem", "label": "Desktop Size", "default": 1.2 },
+    { "type": "select", "id": "description_weight_desktop", "label": "Desktop Weight", "options": [{"value":"400","label":"Normal"},{"value":"500","label":"Medium"},{"value":"700","label":"Bold"},{"value":"900","label":"Black"}], "default": "400" },
+    { "type": "range", "id": "description_line_height", "min": 1, "max": 2, "step": 0.1, "label": "Desktop Line Height", "default": 1.6 },
+    {
+      "type": "header",
+      "content": "Description - Mobile"
+    },
+    { "type": "range", "id": "description_size_mobile", "min": 0.8, "max": 4, "step": 0.1, "unit": "rem", "label": "Mobile Size", "default": 1.0 },
+    { "type": "select", "id": "description_weight_mobile", "label": "Mobile Weight", "options": [{"value":"400","label":"Normal"},{"value":"500","label":"Medium"},{"value":"700","label":"Bold"},{"value":"900","label":"Black"}], "default": "400" },
+    { "type": "range", "id": "description_line_height_mobile", "min": 1, "max": 2, "step": 0.1, "label": "Mobile Line Height", "default": 1.6 },
+    { "type": "range", "id": "description_max_width", "min": 400, "max": 1400, "step": 100, "unit": "px", "label": "Max Width", "default": 800 },
     { "type": "select", "id": "description_animation", "label": "Animation", "options": [{"value":"fade-in","label":"Fade In"},{"value":"slide-up","label":"Slide Up"},{"value":"zoom-in","label":"Zoom In"}], "default": "fade-in" },
     { "type": "range", "id": "description_delay", "min": 0, "max": 2000, "step": 100, "unit": "ms", "label": "Delay", "default": 400 },
     {
