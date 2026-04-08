@@ -1,6 +1,634 @@
+{% doc %}
+  @prompt
+    by analyzing this website https://www.pepsico.com/about take 4 section from that website where there are 1,2,3 part while scrolling the bar make the screen in same place and change the content accordingly scrolling the bar from 1 to 2 and 2 to 3 with smooth animation which is present in the above website link forth section, i cannot view the content check it, i cannot view the content check the issue
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-scroll-sections-{{ ai_gen_id }} {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+  }
+
+  .ai-scroll-sections__wrapper-{{ ai_gen_id }} {
+    position: relative;
+    width: 100%;
+  }
+
+  .ai-scroll-sections__container-{{ ai_gen_id }} {
+    position: relative;
+    width: 100%;
+  }
+
+  .ai-scroll-sections__section-{{ ai_gen_id }} {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .ai-scroll-sections__sticky-wrapper-{{ ai_gen_id }} {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .ai-scroll-sections__content-{{ ai_gen_id }} {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: 1200px;
+    opacity: 0;
+    transition: opacity {{ block.settings.transition_duration }}s ease-in-out;
+    pointer-events: none;
+    text-align: center;
+    z-index: 10;
+  }
+
+  .ai-scroll-sections__content-{{ ai_gen_id }}.active {
+    opacity: 1;
+    pointer-events: auto;
+    z-index: 10;
+  }
+
+  .ai-scroll-sections__background-{{ ai_gen_id }} {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity {{ block.settings.transition_duration }}s ease-in-out;
+    z-index: 1;
+  }
+
+  .ai-scroll-sections__background-{{ ai_gen_id }}.active {
+    opacity: 1;
+    z-index: 1;
+  }
+
+  .ai-scroll-sections__background-placeholder-{{ ai_gen_id }} {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: {{ block.settings.placeholder_bg_color }};
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity {{ block.settings.transition_duration }}s ease-in-out;
+    z-index: 1;
+  }
+
+  .ai-scroll-sections__background-placeholder-{{ ai_gen_id }}.active {
+    opacity: 1;
+    z-index: 1;
+  }
+
+  .ai-scroll-sections__background-placeholder-{{ ai_gen_id }} svg {
+    width: 100%;
+    height: 100%;
+    max-width: 600px;
+    max-height: 600px;
+    opacity: 0.3;
+  }
+
+  .ai-scroll-sections__heading-{{ ai_gen_id }} {
+    font-size: {{ block.settings.heading_size }}px;
+    color: {{ block.settings.text_color }};
+    margin: 0 0 20px;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+
+  .ai-scroll-sections__text-{{ ai_gen_id }} {
+    font-size: {{ block.settings.text_size }}px;
+    color: {{ block.settings.text_color }};
+    margin: 0 0 30px;
+    line-height: 1.6;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .ai-scroll-sections__button-{{ ai_gen_id }} {
+    display: inline-block;
+    padding: 15px 40px;
+    background-color: {{ block.settings.button_bg_color }};
+    color: {{ block.settings.button_text_color }};
+    text-decoration: none;
+    border-radius: {{ block.settings.button_radius }}px;
+    font-size: {{ block.settings.button_text_size }}px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+  }
+
+  .ai-scroll-sections__button-{{ ai_gen_id }}:hover {
+    background-color: {{ block.settings.button_hover_bg_color }};
+    color: {{ block.settings.button_hover_text_color }};
+    transform: translateY(-2px);
+  }
+
+  .ai-scroll-sections__progress-{{ ai_gen_id }} {
+    position: fixed;
+    top: 50%;
+    right: 30px;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    z-index: 100;
+  }
+
+  .ai-scroll-sections__progress-dot-{{ ai_gen_id }} {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: {{ block.settings.progress_inactive_color }};
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: 2px solid {{ block.settings.progress_inactive_color }};
+  }
+
+  .ai-scroll-sections__progress-dot-{{ ai_gen_id }}.active {
+    background-color: {{ block.settings.progress_active_color }};
+    border-color: {{ block.settings.progress_active_color }};
+    transform: scale(1.3);
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-scroll-sections__heading-{{ ai_gen_id }} {
+      font-size: calc({{ block.settings.heading_size }}px * 0.6);
+    }
+
+    .ai-scroll-sections__text-{{ ai_gen_id }} {
+      font-size: calc({{ block.settings.text_size }}px * 0.9);
+    }
+
+    .ai-scroll-sections__button-{{ ai_gen_id }} {
+      padding: 12px 30px;
+      font-size: calc({{ block.settings.button_text_size }}px * 0.9);
+    }
+
+    .ai-scroll-sections__progress-{{ ai_gen_id }} {
+      right: 15px;
+    }
+
+    .ai-scroll-sections__progress-dot-{{ ai_gen_id }} {
+      width: 10px;
+      height: 10px;
+    }
+  }
+{% endstyle %}
+
+<scroll-sections-{{ ai_gen_id }} class="ai-scroll-sections-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-scroll-sections__wrapper-{{ ai_gen_id }}">
+    <div class="ai-scroll-sections__container-{{ ai_gen_id }}">
+      {% for i in (1..4) %}
+        <div class="ai-scroll-sections__section-{{ ai_gen_id }}" data-section-index="{{ i }}">
+          {% if i == 1 %}
+            <div class="ai-scroll-sections__sticky-wrapper-{{ ai_gen_id }}">
+              {% for j in (1..4) %}
+                {% liquid
+                  assign bg_image_key = 'section_' | append: j | append: '_bg_image'
+                  assign heading_key = 'section_' | append: j | append: '_heading'
+                  assign text_key = 'section_' | append: j | append: '_text'
+                  assign button_text_key = 'section_' | append: j | append: '_button_text'
+                  assign button_link_key = 'section_' | append: j | append: '_button_link'
+                  
+                  assign bg_image = block.settings[bg_image_key]
+                  assign heading = block.settings[heading_key]
+                  assign text = block.settings[text_key]
+                  assign button_text = block.settings[button_text_key]
+                  assign button_link = block.settings[button_link_key]
+                %}
+
+                {% if bg_image %}
+                  <img
+                    src="{{ bg_image | image_url: width: 2000 }}"
+                    alt="{{ bg_image.alt | escape }}"
+                    loading="lazy"
+                    class="ai-scroll-sections__background-{{ ai_gen_id }}"
+                    data-section="{{ j }}"
+                  >
+                {% else %}
+                  <div class="ai-scroll-sections__background-placeholder-{{ ai_gen_id }}" data-section="{{ j }}">
+                    {{ 'hero-apparel-1' | placeholder_svg_tag }}
+                  </div>
+                {% endif %}
+
+                <div class="ai-scroll-sections__content-{{ ai_gen_id }}" data-section="{{ j }}">
+                  {% if heading != blank %}
+                    <h2 class="ai-scroll-sections__heading-{{ ai_gen_id }}">{{ heading }}</h2>
+                  {% endif %}
+                  
+                  {% if text != blank %}
+                    <div class="ai-scroll-sections__text-{{ ai_gen_id }}">{{ text }}</div>
+                  {% endif %}
+                  
+                  {% if button_text != blank %}
+                    {% if button_link != blank %}
+                      <a href="{{ button_link }}" class="ai-scroll-sections__button-{{ ai_gen_id }}">
+                        {{ button_text }}
+                      </a>
+                    {% else %}
+                      <span class="ai-scroll-sections__button-{{ ai_gen_id }}" style="cursor: default;">
+                        {{ button_text }}
+                      </span>
+                    {% endif %}
+                  {% endif %}
+                </div>
+              {% endfor %}
+            </div>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+
+    {% if block.settings.show_progress %}
+      <div class="ai-scroll-sections__progress-{{ ai_gen_id }}">
+        {% for i in (1..4) %}
+          <div class="ai-scroll-sections__progress-dot-{{ ai_gen_id }}" data-dot="{{ i }}"></div>
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+</scroll-sections-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class ScrollSections{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+        this.sections = [];
+        this.contents = [];
+        this.backgrounds = [];
+        this.dots = [];
+        this.currentSection = 1;
+      }
+
+      connectedCallback() {
+        this.sections = Array.from(this.querySelectorAll('.ai-scroll-sections__section-{{ ai_gen_id }}'));
+        this.contents = Array.from(this.querySelectorAll('.ai-scroll-sections__content-{{ ai_gen_id }}'));
+        this.backgrounds = Array.from(this.querySelectorAll('.ai-scroll-sections__background-{{ ai_gen_id }}, .ai-scroll-sections__background-placeholder-{{ ai_gen_id }}'));
+        this.dots = Array.from(this.querySelectorAll('.ai-scroll-sections__progress-dot-{{ ai_gen_id }}'));
+        
+        this.setupScrollObserver();
+        this.setupDotNavigation();
+        
+        setTimeout(() => {
+          this.activateSection(1);
+        }, 100);
+      }
+
+      setupScrollObserver() {
+        const options = {
+          root: null,
+          rootMargin: '0px',
+          threshold: [0, 0.25, 0.5, 0.75, 1]
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              const sectionIndex = parseInt(entry.target.dataset.sectionIndex);
+              
+              if (entry.intersectionRatio > 0.3) {
+                this.activateSection(sectionIndex);
+              }
+            }
+          });
+        }, options);
+
+        this.sections.forEach(section => {
+          observer.observe(section);
+        });
+      }
+
+      setupDotNavigation() {
+        this.dots.forEach((dot, index) => {
+          dot.addEventListener('click', () => {
+            const targetSection = this.sections[index];
+            if (targetSection) {
+              targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+          });
+        });
+      }
+
+      activateSection(index) {
+        if (this.currentSection === index) return;
+        
+        this.currentSection = index;
+
+        this.contents.forEach(content => {
+          const sectionNum = parseInt(content.dataset.section);
+          if (sectionNum === index) {
+            content.classList.add('active');
+          } else {
+            content.classList.remove('active');
+          }
+        });
+
+        this.backgrounds.forEach(bg => {
+          const sectionNum = parseInt(bg.dataset.section);
+          if (sectionNum === index) {
+            bg.classList.add('active');
+          } else {
+            bg.classList.remove('active');
+          }
+        });
+
+        this.dots.forEach((dot, dotIndex) => {
+          if (dotIndex + 1 === index) {
+            dot.classList.add('active');
+          } else {
+            dot.classList.remove('active');
+          }
+        });
+      }
+    }
+
+    customElements.define('scroll-sections-{{ ai_gen_id }}', ScrollSections{{ ai_gen_id }});
+  })();
+</script>
+
 {% schema %}
- {
-   "name": "AI_Block",
-   "tag": "shopify-ai-generated-block"
- }
+{
+  "name": "Scroll story sections",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Animation"
+    },
+    {
+      "type": "range",
+      "id": "transition_duration",
+      "label": "Transition duration",
+      "min": 0,
+      "max": 2,
+      "step": 0.1,
+      "unit": "s",
+      "default": 0.8
+    },
+    {
+      "type": "header",
+      "content": "Section 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "section_1_bg_image",
+      "label": "Background image"
+    },
+    {
+      "type": "text",
+      "id": "section_1_heading",
+      "label": "Heading",
+      "default": "Our Story Begins"
+    },
+    {
+      "type": "textarea",
+      "id": "section_1_text",
+      "label": "Text",
+      "default": "Discover the journey that shaped who we are today"
+    },
+    {
+      "type": "text",
+      "id": "section_1_button_text",
+      "label": "Button text",
+      "default": "Learn More"
+    },
+    {
+      "type": "url",
+      "id": "section_1_button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "header",
+      "content": "Section 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "section_2_bg_image",
+      "label": "Background image"
+    },
+    {
+      "type": "text",
+      "id": "section_2_heading",
+      "label": "Heading",
+      "default": "Innovation Drives Us"
+    },
+    {
+      "type": "textarea",
+      "id": "section_2_text",
+      "label": "Text",
+      "default": "Pushing boundaries to create exceptional experiences"
+    },
+    {
+      "type": "text",
+      "id": "section_2_button_text",
+      "label": "Button text",
+      "default": "Explore"
+    },
+    {
+      "type": "url",
+      "id": "section_2_button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "header",
+      "content": "Section 3"
+    },
+    {
+      "type": "image_picker",
+      "id": "section_3_bg_image",
+      "label": "Background image"
+    },
+    {
+      "type": "text",
+      "id": "section_3_heading",
+      "label": "Heading",
+      "default": "Quality First"
+    },
+    {
+      "type": "textarea",
+      "id": "section_3_text",
+      "label": "Text",
+      "default": "Every detail matters in our commitment to excellence"
+    },
+    {
+      "type": "text",
+      "id": "section_3_button_text",
+      "label": "Button text",
+      "default": "See How"
+    },
+    {
+      "type": "url",
+      "id": "section_3_button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "header",
+      "content": "Section 4"
+    },
+    {
+      "type": "image_picker",
+      "id": "section_4_bg_image",
+      "label": "Background image"
+    },
+    {
+      "type": "text",
+      "id": "section_4_heading",
+      "label": "Heading",
+      "default": "Join Our Journey"
+    },
+    {
+      "type": "textarea",
+      "id": "section_4_text",
+      "label": "Text",
+      "default": "Be part of something extraordinary"
+    },
+    {
+      "type": "text",
+      "id": "section_4_button_text",
+      "label": "Button text",
+      "default": "Get Started"
+    },
+    {
+      "type": "url",
+      "id": "section_4_button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "label": "Heading size",
+      "min": 24,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "default": 56
+    },
+    {
+      "type": "range",
+      "id": "text_size",
+      "label": "Text size",
+      "min": 14,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "button_text_size",
+      "label": "Button text size",
+      "min": 12,
+      "max": 24,
+      "step": 2,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "placeholder_bg_color",
+      "label": "Placeholder background",
+      "default": "#121212"
+    },
+    {
+      "type": "color",
+      "id": "button_bg_color",
+      "label": "Button background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button text",
+      "default": "#121212"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_bg_color",
+      "label": "Button hover background",
+      "default": "#f3f3f3"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_text_color",
+      "label": "Button hover text",
+      "default": "#121212"
+    },
+    {
+      "type": "header",
+      "content": "Progress indicator"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_progress",
+      "label": "Show progress dots",
+      "default": true
+    },
+    {
+      "type": "color",
+      "id": "progress_active_color",
+      "label": "Active dot color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "progress_inactive_color",
+      "label": "Inactive dot color",
+      "default": "#666666"
+    },
+    {
+      "type": "header",
+      "content": "Style"
+    },
+    {
+      "type": "range",
+      "id": "button_radius",
+      "label": "Button border radius",
+      "min": 0,
+      "max": 40,
+      "step": 4,
+      "unit": "px",
+      "default": 4
+    }
+  ],
+  "presets": [
+    {
+      "name": "Scroll story sections"
+    }
+  ]
+}
 {% endschema %}
