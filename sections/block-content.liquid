@@ -46,20 +46,19 @@
   
   .block-content__grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
     gap: 3rem;
   }
 
   .block-content__card {
     background: #ffffff;
-    border-radius: 16px;
+    border: 1px solid #EFEFEF;
+    border-left: 4px solid var(--block-accent);
     padding: 4rem 3rem;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.02);
     transition: transform 0.4s ease, box-shadow 0.4s ease;
     opacity: 0;
     transform: translateY(40px);
-    position: relative;
-    overflow: hidden;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -69,31 +68,14 @@
   }
   .block-content__card:hover {
     transform: translateY(-8px);
-    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-  }
-
-  /* Accent line on top of card */
-  .block-content__card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 4px;
-    background: {{ section.settings.accent_color | default: '#3A81F4' }};
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
-  }
-  .block-content__card:hover::before {
-    transform: scaleX(1);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.08);
   }
 
   .block-content__card-index {
     font-family: {{ section.settings.index_font.family }}, {{ section.settings.index_font.fallback_families }};
     font-size: {{ section.settings.index_size }}rem;
     font-weight: {{ section.settings.index_weight }};
-    color: {{ section.settings.accent_color | default: '#3A81F4' }};
+    color: var(--block-accent);
     opacity: 0.2;
     margin-bottom: 1rem;
     line-height: 1;
@@ -109,16 +91,68 @@
     font-weight: {{ section.settings.card_title_weight }};
     color: {{ section.settings.card_title_color | default: '#003A6A' }};
     margin-top: 0;
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
     line-height: 1.2;
   }
-  .block-content__card-text {
+
+  .block-content__card-bullets ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .block-content__card-bullets ul li {
     font-family: {{ section.settings.card_text_font.family }}, {{ section.settings.card_text_font.fallback_families }};
     font-size: {{ section.settings.card_text_size }}rem;
     font-weight: {{ section.settings.card_text_weight }};
     color: {{ section.settings.card_text_color | default: '#555555' }};
-    margin: 0;
+    position: relative;
+    padding-left: 2rem;
+    margin-bottom: 1.5rem;
     line-height: 1.6;
+  }
+  .block-content__card-bullets ul li p {
+    margin: 0;
+  }
+  .block-content__card-bullets ul li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.6em;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: var(--block-accent);
+  }
+
+  .block-content__divider {
+    border: none;
+    border-top: 1px solid #E2E2E2;
+    margin: 2.5rem 0;
+    width: 100%;
+  }
+
+  .block-content__tags-heading {
+    font-family: {{ section.settings.card_text_font.family }}, {{ section.settings.card_text_font.fallback_families }};
+    font-size: {{ section.settings.card_text_size }}rem;
+    font-weight: {{ section.settings.card_text_weight }};
+    color: {{ section.settings.card_text_color | default: '#555555' }};
+    margin: 0 0 1.5rem 0;
+  }
+
+  .block-content__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .block-content__tag {
+    font-family: {{ section.settings.card_text_font.family }}, {{ section.settings.card_text_font.fallback_families }};
+    font-size: clamp(1rem, 2vw, {{ section.settings.card_text_size | minus: 0.2 }}rem);
+    border: 1px solid;
+    border-radius: 50px;
+    line-height: 1.2;
+    background: transparent;
+    transition: all 0.2s ease;
   }
 
   @keyframes fadeUpStagger {
@@ -153,10 +187,37 @@
 
     <div class="block-content__grid">
       {%- for block in section.blocks -%}
-        <div class="block-content__card js-animate-card" style="animation-delay: {{ forloop.index0 | times: 0.15 }}s;" {{ block.shopify_attributes }}>
-          <div class="block-content__card-index">0{{ forloop.index }}</div>
+        <div class="block-content__card js-animate-card block-{{ block.id }}" style="animation-delay: {{ forloop.index0 | times: 0.15 }}s; --block-accent: {{ block.settings.accent_color | default: section.settings.accent_color }};" {{ block.shopify_attributes }}>
+          
+          <div class="block-content__card-index" style="{% if section.settings.index_size == 0 %}display: none;{% endif %}">0{{ forloop.index }}</div>
+          
           <h3 class="block-content__card-title">{{ block.settings.title }}</h3>
-          <p class="block-content__card-text">{{ block.settings.description | newline_to_br }}</p>
+          
+          {%- if block.settings.bullet_points != blank -%}
+            <div class="block-content__card-bullets">
+              {{ block.settings.bullet_points }}
+            </div>
+          {%- endif -%}
+
+          {%- if block.settings.show_divider -%}
+            <hr class="block-content__divider">
+          {%- endif -%}
+
+          {%- if block.settings.tags_heading != blank -%}
+            <p class="block-content__tags-heading">{{ block.settings.tags_heading }}</p>
+          {%- endif -%}
+
+          {%- if block.settings.tags_list != blank -%}
+            <div class="block-content__tags">
+              {% assign tags = block.settings.tags_list | split: ',' %}
+              {% for tag in tags %}
+                <span class="block-content__tag" style="color: {{ block.settings.tags_text_color }}; border-color: {{ block.settings.tags_border_color }}; padding: {{ block.settings.tags_padding_y }}px {{ block.settings.tags_padding_x }}px;">
+                  {{ tag | strip }}
+                </span>
+              {% endfor %}
+            </div>
+          {%- endif -%}
+
         </div>
       {%- endfor -%}
     </div>
@@ -230,9 +291,9 @@
 
     { "type": "header", "content": "Card Index Settings" },
     { "type": "font_picker", "id": "index_font", "label": "Index Number Font", "default": "sans-serif" },
-    { "type": "range", "id": "index_size", "label": "Index Number Size", "min": 2, "max": 8, "step": 0.5, "default": 4.0, "unit": "rem" },
+    { "type": "range", "id": "index_size", "label": "Index Number Size", "min": 0, "max": 8, "step": 0.5, "default": 0, "unit": "rem" },
     { "type": "select", "id": "index_weight", "label": "Index Number Weight", "options": [{"value": "100", "label": "100 - Thin"}, {"value": "400", "label": "400 - Normal"}, {"value": "600", "label": "600 - Semi Bold"}, {"value": "700", "label": "700 - Bold"}, {"value": "800", "label": "800 - Extra Bold"}, {"value": "900", "label": "900 - Bolder"}], "default": "900" },
-    { "type": "color", "id": "accent_color", "label": "Card Hover Accent & Index Color", "default": "#3A81F4" },
+    { "type": "color", "id": "accent_color", "label": "Default Accent Color (if not overridden)", "default": "#3A81F4" },
 
     { "type": "header", "content": "Card Title Settings" },
     { "type": "font_picker", "id": "card_title_font", "label": "Card Title Font", "default": "sans-serif" },
@@ -240,7 +301,7 @@
     { "type": "select", "id": "card_title_weight", "label": "Card Title Weight", "options": [{"value": "100", "label": "100 - Thin"}, {"value": "400", "label": "400 - Normal"}, {"value": "600", "label": "600 - Semi Bold"}, {"value": "700", "label": "700 - Bold"}, {"value": "800", "label": "800 - Extra Bold"}, {"value": "900", "label": "900 - Bolder"}], "default": "700" },
     { "type": "color", "id": "card_title_color", "label": "Card Title Color", "default": "#003A6A" },
 
-    { "type": "header", "content": "Card Description Settings" },
+    { "type": "header", "content": "Card Bullet/Text Settings" },
     { "type": "font_picker", "id": "card_text_font", "label": "Card Text Font", "default": "sans-serif" },
     { "type": "range", "id": "card_text_size", "label": "Card Text Size", "min": 1, "max": 3, "step": 0.1, "default": 1.6, "unit": "rem" },
     { "type": "select", "id": "card_text_weight", "label": "Card Text Weight", "options": [{"value": "100", "label": "100 - Thin"}, {"value": "400", "label": "400 - Normal"}, {"value": "600", "label": "600 - Semi Bold"}, {"value": "700", "label": "700 - Bold"}, {"value": "800", "label": "800 - Extra Bold"}, {"value": "900", "label": "900 - Bolder"}], "default": "400" },
@@ -249,20 +310,45 @@
   "blocks": [
     {
       "type": "capability",
-      "name": "Capability",
+      "name": "Capability Card",
       "settings": [
+        { "type": "color", "id": "accent_color", "label": "Card Accent Color", "default": "#00A859", "info": "Sets the color for bullets and the left border." },
         {
           "type": "text",
           "id": "title",
-          "label": "Title",
-          "default": "Capability Title"
+          "label": "Card Title",
+          "default": "Brand Building & Strategy"
+        },
+        {
+          "type": "richtext",
+          "id": "bullet_points",
+          "label": "Bullet Points",
+          "default": "<ul><li>Own brand development from concept to shelf</li><li>Products combining traditional wisdom with modern needs</li><li>High-quality products at affordable price points</li></ul>"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_divider",
+          "label": "Show Separator Line",
+          "default": true
+        },
+        {
+          "type": "text",
+          "id": "tags_heading",
+          "label": "Bottom Subheading",
+          "default": "Our active brands"
         },
         {
           "type": "textarea",
-          "id": "description",
-          "label": "Description",
-          "default": "Capability description goes here."
-        }
+          "id": "tags_list",
+          "label": "Tags / Pills (Comma Separated)",
+          "default": "HAMSAA, JINAA, FRUROOT, STRATICA",
+          "info": "Leave blank to hide tags."
+        },
+        { "type": "header", "content": "Tag Pill Styling" },
+        { "type": "color", "id": "tags_border_color", "label": "Tag Border Color", "default": "#CCCCCC" },
+        { "type": "color", "id": "tags_text_color", "label": "Tag Text Color", "default": "#555555" },
+        { "type": "range", "id": "tags_padding_x", "label": "Tag Horizontal Padding", "min": 5, "max": 30, "step": 1, "default": 14, "unit": "px" },
+        { "type": "range", "id": "tags_padding_y", "label": "Tag Vertical Padding", "min": 2, "max": 15, "step": 1, "default": 6, "unit": "px" }
       ]
     }
   ],
@@ -274,28 +360,26 @@
           "type": "capability",
           "settings": {
             "title": "Brand Building & Strategy",
-            "description": "We develop trusted consumer brands rooted in Indian traditions and modern lifestyles across home care, wellness, traditional foods, and healthy lifestyle products."
+            "bullet_points": "<ul><li>Own brand development from concept to shelf</li><li>Products combining traditional wisdom with modern needs</li><li>High-quality products at affordable price points</li><li>Multi-category FMCG portfolio approach</li></ul>",
+            "show_divider": true,
+            "tags_heading": "Our active brands",
+            "tags_list": "HAMSAA, JINAA, FRUROOT, STRATICA",
+            "accent_color": "#00A859",
+            "tags_border_color": "#BBBBBB",
+            "tags_text_color": "#555555"
           }
         },
         {
           "type": "capability",
           "settings": {
-            "title": "Market Expansion",
-            "description": "We empower innovative products to reach retailers, distributors, and consumers efficiently by driving deep rural GT market expansion."
-          }
-        },
-        {
-          "type": "capability",
-          "settings": {
-            "title": "Distribution Network",
-            "description": "Creating robust distribution systems to ensure that products safely and reliably reach every town and village across India."
-          }
-        },
-        {
-          "type": "capability",
-          "settings": {
-            "title": "Sales Execution",
-            "description": "Combining strong understanding of the Indian General Trade, sales team deployment, retail market penetration, and strategic trade marketing."
+            "title": "Distribution & Market Expansion",
+            "bullet_points": "<ul><li>Distributor network development across regions</li><li>Rural General Trade (GT) market expansion</li><li>Sales team deployment and field management</li><li>Retail market penetration strategies</li><li>Channel strategy and trade marketing</li></ul>",
+            "show_divider": true,
+            "tags_heading": "Markets we serve",
+            "tags_list": "Urban retail, Rural GT, South India, Pan India (target)",
+            "accent_color": "#816BE9",
+            "tags_border_color": "#BBBBBB",
+            "tags_text_color": "#555555"
           }
         }
       ]
