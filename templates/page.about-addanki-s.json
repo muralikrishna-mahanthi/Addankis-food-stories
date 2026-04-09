@@ -241,19 +241,11 @@
             "title": "Market Expansion",
             "description": "We empower innovative products to reach retailers, distributors, and consumers efficiently by driving deep rural GT market expansion."
           }
-        },
-        "capability_QeHg8Q": {
-          "type": "capability",
-          "settings": {
-            "title": "Distribution Network",
-            "description": "Creating robust distribution systems to ensure that products safely and reliably reach every town and village across India."
-          }
         }
       },
       "block_order": [
         "capability_cE9caW",
-        "capability_eGMzA8",
-        "capability_QeHg8Q"
+        "capability_eGMzA8"
       ],
       "name": "Block Content (What We Do)",
       "settings": {
