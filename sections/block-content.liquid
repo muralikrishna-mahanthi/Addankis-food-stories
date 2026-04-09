@@ -1,8 +1,13 @@
 {%- style -%}
+  {{ section.settings.heading_font | font_face: display: 'swap' }}
+  {{ section.settings.subtitle_font | font_face: display: 'swap' }}
+  {{ section.settings.index_font | font_face: display: 'swap' }}
+  {{ section.settings.card_title_font | font_face: display: 'swap' }}
+  {{ section.settings.card_text_font | font_face: display: 'swap' }}
+
   .block-content-{{ section.id }} {
     padding: 8rem 5%;
     background-color: {{ section.settings.bg_color }};
-    color: {{ section.settings.text_color }};
     overflow: hidden;
   }
   .block-content__container {
@@ -21,18 +26,21 @@
     transform: translateY(0);
   }
   .block-content__title {
-    font-size: clamp(3rem, 5vw, 5rem);
-    font-weight: 800;
-    margin: 0;
+    font-family: {{ section.settings.heading_font.family }}, {{ section.settings.heading_font.fallback_families }};
+    font-size: clamp(3rem, 5vw, {{ section.settings.heading_size }}rem);
+    font-weight: {{ section.settings.heading_weight }};
     color: {{ section.settings.text_color }};
+    margin: 0;
     letter-spacing: -0.02em;
     line-height: 1.1;
   }
   .block-content__subtitle {
-    font-size: clamp(1.4rem, 2vw, 1.8rem);
+    font-family: {{ section.settings.subtitle_font.family }}, {{ section.settings.subtitle_font.fallback_families }};
+    font-size: clamp(1.4rem, 2vw, {{ section.settings.subtitle_size }}rem);
+    font-weight: {{ section.settings.subtitle_weight }};
+    color: {{ section.settings.subtitle_color }};
     max-width: 800px;
     margin: 2rem auto 0;
-    opacity: 0.8;
     line-height: 1.6;
   }
   
@@ -82,8 +90,9 @@
   }
 
   .block-content__card-index {
-    font-size: 4rem;
-    font-weight: 900;
+    font-family: {{ section.settings.index_font.family }}, {{ section.settings.index_font.fallback_families }};
+    font-size: {{ section.settings.index_size }}rem;
+    font-weight: {{ section.settings.index_weight }};
     color: {{ section.settings.accent_color | default: '#3A81F4' }};
     opacity: 0.2;
     margin-bottom: 1rem;
@@ -95,18 +104,21 @@
   }
 
   .block-content__card-title {
-    font-size: 2.2rem;
-    font-weight: 700;
+    font-family: {{ section.settings.card_title_font.family }}, {{ section.settings.card_title_font.fallback_families }};
+    font-size: {{ section.settings.card_title_size }}rem;
+    font-weight: {{ section.settings.card_title_weight }};
+    color: {{ section.settings.card_title_color | default: '#003A6A' }};
     margin-top: 0;
     margin-bottom: 1.5rem;
-    color: {{ section.settings.card_title_color | default: '#003A6A' }};
     line-height: 1.2;
   }
   .block-content__card-text {
-    font-size: 1.6rem;
-    line-height: 1.6;
+    font-family: {{ section.settings.card_text_font.family }}, {{ section.settings.card_text_font.fallback_families }};
+    font-size: {{ section.settings.card_text_size }}rem;
+    font-weight: {{ section.settings.card_text_weight }};
     color: {{ section.settings.card_text_color | default: '#555555' }};
     margin: 0;
+    line-height: 1.6;
   }
 
   @keyframes fadeUpStagger {
@@ -186,47 +198,53 @@
   "class": "section",
   "settings": [
     {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Section Background",
+      "default": "#F8F9FA"
+    },
+    
+    { "type": "header", "content": "Heading Settings" },
+    {
       "type": "text",
       "id": "title",
       "label": "Heading",
       "default": "What We Do"
     },
+    { "type": "font_picker", "id": "heading_font", "label": "Heading Font", "default": "sans-serif" },
+    { "type": "range", "id": "heading_size", "label": "Heading Size", "min": 2, "max": 10, "step": 0.5, "default": 5.0, "unit": "rem" },
+    { "type": "select", "id": "heading_weight", "label": "Heading Weight", "options": [{"value": "100", "label": "100 - Thin"}, {"value": "400", "label": "400 - Normal"}, {"value": "600", "label": "600 - Semi Bold"}, {"value": "700", "label": "700 - Bold"}, {"value": "800", "label": "800 - Extra Bold"}, {"value": "900", "label": "900 - Bolder"}], "default": "800" },
+    { "type": "color", "id": "text_color", "label": "Heading Text Color", "default": "#003A6A" },
+    
+    { "type": "header", "content": "Subtitle Settings" },
     {
       "type": "textarea",
       "id": "subtitle",
       "label": "Subheading",
       "default": "Addanki’s Food Stories operates as both a brand builder and a market expansion partner, helping innovative products reach retailers, distributors, and consumers efficiently."
     },
-    {
-      "type": "color",
-      "id": "bg_color",
-      "label": "Section Background",
-      "default": "#F8F9FA"
-    },
-    {
-      "type": "color",
-      "id": "text_color",
-      "label": "Heading Text Color",
-      "default": "#003A6A"
-    },
-    {
-      "type": "color",
-      "id": "accent_color",
-      "label": "Card Hover Accent & Index",
-      "default": "#3A81F4"
-    },
-    {
-      "type": "color",
-      "id": "card_title_color",
-      "label": "Card Title Color",
-      "default": "#003A6A"
-    },
-    {
-      "type": "color",
-      "id": "card_text_color",
-      "label": "Card Text Color",
-      "default": "#555555"
-    }
+    { "type": "font_picker", "id": "subtitle_font", "label": "Subtitle Font", "default": "sans-serif" },
+    { "type": "range", "id": "subtitle_size", "label": "Subtitle Size", "min": 1, "max": 3, "step": 0.1, "default": 1.8, "unit": "rem" },
+    { "type": "select", "id": "subtitle_weight", "label": "Subtitle Weight", "options": [{"value": "100", "label": "100 - Thin"}, {"value": "400", "label": "400 - Normal"}, {"value": "600", "label": "600 - Semi Bold"}, {"value": "700", "label": "700 - Bold"}, {"value": "800", "label": "800 - Extra Bold"}, {"value": "900", "label": "900 - Bolder"}], "default": "400" },
+    { "type": "color", "id": "subtitle_color", "label": "Subtitle Color", "default": "#555555" },
+
+    { "type": "header", "content": "Card Index Settings" },
+    { "type": "font_picker", "id": "index_font", "label": "Index Number Font", "default": "sans-serif" },
+    { "type": "range", "id": "index_size", "label": "Index Number Size", "min": 2, "max": 8, "step": 0.5, "default": 4.0, "unit": "rem" },
+    { "type": "select", "id": "index_weight", "label": "Index Number Weight", "options": [{"value": "100", "label": "100 - Thin"}, {"value": "400", "label": "400 - Normal"}, {"value": "600", "label": "600 - Semi Bold"}, {"value": "700", "label": "700 - Bold"}, {"value": "800", "label": "800 - Extra Bold"}, {"value": "900", "label": "900 - Bolder"}], "default": "900" },
+    { "type": "color", "id": "accent_color", "label": "Card Hover Accent & Index Color", "default": "#3A81F4" },
+
+    { "type": "header", "content": "Card Title Settings" },
+    { "type": "font_picker", "id": "card_title_font", "label": "Card Title Font", "default": "sans-serif" },
+    { "type": "range", "id": "card_title_size", "label": "Card Title Size", "min": 1.5, "max": 4, "step": 0.1, "default": 2.2, "unit": "rem" },
+    { "type": "select", "id": "card_title_weight", "label": "Card Title Weight", "options": [{"value": "100", "label": "100 - Thin"}, {"value": "400", "label": "400 - Normal"}, {"value": "600", "label": "600 - Semi Bold"}, {"value": "700", "label": "700 - Bold"}, {"value": "800", "label": "800 - Extra Bold"}, {"value": "900", "label": "900 - Bolder"}], "default": "700" },
+    { "type": "color", "id": "card_title_color", "label": "Card Title Color", "default": "#003A6A" },
+
+    { "type": "header", "content": "Card Description Settings" },
+    { "type": "font_picker", "id": "card_text_font", "label": "Card Text Font", "default": "sans-serif" },
+    { "type": "range", "id": "card_text_size", "label": "Card Text Size", "min": 1, "max": 3, "step": 0.1, "default": 1.6, "unit": "rem" },
+    { "type": "select", "id": "card_text_weight", "label": "Card Text Weight", "options": [{"value": "100", "label": "100 - Thin"}, {"value": "400", "label": "400 - Normal"}, {"value": "600", "label": "600 - Semi Bold"}, {"value": "700", "label": "700 - Bold"}, {"value": "800", "label": "800 - Extra Bold"}, {"value": "900", "label": "900 - Bolder"}], "default": "400" },
+    { "type": "color", "id": "card_text_color", "label": "Card Text Color", "default": "#555555" }
   ],
   "blocks": [
     {
