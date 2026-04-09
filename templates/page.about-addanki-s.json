@@ -27,7 +27,7 @@
             "hero_height": 90,
             "image_speed": 0.5,
             "heading": "ABOUT ADDANKI'S",
-            "heading_font": "bungee_n4",
+            "heading_font": "archivo_black_n4",
             "heading_size": 85,
             "heading_weight": "900",
             "heading_color": "#ffffff",
@@ -50,7 +50,7 @@
           "settings": {
             "heading": "MORE REASONS TO HAPPY LIFE",
             "text": "<p>Use this section to create unique side-by-side layouts with various content blocks. Pair text with images, newsletter blocks, products, videos, testimonials and more.</p>",
-            "heading_font": "bungee_n4",
+            "heading_font": "archivo_black_n4",
             "heading_weight": "bolder",
             "heading_size": 44,
             "heading_size_mobile": 28,
@@ -277,7 +277,7 @@
       "settings": {
         "bg_color": "#ffffff",
         "title": "WHAT WE DO",
-        "heading_font": "bungee_n4",
+        "heading_font": "archivo_black_n4",
         "heading_size": 5,
         "heading_weight": "900",
         "text_color": "#38528d",
