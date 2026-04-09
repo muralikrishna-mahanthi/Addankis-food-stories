@@ -99,70 +99,75 @@
     "about_us_scroll_CMqGAT": {
       "type": "about-us-scroll",
       "blocks": {
-        "pills_rmh4bM": {
-          "type": "pills",
+        "slide_zDmnDL": {
+          "type": "slide",
           "settings": {
-            "padding_top": 0,
-            "padding_bottom": 20,
-            "font_family": "system_ui_n4",
-            "font_weight": 800,
-            "pill_size": 3.5,
-            "active_bg_color": "#003a6a",
-            "active_text_color": "#ffffff",
-            "inactive_bg_color": "#a0c4fa",
-            "inactive_text_color": "#ffffff"
+            "image": "shopify://shop_images/download.jpg",
+            "heading": "LIFE. SMILES.\nSTYLES.",
+            "text": "<p>Built with high-quality ingredients, deep connections with consumers, and iconic brands. Step inside and see how we're bringing the world more reasons to smile.</p>",
+            "btn_text": "Explore Our Mission",
+            "btn_link": ""
           }
         },
-        "heading_VzqTrc": {
-          "type": "heading",
+        "slide_MtD9jj": {
+          "type": "slide",
           "settings": {
-            "text": "FOOD. DRINKS.\nSMILES.",
-            "padding_top": 0,
-            "padding_bottom": 40,
-            "font_family": "bungee_n4",
-            "font_weight": 900,
-            "font_size": 5,
-            "text_color": "#7bff87"
+            "image": "shopify://shop_images/fruits_sliced_by_a_person_on_a_table_wearing_head_mask_hand_gloves_and_mask_on_the_face.jpg",
+            "heading": "FOOD. DRINKS.\nSMILES.",
+            "text": "<p>Built with high-quality ingredients, deep connections with consumers, and iconic brands. Step inside and see how we're bringing the world more reasons to smile.</p>",
+            "btn_text": "Grow with us",
+            "btn_link": ""
           }
         },
-        "text_LYpxmy": {
-          "type": "text",
+        "slide_xTpUUY": {
+          "type": "slide",
           "settings": {
-            "text": "<p>Built with high-quality ingredients, deep connections with consumers, and iconic brands. Step inside PepsiCo and see how we're bringing the world more reasons to smile.</p>",
-            "padding_top": 0,
-            "padding_bottom": 40,
-            "font_family": "system_ui_n4",
-            "font_weight": 500,
-            "font_size": 1.9,
-            "text_color": "#ffffff"
-          }
-        },
-        "button_dkp3Gr": {
-          "type": "button",
-          "settings": {
-            "text": "button",
-            "link": "",
-            "padding_top": 0,
-            "padding_bottom": 0,
-            "btn_padding_x": 3,
-            "btn_padding_y": 1.2,
-            "font_family": "system_ui_n4",
-            "font_weight": 700,
-            "font_size": 1.4,
-            "bg_color": "#121212",
-            "text_color": "#ffffff"
+            "image": "shopify://shop_images/VSH8288.webp",
+            "heading": "FOOD. DRINKS.\nSMILES.",
+            "text": "<p>Built with high-quality ingredients, deep connections with consumers, and iconic brands. Step inside and see how we're bringing the world more reasons to smile.</p>",
+            "btn_text": "View our rewards",
+            "btn_link": ""
           }
         }
       },
       "block_order": [
-        "pills_rmh4bM",
-        "heading_VzqTrc",
-        "text_LYpxmy",
-        "button_dkp3Gr"
+        "slide_zDmnDL",
+        "slide_MtD9jj",
+        "slide_xTpUUY"
       ],
       "name": "About Us Scroll",
       "settings": {
-        "bg_color": "#008d0d"
+        "bg_color": "#008d0d",
+        "pills_padding_top": 0,
+        "pills_padding_bottom": 20,
+        "pills_font_family": "system_ui_n4",
+        "pills_font_weight": 800,
+        "pills_size": 3.5,
+        "pills_active_bg": "#02570b",
+        "pills_active_text": "#05ff1c",
+        "pills_inactive_bg": "#05ff1c",
+        "pills_inactive_text": "#008d0d",
+        "heading_padding_top": 0,
+        "heading_padding_bottom": 40,
+        "heading_font_family": "system_ui_n4",
+        "heading_font_weight": 900,
+        "heading_font_size": 6.5,
+        "heading_text_color": "#003a6a",
+        "text_padding_top": 0,
+        "text_padding_bottom": 40,
+        "text_font_family": "system_ui_n4",
+        "text_font_weight": 500,
+        "text_font_size": 1.6,
+        "text_color": "#ffffff",
+        "btn_padding_top": 0,
+        "btn_padding_bottom": 0,
+        "btn_pad_x": 3,
+        "btn_pad_y": 1.2,
+        "btn_font_family": "system_ui_n4",
+        "btn_font_weight": 700,
+        "btn_font_size": 1.4,
+        "btn_bg_color": "#003a6a",
+        "btn_text_color": "#ffffff"
       }
     },
     "asfpl_history_reveal_dM3fGm": {
