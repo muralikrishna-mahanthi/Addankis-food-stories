@@ -224,12 +224,62 @@
       ],
       "name": "About Us Scroll",
       "settings": {}
+    },
+    "block_content_eCGzk7": {
+      "type": "block-content",
+      "blocks": {
+        "capability_cE9caW": {
+          "type": "capability",
+          "settings": {
+            "title": "Brand Building & Strategy",
+            "description": "We develop trusted consumer brands rooted in Indian traditions and modern lifestyles across home care, wellness, traditional foods, and healthy lifestyle products."
+          }
+        },
+        "capability_eGMzA8": {
+          "type": "capability",
+          "settings": {
+            "title": "Market Expansion",
+            "description": "We empower innovative products to reach retailers, distributors, and consumers efficiently by driving deep rural GT market expansion."
+          }
+        },
+        "capability_QeHg8Q": {
+          "type": "capability",
+          "settings": {
+            "title": "Distribution Network",
+            "description": "Creating robust distribution systems to ensure that products safely and reliably reach every town and village across India."
+          }
+        },
+        "capability_NFbjrz": {
+          "type": "capability",
+          "settings": {
+            "title": "Sales Execution",
+            "description": "Combining strong understanding of the Indian General Trade, sales team deployment, retail market penetration, and strategic trade marketing."
+          }
+        }
+      },
+      "block_order": [
+        "capability_cE9caW",
+        "capability_eGMzA8",
+        "capability_QeHg8Q",
+        "capability_NFbjrz"
+      ],
+      "name": "Block Content (What We Do)",
+      "settings": {
+        "title": "What We Do",
+        "subtitle": "Addanki’s Food Stories operates as both a brand builder and a market expansion partner, helping innovative products reach retailers, distributors, and consumers efficiently.",
+        "bg_color": "#ffffff",
+        "text_color": "#38528d",
+        "accent_color": "#3A81F4",
+        "card_title_color": "#003A6A",
+        "card_text_color": "#555555"
+      }
     }
   },
   "order": [
     "main",
     "17756460369904a3fd",
     "177564547279babe52",
-    "about_us_scroll_CMqGAT"
+    "about_us_scroll_CMqGAT",
+    "block_content_eCGzk7"
   ]
 }
