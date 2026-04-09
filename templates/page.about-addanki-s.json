@@ -204,7 +204,7 @@
             "text_font_size": 1.6,
             "text_color": "#ffffff",
             "btn_text": "View our rewards",
-            "btn_link": "",
+            "btn_link": "shopify://pages/awards",
             "btn_padding_top": 0,
             "btn_padding_bottom": 0,
             "btn_pad_x": 3,
