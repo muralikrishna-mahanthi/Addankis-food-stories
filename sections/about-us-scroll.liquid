@@ -1,7 +1,7 @@
 {%- style -%}
   .about-us-split-{{ section.id }} {
     display: block;
-    height: 300vh;
+    height: {{ section.blocks.size | times: 100 }}vh; /* maps the height to the amount of blocks/slides */
     background-color: {{ section.settings.bg_color }};
   }
 
@@ -22,22 +22,30 @@
     min-height: 100vh;
   }
 
-  .about-us-split__left img {
+  /* Stack imagery absolutely so they crossfade dynamically */
+  .about-us-split__media-layer {
     position: absolute;
     top: 0;
     left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.8s ease, visibility 0.8s ease;
+    z-index: 1;
+  }
+  .about-us-split__media-layer.active {
+    opacity: 1;
+    visibility: visible;
+    z-index: 2;
+  }
+  .about-us-split__media-layer img,
+  .about-us-split__media-layer .placeholder-svg {
     width: 100%;
     height: 100%;
     object-fit: cover;
   }
-
-  /* When there is no image but full height is wanted */
-  .about-us-split__left .placeholder-svg {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+  .about-us-split__media-layer .placeholder-svg {
     background-color: #e5e5e5;
   }
 
@@ -51,7 +59,7 @@
 
   @media screen and (max-width: 749px) {
     .about-us-split-{{ section.id }} {
-      height: auto;
+      height: auto; /* Overrides the heavy Vh on mobile so it's readable statics */
     }
     .about-us-split__sticky {
       position: relative;
@@ -67,16 +75,25 @@
       height: 50vh;
       min-height: unset;
     }
+    .about-us-split__media-layer {
+      display: none; /* Show only active on mobile to avoid layout shifts or overlaps */
+    }
+    .about-us-split__media-layer.active {
+      display: block;
+    }
     .about-us-split__right {
       padding: 4rem 1.5rem;
     }
   }
 
-  /* Pills Block */
+  /* Pills Dynamic Styles */
   .about-us-split__pills {
     display: flex;
     gap: 1rem;
     align-items: center;
+    margin-bottom: 3rem; /* Enforce spacing before content stack */
+    padding-top: {{ section.settings.pills_padding_top }}px;
+    padding-bottom: {{ section.settings.pills_padding_bottom }}px;
   }
   .about-us-split__pill {
     display: flex;
@@ -84,20 +101,82 @@
     justify-content: center;
     border-radius: 50%;
     line-height: 1;
+    width: {{ section.settings.pills_size }}rem;
+    height: {{ section.settings.pills_size }}rem;
+    font-size: {{ section.settings.pills_size | divided_by: 2.2 }}rem;
+    font-family: {{ section.settings.pills_font_family.family }}, {{ section.settings.pills_font_family.fallback_families }};
+    font-weight: {{ section.settings.pills_font_weight }};
+    background-color: {{ section.settings.pills_inactive_bg }};
+    color: {{ section.settings.pills_inactive_text }};
+    transition: all 0.4s ease;
+  }
+  .about-us-split__pill.active {
+    background-color: {{ section.settings.pills_active_bg }};
+    color: {{ section.settings.pills_active_text }};
+    transform: scale(1.1);
   }
 
-  /* Reset default margins for clean stack */
-  .about-us-split__heading,
+  /* Textual Content Stack configured for sliding fade up */
+  .about-us-split__content-stack {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+  }
+
+  .about-us-split__content-layer {
+    grid-row: 1 / -1;
+    grid-column: 1 / -1;
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+
+  .about-us-split__content-layer.active {
+    opacity: 1;
+    pointer-events: auto;
+    visibility: visible;
+    transform: translateY(0); /* Animation payload */
+  }
+
+  /* Typography Settings applied from block to global */
+  .about-us-split__heading {
+    margin: 0;
+    padding-top: {{ section.settings.heading_padding_top }}px;
+    padding-bottom: {{ section.settings.heading_padding_bottom }}px;
+    font-family: {{ section.settings.heading_font_family.family }}, {{ section.settings.heading_font_family.fallback_families }};
+    font-weight: {{ section.settings.heading_font_weight }};
+    font-size: clamp(3rem, 6vw, {{ section.settings.heading_font_size }}rem);
+    color: {{ section.settings.heading_text_color }};
+    line-height: 1.05;
+  }
+
   .about-us-split__text {
     margin: 0;
+    padding-top: {{ section.settings.text_padding_top }}px;
+    padding-bottom: {{ section.settings.text_padding_bottom }}px;
+    font-family: {{ section.settings.text_font_family.family }}, {{ section.settings.text_font_family.fallback_families }};
+    font-weight: {{ section.settings.text_font_weight }};
+    font-size: {{ section.settings.text_font_size }}rem;
+    color: {{ section.settings.text_color }};
+    line-height: 1.5;
   }
-
-  /* Richtext specific overrides */
   .about-us-split__text p {
     margin: 0 0 1rem 0;
   }
   .about-us-split__text p:last-child {
     margin: 0;
+  }
+
+  .about-us-split__btn-container {
+    padding-top: {{ section.settings.btn_padding_top }}px;
+    padding-bottom: {{ section.settings.btn_padding_bottom }}px;
   }
 
   .about-us-split__btn {
@@ -108,111 +187,73 @@
     border-radius: 50px;
     line-height: 1;
     transition: all 0.3s ease;
+    padding: {{ section.settings.btn_pad_y }}rem {{ section.settings.btn_pad_x }}rem;
+    font-family: {{ section.settings.btn_font_family.family }}, {{ section.settings.btn_font_family.fallback_families }};
+    font-weight: {{ section.settings.btn_font_weight }};
+    font-size: {{ section.settings.btn_font_size }}rem;
+    background-color: {{ section.settings.btn_bg_color }};
+    color: {{ section.settings.btn_text_color }};
   }
   .about-us-split__btn:hover {
     transform: translateY(-3px) scale(1.02);
     box-shadow: 0 8px 25px rgba(0,0,0,0.15);
   }
+
+  /* Load Global custom fonts via prefetch swap */
+  {{ section.settings.pills_font_family | font_face: display: 'swap' }}
+  {{ section.settings.heading_font_family | font_face: display: 'swap' }}
+  {{ section.settings.text_font_family | font_face: display: 'swap' }}
+  {{ section.settings.btn_font_family | font_face: display: 'swap' }}
+
 {%- endstyle -%}
 
 <section class="about-us-split-{{ section.id }}" id="AboutUsSplit-{{ section.id }}">
   <div class="about-us-split__sticky">
+    
     <div class="about-us-split__left">
-    {%- if section.settings.image != blank -%}
-      {{ section.settings.image | image_url: width: 1400 | image_tag: loading: 'lazy' }}
-    {%- else -%}
-      {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg' }}
-    {%- endif -%}
-  </div>
+      {%- for block in section.blocks -%}
+        <div class="about-us-split__media-layer {% if forloop.first %}active{% endif %}" data-index="{{ forloop.index0 }}" {{ block.shopify_attributes }}>
+          {%- if block.settings.image != blank -%}
+            {{ block.settings.image | image_url: width: 1400 | image_tag: loading: 'lazy' }}
+          {%- else -%}
+            {{ 'lifestyle-' | append: forloop.index | placeholder_svg_tag: 'placeholder-svg' }}
+          {%- endif -%}
+        </div>
+      {%- endfor -%}
+    </div>
 
-  <div class="about-us-split__right">
-    {%- for block in section.blocks -%}
-      {%- case block.type -%}
-        
-        {%- when 'pills' -%}
-          {{ block.settings.font_family | font_face: display: 'swap' }}
-          <style>
-            .about-us-split__pill-{{ block.id }} {
-              --bg-active: {{ block.settings.active_bg_color }};
-              --text-active: {{ block.settings.active_text_color }};
-              --bg-inactive: {{ block.settings.inactive_bg_color }};
-              --text-inactive: {{ block.settings.inactive_text_color }};
-              background-color: var(--bg-inactive);
-              color: var(--text-inactive);
-              transition: all 0.4s ease;
-            }
-            .about-us-split__pill-{{ block.id }}.active {
-              background-color: var(--bg-active);
-              color: var(--text-active);
-              transform: scale(1.1);
-            }
-          </style>
-          <div class="about-us-split__pills" {{ block.shopify_attributes }} style="
-            padding-top: {{ block.settings.padding_top }}px;
-            padding-bottom: {{ block.settings.padding_bottom }}px;
-          ">
-            {%- for i in (1..3) -%}
-              <div class="about-us-split__pill about-us-split__pill-{{ block.id }} {% if forloop.first %}active{% endif %}" style="
-                width: {{ block.settings.pill_size }}rem;
-                height: {{ block.settings.pill_size }}rem;
-                font-family: {{ block.settings.font_family.family }}, {{ block.settings.font_family.fallback_families }};
-                font-weight: {{ block.settings.font_weight }};
-                font-size: {{ block.settings.pill_size | divided_by: 2.2 }}rem;
-              ">
-                0{{ i }}
+    <div class="about-us-split__right">
+      <div class="about-us-split__pills">
+        {%- for block in section.blocks -%}
+          <div class="about-us-split__pill {% if forloop.first %}active{% endif %}" data-index="{{ forloop.index0 }}">
+            0{{ forloop.index }}
+          </div>
+        {%- endfor -%}
+      </div>
+
+      <div class="about-us-split__content-stack">
+        {%- for block in section.blocks -%}
+          <div class="about-us-split__content-layer {% if forloop.first %}active{% endif %}" data-index="{{ forloop.index0 }}">
+            {%- if block.settings.heading != blank -%}
+              <h2 class="about-us-split__heading">{{ block.settings.heading | newline_to_br }}</h2>
+            {%- endif -%}
+            
+            {%- if block.settings.text != blank -%}
+              <div class="about-us-split__text">{{ block.settings.text }}</div>
+            {%- endif -%}
+
+            {%- if block.settings.btn_text != blank -%}
+              <div class="about-us-split__btn-container">
+                <a href="{{ block.settings.btn_link | default: '#' }}" class="about-us-split__btn">
+                  {{ block.settings.btn_text }}
+                </a>
               </div>
-            {%- endfor -%}
+            {%- endif -%}
           </div>
-
-        {%- when 'heading' -%}
-          {{ block.settings.font_family | font_face: display: 'swap' }}
-          <h2 class="about-us-split__heading" {{ block.shopify_attributes }} style="
-            padding-top: {{ block.settings.padding_top }}px;
-            padding-bottom: {{ block.settings.padding_bottom }}px;
-            font-family: {{ block.settings.font_family.family }}, {{ block.settings.font_family.fallback_families }};
-            font-weight: {{ block.settings.font_weight }};
-            font-size: clamp(3rem, 6vw, {{ block.settings.font_size }}rem);
-            color: {{ block.settings.text_color }};
-            line-height: 1.05;
-          ">
-            {{ block.settings.text | newline_to_br }}
-          </h2>
-
-        {%- when 'text' -%}
-          {{ block.settings.font_family | font_face: display: 'swap' }}
-          <div class="about-us-split__text" {{ block.shopify_attributes }} style="
-            padding-top: {{ block.settings.padding_top }}px;
-            padding-bottom: {{ block.settings.padding_bottom }}px;
-            font-family: {{ block.settings.font_family.family }}, {{ block.settings.font_family.fallback_families }};
-            font-weight: {{ block.settings.font_weight }};
-            font-size: {{ block.settings.font_size }}rem;
-            color: {{ block.settings.text_color }};
-            line-height: 1.5;
-          ">
-            {{ block.settings.text }}
-          </div>
-
-        {%- when 'button' -%}
-          {{ block.settings.font_family | font_face: display: 'swap' }}
-          <div {{ block.shopify_attributes }} style="
-            padding-top: {{ block.settings.padding_top }}px;
-            padding-bottom: {{ block.settings.padding_bottom }}px;
-          ">
-            <a href="{{ block.settings.link | default: '#' }}" class="about-us-split__btn" style="
-              padding: {{ block.settings.btn_padding_y }}rem {{ block.settings.btn_padding_x }}rem;
-              font-family: {{ block.settings.font_family.family }}, {{ block.settings.font_family.fallback_families }};
-              font-weight: {{ block.settings.font_weight }};
-              font-size: {{ block.settings.font_size }}rem;
-              background-color: {{ block.settings.bg_color }};
-              color: {{ block.settings.text_color }};
-            ">
-              {{ block.settings.text }}
-            </a>
-          </div>
-          
-      {%- endcase -%}
-    {%- endfor -%}
-  </div>
+        {%- endfor -%}
+      </div>
+    </div>
+    
   </div>
 </section>
 
@@ -221,17 +262,18 @@
     const section = document.getElementById('AboutUsSplit-{{ section.id }}');
     if (!section) return;
 
+    const mediaLayers = section.querySelectorAll('.about-us-split__media-layer');
+    const contentLayers = section.querySelectorAll('.about-us-split__content-layer');
     const pills = section.querySelectorAll('.about-us-split__pill');
-    if (pills.length === 0) return;
-
-    const totalBlocks = 3;
+    
+    const totalBlocks = {{ section.blocks.size }};
+    if (totalBlocks === 0) return;
 
     function handleScroll() {
       const rect = section.getBoundingClientRect();
       const sectionHeight = section.offsetHeight;
       const viewportHeight = window.innerHeight;
       
-      // If practically not scrollable (like on mobile where height is auto), skip
       if (sectionHeight <= viewportHeight + 10) return;
       
       let progress = -rect.top / (sectionHeight - viewportHeight);
@@ -239,128 +281,89 @@
       
       const activeIndex = Math.floor(progress * totalBlocks);
       
-      pills.forEach((p, index) => {
-        if (index === activeIndex) {
-          p.classList.add('active');
-        } else {
-          p.classList.remove('active');
-        }
-      });
+      // Sync transitions between elements
+      mediaLayers.forEach(l => l.classList.remove('active'));
+      contentLayers.forEach(l => l.classList.remove('active'));
+      pills.forEach(p => p.classList.remove('active'));
+
+      if(mediaLayers[activeIndex]) mediaLayers[activeIndex].classList.add('active');
+      if(contentLayers[activeIndex]) contentLayers[activeIndex].classList.add('active');
+      if(pills[activeIndex]) pills[activeIndex].classList.add('active');
     }
 
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll();
+    if (totalBlocks > 1) {
+      window.addEventListener('scroll', handleScroll, { passive: true });
+      handleScroll();
+    }
   })();
 </script>
 
 {% schema %}
 {
-  "name": "About Us Side-by-Side",
+  "name": "About Us Timeline",
   "tag": "section",
   "class": "section",
   "settings": [
-    {
-      "type": "image_picker",
-      "id": "image",
-      "label": "Left Section Image"
-    },
-    {
-      "type": "color",
-      "id": "bg_color",
-      "label": "Right Section Background Color",
-      "default": "#3A81F4"
-    }
+    { "type": "color", "id": "bg_color", "label": "Right Section Background Color", "default": "#3A81F4" },
+    
+    { "type": "header", "content": "Pills Styling" },
+    { "type": "range", "id": "pills_padding_top", "label": "Padding Top", "min": 0, "max": 100, "step": 2, "default": 0, "unit": "px" },
+    { "type": "range", "id": "pills_padding_bottom", "label": "Padding Bottom", "min": 0, "max": 100, "step": 2, "default": 20, "unit": "px" },
+    { "type": "font_picker", "id": "pills_font_family", "label": "Font Family", "default": "sans-serif" },
+    { "type": "range", "id": "pills_font_weight", "label": "Font Weight", "min": 100, "max": 900, "step": 100, "default": 800 },
+    { "type": "range", "id": "pills_size", "label": "Pill Size", "min": 2, "max": 8, "step": 0.5, "default": 3.5, "unit": "rem" },
+    { "type": "color", "id": "pills_active_bg", "label": "Active Background", "default": "#003A6A" },
+    { "type": "color", "id": "pills_active_text", "label": "Active Text", "default": "#FFFFFF" },
+    { "type": "color", "id": "pills_inactive_bg", "label": "Inactive Background", "default": "#A0C4FA" },
+    { "type": "color", "id": "pills_inactive_text", "label": "Inactive Text", "default": "#FFFFFF" },
+    
+    { "type": "header", "content": "Heading Styling" },
+    { "type": "range", "id": "heading_padding_top", "label": "Padding Top", "min": 0, "max": 100, "step": 2, "default": 0, "unit": "px" },
+    { "type": "range", "id": "heading_padding_bottom", "label": "Padding Bottom", "min": 0, "max": 100, "step": 2, "default": 40, "unit": "px" },
+    { "type": "font_picker", "id": "heading_font_family", "label": "Font Family", "default": "sans-serif" },
+    { "type": "range", "id": "heading_font_weight", "label": "Font Weight", "min": 100, "max": 900, "step": 100, "default": 900 },
+    { "type": "range", "id": "heading_font_size", "label": "Font Size", "min": 2, "max": 12, "step": 0.5, "default": 6.5, "unit": "rem" },
+    { "type": "color", "id": "heading_text_color", "label": "Text Color", "default": "#003A6A" },
+
+    { "type": "header", "content": "Text Styling" },
+    { "type": "range", "id": "text_padding_top", "label": "Padding Top", "min": 0, "max": 100, "step": 2, "default": 0, "unit": "px" },
+    { "type": "range", "id": "text_padding_bottom", "label": "Padding Bottom", "min": 0, "max": 100, "step": 2, "default": 40, "unit": "px" },
+    { "type": "font_picker", "id": "text_font_family", "label": "Font Family", "default": "sans-serif" },
+    { "type": "range", "id": "text_font_weight", "label": "Font Weight", "min": 100, "max": 900, "step": 100, "default": 500 },
+    { "type": "range", "id": "text_font_size", "label": "Font Size", "min": 1, "max": 4, "step": 0.1, "default": 1.6, "unit": "rem" },
+    { "type": "color", "id": "text_color", "label": "Text Color", "default": "#FFFFFF" },
+
+    { "type": "header", "content": "Button Styling" },
+    { "type": "range", "id": "btn_padding_top", "label": "Block Padding Top", "min": 0, "max": 100, "step": 2, "default": 0, "unit": "px" },
+    { "type": "range", "id": "btn_padding_bottom", "label": "Block Padding Bottom", "min": 0, "max": 100, "step": 2, "default": 0, "unit": "px" },
+    { "type": "range", "id": "btn_pad_x", "label": "Horizontal Padding", "min": 1, "max": 8, "step": 0.5, "default": 3.0, "unit": "rem" },
+    { "type": "range", "id": "btn_pad_y", "label": "Vertical Padding", "min": 0.5, "max": 4, "step": 0.1, "default": 1.2, "unit": "rem" },
+    { "type": "font_picker", "id": "btn_font_family", "label": "Font Family", "default": "sans-serif" },
+    { "type": "range", "id": "btn_font_weight", "label": "Font Weight", "min": 100, "max": 900, "step": 100, "default": 700 },
+    { "type": "range", "id": "btn_font_size", "label": "Font Size", "min": 1, "max": 3, "step": 0.1, "default": 1.4, "unit": "rem" },
+    { "type": "color", "id": "btn_bg_color", "label": "Background Color", "default": "#003A6A" },
+    { "type": "color", "id": "btn_text_color", "label": "Text Color", "default": "#FFFFFF" }
   ],
   "blocks": [
     {
-      "type": "pills",
-      "name": "Number Pills",
-      "limit": 1,
+      "type": "slide",
+      "name": "Content Slide",
       "settings": [
-        { "type": "header", "content": "Spacing" },
-        { "type": "range", "id": "padding_top", "label": "Padding Top", "min": 0, "max": 100, "step": 2, "default": 0, "unit": "px" },
-        { "type": "range", "id": "padding_bottom", "label": "Padding Bottom", "min": 0, "max": 100, "step": 2, "default": 20, "unit": "px" },
-        
-        { "type": "header", "content": "Typography & Sizing" },
-        { "type": "font_picker", "id": "font_family", "label": "Font Family", "default": "sans-serif" },
-        { "type": "range", "id": "font_weight", "label": "Font Weight", "min": 100, "max": 900, "step": 100, "default": 800 },
-        { "type": "range", "id": "pill_size", "label": "Pill Size", "min": 2, "max": 8, "step": 0.5, "default": 3.5, "unit": "rem" },
-        
-        { "type": "header", "content": "Colors" },
-        { "type": "color", "id": "active_bg_color", "label": "Active Background", "default": "#003A6A" },
-        { "type": "color", "id": "active_text_color", "label": "Active Text", "default": "#FFFFFF" },
-        { "type": "color", "id": "inactive_bg_color", "label": "Inactive Background", "default": "#A0C4FA" },
-        { "type": "color", "id": "inactive_text_color", "label": "Inactive Text", "default": "#FFFFFF" }
-      ]
-    },
-    {
-      "type": "heading",
-      "name": "Heading Block",
-      "settings": [
-        { "type": "textarea", "id": "text", "label": "Heading Text", "default": "FOOD. DRINKS.\nSMILES." },
-        
-        { "type": "header", "content": "Spacing" },
-        { "type": "range", "id": "padding_top", "label": "Padding Top", "min": 0, "max": 100, "step": 2, "default": 0, "unit": "px" },
-        { "type": "range", "id": "padding_bottom", "label": "Padding Bottom", "min": 0, "max": 100, "step": 2, "default": 40, "unit": "px" },
-        
-        { "type": "header", "content": "Typography" },
-        { "type": "font_picker", "id": "font_family", "label": "Font Family", "default": "sans-serif" },
-        { "type": "range", "id": "font_weight", "label": "Font Weight", "min": 100, "max": 900, "step": 100, "default": 900 },
-        { "type": "range", "id": "font_size", "label": "Font Size", "min": 2, "max": 12, "step": 0.5, "default": 6.5, "unit": "rem" },
-        { "type": "color", "id": "text_color", "label": "Text Color", "default": "#003A6A" }
-      ]
-    },
-    {
-      "type": "text",
-      "name": "Text Block",
-      "settings": [
-        { "type": "richtext", "id": "text", "label": "Description Text", "default": "<p>Built with high-quality ingredients, deep connections with consumers, and iconic brands. Step inside PepsiCo and see how we're bringing the world more reasons to smile.</p>" },
-        
-        { "type": "header", "content": "Spacing" },
-        { "type": "range", "id": "padding_top", "label": "Padding Top", "min": 0, "max": 100, "step": 2, "default": 0, "unit": "px" },
-        { "type": "range", "id": "padding_bottom", "label": "Padding Bottom", "min": 0, "max": 100, "step": 2, "default": 40, "unit": "px" },
-        
-        { "type": "header", "content": "Typography" },
-        { "type": "font_picker", "id": "font_family", "label": "Font Family", "default": "sans-serif" },
-        { "type": "range", "id": "font_weight", "label": "Font Weight", "min": 100, "max": 900, "step": 100, "default": 500 },
-        { "type": "range", "id": "font_size", "label": "Font Size", "min": 1, "max": 4, "step": 0.1, "default": 1.6, "unit": "rem" },
-        { "type": "color", "id": "text_color", "label": "Text Color", "default": "#FFFFFF" }
-      ]
-    },
-    {
-      "type": "button",
-      "name": "Button Block",
-      "settings": [
-        { "type": "text", "id": "text", "label": "Button Text", "default": "Explore Our Mission" },
-        { "type": "url", "id": "link", "label": "Button Link" },
-        
-        { "type": "header", "content": "Spacing (Block)" },
-        { "type": "range", "id": "padding_top", "label": "Block Padding Top", "min": 0, "max": 100, "step": 2, "default": 0, "unit": "px" },
-        { "type": "range", "id": "padding_bottom", "label": "Block Padding Bottom", "min": 0, "max": 100, "step": 2, "default": 0, "unit": "px" },
-        
-        { "type": "header", "content": "Spacing (Internal Button)" },
-        { "type": "range", "id": "btn_padding_x", "label": "Horizontal Padding", "min": 1, "max": 8, "step": 0.5, "default": 3.0, "unit": "rem" },
-        { "type": "range", "id": "btn_padding_y", "label": "Vertical Padding", "min": 0.5, "max": 4, "step": 0.1, "default": 1.2, "unit": "rem" },
-        
-        { "type": "header", "content": "Typography" },
-        { "type": "font_picker", "id": "font_family", "label": "Font Family", "default": "sans-serif" },
-        { "type": "range", "id": "font_weight", "label": "Font Weight", "min": 100, "max": 900, "step": 100, "default": 700 },
-        { "type": "range", "id": "font_size", "label": "Font Size", "min": 1, "max": 3, "step": 0.1, "default": 1.4, "unit": "rem" },
-        
-        { "type": "header", "content": "Colors" },
-        { "type": "color", "id": "bg_color", "label": "Background Color", "default": "#003A6A" },
-        { "type": "color", "id": "text_color", "label": "Text Color", "default": "#FFFFFF" }
+        { "type": "image_picker", "id": "image", "label": "Slide Image" },
+        { "type": "textarea", "id": "heading", "label": "Heading Text", "default": "FOOD. DRINKS.\nSMILES." },
+        { "type": "richtext", "id": "text", "label": "Description Text", "default": "<p>Built with high-quality ingredients, deep connections with consumers, and iconic brands. Step inside and see how we're bringing the world more reasons to smile.</p>" },
+        { "type": "text", "id": "btn_text", "label": "Button Text", "default": "Explore Our Mission" },
+        { "type": "url", "id": "btn_link", "label": "Button Link" }
       ]
     }
   ],
   "presets": [
     {
-      "name": "About Us Side-by-Side",
+      "name": "About Us Timeline Scroller",
       "blocks": [
-        { "type": "pills" },
-        { "type": "heading" },
-        { "type": "text" },
-        { "type": "button" }
+        { "type": "slide" },
+        { "type": "slide" },
+        { "type": "slide" }
       ]
     }
   ]
