@@ -99,110 +99,70 @@
     "about_us_scroll_CMqGAT": {
       "type": "about-us-scroll",
       "blocks": {
-        "story_phase_Q3UhNp": {
-          "type": "story_phase",
+        "pills_rmh4bM": {
+          "type": "pills",
           "settings": {
-            "image": "shopify://shop_images/fruits_sliced_by_a_person_on_a_table_wearing_head_mask_hand_gloves_and_mask_on_the_face.jpg",
+            "padding_top": 0,
+            "padding_bottom": 20,
+            "font_family": "system_ui_n4",
+            "font_weight": 800,
             "pill_size": 3.5,
-            "pill_bg_active": "#000000",
-            "pill_text_active": "#ffffff",
-            "pill_bg_inactive": "#ffffff33",
-            "pill_text_inactive": "#ffffff",
-            "pill_margin_bottom": 100,
-            "heading_font": "bungee_n4",
-            "heading_weight": 900,
-            "heading_size": 7,
-            "heading_color": "#ffffff",
-            "heading_margin_bottom": 30,
-            "text": "Built with high-quality ingredients, deep connections with consumers, and iconic brands.",
-            "text_size": 1.8,
-            "text_color": "#ffffff",
-            "text_margin_bottom": 40,
-            "btn_label": "about 1",
-            "btn_link": "",
-            "btn_bg": "#000000",
-            "btn_text": "#ffffff",
-            "btn_weight": 900,
-            "btn_font_size": 1.3,
-            "btn_radius": 50,
-            "btn_padding_x": 1,
-            "btn_padding_y": 1.5,
-            "btn_margin_top": 0
+            "active_bg_color": "#003a6a",
+            "active_text_color": "#ffffff",
+            "inactive_bg_color": "#a0c4fa",
+            "inactive_text_color": "#ffffff"
           }
         },
-        "story_phase_Q6RRmA": {
-          "type": "story_phase",
+        "heading_VzqTrc": {
+          "type": "heading",
           "settings": {
-            "image": "shopify://shop_images/gemini-3.1-flash-image-preview_nano-banana-2__a_remove_the_navigatio_-_Edited.png",
-            "pill_size": 3.5,
-            "pill_bg_active": "#000000",
-            "pill_text_active": "#ffffff",
-            "pill_bg_inactive": "#ffffff33",
-            "pill_text_inactive": "#ffffff",
-            "pill_margin_bottom": 40,
-            "heading_font": "system_ui_n4",
-            "heading_weight": 900,
-            "heading_size": 7,
-            "heading_color": "#ffffff",
-            "heading_margin_bottom": 30,
-            "text": "Built with high-quality ingredients, deep connections with consumers, and iconic brands.",
-            "text_size": 1.8,
-            "text_color": "#ffffff",
-            "text_margin_bottom": 40,
-            "btn_label": "Explore Our Mission",
-            "btn_link": "",
-            "btn_bg": "#000000",
-            "btn_text": "#ffffff",
-            "btn_weight": 800,
-            "btn_font_size": 1.3,
-            "btn_radius": 50,
-            "btn_padding_x": 4,
-            "btn_padding_y": 1.5,
-            "btn_margin_top": 0
+            "text": "FOOD. DRINKS.\nSMILES.",
+            "padding_top": 0,
+            "padding_bottom": 40,
+            "font_family": "bungee_n4",
+            "font_weight": 900,
+            "font_size": 5,
+            "text_color": "#7bff87"
           }
         },
-        "story_phase_efwdfh": {
-          "type": "story_phase",
+        "text_LYpxmy": {
+          "type": "text",
           "settings": {
-            "image": "shopify://shop_images/ChatGPTImageDec23_2025_04_12_30PM.jpg",
-            "pill_size": 3.5,
-            "pill_bg_active": "#000000",
-            "pill_text_active": "#ffffff",
-            "pill_bg_inactive": "#ffffff33",
-            "pill_text_inactive": "#ffffff",
-            "pill_margin_bottom": 40,
-            "heading_font": "system_ui_n4",
-            "heading_weight": 900,
-            "heading_size": 7,
-            "heading_color": "#ffffff",
-            "heading_margin_bottom": 30,
-            "text": "Built with high-quality ingredients, deep connections with consumers, and iconic brands.",
-            "text_size": 1.8,
-            "text_color": "#ffffff",
-            "text_margin_bottom": 40,
-            "btn_label": "Explore Our Mission",
-            "btn_link": "",
-            "btn_bg": "#000000",
-            "btn_text": "#ffffff",
-            "btn_weight": 800,
-            "btn_font_size": 1.3,
-            "btn_radius": 50,
-            "btn_padding_x": 4,
-            "btn_padding_y": 1.5,
-            "btn_margin_top": 0
+            "text": "<p>Built with high-quality ingredients, deep connections with consumers, and iconic brands. Step inside PepsiCo and see how we're bringing the world more reasons to smile.</p>",
+            "padding_top": 0,
+            "padding_bottom": 40,
+            "font_family": "system_ui_n4",
+            "font_weight": 500,
+            "font_size": 1.9,
+            "text_color": "#ffffff"
+          }
+        },
+        "button_dkp3Gr": {
+          "type": "button",
+          "settings": {
+            "text": "button",
+            "link": "",
+            "padding_top": 0,
+            "padding_bottom": 0,
+            "btn_padding_x": 3,
+            "btn_padding_y": 1.2,
+            "font_family": "system_ui_n4",
+            "font_weight": 700,
+            "font_size": 1.4,
+            "bg_color": "#121212",
+            "text_color": "#ffffff"
           }
         }
       },
       "block_order": [
-        "story_phase_Q3UhNp",
-        "story_phase_Q6RRmA",
-        "story_phase_efwdfh"
+        "pills_rmh4bM",
+        "heading_VzqTrc",
+        "text_LYpxmy",
+        "button_dkp3Gr"
       ],
       "name": "About Us Scroll",
       "settings": {
-        "media_width": 50,
-        "bg_color": "#008d0d",
-        "bg_color_mobile": "#3b82f6"
+        "bg_color": "#008d0d"
       }
     },
     "asfpl_history_reveal_dM3fGm": {
