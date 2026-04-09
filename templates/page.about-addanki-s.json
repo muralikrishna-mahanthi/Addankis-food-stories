@@ -231,15 +231,31 @@
         "capability_cE9caW": {
           "type": "capability",
           "settings": {
+            "accent_color": "#00a859",
             "title": "Brand Building & Strategy",
-            "description": "We develop trusted consumer brands rooted in Indian traditions and modern lifestyles across home care, wellness, traditional foods, and healthy lifestyle products."
+            "bullet_points": "<ul><li>Own brand development from concept to shelf</li><li>Products combining traditional wisdom with modern needs</li><li>High-quality products at affordable price points</li></ul>",
+            "show_divider": true,
+            "tags_heading": "Our active brands",
+            "tags_list": "HAMSAA, JINAA, FRUROOT, STRATICA",
+            "tags_border_color": "#cccccc",
+            "tags_text_color": "#555555",
+            "tags_padding_x": 14,
+            "tags_padding_y": 6
           }
         },
         "capability_eGMzA8": {
           "type": "capability",
           "settings": {
+            "accent_color": "#00a859",
             "title": "Market Expansion",
-            "description": "We empower innovative products to reach retailers, distributors, and consumers efficiently by driving deep rural GT market expansion."
+            "bullet_points": "<ul><li>Own brand development from concept to shelf</li><li>Products combining traditional wisdom with modern needs</li><li>High-quality products at affordable price points</li></ul>",
+            "show_divider": true,
+            "tags_heading": "Our active brands",
+            "tags_list": "HAMSAA, JINAA, FRUROOT, STRATICA",
+            "tags_border_color": "#cccccc",
+            "tags_text_color": "#555555",
+            "tags_padding_x": 14,
+            "tags_padding_y": 6
           }
         }
       },
