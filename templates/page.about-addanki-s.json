@@ -248,27 +248,19 @@
             "title": "Distribution Network",
             "description": "Creating robust distribution systems to ensure that products safely and reliably reach every town and village across India."
           }
-        },
-        "capability_NFbjrz": {
-          "type": "capability",
-          "settings": {
-            "title": "Sales Execution",
-            "description": "Combining strong understanding of the Indian General Trade, sales team deployment, retail market penetration, and strategic trade marketing."
-          }
         }
       },
       "block_order": [
         "capability_cE9caW",
         "capability_eGMzA8",
-        "capability_QeHg8Q",
-        "capability_NFbjrz"
+        "capability_QeHg8Q"
       ],
       "name": "Block Content (What We Do)",
       "settings": {
-        "title": "What We Do",
-        "subtitle": "Addanki’s Food Stories operates as both a brand builder and a market expansion partner, helping innovative products reach retailers, distributors, and consumers efficiently.",
         "bg_color": "#ffffff",
+        "title": "What We Do",
         "text_color": "#38528d",
+        "subtitle": "Addanki’s Food Stories operates as both a brand builder and a market expansion partner, helping innovative products reach retailers, distributors, and consumers efficiently.",
         "accent_color": "#3A81F4",
         "card_title_color": "#003A6A",
         "card_text_color": "#555555"
