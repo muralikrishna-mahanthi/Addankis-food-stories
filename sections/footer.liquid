@@ -7,6 +7,7 @@
   .footer {
     padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
     padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+    margin-top: {{ section.settings.margin_top | times: 0.75 | round: 0 }}px;
     background-color: {{ section.settings.bg_color | default: '#002e50' }};
     color: {{ section.settings.text_color | default: '#ffffff' }};
   }
@@ -15,6 +16,7 @@
     .footer {
       padding-top: {{ section.settings.padding_top }}px;
       padding-bottom: {{ section.settings.padding_bottom }}px;
+      margin-top: {{ section.settings.margin_top }}px;
     }
   }
 
@@ -368,7 +370,17 @@
     },
     {
       "type": "header",
-      "content": "Section Padding"
+      "content": "Section Spacing"
+    },
+    {
+      "type": "range",
+      "id": "margin_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Margin Top",
+      "default": 0
     },
     {
       "type": "range",
@@ -377,7 +389,7 @@
       "max": 150,
       "step": 5,
       "unit": "px",
-      "label": "Top Padding",
+      "label": "Padding Top",
       "default": 100
     },
     {
@@ -387,7 +399,7 @@
       "max": 150,
       "step": 5,
       "unit": "px",
-      "label": "Bottom Padding",
+      "label": "Padding Bottom",
       "default": 60
     }
   ],
