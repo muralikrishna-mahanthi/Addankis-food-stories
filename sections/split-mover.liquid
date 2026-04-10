@@ -5,10 +5,6 @@
   "class": "section split-mover-slider",
   "settings": [
     {
-      "type": "header",
-      "content": "Section Content"
-    },
-    {
       "type": "text",
       "id": "subtitle",
       "label": "Subtitle",
@@ -25,10 +21,6 @@
       "id": "tab_2_title",
       "label": "Tab 2 Title",
       "default": "STORIES"
-    },
-    {
-      "type": "header",
-      "content": "Card & Image Sizing"
     },
     {
       "type": "range",
@@ -64,10 +56,6 @@
       "default": "1.777"
     },
     {
-      "type": "header",
-      "content": "Subtitle Typography"
-    },
-    {
       "type": "font_picker",
       "id": "subtitle_font",
       "label": "Subtitle Font",
@@ -100,10 +88,6 @@
       "id": "subtitle_color",
       "label": "Subtitle Color",
       "default": "#11571F"
-    },
-    {
-      "type": "header",
-      "content": "Tabs Typography & Border"
     },
     {
       "type": "font_picker",
@@ -165,10 +149,6 @@
       "default": 6
     },
     {
-      "type": "header",
-      "content": "Card Heading Typography"
-    },
-    {
       "type": "font_picker",
       "id": "card_heading_font",
       "label": "Card Heading Font",
@@ -200,10 +180,6 @@
       "id": "card_heading_color",
       "label": "Card Heading Color",
       "default": "#11571F"
-    },
-    {
-      "type": "header",
-      "content": "Card Badge Typography & Spacing"
     },
     {
       "type": "font_picker",
@@ -278,13 +254,9 @@
       "default": 20
     },
     {
-      "type": "header",
-      "content": "Section Colors"
-    },
-    {
       "type": "color",
       "id": "bg_color",
-      "label": "Section Background",
+      "label": "Section Background Color",
       "default": "#8DBE27"
     },
     {
@@ -300,17 +272,13 @@
       "default": "#a0d13b"
     },
     {
-      "type": "header",
-      "content": "Section Padding (Desktop)"
-    },
-    {
       "type": "range",
       "id": "pt_desktop",
       "min": 0,
       "max": 200,
       "step": 5,
       "unit": "px",
-      "label": "Top Padding",
+      "label": "Desktop Top Padding",
       "default": 80
     },
     {
@@ -320,7 +288,7 @@
       "max": 200,
       "step": 5,
       "unit": "px",
-      "label": "Bottom Padding",
+      "label": "Desktop Bottom Padding",
       "default": 80
     },
     {
@@ -330,7 +298,7 @@
       "max": 150,
       "step": 5,
       "unit": "px",
-      "label": "Left Padding",
+      "label": "Desktop Left Padding",
       "default": 40
     },
     {
@@ -340,12 +308,8 @@
       "max": 150,
       "step": 5,
       "unit": "px",
-      "label": "Right Padding",
+      "label": "Desktop Right Padding",
       "default": 40
-    },
-    {
-      "type": "header",
-      "content": "Section Padding (Mobile)"
     },
     {
       "type": "range",
@@ -354,7 +318,7 @@
       "max": 150,
       "step": 5,
       "unit": "px",
-      "label": "Top Padding",
+      "label": "Mobile Top Padding",
       "default": 40
     },
     {
@@ -364,7 +328,7 @@
       "max": 150,
       "step": 5,
       "unit": "px",
-      "label": "Bottom Padding",
+      "label": "Mobile Bottom Padding",
       "default": 40
     },
     {
@@ -374,7 +338,7 @@
       "max": 100,
       "step": 5,
       "unit": "px",
-      "label": "Left Padding",
+      "label": "Mobile Left Padding",
       "default": 20
     },
     {
@@ -384,12 +348,8 @@
       "max": 100,
       "step": 5,
       "unit": "px",
-      "label": "Right Padding",
+      "label": "Mobile Right Padding",
       "default": 20
-    },
-    {
-      "type": "header",
-      "content": "Global Gaps & Margins"
     },
     {
       "type": "range",
@@ -428,7 +388,7 @@
       "max": 100,
       "step": 5,
       "unit": "px",
-      "label": "Slider Card Gap",
+      "label": "Card Horizontal Gap",
       "default": 20
     },
     {
@@ -478,7 +438,7 @@
       "max": 150,
       "step": 5,
       "unit": "px",
-      "label": "Gap between Dots and Arrows",
+      "label": "Dots-to-Arrows Gap",
       "default": 40
     }
   ],
@@ -694,8 +654,6 @@
     bottom: {{ section.settings.badge_bottom }}px;
     left: {{ section.settings.badge_left }}px;
     padding: {{ section.settings.badge_pv }}px {{ section.settings.badge_ph }}px;
-    background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0) 100%);
-    /* If gradient is too strong, we can adjust. Actually Pepsico uses solid or soft gradients. Let's make it more flexible. */
     background: rgba(0,0,0,0.6);
     border-radius: 4px;
     font-family: {{ card_badge_font.family }}, {{ card_badge_font.fallback_families }};
