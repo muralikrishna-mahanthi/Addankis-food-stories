@@ -1,0 +1,619 @@
+﻿{% schema %}
+{
+  "name": "Split Mover Slider",
+  "tag": "section",
+  "class": "section split-mover-slider",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section Content"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "What's new"
+    },
+    {
+      "type": "text",
+      "id": "tab_1_title",
+      "label": "Tab 1 Title",
+      "default": "PRESS RELEASES"
+    },
+    {
+      "type": "text",
+      "id": "tab_2_title",
+      "label": "Tab 2 Title",
+      "default": "STORIES"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#8DBE27"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#11571F"
+    },
+    {
+      "type": "color",
+      "id": "controls_bg",
+      "label": "Controls Background (Arrows/Dots)",
+      "default": "#11571F"
+    },
+    {
+      "type": "color",
+      "id": "controls_icon",
+      "label": "Controls Icon Color",
+      "default": "#a0d13b"
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 150,
+      "step": 5,
+      "unit": "px",
+      "label": "Top Padding",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 150,
+      "step": 5,
+      "unit": "px",
+      "label": "Bottom Padding",
+      "default": 80
+    }
+  ],
+  "blocks": [
+    {
+      "type": "card",
+      "name": "Slider Card",
+      "settings": [
+        {
+          "type": "select",
+          "id": "tab_assignment",
+          "label": "Assign to Tab",
+          "options": [
+            { "value": "tab_1", "label": "Tab 1" },
+            { "value": "tab_2", "label": "Tab 2" }
+          ],
+          "default": "tab_1"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "badge_text",
+          "label": "Badge Text",
+          "default": "Press Releases",
+          "info": "Appears inside the image at the bottom left."
+        },
+        {
+          "type": "textarea",
+          "id": "heading",
+          "label": "Card Heading",
+          "default": "Sample headline text spanning multiple lines goes here."
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link URL"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Split Mover Slider",
+      "blocks": [
+        { "type": "card", "settings": { "tab_assignment": "tab_1" } },
+        { "type": "card", "settings": { "tab_assignment": "tab_1" } },
+        { "type": "card", "settings": { "tab_assignment": "tab_1" } },
+        { "type": "card", "settings": { "tab_assignment": "tab_2" } },
+        { "type": "card", "settings": { "tab_assignment": "tab_2" } }
+      ]
+    }
+  ]
+}
+{% endschema %}
+
+<style>
+  .split-mover-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+    background-color: {{ section.settings.bg_color }};
+    color: {{ section.settings.text_color }};
+    font-family: var(--font-body-family), sans-serif;
+    overflow: hidden; 
+  }
+
+  @media screen and (min-width: 768px) {
+    .split-mover-{{ section.id }} {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+  .sms-container {
+    max-width: var(--page-width, 1440px);
+    margin: 0 auto;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  
+  @media screen and (min-width: 768px) {
+    .sms-container {
+      padding-left: 40px;
+      padding-right: 40px;
+    }
+  }
+  
+  @media screen and (min-width: 1440px) {
+    .sms-container {
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
+
+  /* Header Area */
+  .sms-header {
+    margin-bottom: 2rem;
+  }
+
+  .sms-subtitle {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: inherit;
+  }
+
+  .sms-tabs {
+    display: flex;
+    align-items: baseline;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .sms-tab-btn {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    font-family: inherit;
+    color: inherit;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-weight: 900;
+    line-height: 1.1;
+    transition: all 0.2s ease;
+  }
+
+  /* Active Tab */
+  .sms-tab-btn.active {
+    font-size: clamp(2rem, 5vw, 4.5rem);
+    border-bottom: 6px solid {{ section.settings.text_color }};
+    padding-bottom: 4px;
+    opacity: 1;
+  }
+
+  /* Inactive Tab */
+  .sms-tab-btn:not(.active) {
+    font-size: clamp(1.5rem, 4vw, 3rem);
+    border-bottom: 6px solid transparent; 
+    padding-bottom: 4px;
+    opacity: 0.8;
+  }
+  
+  .sms-tab-btn:hover:not(.active) {
+    opacity: 1;
+  }
+
+  /* Slider Area */
+  .sms-slider-wrapper {
+    position: relative;
+    margin-right: -20px;
+  }
+  
+  @media screen and (min-width: 768px) {
+    .sms-slider-wrapper { margin-right: -40px; }
+  }
+  @media screen and (min-width: 1440px) {
+    .sms-slider-wrapper { margin-right: calc((100vw - 1440px) / -2); }
+  }
+
+  .sms-slider {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none; 
+    -ms-overflow-style: none; 
+    padding-bottom: 20px; 
+    padding-right: 40vw; 
+  }
+
+  .sms-slider::-webkit-scrollbar {
+    display: none;
+  }
+
+  .sms-card {
+    flex: 0 0 calc(85vw - 20px); 
+    scroll-snap-align: start;
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: inherit;
+    transition: opacity 0.3s ease;
+    opacity: 1;
+  }
+  
+  .sms-card.hidden {
+    display: none;
+  }
+
+  @media screen and (min-width: 768px) {
+    .sms-card { flex: 0 0 calc(50vw - 30px); }
+  }
+  @media screen and (min-width: 1024px) {
+    .sms-card { flex: 0 0 450px; } 
+  }
+
+  .sms-card-image-wrap {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 1rem;
+    background-color: rgba(0,0,0,0.05); 
+  }
+
+  .sms-card-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  
+  .sms-card:hover .sms-card-img {
+    transform: scale(1.05);
+  }
+
+  .sms-card-badge {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 60px 20px 20px 20px;
+    background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0) 100%);
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 1.25rem;
+    pointer-events: none;
+  }
+
+  .sms-card-heading {
+    font-size: 1.125rem;
+    font-weight: 600;
+    line-height: 1.4;
+    color: inherit;
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  /* Controls Area */
+  .sms-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1rem;
+    padding-right: 20px;
+  }
+  @media screen and (min-width: 768px) {
+    .sms-controls { padding-right: 40px; margin-top: 2rem; }
+  }
+  @media screen and (min-width: 1440px) {
+    .sms-controls { padding-right: 0; }
+  }
+
+  .sms-dots {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+
+  .sms-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: {{ section.settings.controls_bg }};
+    opacity: 0.3;
+    cursor: pointer;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    border: none;
+    padding: 0;
+  }
+
+  .sms-dot.active {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+
+  .sms-arrows {
+    display: flex;
+    gap: 12px;
+  }
+
+  .sms-arrow {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background-color: {{ section.settings.controls_bg }};
+    color: {{ section.settings.controls_icon }};
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+  }
+  
+  .sms-arrow:hover {
+    transform: translateY(-2px);
+    opacity: 0.9;
+  }
+  
+  .sms-arrow:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  .sms-arrow svg {
+    width: 20px;
+    height: 20px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  
+</style>
+
+<div class="split-mover-{{ section.id }} split-mover-slider sms-section" data-section-id="{{ section.id }}">
+  <div class="sms-container">
+    
+    <div class="sms-header">
+      {% if section.settings.subtitle != blank %}
+        <div class="sms-subtitle">{{ section.settings.subtitle | escape }}</div>
+      {% endif %}
+      
+      <div class="sms-tabs">
+        {% if section.settings.tab_1_title != blank %}
+          <button class="sms-tab-btn active" data-target="tab_1">{{ section.settings.tab_1_title | escape }}</button>
+        {% endif %}
+        {% if section.settings.tab_2_title != blank %}
+          <button class="sms-tab-btn" data-target="tab_2">{{ section.settings.tab_2_title | escape }}</button>
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="sms-slider-wrapper">
+      <div class="sms-slider">
+        {% for block in section.blocks %}
+          {%- liquid
+             assign link_url = block.settings.link | default: "#"
+          -%}
+          <a href="{{ link_url }}" class="sms-card" data-tab="{{ block.settings.tab_assignment }}" {{ block.shopify_attributes }}>
+            <div class="sms-card-image-wrap">
+              {% if block.settings.image != blank %}
+                <img src="{{ block.settings.image | img_url: '600x' }}"
+                     alt="{{ block.settings.image.alt | escape }}"
+                     class="sms-card-img"
+                     loading="lazy">
+              {% else %}
+                {{ 'image' | placeholder_svg_tag: 'sms-card-img' }}
+              {% endif %}
+              
+              {% if block.settings.badge_text != blank %}
+                <div class="sms-card-badge">{{ block.settings.badge_text | escape }}</div>
+              {% endif %}
+            </div>
+            
+            {% if block.settings.heading != blank %}
+              <div class="sms-card-heading">{{ block.settings.heading | escape }}</div>
+            {% endif %}
+          </a>
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="sms-controls">
+      <div class="sms-dots"></div>
+      <div class="sms-arrows">
+        <button class="sms-arrow sms-prev" aria-label="Previous slide">
+          <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <button class="sms-arrow sms-next" aria-label="Next slide">
+          <svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
+        </button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  (function() {
+    function initSlider(section) {
+      const tabs = section.querySelectorAll('.sms-tab-btn');
+      const cards = section.querySelectorAll('.sms-card');
+      const slider = section.querySelector('.sms-slider');
+      const dotsContainer = section.querySelector('.sms-dots');
+      const btnPrev = section.querySelector('.sms-prev');
+      const btnNext = section.querySelector('.sms-next');
+      
+      let activeTabId = tabs.length > 0 ? tabs[0].getAttribute('data-target') : null;
+      let visibleCards = [];
+      let totalScrollWidth = 0;
+      let clientWidth = 0;
+
+      function switchTab(clickedTab) {
+        tabs.forEach(tab => tab.classList.remove('active'));
+        clickedTab.classList.add('active');
+        activeTabId = clickedTab.getAttribute('data-target');
+        
+        filterCards();
+        slider.scrollLeft = 0;
+      }
+
+      function filterCards() {
+        visibleCards = [];
+        cards.forEach(card => {
+          if (card.getAttribute('data-tab') === activeTabId) {
+            card.classList.remove('hidden');
+            visibleCards.push(card);
+          } else {
+            card.classList.add('hidden');
+          }
+        });
+        
+        updatePagination();
+      }
+
+      function updatePagination() {
+        setTimeout(() => {
+           clientWidth = slider.clientWidth;
+           totalScrollWidth = slider.scrollWidth - slider.clientWidth;
+           
+           if(visibleCards.length === 0) {
+             dotsContainer.innerHTML = '';
+             btnPrev.disabled = true;
+             btnNext.disabled = true;
+             return;
+           }
+
+           let dotsHTML = '';
+           visibleCards.forEach((_, index) => {
+             dotsHTML += '<button class="sms-dot" aria-label="Go to slide ' + (index+1) + '" data-index="' + index + '"></button>';
+           });
+           dotsContainer.innerHTML = dotsHTML;
+           updateActiveDot();
+           checkArrows();
+           
+           const dots = dotsContainer.querySelectorAll('.sms-dot');
+           dots.forEach(dot => {
+             dot.addEventListener('click', () => {
+               const idx = parseInt(dot.getAttribute('data-index'));
+               if(visibleCards[idx]) {
+                 const cardLeft = visibleCards[idx].offsetLeft - visibleCards[0].offsetLeft; 
+                 slider.scrollTo({ left: cardLeft, behavior: 'smooth' });
+               }
+             });
+           });
+        }, 50);
+      }
+
+      function updateActiveDot() {
+        if (visibleCards.length === 0 || totalScrollWidth <= 0) return;
+        const dots = dotsContainer.querySelectorAll('.sms-dot');
+        const scrollRatio = slider.scrollLeft / totalScrollWidth;
+        
+        let currentIdx = Math.round(scrollRatio * (dots.length - 1));
+        currentIdx = Math.max(0, Math.min(currentIdx, dots.length - 1));
+
+        dots.forEach((dot, index) => {
+          dot.classList.toggle('active', index === currentIdx);
+        });
+      }
+
+      function checkArrows() {
+        if(slider.scrollLeft <= 0) {
+          btnPrev.disabled = true;
+        } else {
+          btnPrev.disabled = false;
+        }
+
+        if(slider.scrollLeft >= totalScrollWidth - 2) {
+          btnNext.disabled = true;
+        } else {
+          btnNext.disabled = false;
+        }
+      }
+
+      tabs.forEach(tab => {
+        tab.addEventListener('click', (e) => {
+          switchTab(e.currentTarget);
+        });
+      });
+
+      btnPrev.addEventListener('click', () => {
+        const itemWidth = visibleCards[0] ? visibleCards[0].offsetWidth + 20 : 300;
+        slider.scrollBy({ left: -itemWidth, behavior: 'smooth' });
+      });
+
+      btnNext.addEventListener('click', () => {
+        const itemWidth = visibleCards[0] ? visibleCards[0].offsetWidth + 20 : 300;
+        slider.scrollBy({ left: itemWidth, behavior: 'smooth' });
+      });
+
+      slider.addEventListener('scroll', () => {
+        updateActiveDot();
+        checkArrows();
+      }, { passive: true });
+
+      window.addEventListener('resize', updatePagination);
+
+      filterCards();
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      document.querySelectorAll('.sms-section').forEach(initSlider);
+    });
+
+    if (window.Shopify && window.Shopify.designMode) {
+      document.addEventListener("shopify:section:load", (event) => {
+        if(event.target.classList.contains('split-mover-slider')) {
+          initSlider(event.target);
+        }
+      });
+      document.addEventListener("shopify:block:select", (event) => {
+        const section = event.target.closest('.sms-section');
+        if(section) {
+          const tabAssignment = event.target.getAttribute('data-tab');
+          if(tabAssignment) {
+            const tgtTab = section.querySelector('.sms-tab-btn[data-target="' + tabAssignment + '"]');
+            if(tgtTab && !tgtTab.classList.contains('active')) {
+               tgtTab.click();
+            }
+          }
+        }
+      });
+    }
+  })();
+</script>
