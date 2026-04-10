@@ -468,7 +468,6 @@
     width: 100%;
   }
 
-  /* Subtitle Typography & Spacing */
   .sms-subtitle {
     font-family: {{ subtitle_font.family }}, {{ subtitle_font.fallback_families }};
     font-size: {{ section.settings.subtitle_size }}px;
@@ -477,7 +476,6 @@
     margin-bottom: {{ section.settings.subtitle_mb }}px;
   }
 
-  /* Header Area & Tabs Spacing */
   .sms-header {
     margin-bottom: {{ section.settings.header_mb }}px;
   }
@@ -525,14 +523,12 @@
     .sms-tab-btn:not(.active) { font-size: calc({{ section.settings.tabs_size_inactive }}px * 0.7); }
   }
 
-  /* Slider & Card Gaps */
   .sms-slider-wrapper {
     position: relative;
-    /* Calculated bleed based on specific side padding */
     margin-right: -{{ section.settings.pr_mobile }}px;
   }
   @media screen and (min-width: 768px) { .sms-slider-wrapper { margin-right: -{{ section.settings.pr_desktop }}px; } }
-  @media screen and (min-width: 1440px) { .sms-slider-wrapper { margin-right: calc((100vw - 1440px) / -2 - {{ section.settings.pr_desktop }}px); } }
+  @media screen and (min-width: 1440px) { .sms-slider-wrapper { margin-right: calc((100vw - 1440px) * -0.5 - {{ section.settings.pr_desktop }}px); } }
 
   .sms-slider {
     display: flex;
@@ -580,7 +576,6 @@
   }
   .sms-card:hover .sms-card-img { transform: scale(1.05); }
 
-  /* Card Heading Typography */
   .sms-card-heading {
     font-family: {{ card_heading_font.family }}, {{ card_heading_font.fallback_families }};
     font-size: {{ section.settings.card_heading_size }}px;
@@ -594,7 +589,6 @@
     overflow: hidden;
   }
 
-  /* Card Badge Typography */
   .sms-card-badge {
     position: absolute;
     bottom: 0;
@@ -609,7 +603,6 @@
     pointer-events: none;
   }
 
-  /* Controls Area */
   .sms-controls {
     display: flex;
     justify-content: space-between;
@@ -676,7 +669,7 @@
              assign link_url = block.settings.link | default: "#"
           -%}
           <a href="{{ link_url }}" class="sms-card" data-tab="{{ block.settings.tab_assignment }}" {{ block.shopify_attributes }}>
-            <div class="sms-card-image-wrap">
+            <div class="sms-card-image-wrap" data-tab="{{ block.settings.tab_assignment }}">
               {% if block.settings.image != blank %}
                 <img src="{{ block.settings.image | img_url: '800x' }}"
                      alt="{{ block.settings.image.alt | escape }}"
@@ -804,12 +797,30 @@
       });
       slider.addEventListener('scroll', () => { updateActiveDot(); checkArrows(); }, { passive: true });
       window.addEventListener('resize', updatePagination);
+
       filterCards();
     }
 
-    document.addEventListener("DOMContentLoaded", () => { document.querySelectorAll('.sms-section').forEach(initSlider); });
+    document.addEventListener("DOMContentLoaded", () => {
+       document.querySelectorAll('.sms-section').forEach(initSlider);
+    });
+
     if (window.Shopify && window.Shopify.designMode) {
-      document.addEventListener("shopify:section:load", (e) => { if(e.target.classList.contains('split-mover-slider')) initSlider(e.target); });
+      document.addEventListener("shopify:section:load", (e) => {
+        if(e.target.classList.contains('split-mover-slider') || e.target.querySelector('.sms-section')) {
+           initSlider(e.target.classList.contains('sms-section') ? e.target : e.target.querySelector('.sms-section'));
+        }
+      });
+      document.addEventListener("shopify:block:select", (e) => {
+        const section = e.target.closest('.sms-section');
+        if(section) {
+          const tab = e.target.getAttribute('data-tab') || e.target.querySelector('[data-tab]').getAttribute('data-tab');
+          if(tab) {
+            const btn = section.querySelector('.sms-tab-btn[data-target="' + tab + '"]');
+            if(btn && !btn.classList.contains('active')) btn.click();
+          }
+        }
+      });
     }
   })();
 </script>
