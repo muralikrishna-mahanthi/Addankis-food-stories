@@ -367,8 +367,9 @@
           "type": "card",
           "settings": {
             "tab_assignment": "tab_2",
-            "badge_text": "Press Releases",
-            "heading": "Sample headline text spanning multiple lines goes here.",
+            "image": "shopify://shop_images/ripe-red-strawberries-in-a-white-bowl.jpg",
+            "badge_text": "Integrity",
+            "heading": "We hold ourselves to complete honesty and transparency in every relationship — because the trust of our consumers, partners, and distributors is the most valuable asset we will ever build.",
             "link": ""
           }
         },
@@ -376,8 +377,9 @@
           "type": "card",
           "settings": {
             "tab_assignment": "tab_2",
-            "badge_text": "Press Releases",
-            "heading": "Sample headline text spanning multiple lines goes here.",
+            "image": "shopify://shop_images/gemini-3.1-flash-image-preview_nano-banana-2__a_remove_the_navigatio_-_Edited.png",
+            "badge_text": "Quality",
+            "heading": "Every product bearing our name meets rigorous standards of safety and performance — because every Indian consumer, regardless of where they live or what they earn, deserves nothing less.",
             "link": ""
           }
         },
@@ -385,8 +387,9 @@
           "type": "card",
           "settings": {
             "tab_assignment": "tab_2",
-            "badge_text": "Press Releases",
-            "heading": "Sample headline text spanning multiple lines goes here.",
+            "image": "shopify://shop_images/fruits_sliced_by_a_person_on_a_table_wearing_head_mask_hand_gloves_and_mask_on_the_face.jpg",
+            "badge_text": "Innovation",
+            "heading": "We continuously explore better products, smarter distribution approaches, and fresher ideas — because in a competitive FMCG landscape, the brands that stop evolving are the ones that quietly disappear.",
             "link": ""
           }
         },
@@ -394,8 +397,9 @@
           "type": "card",
           "settings": {
             "tab_assignment": "tab_2",
-            "badge_text": "Press Releases",
-            "heading": "Sample headline text spanning multiple lines goes here.",
+            "image": "shopify://shop_images/ChatGPTImageDec23_2025_04_12_30PM.jpg",
+            "badge_text": "Entrepreneurship",
+            "heading": "We champion bold thinking and decisive action — empowering our teams, brand partners, and distribution entrepreneurs to take ownership and build businesses that create lasting impact across India.",
             "link": ""
           }
         }
@@ -412,6 +416,7 @@
         "card_dhXVaT",
         "card_UMCgQE"
       ],
+      "custom_css": [],
       "name": "Split Mover Slider",
       "settings": {
         "subtitle": "What's Core",
