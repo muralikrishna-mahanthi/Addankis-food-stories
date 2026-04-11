@@ -99,10 +99,27 @@
     "sliding_products_7WRryd": {
       "type": "sliding-products",
       "blocks": {
+        "product_RfExQK": {
+          "type": "product",
+          "settings": {
+            "title": "Luxury Essential Oil",
+            "btn_label": "Shop Now",
+            "link": ""
+          }
+        },
+        "product_tW3Wqg": {
+          "type": "product",
+          "settings": {
+            "title": "Luxury Essential Oil",
+            "btn_label": "Shop Now",
+            "link": ""
+          }
+        },
         "product_HHYHPw": {
           "type": "product",
           "settings": {
             "title": "Luxury Essential Oil",
+            "btn_label": "Shop Now",
             "link": ""
           }
         },
@@ -110,6 +127,7 @@
           "type": "product",
           "settings": {
             "title": "Luxury Essential Oil",
+            "btn_label": "Shop Now",
             "link": ""
           }
         },
@@ -117,6 +135,7 @@
           "type": "product",
           "settings": {
             "title": "Luxury Essential Oil",
+            "btn_label": "Shop Now",
             "link": ""
           }
         },
@@ -124,11 +143,14 @@
           "type": "product",
           "settings": {
             "title": "Luxury Essential Oil",
+            "btn_label": "Shop Now",
             "link": ""
           }
         }
       },
       "block_order": [
+        "product_RfExQK",
+        "product_tW3Wqg",
         "product_HHYHPw",
         "product_ypWANA",
         "product_qwUkPn",
@@ -145,6 +167,7 @@
         "slide_font": "assistant_n4",
         "image_radius": 20,
         "accent_color": "#c5a47e",
+        "u_curve_intensity": 60,
         "bg_color": "#ffffff",
         "container_width": 1400,
         "pt_desktop": 80,
