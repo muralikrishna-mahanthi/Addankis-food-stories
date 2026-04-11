@@ -166,7 +166,7 @@
         "heading_color": "#f1c641",
         "btn_label": "Shop hamsaa",
         "btn_link": "shopify://collections/hamsa",
-        "btn_bg_color": "#1a1a1a",
+        "btn_bg_color": "#f1c641",
         "btn_text_color": "#ffffff",
         "btn_hover_color": "#c5a47e",
         "btn_radius": 50,
