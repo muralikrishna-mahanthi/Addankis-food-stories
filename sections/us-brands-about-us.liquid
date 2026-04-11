@@ -15,19 +15,20 @@
   .us-brands-about__container {
     max-width: {{ section.settings.container_width }}px;
     margin: 0 auto;
-    padding: 0 2rem;
+    padding: 0 4rem;
     display: flex;
     flex-direction: row;
     position: relative;
+    align-items: flex-start; /* Crucial for sticky duration */
   }
 
   /* Split Logic */
   .us-brands-about__left {
     flex: 0 0 {{ section.settings.split_ratio }}%;
-    height: fit-content;
+    height: auto;
     position: sticky;
-    top: 10rem;
-    padding-right: 4rem;
+    top: 20rem; /* Adjusted for better viewport centering */
+    padding-right: 6rem;
   }
 
   .us-brands-about__right {
