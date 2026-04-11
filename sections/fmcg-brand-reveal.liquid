@@ -50,13 +50,8 @@
     transition: opacity 0.2s ease;
   }
 
-  /* Disable clicks when content is faded out */
-  .fmcg-brand-reveal-{{ section.id }} .fmcg-brand-reveal__content-layer[style*="--progress: 0.6"],
-  .fmcg-brand-reveal-{{ section.id }} .fmcg-brand-reveal__content-layer[style*="--progress: 0.7"],
-  .fmcg-brand-reveal-{{ section.id }} .fmcg-brand-reveal__content-layer[style*="--progress: 0.8"],
-  .fmcg-brand-reveal-{{ section.id }} .fmcg-brand-reveal__content-layer[style*="--progress: 0.9"],
-  .fmcg-brand-reveal-{{ section.id }} .fmcg-brand-reveal__content-layer[style*="--progress: 1.0"] {
-    pointer-events: none;
+  .fmcg-brand-reveal-{{ section.id }} .fmcg-brand-reveal__content-layer.is-faded {
+    pointer-events: none !important;
   }
 
   @media screen and (min-width: 750px) {
@@ -260,14 +255,27 @@
   (function() {
     const section = document.getElementById('FmcgBrandReveal-{{ section.id }}');
     if (!section) return;
+    const contentLayer = section.querySelector('.fmcg-brand-reveal__content-layer');
 
     function upgradeReveal() {
       const rect = section.getBoundingClientRect();
       const sectionHeight = section.offsetHeight;
       const viewportHeight = window.innerHeight;
+      
+      // Improved progress calculation: start reveal when section hits top
       let progress = -rect.top / (sectionHeight - viewportHeight);
       progress = Math.max(0, Math.min(1, progress));
+      
       section.style.setProperty('--progress', progress.toFixed(4));
+      
+      // Update interaction state
+      if (contentLayer) {
+        if (progress > 0.5) {
+          contentLayer.classList.add('is-faded');
+        } else {
+          contentLayer.classList.remove('is-faded');
+        }
+      }
     }
 
     window.addEventListener('scroll', upgradeReveal, { passive: true });
