@@ -291,9 +291,11 @@
       const containerWrap = section.querySelector('.sliding-products__track-wrap');
       const containerWidth = containerWrap.offsetWidth;
       
+      const isMobile = window.innerWidth < 750;
+      
       slides.forEach((slide, i) => {
         const distance = Math.abs(i - currentIndex);
-        let yOffset = distance * intensity; // Mountain Arc (0 at center, positive goes DOWN)
+        let yOffset = isMobile ? 0 : distance * intensity; // Straight on mobile, Arch on desktop
         let rotation = (i - currentIndex) * -10;
         let scale = 1 - (distance * 0.18);
         let opacity = 1 - (distance * 0.4);
@@ -301,7 +303,7 @@
         if (i === currentIndex) {
           yOffset = 0;
           rotation = 0;
-          scale = 1.4; // Slightly larger center
+          scale = isMobile ? 1.15 : 1.4; // Slightly less scale on mobile for better fit
           opacity = 1;
 
           // Update Info Bar Title
