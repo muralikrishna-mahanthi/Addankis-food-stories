@@ -86,8 +86,8 @@
   }
 
   .sliding-products__slide {
-    flex: 0 0 85%; /* Reduced width to clear arrows and center perfectly */
-    margin: 0;
+    flex: 0 0 65%; /* Width for 1 full + side peeks visibility */
+    margin: 0 1rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -297,13 +297,15 @@
         const distance = Math.abs(i - currentIndex);
         let yOffset = isMobile ? 0 : distance * intensity; // Straight on mobile, Arch on desktop
         let rotation = (i - currentIndex) * -10;
-        let scale = 1 - (distance * 0.18);
+        
+        // Mobile-specific scaling to make side items "small"
+        let scale = isMobile ? (1 - (distance * 0.3)) : (1 - (distance * 0.18));
         let opacity = 1 - (distance * 0.4);
 
         if (i === currentIndex) {
           yOffset = 0;
           rotation = 0;
-          scale = isMobile ? 1.1 : 1.4; // Controlled scale on mobile for arrow clearance
+          scale = isMobile ? 1.1 : 1.4; // Slightly larger focused center
           opacity = 1;
 
           // Update Info Bar Title
