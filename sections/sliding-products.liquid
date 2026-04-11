@@ -1,0 +1,300 @@
+{%- style -%}
+  {{ section.settings.heading_font | font_face: font_display: 'swap' }}
+  {{ section.settings.slide_font | font_face: font_display: 'swap' }}
+
+  #SlidingProducts-{{ section.id }} {
+    background: {{ section.settings.bg_color }};
+    padding: {{ section.settings.pt_desktop }}px 0 {{ section.settings.pb_desktop }}px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  @media screen and (max-width: 749px) {
+    #SlidingProducts-{{ section.id }} {
+      padding: {{ section.settings.pt_mobile }}px 0 {{ section.settings.pb_mobile }}px;
+    }
+  }
+
+  .sliding-products__container {
+    max-width: {{ section.settings.container_width }}px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .sliding-products__header {
+    text-align: center;
+    margin-bottom: 5rem;
+    padding: 0 2rem;
+  }
+
+  .sliding-products__title {
+    margin: 0;
+    font-family: {{ section.settings.heading_font.family }}, {{ section.settings.heading_font.fallback_families }} !important;
+    font-size: {{ section.settings.heading_size_mobile }}rem !important;
+    font-weight: {{ section.settings.heading_weight }} !important;
+    color: {{ section.settings.heading_color }} !important;
+  }
+
+  @media screen and (min-width: 750px) {
+    .sliding-products__title {
+      font-size: {{ section.settings.heading_size_desktop }}rem !important;
+    }
+  }
+
+  /* Slider Logic */
+  .sliding-products__track-wrap {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    padding: 4rem 0;
+  }
+
+  .sliding-products__track {
+    display: flex;
+    transition: transform 0.8s cubic-bezier(0.645, 0.045, 0.355, 1);
+    will-change: transform;
+    align-items: center;
+  }
+
+  .sliding-products__slide {
+    flex: 0 0 70%;  /* Default mobile */
+    max-width: 400px;
+    margin: 0 5%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: all 0.6s cubic-bezier(0.645, 0.045, 0.355, 1);
+    opacity: 0.4;
+    transform: scale(0.8);
+    position: relative;
+    z-index: 1;
+  }
+
+  @media screen and (min-width: 750px) {
+    .sliding-products__slide {
+      flex: 0 0 25%;
+      margin: 0 2%;
+    }
+  }
+
+  .sliding-products__slide.is-active {
+    opacity: 1;
+    transform: scale(1.15);
+    z-index: 10;
+  }
+
+  .sliding-products__img-wrap {
+    width: 100%;
+    border-radius: {{ section.settings.image_radius }}px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    transition: transform 0.4s ease;
+    cursor: pointer;
+  }
+
+  .sliding-products__slide.is-active .sliding-products__img-wrap:hover {
+    transform: scale(1.03);
+  }
+
+  .sliding-products__img-wrap img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+  }
+
+  /* Title Only in Middle */
+  .sliding-products__slide-title {
+    margin-top: 2.5rem;
+    font-family: {{ section.settings.slide_font.family }}, {{ section.settings.slide_font.fallback_families }} !important;
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: {{ section.settings.heading_color }};
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.5s ease 0.3s, transform 0.5s ease 0.3s;
+    text-align: center;
+  }
+
+  .sliding-products__slide.is-active .sliding-products__slide-title {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Side Buttons */
+  .sliding-products__nav {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 2rem;
+    pointer-events: none;
+    z-index: 20;
+    transform: translateY(-50%);
+  }
+
+  .sliding-products__btn {
+    width: 60px;
+    height: 60px;
+    background: {{ section.settings.heading_color }};
+    color: {{ section.settings.bg_color }};
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    pointer-events: auto;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+  }
+
+  .sliding-products__btn:hover {
+    transform: scale(1.1) rotate(5deg);
+    background: {{ section.settings.accent_color | default: section.settings.heading_color }};
+  }
+
+  .sliding-products__btn svg {
+    width: 24px;
+    height: 24px;
+  }
+{%- endstyle -%}
+
+<section id="SlidingProducts-{{ section.id }}" class="sliding-products">
+  <div class="sliding-products__container">
+    
+    <div class="sliding-products__header">
+      {%- if section.settings.heading != blank -%}
+        <h2 class="sliding-products__title">{{ section.settings.heading }}</h2>
+      {%- endif -%}
+    </div>
+
+    <div class="sliding-products__track-wrap">
+      <div class="sliding-products__track">
+        {%- for block in section.blocks -%}
+          <div class="sliding-products__slide" data-index="{{ forloop.index0 }}" {{ block.shopify_attributes }}>
+            <a href="{{ block.settings.link | default: '#' }}" class="sliding-products__img-wrap">
+              {%- if block.settings.image != blank -%}
+                 {{ block.settings.image | image_url: width: 800 | image_tag: loading: 'lazy' }}
+              {%- else -%}
+                 {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+              {%- endif -%}
+            </a>
+            <h3 class="sliding-products__slide-title">{{ block.settings.title | default: 'Premium Selection' }}</h3>
+          </div>
+        {%- endfor -%}
+      </div>
+
+      <div class="sliding-products__nav">
+        <div class="sliding-products__btn hamsaa-prev" aria-label="Previous">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 19l-7-7 7-7"/></svg>
+        </div>
+        <div class="sliding-products__btn hamsaa-next" aria-label="Next">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5l7 7-7 7"/></svg>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<script>
+  (function() {
+    const section = document.getElementById('SlidingProducts-{{ section.id }}');
+    if (!section) return;
+
+    const track = section.querySelector('.sliding-products__track');
+    const slides = section.querySelectorAll('.sliding-products__slide');
+    const nextBtn = section.querySelector('.hamsaa-next');
+    const prevBtn = section.querySelector('.hamsaa-prev');
+    
+    let currentIndex = 0;
+    const totalSlides = slides.length;
+
+    function updateSlider() {
+      // Calculate offset to center the currentIndex slide
+      const slideWidth = slides[0].offsetWidth;
+      const containerWidth = section.querySelector('.sliding-products__track-wrap').offsetWidth;
+      
+      // Calculate individual margins/gaps if needed, but flex-basis + margin is handled by offset
+      slides.forEach((slide, i) => {
+        slide.classList.remove('is-active');
+        if(i === currentIndex) slide.classList.add('is-active');
+      });
+
+      const activeSlide = slides[currentIndex];
+      const offset = (containerWidth / 2) - (activeSlide.offsetLeft + activeSlide.offsetWidth / 2);
+      
+      track.style.transform = `translateX(${offset}px)`;
+    }
+
+    nextBtn.addEventListener('click', () => {
+      currentIndex = (currentIndex + 1) % totalSlides;
+      updateSlider();
+    });
+
+    prevBtn.addEventListener('click', () => {
+      currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+      updateSlider();
+    });
+
+    // Handle Resize
+    window.addEventListener('resize', updateSlider);
+    
+    // Initial Setup
+    setTimeout(updateSlider, 100);
+
+    // Theme Editor Sync
+    document.addEventListener('shopify:section:load', updateSlider);
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Sliding Products",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Section Heading", "default": "Featured Catalog" },
+    { "type": "header", "content": "Typography" },
+    { "type": "font_picker", "id": "heading_font", "label": "Heading Font", "default": "assistant_n4" },
+    { "type": "range", "id": "heading_size_desktop", "label": "Font Size (Desktop)", "min": 2, "max": 10, "step": 0.5, "unit": "rem", "default": 4.5 },
+    { "type": "range", "id": "heading_size_mobile", "label": "Font Size (Mobile)", "min": 2, "max": 6, "step": 0.5, "unit": "rem", "default": 2.5 },
+    { "type": "select", "id": "heading_weight", "label": "Font Weight", "options": [{"value":"400","label":"Regular"},{"value":"700","label":"Bold"},{"value":"900","label":"Black"}], "default": "700" },
+    { "type": "color", "id": "heading_color", "label": "Primary Color", "default": "#1a1a1a" },
+    { "type": "header", "content": "Slide Design" },
+    { "type": "font_picker", "id": "slide_font", "label": "Slide Title Font", "default": "assistant_n4" },
+    { "type": "range", "id": "image_radius", "label": "Image Border Radius", "min": 0, "max": 100, "step": 5, "default": 20 },
+    { "type": "color", "id": "accent_color", "label": "Button Hover Color", "default": "#c5a47e" },
+    { "type": "header", "content": "Layout Spacing" },
+    { "type": "color", "id": "bg_color", "label": "Section Background", "default": "#ffffff" },
+    { "type": "range", "id": "container_width", "label": "Container Width", "min": 1000, "max": 1600, "step": 50, "default": 1400 },
+    { "type": "range", "id": "pt_desktop", "label": "Top Padding (Desktop)", "min": 0, "max": 100, "step": 5, "default": 80 },
+    { "type": "range", "id": "pb_desktop", "label": "Bottom Padding (Desktop)", "min": 0, "max": 100, "step": 5, "default": 80 },
+    { "type": "range", "id": "pt_mobile", "label": "Top Padding (Mobile)", "min": 0, "max": 100, "step": 5, "default": 50 },
+    { "type": "range", "id": "pb_mobile", "label": "Bottom Padding (Mobile)", "min": 0, "max": 100, "step": 5, "default": 50 }
+  ],
+  "blocks": [
+    {
+      "type": "product",
+      "name": "Product Slide",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Product Image" },
+        { "type": "text", "id": "title", "label": "Product Title", "default": "Luxury Essential Oil" },
+        { "type": "url", "id": "link", "label": "Link Location" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Sliding Products",
+      "blocks": [
+        { "type": "product" },
+        { "type": "product" },
+        { "type": "product" },
+        { "type": "product" }
+      ]
+    }
+  ]
+}
+{% endschema %}
