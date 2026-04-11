@@ -17,217 +17,64 @@
         "padding_bottom": 28
       }
     },
-    "hamsaa_hero_7DYxpE": {
-      "type": "hamsaa-hero",
-      "name": "HAMSAA Hero Reveal",
-      "settings": {
-        "heading": "Elevate Your Soul",
-        "description": "<p>Discover the pure essence of Camphor. A sanctuary for the senses, crafted for clarity and wellness.</p>",
-        "heading_font": "assistant_n4",
-        "heading_size_desktop": 6.5,
-        "heading_size_mobile": 3.5,
-        "heading_weight": "700",
-        "heading_style": "normal",
-        "heading_transform": "uppercase",
-        "heading_line_height": 1.1,
-        "heading_letter_spacing": 2,
-        "heading_color": "#ffffff",
-        "desc_font": "assistant_n4",
-        "desc_size_desktop": 20,
-        "desc_size_mobile": 18,
-        "desc_weight": "400",
-        "desc_style": "normal",
-        "desc_color": "#f5f5f5",
-        "btn1_label": "Shop Camphor",
-        "btn1_link": "",
-        "btn_primary_bg": "#ffffff",
-        "btn_primary_text": "#000000",
-        "btn2_label": "Explore Story",
-        "btn2_link": "",
-        "btn_secondary_text": "#ffffff",
-        "btn_radius": 0,
-        "image": "shopify://shop_images/download.jpg",
-        "text_alignment": "center",
-        "container_width": 1000,
-        "bg_brightness": 70,
-        "bg_blur": 0,
-        "overlay_color": "#000000",
-        "overlay_opacity": 30,
-        "bg_color": "#ffffff",
-        "pt_desktop": 0,
-        "pb_desktop": 0,
-        "pt_mobile": 0,
-        "pb_mobile": 0
-      }
-    },
-    "hamsaa_philosophy_EGa4iN": {
-      "type": "hamsaa-philosophy",
-      "name": "HAMSAA philosophy Story",
-      "settings": {
-        "layout": "image_first",
-        "container_width": 850,
-        "label": "Our Philosophy",
-        "heading": "",
-        "description": "<p>Hamsaa represents the breath and the swan—a symbol of purity and ultimate clarity. Our camphor is refined to capture this elemental energy, bringing ancient wellness into your modern sanctuary.</p>",
-        "heading_font": "assistant_n4",
-        "heading_size_desktop": 20,
-        "heading_size_mobile": 32,
-        "heading_weight": "700",
-        "heading_style": "normal",
-        "heading_color": "#1a1a1a",
-        "desc_font": "assistant_n4",
-        "desc_size_desktop": 18,
-        "desc_size_mobile": 16,
-        "desc_weight": "400",
-        "desc_color": "#4a4a4a",
-        "image": "shopify://shop_images/ripe-red-strawberries-in-a-white-bowl.jpg",
-        "image_radius": 45,
-        "image_grayscale": 0,
-        "bg_color": "#ffffff",
-        "accent_color": "#c5a47e",
-        "pt_desktop": 10,
-        "pb_desktop": 100,
-        "pt_mobile": 60,
-        "pb_mobile": 60
-      }
-    },
-    "hamsaa_catalog_XHVCeK": {
-      "type": "hamsaa-catalog",
+    "blocks_WTVjJc": {
+      "type": "_blocks",
       "blocks": {
-        "collection_Ba9PUg": {
-          "type": "collection",
+        "ai_gen_block_4ff1c27_tHPc44": {
+          "type": "ai_gen_block_4ff1c27",
           "settings": {
-            "image": "shopify://shop_images/ripe-red-strawberries-in-a-white-bowl.jpg",
-            "title": "Essential Oils",
-            "link": ""
-          }
-        },
-        "collection_gmaEhz": {
-          "type": "collection",
-          "settings": {
-            "title": "Wellness Balms",
-            "link": ""
-          }
-        },
-        "collection_JMyjBn": {
-          "type": "collection",
-          "settings": {
-            "title": "Camphor Refills",
-            "link": ""
-          }
+            "heading": "HAMSAA",
+            "text": "<p>Purity, grace, and positive energy. Inspired by the symbolism of the <strong>swan</strong>, which<br/>represents wisdom and clarity in Indian philosophy</p>",
+            "heading_font": "archivo_black_n4",
+            "heading_weight": "bolder",
+            "heading_size": 90,
+            "heading_size_mobile": 22,
+            "heading_color": "#121212",
+            "heading_spacing": 0,
+            "heading_padding_top": 0,
+            "heading_padding_bottom": 28,
+            "heading_padding_horizontal": 0,
+            "heading_padding_top_mobile": 0,
+            "heading_padding_bottom_mobile": 0,
+            "heading_padding_horizontal_mobile": 0,
+            "text_font": "sans_serif_n7",
+            "text_size": 18,
+            "text_size_mobile": 14,
+            "text_color": "#121212",
+            "text_line_height": 1.5,
+            "paragraph_spacing": 16,
+            "text_padding_top": 0,
+            "text_padding_bottom": 0,
+            "text_padding_horizontal": 0,
+            "text_padding_top_mobile": 0,
+            "text_padding_bottom_mobile": 0,
+            "text_padding_horizontal_mobile": 0,
+            "text_alignment": "center",
+            "horizontal_alignment": "center",
+            "vertical_alignment": "center",
+            "desktop_width_percent": 100,
+            "min_height": 400,
+            "min_height_mobile": 200,
+            "padding_top": 100,
+            "padding_bottom": 100,
+            "padding_horizontal": 48,
+            "padding_top_mobile": 24,
+            "padding_bottom_mobile": 24,
+            "padding_horizontal_mobile": 20,
+            "background_color": "#ffffff"
+          },
+          "blocks": {}
         }
       },
       "block_order": [
-        "collection_Ba9PUg",
-        "collection_gmaEhz",
-        "collection_JMyjBn"
+        "ai_gen_block_4ff1c27_tHPc44"
       ],
-      "name": "HAMSAA Product Mosaic",
-      "settings": {
-        "heading": "Essence of Clarity",
-        "container_width": 1250,
-        "heading_font": "assistant_n4",
-        "heading_size_mobile": 3,
-        "heading_weight": "700",
-        "heading_color": "#000000",
-        "card_radius": 0,
-        "bg_color": "#ffffff",
-        "pt_desktop": 100,
-        "pb_desktop": 100,
-        "pt_mobile": 60,
-        "pb_mobile": 60
-      }
-    },
-    "hamsaa_wellness_gCnCUB": {
-      "type": "hamsaa-wellness",
-      "blocks": {
-        "info_mpLmHK": {
-          "type": "info",
-          "settings": {
-            "icon_svg": "",
-            "title": "Home Fragrance",
-            "text": "Learn how pure camphor and essential oils can clear your space and mind."
-          }
-        },
-        "info_WJdqGX": {
-          "type": "info",
-          "settings": {
-            "icon_svg": "",
-            "title": "Mental Clarity",
-            "text": "Learn how pure camphor and essential oils can clear your space and mind."
-          }
-        },
-        "info_gEyyVh": {
-          "type": "info",
-          "settings": {
-            "icon_svg": "",
-            "title": "Pure Sourcing",
-            "text": "Learn how pure camphor and essential oils can clear your space and mind."
-          }
-        }
-      },
-      "block_order": [
-        "info_mpLmHK",
-        "info_WJdqGX",
-        "info_gEyyVh"
-      ],
-      "name": "HAMSAA Wellness Education",
-      "settings": {
-        "heading": "Wellness & Fragrance",
-        "intro": "Education about aromatherapy and home fragrance.",
-        "container_width": 1200,
-        "heading_font": "assistant_n4",
-        "heading_size_desktop": 4.5,
-        "heading_size_mobile": 3,
-        "heading_weight": "700",
-        "heading_color": "#1a1a1a",
-        "desc_font": "assistant_n4",
-        "desc_color": "#4a4a4a",
-        "card_bg": "#fdfdfd",
-        "card_radius": 20,
-        "bg_color": "#ffffff",
-        "accent_color": "#c5a47e",
-        "pt_desktop": 100,
-        "pb_desktop": 100,
-        "pt_mobile": 60,
-        "pb_mobile": 60
-      }
-    },
-    "hamsaa_distributor_WtWF4V": {
-      "type": "hamsaa-distributor",
-      "name": "HAMSAA Distributor Portal",
-      "settings": {
-        "heading": "Grow With HAMSAA",
-        "description": "<p>Join our mission to bring purity and clarity to every home. Explore distribution opportunities and business partnerships.</p>",
-        "btn_label": "Become a Partner",
-        "btn_link": "",
-        "heading_font": "assistant_n4",
-        "heading_size_desktop": 4.5,
-        "heading_size_mobile": 3,
-        "heading_weight": "700",
-        "heading_color": "#1a1a1a",
-        "desc_font": "assistant_n4",
-        "desc_color": "#4a4a4a",
-        "card_bg": "#ffffff",
-        "card_radius": 40,
-        "support_email": "support@hamsaa.com",
-        "business_email": "partners@hamsaa.com",
-        "container_width": 1200,
-        "bg_color": "#f5f7fa",
-        "accent_color": "#2c3e50",
-        "pt_desktop": 120,
-        "pb_desktop": 120,
-        "pt_mobile": 60,
-        "pb_mobile": 60
-      }
+      "name": "Rich text",
+      "settings": {}
     }
   },
   "order": [
     "main",
-    "hamsaa_hero_7DYxpE",
-    "hamsaa_philosophy_EGa4iN",
-    "hamsaa_catalog_XHVCeK",
-    "hamsaa_wellness_gCnCUB",
-    "hamsaa_distributor_WtWF4V"
+    "blocks_WTVjJc"
   ]
 }
