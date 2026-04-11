@@ -16,9 +16,10 @@
   }
 
   .sliding-products__container {
-    max-width: {{ section.settings.container_width }}px;
-    margin: 0 auto;
+    width: 100%;
+    margin: 0;
     position: relative;
+    max-width: none !important;
   }
 
   .sliding-products__header {
@@ -45,9 +46,9 @@
   .sliding-products__track-wrap {
     position: relative;
     width: 100%;
-    overflow: hidden;
-    padding: 12rem 0 6rem; /* Extra space for the arch */
-    perspective: 1500px;
+    overflow: visible; /* Allow products to enter from off-screen */
+    padding: 12rem 0 6rem;
+    perspective: 2000px;
   }
 
   .sliding-products__track {
@@ -71,8 +72,8 @@
 
   @media screen and (min-width: 750px) {
     .sliding-products__slide {
-      flex: 0 0 18%; /* Fits 5 items comfortably */
-      margin: 0 1%;
+      flex: 0 0 22%; /* Wider spread */
+      margin: 0 3%;
     }
   }
 
@@ -249,9 +250,9 @@
 
     function updateSlider(animate = true) {
       if (!animate) track.style.transition = 'none';
-      else track.style.transition = 'transform 0.6s cubic-bezier(0.25, 1, 0.5, 1)';
+      else track.style.transition = 'transform 0.7s cubic-bezier(0.23, 1, 0.32, 1)';
 
-      const containerWidth = section.querySelector('.sliding-products__track-wrap').offsetWidth;
+      const containerWidth = window.innerWidth;
       
       slides.forEach((slide, i) => {
         const distance = Math.abs(i - currentIndex);
