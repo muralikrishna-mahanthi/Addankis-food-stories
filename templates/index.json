@@ -172,7 +172,7 @@
       "type": "fmcg-brand-reveal",
       "custom_css": [
         "h2 {font-family: system-ui;}",
-        ".fmcg-brand-reveal__description {font-size: 1.5rem;}"
+        ".fmcg-brand-reveal__description {font-size: 1.5rem; font-weight: 600; font-family: system-ui}"
       ],
       "name": "FMCG Brand Reveal",
       "settings": {
