@@ -172,7 +172,7 @@
       "type": "fmcg-brand-reveal",
       "custom_css": [
         "h2 {font-family: system-ui;}",
-        ".fmcg-brand-reveal__description {font-size: 1.5rem; font-weight: 600; font-family: system-ui}"
+        ".fmcg-brand-reveal__description {font-size: 1.5rem; font-weight: 600; font-family: system-ui;}"
       ],
       "name": "FMCG Brand Reveal",
       "settings": {
@@ -184,13 +184,13 @@
         "text_alignment": "left",
         "heading_size_desktop": 6.5,
         "heading_size_mobile": 3,
-        "heading_color": "#6df26f",
+        "heading_color": "#4fa230",
         "text_color": "#ffffff",
-        "content_bg": "#1f7000",
+        "content_bg": "#144900",
         "btn_label": "Discover Addanki's positive",
         "btn_link": "",
-        "btn_bg": "#9ff09f",
-        "btn_text": "#1f7000",
+        "btn_bg": "#4fa230",
+        "btn_text": "#144900",
         "video": "shopify://files/videos/7301195-uhd_3840_2160_25fps.mp4",
         "video_text": "",
         "video_overlay_bg": "rgba(0,0,0,0)",
