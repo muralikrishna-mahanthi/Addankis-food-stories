@@ -170,7 +170,10 @@
     },
     "fmcg_brand_reveal_KKRFzy": {
       "type": "fmcg-brand-reveal",
-      "custom_css": [],
+      "custom_css": [
+        "h2 {font-family: system-ui;}",
+        ".fmcg-brand-reveal__description {font-size: 1.5rem;}"
+      ],
       "name": "FMCG Brand Reveal",
       "settings": {
         "image": "shopify://shop_images/VSH8288.webp",
@@ -179,7 +182,9 @@
         "heading": "Growing Positive  Energy",
         "description": "<p>Discover the secrets of our premium FMCG brand builder platform, where quality meets innovation.</p>",
         "text_alignment": "center",
+        "heading_size_desktop": 6,
         "heading_size_mobile": 3,
+        "heading_color": "#6df26f",
         "text_color": "#ffffff",
         "content_bg": "#1f7000",
         "btn_label": "Discover Addanki's positive",
