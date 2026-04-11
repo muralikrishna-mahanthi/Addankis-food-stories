@@ -27,7 +27,7 @@
     flex: 0 0 {{ section.settings.split_ratio }}%;
     height: auto;
     position: sticky;
-    top: 20rem; /* Adjusted for better viewport centering */
+    top: 25rem; /* Centered in viewport */
     padding-right: 6rem;
   }
 
@@ -41,6 +41,7 @@
   @media screen and (max-width: 749px) {
     .us-brands-about__container {
       flex-direction: column;
+      padding: 0 2rem;
     }
     .us-brands-about__left {
       flex: 0 0 100%;
@@ -57,7 +58,6 @@
   /* Left Side Content */
   .us-brands-about__left-item {
     margin-bottom: 2rem;
-    transition: opacity 0.5s ease;
   }
 
   .us-brands-about__left-heading {
@@ -65,19 +65,13 @@
     font-size: {{ section.settings.left_heading_size }}rem;
     font-weight: 700;
     color: {{ section.settings.text_color }};
-    line-height: 1.2;
+    line-height: 1.1;
   }
 
   .us-brands-about__left-image {
     width: 100%;
     border-radius: 20px;
     overflow: hidden;
-  }
-
-  .us-brands-about__left-image img {
-    width: 100%;
-    height: auto;
-    display: block;
   }
 
   /* Timeline Logic */
@@ -87,27 +81,22 @@
     top: 0;
     width: 2px;
     height: 0;
-    background: {{ section.settings.line_dark_color }};
+    background: {{ section.settings.line_active_color }};
     z-index: 2;
   }
 
   .us-brands-about__point {
     position: relative;
-    padding-bottom: 15rem; /* Large spacing for scroll impact */
-    opacity: 0;
-    transform: translateY(40px);
-    transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
-  }
-
-  .us-brands-about__point.is-visible {
-    opacity: 1;
-    transform: translateY(0);
+    padding-bottom: 15rem; /* Large spacing for scrollytelling */
+    opacity: 0.3; /* Start grey as requested */
+    transform: translateY(20px);
+    transition: transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
   }
 
   /* Dot Style */
   .us-brands-about__dot {
     position: absolute;
-    left: -6rem; /* Calculated based on padding */
+    left: -6.1rem; /* Aligned with line */
     top: 0.5rem;
     transform: translateX(-50%);
     width: {{ section.settings.dot_size }}px;
@@ -119,13 +108,14 @@
   }
 
   .us-brands-about__point.is-active .us-brands-about__dot {
-    background: {{ section.settings.line_dark_color }};
+    background: {{ section.settings.line_active_color }};
     transform: translateX(-50%) scale(1.3);
   }
 
   .us-brands-about__point-text {
     font-size: {{ section.settings.point_size }}rem;
-    line-height: 1.5;
+    font-weight: 600;
+    line-height: 1.4;
     color: {{ section.settings.text_color }};
     max-width: 600px;
   }
@@ -183,40 +173,49 @@
     const points = section.querySelectorAll('.js-about-point');
     const rightSide = section.querySelector('.us-brands-about__right');
 
-    // Reveal Animation
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
-          entry.target.classList.add('is-active');
-        } else {
-          // Keep active logic based on vertical position
-          if (entry.boundingClientRect.top > 0) {
-            entry.target.classList.remove('is-active');
-          }
-        }
-      });
-    }, { threshold: 0.5 });
-
-    points.forEach(point => observer.observe(point));
-
-    // Progress Line Logic
-    window.addEventListener('scroll', () => {
+    const updateScroll = () => {
       const rect = rightSide.getBoundingClientRect();
       const windowHeight = window.innerHeight;
-      
-      // Calculate how much of the right side has scrolled past the viewport middle
+      const scrollTrigger = windowHeight * 0.5; // Trigger at screen middle
+
+      // 1. Update Progress Line Height
       const sectionStart = rect.top;
       const sectionHeight = rect.height;
-      const scrollTrigger = windowHeight * 0.4; // Line starts filling when top reaches 40% of screen
-
-      let progress = 0;
+      let totalProgress = 0;
       if (sectionStart < scrollTrigger) {
-        progress = Math.min(100, Math.max(0, ((scrollTrigger - sectionStart) / (sectionHeight - scrollTrigger)) * 100));
+        totalProgress = Math.min(100, Math.max(0, ((scrollTrigger - sectionStart) / (sectionHeight - scrollTrigger)) * 100));
       }
+      progressLine.style.height = totalProgress + '%';
 
-      progressLine.style.height = progress + '%';
-    });
+      // 2. Update Individual Points (One-Way Reveal)
+      points.forEach((point) => {
+        const pointRect = point.getBoundingClientRect();
+        
+        // Calculate point individual progress (based on reaching middle of screen)
+        const pointProgress = (windowHeight * 0.7 - pointRect.top) / (windowHeight * 0.2);
+        
+        // Use Math.max to ensure opacity ONLY increases (persistence)
+        const currentOpacity = parseFloat(point.style.opacity) || 0.3;
+        const newOpacity = Math.max(currentOpacity, Math.min(1, pointProgress));
+        
+        point.style.opacity = newOpacity;
+
+        // If opacity reaches 1, keep it active (dot color)
+        if (newOpacity >= 1) {
+          point.classList.add('is-active');
+        }
+
+        // Translation effect
+        if (newOpacity > 0.3) {
+           const translateY = Math.max(0, 20 - (newOpacity - 0.3) * 50);
+           point.style.transform = `translateY(${translateY}px)`;
+        }
+      });
+    };
+
+    window.addEventListener('scroll', updateScroll);
+    window.addEventListener('resize', updateScroll);
+    updateScroll(); // Initial call
   })();
 </script>
 
@@ -233,8 +232,8 @@
     { "type": "range", "id": "left_heading_size", "label": "Left Heading Size", "min": 2, "max": 8, "step": 0.5, "unit": "rem", "default": 4.5 },
     { "type": "header", "content": "Timeline Animation" },
     { "type": "color", "id": "line_light_color", "label": "Line/Dot Inactive Color", "default": "#e5e5e5" },
-    { "type": "color", "id": "line_dark_color", "label": "Line/Dot Active Color", "default": "#1a1a1a" },
-    { "type": "range", "id": "dot_size", "label": "Timeline Dot size", "min": 6, "max": 30, "step": 2, "unit": "px", "default": 12 },
+    { "type": "color", "id": "line_active_color", "label": "Line/Dot Active Color", "default": "#6394FF" },
+    { "type": "range", "id": "dot_size", "label": "Timeline Dot size", "min": 6, "max": 30, "step": 2, "unit": "px", "default": 16 },
     { "type": "range", "id": "point_size", "label": "Point Text Size", "min": 1, "max": 4, "step": 0.1, "unit": "rem", "default": 1.8 },
     { "type": "header", "content": "Layout Spacing" },
     { "type": "range", "id": "container_width", "label": "Container Width", "min": 1000, "max": 1600, "step": 50, "default": 1400 },
@@ -248,7 +247,7 @@
       "type": "left_heading",
       "name": "Left Heading",
       "settings": [
-        { "type": "text", "id": "title", "label": "Heading Text", "default": "Our Journey" }
+        { "type": "text", "id": "title", "label": "Heading Text", "default": "Meaning behind the brand" }
       ]
     },
     {
@@ -262,7 +261,7 @@
       "type": "right_point",
       "name": "Story Point (Right)",
       "settings": [
-        { "type": "richtext", "id": "text", "label": "Point Text", "default": "<p>We started with a simple vision to bring wellness to every household.</p>" }
+        { "type": "text", "id": "text", "label": "Point Text", "default": "Inspired by the symbolism of the swan" }
       ]
     }
   ],
@@ -270,10 +269,10 @@
     {
       "name": "US Brands About Us",
       "blocks": [
-        { "type": "left_heading", "settings": { "title": "Wellness Redefined" } },
-        { "type": "right_point", "settings": { "text": "<p>2010: The first crystalline lab was established.</p>" } },
-        { "type": "right_point", "settings": { "text": "<p>2015: Expanded to over 50 unique traditional blends.</p>" } },
-        { "type": "right_point", "settings": { "text": "<p>2023: Now a global leader in clinical luxury wellness.</p>" } }
+        { "type": "left_heading", "settings": { "title": "Meaning behind the brand" } },
+        { "type": "right_point", "settings": { "text": "Inspired by the symbolism of the swan" } },
+        { "type": "right_point", "settings": { "text": "A commitment to crystalline purity." } },
+        { "type": "right_point", "settings": { "text": "Luxury clinical wellness at its peak." } }
       ]
     }
   ]
