@@ -230,7 +230,7 @@
         "left_heading_size": 4.5,
         "line_light_color": "#e5e5e5",
         "line_dark_color": "#1a1a1a",
-        "dot_size": 12,
+        "dot_size": 20,
         "point_size": 1.8,
         "container_width": 1400,
         "pt_desktop": 100,
