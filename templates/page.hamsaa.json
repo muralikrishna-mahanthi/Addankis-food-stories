@@ -173,7 +173,7 @@
         "slide_font": "assistant_n4",
         "image_radius": 20,
         "accent_color": "#c5a47e",
-        "u_curve_intensity": 85,
+        "u_curve_intensity": 80,
         "bg_color": "#ffffff",
         "container_width": 1400,
         "pt_desktop": 80,
