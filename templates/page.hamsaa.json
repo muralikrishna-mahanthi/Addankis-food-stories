@@ -61,7 +61,7 @@
             "padding_top_mobile": 24,
             "padding_bottom_mobile": 24,
             "padding_horizontal_mobile": 20,
-            "background_color": "#ffffff"
+            "background_color": "#efbf04"
           },
           "blocks": {}
         }
@@ -86,7 +86,7 @@
         "height_mobile": 300,
         "border_radius": 12,
         "gap": 10,
-        "bg_color": "rgba(0,0,0,0)",
+        "bg_color": "#efbf04",
         "container_width": 1400,
         "side_padding": 1,
         "stack_on_mobile": true,
@@ -174,7 +174,7 @@
         "image_radius": 20,
         "accent_color": "#c5a47e",
         "u_curve_intensity": 80,
-        "bg_color": "#ffffff",
+        "bg_color": "#efbf04",
         "container_width": 1400,
         "pt_desktop": 80,
         "pb_desktop": 80,
