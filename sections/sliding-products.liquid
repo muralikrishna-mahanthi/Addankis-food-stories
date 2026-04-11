@@ -107,27 +107,29 @@
     font-size: 2.8rem;
     font-weight: 800;
     color: {{ section.settings.heading_color }};
-    margin: 0 0 2rem;
-    transition: opacity 0.4s ease, transform 0.4s ease;
+    margin: 0 0 1rem;
+    transition: opacity 0.4s ease;
   }
 
-  .sliding-products__active-btn {
+  .sliding-products__constant-btn {
     display: inline-flex;
-    padding: 1.5rem 4rem;
-    background: {{ section.settings.heading_color }};
-    color: {{ section.settings.bg_color }};
+    padding: 1.5rem 4.5rem;
+    background: {{ section.settings.btn_bg_color }};
+    color: {{ section.settings.btn_text_color }};
     text-decoration: none;
     font-size: 1.6rem;
     font-weight: 700;
-    border-radius: 50px;
+    border-radius: {{ section.settings.btn_radius }}px;
     transition: all 0.4s ease;
     text-transform: uppercase;
     letter-spacing: 2px;
+    margin-top: 1rem;
   }
 
-  .sliding-products__active-btn:hover {
+  .sliding-products__constant-btn:hover {
     transform: scale(1.05);
-    background: {{ section.settings.accent_color | default: section.settings.heading_color }};
+    background: {{ section.settings.btn_hover_color }};
+    color: {{ section.settings.btn_text_color }};
   }
 
   /* Side Buttons */
@@ -203,10 +205,14 @@
       </div>
     </div>
 
-    <!-- Detached Smart Button -->
+    <!-- Fixed Section Info (Dynamic Title + Constant Button) -->
     <div class="sliding-products__info-bar">
-      <h3 class="sliding-products__active-title">Product Name</h3>
-      <a href="#" class="sliding-products__active-btn">Shop Now</a>
+      <h3 class="sliding-products__active-title"></h3>
+      {%- if section.settings.btn_label != blank -%}
+        <a href="{{ section.settings.btn_link | default: '#' }}" class="sliding-products__constant-btn">
+          {{ section.settings.btn_label }}
+        </a>
+      {%- endif -%}
     </div>
 
   </div>
@@ -222,7 +228,6 @@
     const nextBtn = section.querySelector('.hamsaa-next');
     const prevBtn = section.querySelector('.hamsaa-prev');
     const titleEl = section.querySelector('.sliding-products__active-title');
-    const btnEl = section.querySelector('.sliding-products__active-btn');
     
     const originalCount = slides.length;
     if (originalCount === 0) return;
@@ -261,17 +266,15 @@
           rotation = 0;
           scale = 1.35;
           opacity = 1;
-          
-          // Update Detached Button
-          titleEl.style.opacity = '0';
-          btnEl.style.opacity = '0';
-          setTimeout(() => {
-            titleEl.textContent = slide.dataset.title;
-            btnEl.textContent = slide.dataset.btn || 'Shop Now';
-            btnEl.href = slide.dataset.link;
-            titleEl.style.opacity = '1';
-            btnEl.style.opacity = '1';
-          }, 200);
+
+          // Update Info Bar Title
+          if (titleEl) {
+            titleEl.style.opacity = '0';
+            setTimeout(() => {
+              titleEl.textContent = slide.dataset.title;
+              titleEl.style.opacity = '1';
+            }, 200);
+          }
         }
 
         slide.style.transform = `translateY(${yOffset}px) rotateY(${rotation}deg) scale(${scale})`;
@@ -339,6 +342,13 @@
     { "type": "range", "id": "heading_size_mobile", "label": "Font Size (Mobile)", "min": 2, "max": 6, "step": 0.5, "unit": "rem", "default": 2.5 },
     { "type": "select", "id": "heading_weight", "label": "Font Weight", "options": [{"value":"400","label":"Regular"},{"value":"700","label":"Bold"},{"value":"900","label":"Black"}], "default": "700" },
     { "type": "color", "id": "heading_color", "label": "Primary Color", "default": "#1a1a1a" },
+    { "type": "header", "content": "Global Constant Button" },
+    { "type": "text", "id": "btn_label", "label": "Button Label", "default": "Shop All Collection" },
+    { "type": "url", "id": "btn_link", "label": "Button Link" },
+    { "type": "color", "id": "btn_bg_color", "label": "Button Background", "default": "#1a1a1a" },
+    { "type": "color", "id": "btn_text_color", "label": "Button Text Color", "default": "#ffffff" },
+    { "type": "color", "id": "btn_hover_color", "label": "Button Hover Background", "default": "#c5a47e" },
+    { "type": "range", "id": "btn_radius", "label": "Button Corner Radius", "min": 0, "max": 50, "step": 2, "default": 50 },
     { "type": "header", "content": "Slide Design" },
     { "type": "font_picker", "id": "slide_font", "label": "Slide Title Font", "default": "assistant_n4" },
     { "type": "range", "id": "image_radius", "label": "Image Border Radius", "min": 0, "max": 100, "step": 5, "default": 20 },
@@ -359,7 +369,6 @@
       "settings": [
         { "type": "image_picker", "id": "image", "label": "Product Image" },
         { "type": "text", "id": "title", "label": "Product Title", "default": "Luxury Essential Oil" },
-        { "type": "text", "id": "btn_label", "label": "Button Label", "default": "Shop Now" },
         { "type": "url", "id": "link", "label": "Link Location" }
       ]
     }
