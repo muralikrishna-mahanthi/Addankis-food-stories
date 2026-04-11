@@ -183,7 +183,7 @@
         "bg_color": "#ffffff",
         "container_width": 1600,
         "pt_desktop": 80,
-        "pb_desktop": 80,
+        "pb_desktop": 100,
         "pt_mobile": 50,
         "pb_mobile": 50
       }
