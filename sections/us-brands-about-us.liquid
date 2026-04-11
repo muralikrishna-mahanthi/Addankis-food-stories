@@ -197,39 +197,38 @@
       let progress = currentScroll / totalScroll;
       progress = Math.max(0, Math.min(1, progress));
 
-      // Global Line Logic (Parallel with Points)
+      // Global Line Logic (Continuous Dynamic Flow)
       const pointCount = points.length;
-      let targetLineHeight = 0;
+      const firstDot = points[0].querySelector('.us-brands-about__dot');
+      const lastDot = points[pointCount - 1].querySelector('.us-brands-about__dot');
+      
+      const startLinePos = firstDot.offsetTop + (firstDot.offsetHeight / 2);
+      const endLinePos = lastDot.offsetTop + (lastDot.offsetHeight / 2);
+      const totalLineRange = endLinePos - startLinePos;
 
       points.forEach((point, i) => {
-        const start = i / pointCount;
-        const end = (i + 1) / pointCount;
+        // Continuous Progress Mapping (0 to 1)
+        const pointStart = i / pointCount;
+        const pointEnd = (i + 1) / pointCount;
 
-        // Dynamic Reveal: Opacity maps directly to scroll progress for repeatability
-        const pointProgress = (progress - start) / ( (end - start) * 0.4 ); 
-        const targetOpacity = Math.min(1, Math.max(0, pointProgress));
+        // Calculate opacity based on a smoother, overlapping curve
+        let pointProgress = (progress - (pointStart - 0.1)) / 0.2;
+        let targetOpacity = Math.min(1, Math.max(0, pointProgress));
         
         point.style.opacity = targetOpacity;
         
-        const dot = point.querySelector('.us-brands-about__dot');
-        const dotMiddle = dot.offsetTop + (dot.offsetHeight / 2);
-
-        // Update progress line to reach the middle of the 'revealing' point
-        if (targetOpacity > 0) {
-           targetLineHeight = Math.max(targetLineHeight, dotMiddle * targetOpacity);
-        }
-        
-        if (targetOpacity >= 0.95) {
+        if (targetOpacity >= 0.8) {
           point.classList.add('is-active');
           point.style.transform = 'translateY(0)';
-          targetLineHeight = Math.max(targetLineHeight, dotMiddle);
         } else {
           point.classList.remove('is-active');
           point.style.transform = `translateY(${Math.max(0, 15 - targetOpacity * 15)}px)`;
         }
       });
 
-      progressLine.style.height = targetLineHeight + 'px';
+      // The Line grows perfectly across the entire range
+      const currentLineDepth = startLinePos + (progress * totalLineRange);
+      progressLine.style.height = currentLineDepth + 'px';
     };
 
     window.addEventListener('scroll', updateScrollytelling);
