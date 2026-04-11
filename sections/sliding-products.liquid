@@ -2,6 +2,9 @@
   {{ section.settings.heading_font | font_face: font_display: 'swap' }}
   {{ section.settings.slide_font | font_face: font_display: 'swap' }}
 
+  {%- assign desc_font = section.settings.desc_font -%}
+  {{ desc_font | font_face: font_display: 'swap' }}
+
   #SlidingProducts-{{ section.id }} {
     background: {{ section.settings.bg_color }};
     padding: {{ section.settings.pt_desktop }}px 0 {{ section.settings.pb_desktop }}px;
@@ -39,6 +42,22 @@
   @media screen and (min-width: 750px) {
     .sliding-products__title {
       font-size: {{ section.settings.heading_size_desktop }}rem !important;
+    }
+  }
+
+  .sliding-products__description {
+    margin: 2rem auto 0;
+    max-width: 700px;
+    font-family: {{ section.settings.desc_font.family }}, {{ section.settings.desc_font.fallback_families }} !important;
+    font-size: {{ section.settings.desc_size_mobile }}px !important;
+    font-weight: {{ section.settings.desc_weight }} !important;
+    color: {{ section.settings.desc_color }} !important;
+    line-height: 1.6;
+  }
+
+  @media screen and (min-width: 750px) {
+    .sliding-products__description {
+      font-size: {{ section.settings.desc_size_desktop }}px !important;
     }
   }
 
@@ -184,6 +203,9 @@
     <div class="sliding-products__header">
       {%- if section.settings.heading != blank -%}
         <h2 class="sliding-products__title">{{ section.settings.heading }}</h2>
+      {%- endif -%}
+      {%- if section.settings.description != blank -%}
+        <div class="sliding-products__description">{{ section.settings.description }}</div>
       {%- endif -%}
     </div>
 
@@ -353,6 +375,13 @@
     { "type": "range", "id": "heading_size_mobile", "label": "Font Size (Mobile)", "min": 2, "max": 6, "step": 0.5, "unit": "rem", "default": 2.5 },
     { "type": "select", "id": "heading_weight", "label": "Font Weight", "options": [{"value":"400","label":"Regular"},{"value":"700","label":"Bold"},{"value":"900","label":"Black"}], "default": "700" },
     { "type": "color", "id": "heading_color", "label": "Primary Color", "default": "#1a1a1a" },
+    { "type": "header", "content": "Description Settings" },
+    { "type": "richtext", "id": "description", "label": "Description", "default": "<p>Discover our range of pure, crystalline wellness products.</p>" },
+    { "type": "font_picker", "id": "desc_font", "label": "Description Font", "default": "assistant_n4" },
+    { "type": "range", "id": "desc_size_desktop", "label": "Font Size (Desktop)", "min": 14, "max": 24, "step": 1, "unit": "px", "default": 18 },
+    { "type": "range", "id": "desc_size_mobile", "label": "Font Size (Mobile)", "min": 12, "max": 22, "step": 1, "unit": "px", "default": 16 },
+    { "type": "select", "id": "desc_weight", "label": "Font Weight", "options": [{"value":"300","label":"Light"},{"value":"400","label":"Regular"}], "default": "400" },
+    { "type": "color", "id": "desc_color", "label": "Description Color", "default": "#4a4a4a" },
     { "type": "header", "content": "Global Constant Button" },
     { "type": "text", "id": "btn_label", "label": "Button Label", "default": "Shop All Collection" },
     { "type": "url", "id": "btn_link", "label": "Button Link" },
