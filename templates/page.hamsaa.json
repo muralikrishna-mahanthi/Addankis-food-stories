@@ -24,7 +24,7 @@
           "type": "ai_gen_block_4ff1c27",
           "settings": {
             "heading": "HAMSAA",
-            "text": "<p>Purity, grace, and positive energy. Inspired by the symbolism of the <strong>swan</strong>, which<br/>represents wisdom and clarity in Indian philosophy</p>",
+            "text": "<p>wellness and home-care brand created to bring purity, comfort, and natural well-being into everyday living<strong>.</strong></p>",
             "heading_font": "archivo_black_n4",
             "heading_weight": "bolder",
             "heading_size": 84,
@@ -45,7 +45,7 @@
             "paragraph_spacing": 16,
             "text_padding_top": 0,
             "text_padding_bottom": 0,
-            "text_padding_horizontal": 0,
+            "text_padding_horizontal": 100,
             "text_padding_top_mobile": 0,
             "text_padding_bottom_mobile": 0,
             "text_padding_horizontal_mobile": 0,
