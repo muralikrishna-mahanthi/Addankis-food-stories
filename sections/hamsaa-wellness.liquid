@@ -1,0 +1,259 @@
+{%- style -%}
+  {{ section.settings.heading_font | font_face: font_display: 'swap' }}
+  {{ section.settings.desc_font | font_face: font_display: 'swap' }}
+
+  #HamsaaWellness-{{ section.id }} {
+    background: {{ section.settings.bg_color }};
+    padding: {{ section.settings.pt_mobile }}px 0 {{ section.settings.pb_mobile }}px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  @media screen and (min-width: 750px) {
+    #HamsaaWellness-{{ section.id }} {
+      padding: {{ section.settings.pt_desktop }}px 0 {{ section.settings.pb_desktop }}px;
+    }
+  }
+
+  .hamsaa-wellness__bg-accents {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .hamsaa-wellness__accent {
+    position: absolute;
+    opacity: 0.1;
+    filter: blur(5px);
+    transition: transform 3s ease-out;
+  }
+
+  .hamsaa-wellness__accent--1 { top: 10%; left: -5%; width: 300px; transform: rotate(15deg); }
+  .hamsaa-wellness__accent--2 { bottom: -10%; right: -5%; width: 400px; transform: rotate(-10deg); }
+
+  #HamsaaWellness-{{ section.id }}.is-visible .hamsaa-wellness__accent {
+    transform: translate(20px, -20px) rotate(5deg);
+  }
+
+  .hamsaa-wellness__container {
+    position: relative;
+    z-index: 2;
+    max-width: {{ section.settings.container_width }}px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .hamsaa-wellness__header {
+    text-align: center;
+    margin-bottom: 6rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hamsaa-wellness__heading {
+    margin: 0 0 2rem;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.8s ease;
+    font-family: {{ section.settings.heading_font.family }}, {{ section.settings.heading_font.fallback_families }} !important;
+    font-size: {{ section.settings.heading_size_mobile }}rem !important;
+    font-weight: {{ section.settings.heading_weight }} !important;
+    color: {{ section.settings.heading_color }} !important;
+  }
+
+  .hamsaa-wellness__intro {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.8s ease 0.2s;
+    font-family: {{ section.settings.desc_font.family }}, {{ section.settings.desc_font.fallback_families }} !important;
+    font-size: 1.8rem;
+    color: {{ section.settings.heading_color | color_lighten: 20 }};
+  }
+
+  @media screen and (min-width: 750px) {
+     .hamsaa-wellness__heading { font-size: {{ section.settings.heading_size_desktop }}rem !important; }
+  }
+
+  /* Info Cards Grid */
+  .hamsaa-wellness__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  @media screen and (min-width: 750px) {
+    .hamsaa-wellness__grid {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 5rem;
+    }
+  }
+
+  .hamsaa-wellness__card {
+    padding: 4rem;
+    background: {{ section.settings.card_bg }};
+    border-radius: {{ section.settings.card_radius }}px;
+    border: 1px solid {{ section.settings.heading_color | color_modify: 'alpha', 0.05 }};
+    box-shadow: 0 20px 40px rgba(0,0,0,0.02);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 1s cubic-bezier(0.165, 0.84, 0.44, 1);
+  }
+
+  .hamsaa-wellness__card-icon {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 2.5rem;
+    color: {{ section.settings.accent_color }};
+  }
+
+  .hamsaa-wellness__card-title {
+    margin: 0 0 1.5rem;
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: {{ section.settings.heading_color }};
+  }
+
+  .hamsaa-wellness__card-text {
+    margin: 0;
+    font-size: 1.6rem;
+    line-height: 1.7;
+    color: {{ section.settings.desc_color }};
+  }
+
+  /* Visibility Trigger */
+  #HamsaaWellness-{{ section.id }}.is-visible .hamsaa-wellness__heading,
+  #HamsaaWellness-{{ section.id }}.is-visible .hamsaa-wellness__intro {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  #HamsaaWellness-{{ section.id }}.is-visible .hamsaa-wellness__card {
+    opacity: 1;
+    transform: translateY(0);
+  }
+{%- endstyle -%}
+
+<section id="HamsaaWellness-{{ section.id }}" class="hamsaa-wellness">
+  
+  <div class="hamsaa-wellness__bg-accents">
+     <div class="hamsaa-wellness__accent hamsaa-wellness__accent--1">
+       <svg viewBox="0 0 200 200" fill="{{ section.settings.accent_color }}" fill-opacity="0.2"><path d="M44.7,-76.4C58.3,-69.2,70.1,-58.3,77.6,-45.1C85.1,-31.9,88.4,-16,86.7,-0.9C85,14.1,78.3,28.2,70.1,41C61.8,53.8,52,65.3,39.8,72.6C27.5,79.8,13.8,82.8,0.2,82.4C-13.3,82,-26.6,78.4,-38.4,71.1C-50.2,63.9,-60.6,53.1,-68.8,40.6C-77.1,28.1,-83.2,14,-83.7,-0.3C-84.1,-14.6,-78.9,-29.3,-70.3,-41.8C-61.7,-54.3,-49.7,-64.7,-36.5,-72.2C-23.2,-79.8,-8.7,-84.6,3.4,-89.4C15.5,-94.3,31,-93.6,44.7,-86.4Z" transform="translate(100 100)"/></svg>
+     </div>
+     <div class="hamsaa-wellness__accent hamsaa-wellness__accent--2">
+       <svg viewBox="0 0 200 200" fill="{{ section.settings.accent_color }}" fill-opacity="0.2"><path d="M42.7,-71.4C55.2,-64.1,65.2,-52,71.7,-38.3C78.3,-24.7,81.4,-9.4,79.8,5.4C78.2,20.2,71.8,34.4,62.1,45.8C52.4,57.2,39.4,65.7,25.4,70.8C11.4,75.9,-3.6,77.5,-18.4,74.5C-33.1,71.6,-47.5,64.1,-58.4,53.1C-69.3,42,-76.7,27.5,-79.3,12.2C-82,-3.1,-79.8,-19.1,-73.2,-33.4C-66.5,-47.6,-55.4,-60,-42.1,-67C-28.8,-74.1,-13.4,-75.7,1.1,-77.6C15.6,-79.5,30.2,-78.7,42.7,-71.4Z" transform="translate(100 100)"/></svg>
+     </div>
+  </div>
+
+  <div class="hamsaa-wellness__container">
+    <div class="hamsaa-wellness__header">
+      {%- if section.settings.heading != blank -%}
+        <h2 class="hamsaa-wellness__heading">{{ section.settings.heading }}</h2>
+      {%- endif -%}
+      {%- if section.settings.intro != blank -%}
+        <div class="hamsaa-wellness__intro">{{ section.settings.intro }}</div>
+      {%- endif -%}
+    </div>
+
+    <div class="hamsaa-wellness__grid">
+      {%- for block in section.blocks -%}
+        <div class="hamsaa-wellness__card hamsaa-js-stagger" style="transition-delay: {{ forloop.index0 | times: 200 }}ms;" {{ block.shopify_attributes }}>
+          <div class="hamsaa-wellness__card-icon">
+             {%- if block.settings.icon_svg != blank -%}
+               {{ block.settings.icon_svg }}
+             {%- else -%}
+               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+             {%- if block.settings.image != blank -%}
+               {{ block.settings.image | image_url: width: 120 | image_tag }}
+             {%- endif -%}
+             {%- endif -%}
+          </div>
+          <h3 class="hamsaa-wellness__card-title">{{ block.settings.title }}</h3>
+          <div class="hamsaa-wellness__card-text">{{ block.settings.text }}</div>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+<script>
+  (function() {
+    const section = document.getElementById('HamsaaWellness-{{ section.id }}');
+    if (!section) return;
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+           section.classList.add('is-visible');
+           section.querySelectorAll('.hamsaa-wellness__card').forEach(card => {
+             card.classList.add('is-visible');
+           });
+        }
+      });
+    }, { threshold: 0.1 });
+
+    observer.observe(section);
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "HAMSAA Wellness Education",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Section Heading", "default": "Wellness & Fragrance" },
+    { "type": "text", "id": "intro", "label": "Intro Text", "default": "Education about aromatherapy and home fragrance." },
+    { "type": "range", "id": "container_width", "label": "Container Width", "min": 800, "max": 1400, "step": 50, "default": 1200 },
+    { "type": "header", "content": "Typography - Section Heading" },
+    { "type": "font_picker", "id": "heading_font", "label": "Heading Font", "default": "assistant_n4" },
+    { "type": "range", "id": "heading_size_desktop", "label": "Font Size (Desktop)", "min": 2, "max": 8, "step": 0.5, "unit": "rem", "default": 4.5 },
+    { "type": "range", "id": "heading_size_mobile", "label": "Font Size (Mobile)", "min": 2, "max": 6, "step": 0.5, "unit": "rem", "default": 3 },
+    { "type": "select", "id": "heading_weight", "label": "Font Weight", "options": [{"value":"400","label":"Regular"},{"value":"700","label":"Bold"},{"value":"900","label":"Black"}], "default": "700" },
+    { "type": "color", "id": "heading_color", "label": "Heading Color", "default": "#1a1a1a" },
+    { "type": "header", "content": "Typography - Description" },
+    { "type": "font_picker", "id": "desc_font", "label": "Description Font", "default": "assistant_n4" },
+    { "type": "color", "id": "desc_color", "label": "Description Color", "default": "#4a4a4a" },
+    { "type": "header", "content": "Card Styling" },
+    { "type": "color", "id": "card_bg", "label": "Card Background", "default": "#fdfdfd" },
+    { "type": "range", "id": "card_radius", "label": "Card Corner Radius", "min": 0, "max": 100, "step": 5, "default": 20 },
+    { "type": "header", "content": "Section Spacing" },
+    { "type": "color", "id": "bg_color", "label": "Section Background", "default": "#ffffff" },
+    { "type": "color", "id": "accent_color", "label": "Accent Color", "default": "#c5a47e" },
+    { "type": "range", "id": "pt_desktop", "label": "Top Padding (Desktop)", "min": 0, "max": 200, "step": 10, "default": 100 },
+    { "type": "range", "id": "pb_desktop", "label": "Bottom Padding (Desktop)", "min": 0, "max": 200, "step": 10, "default": 100 },
+    { "type": "range", "id": "pt_mobile", "label": "Top Padding (Mobile)", "min": 0, "max": 150, "step": 5, "default": 60 },
+    { "type": "range", "id": "pb_mobile", "label": "Bottom Padding (Mobile)", "min": 0, "max": 150, "step": 5, "default": 60 }
+  ],
+  "blocks": [
+    {
+      "type": "info",
+      "name": "Wellness Tip",
+      "limit": 6,
+      "settings": [
+        { "type": "html", "id": "icon_svg", "label": "Icon (SVG Code)" },
+        { "type": "image_picker", "id": "image", "label": "Alternative Image Icon" },
+        { "type": "text", "id": "title", "label": "Tip Title", "default": "Aromatherapy" },
+        { "type": "textarea", "id": "text", "label": "Tip Description", "default": "Learn how pure camphor and essential oils can clear your space and mind." }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "HAMSAA Wellness Education",
+      "blocks": [
+        { "type": "info", "settings": { "title": "Home Fragrance" } },
+        { "type": "info", "settings": { "title": "Mental Clarity" } },
+        { "type": "info", "settings": { "title": "Pure Sourcing" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

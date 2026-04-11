@@ -1,0 +1,256 @@
+{%- style -%}
+  {{ section.settings.heading_font | font_face: font_display: 'swap' }}
+  {{ section.settings.desc_font | font_face: font_display: 'swap' }}
+
+  #HamsaaDistributor-{{ section.id }} {
+    background: {{ section.settings.bg_color }};
+    padding: {{ section.settings.pt_mobile }}px 0 {{ section.settings.pb_mobile }}px;
+    overflow: hidden;
+  }
+
+  @media screen and (min-width: 750px) {
+    #HamsaaDistributor-{{ section.id }} {
+      padding: {{ section.settings.pt_desktop }}px 0 {{ section.settings.pb_desktop }}px;
+    }
+  }
+
+  .hamsaa-distributor__container {
+    max-width: {{ section.settings.container_width }}px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .hamsaa-distributor__card {
+    background: {{ section.settings.card_bg }};
+    border-radius: {{ section.settings.card_radius }}px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 40px 100px rgba(0,0,0,0.05);
+    opacity: 0;
+    transform: translateY(60px);
+    transition: all 1.2s cubic-bezier(0.165, 0.84, 0.44, 1);
+  }
+
+  @media screen and (min-width: 750px) {
+    .hamsaa-distributor__card {
+      flex-direction: row;
+      min-height: 600px;
+    }
+  }
+
+  #HamsaaDistributor-{{ section.id }}.is-visible .hamsaa-distributor__card {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .hamsaa-distributor__image-part {
+    flex: 1;
+    position: relative;
+    min-height: 300px;
+  }
+
+  .hamsaa-distributor__image-part img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .hamsaa-distributor__text-part {
+    flex: 1;
+    padding: 4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  @media screen and (min-width: 750px) {
+    .hamsaa-distributor__text-part {
+      padding: 6rem 8rem;
+    }
+  }
+
+  .hamsaa-dist__heading {
+    margin: 0 0 2rem;
+    font-family: {{ section.settings.heading_font.family }}, {{ section.settings.heading_font.fallback_families }} !important;
+    font-size: {{ section.settings.heading_size_mobile }}rem !important;
+    font-weight: {{ section.settings.heading_weight }} !important;
+    color: {{ section.settings.heading_color }} !important;
+    line-height: 1.2;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+
+  .hamsaa-dist__description {
+    margin: 0 0 4rem;
+    font-family: {{ section.settings.desc_font.family }}, {{ section.settings.desc_font.fallback_families }} !important;
+    font-size: 1.8rem;
+    line-height: 1.7;
+    color: {{ section.settings.desc_color }};
+  }
+
+  @media screen and (min-width: 750px) {
+    .hamsaa-dist__heading { font-size: {{ section.settings.heading_size_desktop }}rem !important; }
+  }
+
+  .hamsaa-dist__form-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 1.5rem;
+    font-size: 1.4rem;
+    font-weight: 700;
+    text-decoration: none;
+    color: {{ section.settings.accent_color }};
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    transition: all 0.3s ease;
+  }
+
+  .hamsaa-dist__form-link:hover {
+    gap: 2rem;
+  }
+
+  .hamsaa-dist__form-link span {
+    width: 40px;
+    height: 1px;
+    background: {{ section.settings.accent_color }};
+    display: block;
+  }
+
+  /* Contact Detail Blocks */
+  .hamsaa-dist__details {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    margin-top: 5rem;
+    padding-top: 5rem;
+    border-top: 1px solid rgba(0,0,0,0.05);
+  }
+
+  @media screen and (min-width: 750px) {
+    .hamsaa-dist__details {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .hamsaa-detail__title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: {{ section.settings.accent_color }};
+    margin-bottom: 1rem;
+  }
+
+  .hamsaa-detail__content {
+    font-size: 1.6rem;
+    color: {{ section.settings.heading_color }};
+  }
+{%- endstyle -%}
+
+<section id="HamsaaDistributor-{{ section.id }}" class="hamsaa-distributor">
+  <div class="hamsaa-distributor__container">
+    <div class="hamsaa-distributor__card">
+      
+      <div class="hamsaa-distributor__image-part">
+        {%- if section.settings.image != blank -%}
+          {{ section.settings.image | image_url: width: 1200 | image_tag: loading: 'lazy' }}
+        {%- else -%}
+          {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg' }}
+        {%- endif -%}
+      </div>
+
+      <div class="hamsaa-distributor__text-part">
+        {%- if section.settings.heading != blank -%}
+          <h2 class="hamsaa-dist__heading">{{ section.settings.heading }}</h2>
+        {%- endif -%}
+
+        {%- if section.settings.description != blank -%}
+          <div class="hamsaa-dist__description">{{ section.settings.description }}</div>
+        {%- endif -%}
+
+        {%- if section.settings.btn_label != blank -%}
+          <a href="{{ section.settings.btn_link | default: '#' }}" class="hamsaa-dist__form-link">
+            {{ section.settings.btn_label }}
+            <span></span>
+          </a>
+        {%- endif -%}
+
+        <div class="hamsaa-dist__details">
+           <div class="hamsaa-detail">
+             <div class="hamsaa-detail__title">Support</div>
+             <div class="hamsaa-detail__content">{{ section.settings.support_email | default: 'support@hamsaa.com' }}</div>
+           </div>
+           <div class="hamsaa-detail">
+             <div class="hamsaa-detail__title">Inquiries</div>
+             <div class="hamsaa-detail__content">{{ section.settings.business_email | default: 'partners@hamsaa.com' }}</div>
+           </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script>
+  (function() {
+    const section = document.getElementById('HamsaaDistributor-{{ section.id }}');
+    if (!section) return;
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          section.classList.add('is-visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    observer.observe(section);
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "HAMSAA Distributor Portal",
+  "tag": "section",
+  "settings": [
+    { "type": "header", "content": "Main Content" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Grow With HAMSAA" },
+    { "type": "richtext", "id": "description", "label": "Description", "default": "<p>Join our mission to bring purity and clarity to every home. Explore distribution opportunities and business partnerships.</p>" },
+    { "type": "text", "id": "btn_label", "label": "Link Label", "default": "Become a Partner" },
+    { "type": "url", "id": "btn_link", "label": "Link URL" },
+    { "type": "header", "content": "Typography - Heading" },
+    { "type": "font_picker", "id": "heading_font", "label": "Heading Font", "default": "assistant_n4" },
+    { "type": "range", "id": "heading_size_desktop", "label": "Font Size (Desktop)", "min": 2, "max": 7, "step": 0.5, "unit": "rem", "default": 4.5 },
+    { "type": "range", "id": "heading_size_mobile", "label": "Font Size (Mobile)", "min": 2, "max": 5, "step": 0.5, "unit": "rem", "default": 3 },
+    { "type": "select", "id": "heading_weight", "label": "Font Weight", "options": [{"value":"400","label":"Regular"},{"value":"700","label":"Bold"},{"value":"900","label":"Black"}], "default": "700" },
+    { "type": "color", "id": "heading_color", "label": "Heading Color", "default": "#1a1a1a" },
+    { "type": "header", "content": "Typography - Description" },
+    { "type": "font_picker", "id": "desc_font", "label": "Description Font", "default": "assistant_n4" },
+    { "type": "color", "id": "desc_color", "label": "Description Color", "default": "#4a4a4a" },
+    { "type": "header", "content": "Card Styling" },
+    { "type": "image_picker", "id": "image", "label": "Feature Image" },
+    { "type": "color", "id": "card_bg", "label": "Card Background", "default": "#ffffff" },
+    { "type": "range", "id": "card_radius", "label": "Card Corner Radius", "min": 0, "max": 100, "step": 5, "default": 40 },
+    { "type": "header", "content": "Contact Info" },
+    { "type": "text", "id": "support_email", "label": "Support Email", "default": "support@hamsaa.com" },
+    { "type": "text", "id": "business_email", "label": "Business Email", "default": "partners@hamsaa.com" },
+    { "type": "header", "content": "Section Spacing" },
+    { "type": "range", "id": "container_width", "label": "Container Width", "min": 800, "max": 1400, "step": 50, "default": 1200 },
+    { "type": "color", "id": "bg_color", "label": "Section Background", "default": "#f5f7fa" },
+    { "type": "color", "id": "accent_color", "label": "Accent Color", "default": "#2c3e50" },
+    { "type": "range", "id": "pt_desktop", "label": "Top Padding (Desktop)", "min": 0, "max": 200, "step": 10, "default": 120 },
+    { "type": "range", "id": "pb_desktop", "label": "Bottom Padding (Desktop)", "min": 0, "max": 200, "step": 10, "default": 120 },
+    { "type": "range", "id": "pt_mobile", "label": "Top Padding (Mobile)", "min": 0, "max": 150, "step": 5, "default": 60 },
+    { "type": "range", "id": "pb_mobile", "label": "Bottom Padding (Mobile)", "min": 0, "max": 150, "step": 5, "default": 60 }
+  ],
+  "presets": [
+    {
+      "name": "HAMSAA Distributor Portal"
+    }
+  ]
+}
+{% endschema %}
