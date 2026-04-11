@@ -6,13 +6,13 @@
   .fmcg-brand-reveal-{{ section.id }} {
     --progress: 0;
     position: relative;
-    height: 200vh; /* Scroll distance */
+    height: 200vh;
     background: {{ section.settings.bg_color }};
     padding-top: {{ section.settings.pt_desktop | default: 0 }}px;
     padding-bottom: {{ section.settings.pb_desktop | default: 0 }}px;
   }
 
-  .fmcg-brand-reveal__sticky {
+  .fmcg-brand-reveal-{{ section.id }} .fmcg-brand-reveal__sticky {
     position: sticky;
     top: 0;
     left: 0;
@@ -24,8 +24,7 @@
     justify-content: center;
   }
 
-  /* Shared Layer Styles */
-  .fmcg-brand-reveal__layer {
+  .fmcg-brand-reveal-{{ section.id }} .fmcg-brand-reveal__layer {
     position: absolute;
     top: 0;
     left: 0;
@@ -35,7 +34,6 @@
     will-change: opacity, transform;
   }
 
-  /* Part 1: Split Content Layer */
   .fmcg-brand-reveal-{{ section.id }} .fmcg-brand-reveal__content-layer {
     z-index: 2;
     display: flex;
@@ -148,7 +146,6 @@
     background: {{ section.settings.btn_bg_hover | default: section.settings.btn_bg }};
   }
 
-  /* Part 2: Video Layer */
   .fmcg-brand-reveal-{{ section.id }} .fmcg-brand-reveal__video-layer {
     z-index: 1;
     opacity: calc((var(--progress) - 0.2) * 2);
@@ -184,12 +181,10 @@
     transform: translateY(calc(30px * (1 - var(--progress))));
     opacity: var(--progress);
   }
-
 {%- endstyle -%}
 
 <div class="fmcg-brand-reveal-{{ section.id }}" id="FmcgBrandReveal-{{ section.id }}">
   <div class="fmcg-brand-reveal__sticky">
-    
     <div class="fmcg-brand-reveal__layer fmcg-brand-reveal__content-layer">
       <div class="fmcg-brand-reveal__image-part">
         {%- if section.settings.image != blank -%}
@@ -217,7 +212,7 @@
       {%- if section.settings.video != blank -%}
         {{ section.settings.video | video_tag: autoplay: true, loop: true, muted: true, controls: false, image_size: '2000x' }}
       {%- else -%}
-         <div style=\"width:100%; height:100%; background:#111; display:flex; align-items:center; justify-content:center; color:#fff;\">Video Placeholder</div>
+         <div style="width:100%; height:100%; background:#111; display:flex; align-items:center; justify-content:center; color:#fff;">Video Placeholder</div>
       {%- endif -%}
 
       {%- if section.settings.video_text != blank -%}
@@ -226,7 +221,6 @@
         </div>
       {%- endif -%}
     </div>
-
   </div>
 </div>
 
@@ -275,45 +269,45 @@
     { "type": "font_picker", "id": "heading_font", "label": "Part 1 Heading Font Family", "default": "assistant_n4" },
     { "type": "range", "id": "heading_size_desktop", "label": "Heading Font Size (Desktop)", "min": 2, "max": 12, "step": 0.5, "unit": "rem", "default": 5 },
     { "type": "range", "id": "heading_size_mobile", "label": "Heading Font Size (Mobile)", "min": 2, "max": 8, "step": 0.5, "unit": "rem", "default": 3 },
-    { "type": "select", "id": "heading_weight", "label": "Heading Font Weight", "options": [{\"value\":\"100\",\"label\":\"100 - Thin\"},{\"value\":\"400\",\"label\":\"400 - Normal\"},{\"value\":\"600\",\"label\":\"600 - Semi-Bold\"},{\"value\":\"700\",\"label\":\"700 - Bold\"},{\"value\":\"900\",\"label\":\"900 - Black\"}], \"default\": \"900\" },
-    { "type": "select", "id": "heading_style", "label": "Heading Font Style", "options": [{\"value\":\"normal\",\"label\":\"Normal\"},{\"value\":\"italic\",\"label\":\"Italic\"}], \"default\": \"normal\" },
-    { "type": "select", "id": "heading_transform", "label": "Heading Text Transform", "options": [{\"value\":\"none\",\"label\":\"None\"},{\"value\":\"uppercase\",\"label\":\"Uppercase\"}], \"default\": \"uppercase\" },
-    { "type": "color", "id": "heading_color", "label": "Heading Font Color", \"default\": \"#000000\" },
-    { "type": "range", "id": "heading_line_height", "label": "Heading Line Height", "min": 0.8, "max": 2.0, "step": 0.1, \"default\": 1.1 },
-    { "type": "range", "id": "heading_letter_spacing", "label": "Heading Letter Spacing (px)", "min": -5, "max": 15, "step": 1, \"default\": 0 },
-    { "type": "richtext", "id": "description", "label": "Description Text", \"default\": \"<p>Discover the secrets of our premium FMCG brand builder platform.</p>\" },
+    { "type": "select", "id": "heading_weight", "label": "Heading Font Weight", "options": [{"value":"100","label":"100 - Thin"},{"value":"400","label":"400 - Normal"},{"value":"600","label":"600 - Semi-Bold"},{"value":"700","label":"700 - Bold"},{"value":"900","label":"900 - Black"}], "default": "900" },
+    { "type": "select", "id": "heading_style", "label": "Heading Font Style", "options": [{"value":"normal","label":"Normal"},{"value":"italic","label":"Italic"}], "default": "normal" },
+    { "type": "select", "id": "heading_transform", "label": "Heading Text Transform", "options": [{"value":"none","label":"None"},{"value":"uppercase","label":"Uppercase"}], "default": "uppercase" },
+    { "type": "color", "id": "heading_color", "label": "Heading Font Color", "default": "#000000" },
+    { "type": "range", "id": "heading_line_height", "label": "Heading Line Height", "min": 0.8, "max": 2.0, "step": 0.1, "default": 1.1 },
+    { "type": "range", "id": "heading_letter_spacing", "label": "Heading Letter Spacing (px)", "min": -5, "max": 15, "step": 1, "default": 0 },
+    { "type": "richtext", "id": "description", "label": "Description Text", "default": "<p>Discover the secrets of our premium FMCG brand builder platform.</p>" },
     { "type": "header", "content": "Intro Style (Secondary)" },
-    { "type": "font_picker", "id": "desc_font", "label": "Description Font Family", \"default\": \"assistant_n4\" },
-    { "type": "range", "id": "desc_size_desktop", "label": "Description Font Size (Desktop)", "min": 10, "max": 60, "step": 1, "unit": "px", \"default\": 18 },
-    { "type": "range", "id": "desc_size_mobile", "label": "Description Font Size (Mobile)", "min": 10, "max": 40, "step": 1, "unit": "px", \"default\": 16 },
-    { "type": "select", "id": "desc_weight", "label": "Description Font Weight", "options": [{\"value\":\"100\",\"label\":\"100 - Thin\"},{\"value\":\"400\",\"label\":\"400 - Regular\"},{\"value\":\"600\",\"label\":\"600 - Semi-Bold\"},{\"value\":\"700\",\"label\":\"700 - Bold\"}], \"default\": \"400\" },
-    { "type": "color", "id": "text_color", "label": "Description Font Color", \"default\": \"#333333\" },
+    { "type": "font_picker", "id": "desc_font", "label": "Description Font Family", "default": "assistant_n4" },
+    { "type": "range", "id": "desc_size_desktop", "label": "Description Font Size (Desktop)", "min": 10, "max": 60, "step": 1, "unit": "px", "default": 18 },
+    { "type": "range", "id": "desc_size_mobile", "label": "Description Font Size (Mobile)", "min": 10, "max": 40, "step": 1, "unit": "px", "default": 16 },
+    { "type": "select", "id": "desc_weight", "label": "Description Font Weight", "options": [{"value":"100","label":"100 - Thin"},{"value":"400","label":"400 - Regular"},{"value":"600","label":"600 - Semi-Bold"},{"value":"700","label":"700 - Bold"}], "default": "400" },
+    { "type": "color", "id": "text_color", "label": "Description Font Color", "default": "#333333" },
     { "type": "header", "content": "Button Design" },
-    { "type": "text", "id": "btn_label", "label": "Button Label", \"default\": \"Our Story\" },
+    { "type": "text", "id": "btn_label", "label": "Button Label", "default": "Our Story" },
     { "type": "url", "id": "btn_link", "label": "Button Link" },
-    { "type": "range", "id": "btn_size_desktop", "label": "Button Font Size (Desktop)", "min": 10, "max": 40, "step": 1, "unit": "px", \"default\": 18 },
-    { "type": "range", "id": "btn_radius", "label": "Button Corner Radius", "min": 0, "max": 100, "step": 2, "unit": "px", \"default\": 50 },
-    { "type": "color", "id": "btn_bg", "label": "Button Background Color", \"default\": \"#000000\" },
-    { "type": "color", "id": "btn_bg_hover", "label": "Button Background Color (Hover)", \"default\": \"#333333\" },
-    { "type": "color", "id": "btn_text", "label": "Button Text Color", \"default\": \"#ffffff\" },
+    { "type": "range", "id": "btn_size_desktop", "label": "Button Font Size (Desktop)", "min": 10, "max": 40, "step": 1, "unit": "px", "default": 18 },
+    { "type": "range", "id": "btn_radius", "label": "Button Corner Radius", "min": 0, "max": 100, "step": 2, "unit": "px", "default": 50 },
+    { "type": "color", "id": "btn_bg", "label": "Button Background Color", "default": "#000000" },
+    { "type": "color", "id": "btn_bg_hover", "label": "Button Background Color (Hover)", "default": "#333333" },
+    { "type": "color", "id": "btn_text", "label": "Button Text Color", "default": "#ffffff" },
     { "type": "header", "content": "Part 2: Video Reveal Animation" },
     { "type": "video", "id": "video", "label": "Reveal Video" },
-    { "type": "text", "id": "video_text", "label": "Reveal Text", \"default\": \"ADDANKI'S VISION\" },
-    { "type": "font_picker", "id": "vt_font", "label": "Reveal Text Font", \"default\": \"assistant_n4\" },
-    { "type": "range", "id": "vt_size_desktop", "label": "Reveal Text Size (Desktop)", "min": 20, "max": 150, "step": 5, "unit": "px", \"default\": 48 },
-    { "type": "color", "id": "vt_color", "label": "Reveal Text Color", \"default\": \"#ffffff\" },
-    { "type": "color", "id": "video_overlay_bg", "label": "Video Overlay Color", \"default\": \"#000000\" },
-    { "type": "range", "id": "video_overlay_opacity", "label": "Video Overlay Opacity", "min": 0, "max": 100, "step": 5, "unit": "%", \"default\": 30 },
+    { "type": "text", "id": "video_text", "label": "Reveal Text", "default": "ADDANKI'S VISION" },
+    { "type": "font_picker", "id": "vt_font", "label": "Reveal Text Font", "default": "assistant_n4" },
+    { "type": "range", "id": "vt_size_desktop", "label": "Reveal Text Size (Desktop)", "min": 20, "max": 150, "step": 5, "unit": "px", "default": 48 },
+    { "type": "color", "id": "vt_color", "label": "Reveal Text Color", "default": "#ffffff" },
+    { "type": "color", "id": "video_overlay_bg", "label": "Video Overlay Color", "default": "#000000" },
+    { "type": "range", "id": "video_overlay_opacity", "label": "Video Overlay Opacity", "min": 0, "max": 100, "step": 5, "unit": "%", "default": 30 },
     { "type": "header", "content": "Layout & Media Settings" },
     { "type": "image_picker", "id": "image", "label": "Intro Image" },
-    { "type": "select", "id": "layout", "label": "Image Position (Desktop)", "options": [{\"value\":\"image_first\",\"label\":\"Left side\"},{\"value\":\"text_first\",\"label\":\"Right side\"}], \"default\": \"image_first\" },
-    { "type": "range", "id": "image_width", "label": "Image Width (Desktop)", "min": 30, "max": 70, "step": 5, "unit": "%", \"default\": 50 },
-    { "type": "select", "id": "text_alignment", "label": "Text Alignment", "options": [{\"value\":\"left\",\"label\":\"Left\"},{\"value\":\"center\",\"label\":\"Center\"},{\"value\":\"right\",\"label\":\"Right\"}], \"default\": \"left\" },
-    { "type": "color", "id": "content_bg", "label": "Intro Content BG", \"default\": \"#ffffff\" },
+    { "type": "select", "id": "layout", "label": "Image Position (Desktop)", "options": [{"value":"image_first","label":"Left side"},{"value":"text_first","label":"Right side"}], "default": "image_first" },
+    { "type": "range", "id": "image_width", "label": "Image Width (Desktop)", "min": 30, "max": 70, "step": 5, "unit": "%", "default": 50 },
+    { "type": "select", "id": "text_alignment", "label": "Text Alignment", "options": [{"value":"left","label":"Left"},{"value":"center","label":"Center"},{"value":"right","label":"Right"}], "default": "left" },
+    { "type": "color", "id": "content_bg", "label": "Intro Content BG", "default": "#ffffff" },
     { "type": "header", "content": "Section Spacing" },
-    { "type": "range", "id": "pt_desktop", "label": "Top Padding (Desktop)", "min": 0, "max": 200, "step": 10, "unit": "px", \"default\": 0 },
-    { "type": "range", "id": "pb_desktop", "label": "Bottom Padding (Desktop)", "min": 0, "max": 200, "step": 10, "unit": "px", \"default\": 0 },
-    { "type": "color", "id": "bg_color", "label": "Global Section Background", \"default\": \"#ffffff\" }
+    { "type": "range", "id": "pt_desktop", "label": "Top Padding (Desktop)", "min": 0, "max": 200, "step": 10, "unit": "px", "default": 0 },
+    { "type": "range", "id": "pb_desktop", "label": "Bottom Padding (Desktop)", "min": 0, "max": 200, "step": 10, "unit": "px", "default": 0 },
+    { "type": "color", "id": "bg_color", "label": "Global Section Background", "default": "#ffffff" }
   ],
   "presets": [
     {
