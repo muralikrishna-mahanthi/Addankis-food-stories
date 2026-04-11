@@ -225,18 +225,17 @@
       "name": "US Brands About Us",
       "settings": {
         "split_ratio": 40,
+        "runway_height": 300,
         "bg_color": "#ffffff",
         "text_color": "#1a1a1a",
-        "left_heading_size": 4.5,
+        "left_heading_size": 6.5,
         "line_light_color": "#e5e5e5",
-        "line_dark_color": "#1a1a1a",
+        "line_active_color": "#6394ff",
         "dot_size": 20,
         "point_size": 1.8,
         "container_width": 1400,
         "pt_desktop": 100,
-        "pb_desktop": 100,
-        "pt_mobile": 50,
-        "pb_mobile": 50
+        "pb_desktop": 100
       }
     }
   },
