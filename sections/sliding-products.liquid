@@ -72,8 +72,8 @@
 
   @media screen and (min-width: 750px) {
     .sliding-products__slide {
-      flex: 0 0 22%; /* Wider spread */
-      margin: 0 3%;
+      flex: 0 0 24%; /* Adjusted for 1 and half products visibility per side */
+      margin: 0 2%;
     }
   }
 
@@ -258,13 +258,13 @@
         const distance = Math.abs(i - currentIndex);
         let yOffset = distance * intensity; // Mountain Arc (0 at center, positive goes DOWN)
         let rotation = (i - currentIndex) * -10;
-        let scale = 1 - (distance * 0.15);
-        let opacity = 1 - (distance * 0.35);
+        let scale = 1 - (distance * 0.18);
+        let opacity = 1 - (distance * 0.4);
 
         if (i === currentIndex) {
           yOffset = 0;
           rotation = 0;
-          scale = 1.35;
+          scale = 1.4; // Slightly larger center
           opacity = 1;
 
           // Update Info Bar Title
