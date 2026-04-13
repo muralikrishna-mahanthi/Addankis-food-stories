@@ -310,13 +310,13 @@
           "type": "left_point",
           "settings": {
             "text": "Inspired by the symbolism of the swan",
-            "rp_font": "assistant_n4",
+            "rp_font": "sans_serif_n4",
             "rp_size": 2.2,
-            "rp_color": "#1a1a1a",
+            "rp_color": "#6df26f",
             "rp_weight": "700",
             "rp_style": "normal",
             "rp_lh": 1.3,
-            "rp_ls": 0,
+            "rp_ls": 1,
             "rp_align": "right",
             "rp_pt": 0,
             "rp_pb": 0,
@@ -324,17 +324,17 @@
             "rp_pr": 0
           }
         },
-        "left_point_Lt6Nke": {
+        "left_point_zBMmRP": {
           "type": "left_point",
           "settings": {
             "text": "Inspired by the symbolism of the swan",
-            "rp_font": "assistant_n4",
+            "rp_font": "sans_serif_n4",
             "rp_size": 2.2,
-            "rp_color": "#1a1a1a",
+            "rp_color": "#6df26f",
             "rp_weight": "700",
             "rp_style": "normal",
             "rp_lh": 1.3,
-            "rp_ls": 0,
+            "rp_ls": 1,
             "rp_align": "right",
             "rp_pt": 0,
             "rp_pb": 0,
@@ -342,17 +342,17 @@
             "rp_pr": 0
           }
         },
-        "left_point_yftkfi": {
+        "left_point_EYgbHz": {
           "type": "left_point",
           "settings": {
             "text": "Inspired by the symbolism of the swan",
-            "rp_font": "assistant_n4",
+            "rp_font": "sans_serif_n4",
             "rp_size": 2.2,
-            "rp_color": "#1a1a1a",
+            "rp_color": "#6df26f",
             "rp_weight": "700",
             "rp_style": "normal",
             "rp_lh": 1.3,
-            "rp_ls": 0,
+            "rp_ls": 1,
             "rp_align": "right",
             "rp_pt": 0,
             "rp_pb": 0,
@@ -381,8 +381,8 @@
       },
       "block_order": [
         "left_point_bpakCj",
-        "left_point_Lt6Nke",
-        "left_point_yftkfi",
+        "left_point_zBMmRP",
+        "left_point_EYgbHz",
         "right_heading_NeCewY"
       ],
       "name": "US Brand About Us 2",
@@ -390,7 +390,7 @@
         "split_ratio": 50,
         "runway_height": 300,
         "container_width": 1400,
-        "bg_color": "#ffffff",
+        "bg_color": "#1f7000",
         "text_color": "#1a1a1a",
         "line_light_color": "#e5e5e5",
         "line_active_color": "#1a1a1a",
