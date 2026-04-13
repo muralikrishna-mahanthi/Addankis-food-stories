@@ -40,56 +40,28 @@
         "right_point_1": {
           "type": "right_point",
           "settings": {
-            "text": "A passionate team building brands with a lasting purpose.",
-            "rp_size": 2.2,
-            "rp_color": "#1a1a1a",
-            "rp_weight": "700",
-            "rp_style": "normal",
-            "rp_lh": 1.25,
-            "rp_ls": 0,
-            "rp_align": "left",
-            "rp_pt": 0,
-            "rp_pb": 0,
-            "rp_pl": 0,
-            "rp_pr": 0
+            "text": "A passionate team building brands with a lasting purpose."
           }
         },
         "right_point_2": {
           "type": "right_point",
           "settings": {
-            "text": "Driven by innovation and rooted in quality at every step.",
-            "rp_size": 2.2,
-            "rp_color": "#1a1a1a",
-            "rp_weight": "700",
-            "rp_style": "normal",
-            "rp_lh": 1.25,
-            "rp_ls": 0,
-            "rp_align": "left",
-            "rp_pt": 0,
-            "rp_pb": 0,
-            "rp_pl": 0,
-            "rp_pr": 0
+            "text": "Driven by innovation and rooted in quality at every step."
           }
         },
         "right_point_3": {
           "type": "right_point",
           "settings": {
-            "text": "Creating meaningful products that enrich lives every day.",
-            "rp_size": 2.2,
-            "rp_color": "#1a1a1a",
-            "rp_weight": "700",
-            "rp_style": "normal",
-            "rp_lh": 1.25,
-            "rp_ls": 0,
-            "rp_align": "left",
-            "rp_pt": 0,
-            "rp_pb": 0,
-            "rp_pl": 0,
-            "rp_pr": 0
+            "text": "Creating meaningful products that enrich lives every day."
           }
         }
       },
-      "block_order": ["left_heading_1", "right_point_1", "right_point_2", "right_point_3"],
+      "block_order": [
+        "left_heading_1",
+        "right_point_1",
+        "right_point_2",
+        "right_point_3"
+      ],
       "name": "US Brands About Us",
       "settings": {
         "split_ratio": 40,
@@ -105,5 +77,8 @@
       }
     }
   },
-  "order": ["main", "us_brands_about_us_discover"]
+  "order": [
+    "main",
+    "us_brands_about_us_discover"
+  ]
 }

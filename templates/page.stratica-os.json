@@ -40,56 +40,28 @@
         "right_point_1": {
           "type": "right_point",
           "settings": {
-            "text": "Performance-driven formulas engineered for results.",
-            "rp_size": 2.2,
-            "rp_color": "#1a1a1a",
-            "rp_weight": "700",
-            "rp_style": "normal",
-            "rp_lh": 1.25,
-            "rp_ls": 0,
-            "rp_align": "left",
-            "rp_pt": 0,
-            "rp_pb": 0,
-            "rp_pl": 0,
-            "rp_pr": 0
+            "text": "Performance-driven formulas engineered for results."
           }
         },
         "right_point_2": {
           "type": "right_point",
           "settings": {
-            "text": "Precision-crafted products that go the extra mile.",
-            "rp_size": 2.2,
-            "rp_color": "#1a1a1a",
-            "rp_weight": "700",
-            "rp_style": "normal",
-            "rp_lh": 1.25,
-            "rp_ls": 0,
-            "rp_align": "left",
-            "rp_pt": 0,
-            "rp_pb": 0,
-            "rp_pl": 0,
-            "rp_pr": 0
+            "text": "Precision-crafted products that go the extra mile."
           }
         },
         "right_point_3": {
           "type": "right_point",
           "settings": {
-            "text": "Innovation at the intersection of science and lifestyle.",
-            "rp_size": 2.2,
-            "rp_color": "#1a1a1a",
-            "rp_weight": "700",
-            "rp_style": "normal",
-            "rp_lh": 1.25,
-            "rp_ls": 0,
-            "rp_align": "left",
-            "rp_pt": 0,
-            "rp_pb": 0,
-            "rp_pl": 0,
-            "rp_pr": 0
+            "text": "Innovation at the intersection of science and lifestyle."
           }
         }
       },
-      "block_order": ["left_heading_1", "right_point_1", "right_point_2", "right_point_3"],
+      "block_order": [
+        "left_heading_1",
+        "right_point_1",
+        "right_point_2",
+        "right_point_3"
+      ],
       "name": "US Brands About Us",
       "settings": {
         "split_ratio": 40,
@@ -105,5 +77,8 @@
       }
     }
   },
-  "order": ["main", "us_brands_about_us_stratica"]
+  "order": [
+    "main",
+    "us_brands_about_us_stratica"
+  ]
 }

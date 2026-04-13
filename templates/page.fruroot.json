@@ -40,56 +40,28 @@
         "right_point_1": {
           "type": "right_point",
           "settings": {
-            "text": "Fresh ingredients sourced from the finest farms.",
-            "rp_size": 2.2,
-            "rp_color": "#1a1a1a",
-            "rp_weight": "700",
-            "rp_style": "normal",
-            "rp_lh": 1.25,
-            "rp_ls": 0,
-            "rp_align": "left",
-            "rp_pt": 0,
-            "rp_pb": 0,
-            "rp_pl": 0,
-            "rp_pr": 0
+            "text": "Fresh ingredients sourced from the finest farms."
           }
         },
         "right_point_2": {
           "type": "right_point",
           "settings": {
-            "text": "A commitment to natural flavors and zero additives.",
-            "rp_size": 2.2,
-            "rp_color": "#1a1a1a",
-            "rp_weight": "700",
-            "rp_style": "normal",
-            "rp_lh": 1.25,
-            "rp_ls": 0,
-            "rp_align": "left",
-            "rp_pt": 0,
-            "rp_pb": 0,
-            "rp_pl": 0,
-            "rp_pr": 0
+            "text": "A commitment to natural flavors and zero additives."
           }
         },
         "right_point_3": {
           "type": "right_point",
           "settings": {
-            "text": "Bringing nature's goodness to your everyday table.",
-            "rp_size": 2.2,
-            "rp_color": "#1a1a1a",
-            "rp_weight": "700",
-            "rp_style": "normal",
-            "rp_lh": 1.25,
-            "rp_ls": 0,
-            "rp_align": "left",
-            "rp_pt": 0,
-            "rp_pb": 0,
-            "rp_pl": 0,
-            "rp_pr": 0
+            "text": "Bringing nature's goodness to your everyday table."
           }
         }
       },
-      "block_order": ["left_heading_1", "right_point_1", "right_point_2", "right_point_3"],
+      "block_order": [
+        "left_heading_1",
+        "right_point_1",
+        "right_point_2",
+        "right_point_3"
+      ],
       "name": "US Brands About Us",
       "settings": {
         "split_ratio": 40,
@@ -105,5 +77,8 @@
       }
     }
   },
-  "order": ["main", "us_brands_about_us_fruroot"]
+  "order": [
+    "main",
+    "us_brands_about_us_fruroot"
+  ]
 }

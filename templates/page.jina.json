@@ -40,56 +40,28 @@
         "right_point_1": {
           "type": "right_point",
           "settings": {
-            "text": "A brand rooted in trust, quality, and tradition.",
-            "rp_size": 2.2,
-            "rp_color": "#1a1a1a",
-            "rp_weight": "700",
-            "rp_style": "normal",
-            "rp_lh": 1.25,
-            "rp_ls": 0,
-            "rp_align": "left",
-            "rp_pt": 0,
-            "rp_pb": 0,
-            "rp_pl": 0,
-            "rp_pr": 0
+            "text": "A brand rooted in trust, quality, and tradition."
           }
         },
         "right_point_2": {
           "type": "right_point",
           "settings": {
-            "text": "Crafted with care for every moment of your day.",
-            "rp_size": 2.2,
-            "rp_color": "#1a1a1a",
-            "rp_weight": "700",
-            "rp_style": "normal",
-            "rp_lh": 1.25,
-            "rp_ls": 0,
-            "rp_align": "left",
-            "rp_pt": 0,
-            "rp_pb": 0,
-            "rp_pl": 0,
-            "rp_pr": 0
+            "text": "Crafted with care for every moment of your day."
           }
         },
         "right_point_3": {
           "type": "right_point",
           "settings": {
-            "text": "Elevating everyday experiences with premium products.",
-            "rp_size": 2.2,
-            "rp_color": "#1a1a1a",
-            "rp_weight": "700",
-            "rp_style": "normal",
-            "rp_lh": 1.25,
-            "rp_ls": 0,
-            "rp_align": "left",
-            "rp_pt": 0,
-            "rp_pb": 0,
-            "rp_pl": 0,
-            "rp_pr": 0
+            "text": "Elevating everyday experiences with premium products."
           }
         }
       },
-      "block_order": ["left_heading_1", "right_point_1", "right_point_2", "right_point_3"],
+      "block_order": [
+        "left_heading_1",
+        "right_point_1",
+        "right_point_2",
+        "right_point_3"
+      ],
       "name": "US Brands About Us",
       "settings": {
         "split_ratio": 40,
@@ -105,5 +77,8 @@
       }
     }
   },
-  "order": ["main", "us_brands_about_us_jina"]
+  "order": [
+    "main",
+    "us_brands_about_us_jina"
+  ]
 }
