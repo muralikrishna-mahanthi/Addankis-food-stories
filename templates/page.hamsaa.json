@@ -195,7 +195,7 @@
           "type": "left_heading",
           "settings": {
             "title": "Meaning behind the brand",
-            "heading_font": "archivo_black_n4",
+            "heading_font": "anton_n4",
             "heading_size": 5,
             "heading_color": "#1a1a1a",
             "heading_weight": "800",
@@ -364,7 +364,7 @@
           "type": "right_heading",
           "settings": {
             "title": "HAMSAA PHILOSOPHY",
-            "heading_font": "archivo_black_n4",
+            "heading_font": "anton_n4",
             "heading_size": 5,
             "heading_color": "#1a1a1a",
             "heading_weight": "800",
