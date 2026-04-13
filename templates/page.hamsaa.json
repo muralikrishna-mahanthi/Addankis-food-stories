@@ -269,7 +269,7 @@
         "line_light_color": "#e5e5e5",
         "line_active_color": "#6394ff",
         "dot_size": 20,
-        "point_size": 1.8,
+        "point_size": 1.9,
         "container_width": 1400,
         "pt_desktop": 100,
         "pb_desktop": 100
