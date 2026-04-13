@@ -520,6 +520,7 @@
       "name": "Video First",
       "settings": {
         "video": "shopify://files/videos/download.mp4",
+        "video_url": "",
         "autoplay": true,
         "loop_video": true,
         "muted": true,
@@ -531,10 +532,24 @@
         "shadow_size": 0,
         "shadow_opacity": 20,
         "bg_color": "#000000",
-        "section_height": 100,
+        "section_height": 50,
         "pt": 0,
         "pb": 0,
-        "ph": 0
+        "ph": 0,
+        "video_url_mobile": "",
+        "autoplay_mobile": true,
+        "loop_video_mobile": true,
+        "muted_mobile": true,
+        "show_controls_mobile": false,
+        "aspect_ratio_mobile": "9/16",
+        "video_object_fit_mobile": "cover",
+        "video_max_width_mobile": 100,
+        "video_border_radius_mobile": 0,
+        "bg_color_mobile": "#000000",
+        "section_height_mobile": 70,
+        "pt_mobile": 0,
+        "pb_mobile": 0,
+        "ph_mobile": 0
       }
     }
   },
