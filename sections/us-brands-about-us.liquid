@@ -13,86 +13,103 @@
     {%- endif -%}
   {%- endfor -%}
 
+  /* ── Section wrapper ── */
   #UsBrandsAbout-{{ section.id }} {
     background: {{ section.settings.bg_color }};
     padding: {{ section.settings.pt_desktop }}px 0 {{ section.settings.pb_desktop }}px;
     position: relative;
     height: {{ section.settings.runway_height }}vh;
   }
-
   @media screen and (max-width: 749px) {
     #UsBrandsAbout-{{ section.id }} {
       height: auto;
-      min-height: auto;
       padding: 60px 0;
     }
   }
 
-  .us-brands-about__container-{{ section.id }} {
+  /* ── Outer container ── */
+  .uba-container-{{ section.id }} {
     max-width: {{ section.settings.container_width }}px;
     margin: 0 auto;
     padding: 0 4rem;
     display: flex;
     flex-direction: row;
-    position: relative;
+    align-items: flex-start;
     height: 100%;
+  }
+
+  /* ── Left sticky panel ── */
+  .uba-left-{{ section.id }} {
+    flex: 0 0 {{ section.settings.split_ratio }}%;
+    position: sticky;
+    top: 20vh;
+    padding-right: 6rem;
+  }
+
+  /* ── Right sticky panel: flex-row with timeline + content ── */
+  .uba-right-{{ section.id }} {
+    flex: 1;
+    position: sticky;
+    top: 20vh;
+    display: flex;
+    flex-direction: row;
     align-items: flex-start;
   }
 
-  .us-brands-about__left-{{ section.id }},
-  .us-brands-about__right-{{ section.id }} {
-    position: sticky;
-    top: 20vh;
-    height: auto;
-    max-height: 80vh;
+  /*
+   * THE TIMELINE LINE
+   * width: 2px, align-self: stretch = grows to match content height
+   * position: relative = gives fill div a proper containing block
+   * background = the GREY base line colour
+   */
+  .uba-line-{{ section.id }} {
+    width: 2px;
+    flex-shrink: 0;
+    align-self: stretch;
+    position: relative;
+    background: {{ section.settings.line_light_color }};
+    border-radius: 2px;
   }
 
-  .us-brands-about__left-{{ section.id }} {
-    flex: 0 0 {{ section.settings.split_ratio }}%;
-    padding-right: 8rem;
+  /*
+   * THE DARK FILL
+   * position: absolute inside position: relative parent = bulletproof
+   * grows from height:0 to height:100% via JS
+   */
+  .uba-fill-{{ section.id }} {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 0;
+    background: {{ section.settings.line_active_color }};
+    border-radius: 2px;
+    will-change: height;
   }
 
-  .us-brands-about__right-{{ section.id }} {
+  /* ── Story points column ── */
+  .uba-content-{{ section.id }} {
     flex: 1;
     padding-left: 4rem;
   }
 
-  @media screen and (max-width: 749px) {
-    .us-brands-about__container-{{ section.id }} {
-      flex-direction: column;
-      padding: 0 2rem;
-      height: auto;
-    }
-    .us-brands-about__left-{{ section.id }},
-    .us-brands-about__right-{{ section.id }} {
-      position: relative;
-      top: 0;
-      flex: 0 0 100%;
-      padding: 0;
-      border: none;
-      max-height: none;
-    }
-    .us-brands-about__right-{{ section.id }} {
-      padding-top: 4rem;
-    }
-  }
-
-  .us-brands-about__point-list-{{ section.id }} {
+  .uba-points-{{ section.id }} {
     display: flex;
     flex-direction: column;
     gap: 6rem;
   }
 
-  .us-brands-about__point-{{ section.id }} {
+  .uba-point-{{ section.id }} {
     position: relative;
     opacity: 0;
     transform: translateY(15px);
-    transition: transform 0.6s ease, opacity 0.5s ease;
+    transition: opacity 0.5s ease, transform 0.6s ease;
   }
 
-  .us-brands-about__dot-{{ section.id }} {
+  /* dot sits in the 4rem gap between the line and text */
+  .uba-dot-{{ section.id }} {
     position: absolute;
-    left: -8.1rem;
+    left: -4.1rem;
     top: 0.5rem;
     transform: translateX(-50%);
     width: {{ section.settings.dot_size }}px;
@@ -102,79 +119,72 @@
     z-index: 3;
     transition: background 0.4s ease, transform 0.4s ease;
   }
-
-  .us-brands-about__point-{{ section.id }}.is-active .us-brands-about__dot-{{ section.id }} {
+  .uba-point-{{ section.id }}.is-active .uba-dot-{{ section.id }} {
     background: {{ section.settings.line_active_color }};
     transform: translateX(-50%) scale(1.3);
   }
 
-  .us-brands-about__point-text-{{ section.id }} {
-    max-width: 600px;
-  }
-
-  /* ---- TIMELINE COLUMN ---- */
-  .us-brands-about__timeline-{{ section.id }} {
-    position: sticky;
-    top: 20vh;
-    width: 2px;
-    height: 60vh;
-    flex-shrink: 0;
-    margin: 0 4rem;
-    overflow: hidden;
-    border-radius: 2px;
-  }
-
-  .us-brands-about__timeline-bg-{{ section.id }} {
-    position: absolute;
-    inset: 0;
-    background: {{ section.settings.line_light_color }};
-  }
-
-  .us-brands-about__timeline-fill-{{ section.id }} {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 0;
-    background: {{ section.settings.line_active_color }};
-    will-change: height;
-  }
-
+  /* ── Mobile ── */
   @media screen and (max-width: 749px) {
-    .us-brands-about__timeline-{{ section.id }} {
+    .uba-container-{{ section.id }} {
+      flex-direction: column;
+      padding: 0 2rem;
+      height: auto;
+    }
+    .uba-left-{{ section.id }},
+    .uba-right-{{ section.id }} {
+      position: relative;
+      top: 0;
+      width: 100%;
+      padding: 0;
+    }
+    .uba-right-{{ section.id }} {
+      padding-top: 3rem;
+    }
+    .uba-line-{{ section.id }} {
       display: none;
+    }
+    .uba-content-{{ section.id }} {
+      padding-left: 0;
+    }
+    .uba-dot-{{ section.id }} {
+      display: none;
+    }
+    .uba-point-{{ section.id }} {
+      opacity: 1 !important;
+      transform: none !important;
     }
   }
 {%- endstyle -%}
 
 <section id="UsBrandsAbout-{{ section.id }}" class="us-brands-about">
-  <div class="us-brands-about__container-{{ section.id }}">
+  <div class="uba-container-{{ section.id }}">
 
-    <!-- Left Side -->
-    <div class="us-brands-about__left-{{ section.id }}">
+    <!-- ── LEFT PANEL ── -->
+    <div class="uba-left-{{ section.id }}">
       {%- for block in section.blocks -%}
         {%- if block.type == 'left_heading' -%}
-          <div class="us-brands-about__left-item" {{ block.shopify_attributes }}>
+          <div {{ block.shopify_attributes }}>
             {%- liquid
-               assign h_font = block.settings.heading_font
-               assign h_size = block.settings.heading_size | default: 4.5
-               assign h_color = block.settings.heading_color | default: '#1a1a1a'
-               assign h_weight = block.settings.heading_weight | default: '700'
-               assign h_style = block.settings.heading_style | default: 'normal'
-               assign h_align = block.settings.heading_alignment | default: 'left'
-               assign h_lh = block.settings.heading_line_height | default: 1.1
-               assign h_ls = block.settings.heading_letter_spacing | default: 0
-               assign h_pt = block.settings.heading_pt | default: 0
-               assign h_pb = block.settings.heading_pb | default: 0
-               assign h_pl = block.settings.heading_pl | default: 0
-               assign h_pr = block.settings.heading_pr | default: 0
+              assign h_font = block.settings.heading_font
+              assign h_size = block.settings.heading_size | default: 4.5
+              assign h_color = block.settings.heading_color | default: '#1a1a1a'
+              assign h_weight = block.settings.heading_weight | default: '700'
+              assign h_style = block.settings.heading_style | default: 'normal'
+              assign h_align = block.settings.heading_alignment | default: 'left'
+              assign h_lh = block.settings.heading_line_height | default: 1.1
+              assign h_ls = block.settings.heading_letter_spacing | default: 0
+              assign h_pt = block.settings.heading_pt | default: 0
+              assign h_pb = block.settings.heading_pb | default: 0
+              assign h_pl = block.settings.heading_pl | default: 0
+              assign h_pr = block.settings.heading_pr | default: 0
             -%}
-            <h2 class="us-brands-about__left-heading" style="{% if h_font != blank %}font-family: {{ h_font.family }}, {{ h_font.fallback_families }};{% endif %}font-size:{{ h_size }}rem;color:{{ h_color }};font-weight:{{ h_weight }};font-style:{{ h_style }};text-align:{{ h_align }};line-height:{{ h_lh }};letter-spacing:{{ h_ls }}px;padding:{{ h_pt }}px {{ h_pr }}px {{ h_pb }}px {{ h_pl }}px;margin:0;">
+            <h2 style="{% if h_font != blank %}font-family:{{ h_font.family }},{{ h_font.fallback_families }};{% endif %}font-size:{{ h_size }}rem;color:{{ h_color }};font-weight:{{ h_weight }};font-style:{{ h_style }};text-align:{{ h_align }};line-height:{{ h_lh }};letter-spacing:{{ h_ls }}px;padding:{{ h_pt }}px {{ h_pr }}px {{ h_pb }}px {{ h_pl }}px;margin:0;">
               {{ block.settings.title }}
             </h2>
           </div>
         {%- elsif block.type == 'left_image' -%}
-          <div class="us-brands-about__left-item" {{ block.shopify_attributes }}>
+          <div {{ block.shopify_attributes }}>
             {%- if block.settings.image != blank -%}
               {{ block.settings.image | image_url: width: 1000 | image_tag: loading: 'lazy' }}
             {%- else -%}
@@ -185,28 +195,31 @@
       {%- endfor -%}
     </div>
 
-    <!-- Timeline Column (between left and right) -->
-    <div class="us-brands-about__timeline-{{ section.id }}">
-      <div class="us-brands-about__timeline-bg-{{ section.id }}"></div>
-      <div class="us-brands-about__timeline-fill-{{ section.id }}" id="ProgressLine-{{ section.id }}"></div>
-    </div>
+    <!-- ── RIGHT PANEL (flex-row: line + content) ── -->
+    <div class="uba-right-{{ section.id }}">
 
-    <!-- Right Side -->
-    <div class="us-brands-about__right-{{ section.id }}">
-      <div class="us-brands-about__point-list-{{ section.id }}">
-        {%- for block in section.blocks -%}
-          {%- if block.type == 'right_point' -%}
-            <div class="us-brands-about__point-{{ section.id }} js-about-point-{{ section.id }}" {{ block.shopify_attributes }}>
-              <div class="us-brands-about__dot-{{ section.id }}"></div>
-              <div class="us-brands-about__point-text-{{ section.id }}" style="{% if block.settings.rp_font != blank %}font-family:{{ block.settings.rp_font.family }},{{ block.settings.rp_font.fallback_families }};{% endif %}font-size:{{ block.settings.rp_size | default: 2.2 }}rem;color:{{ block.settings.rp_color | default: '#1a1a1a' }};font-weight:{{ block.settings.rp_weight | default: '700' }};font-style:{{ block.settings.rp_style | default: 'normal' }};text-align:{{ block.settings.rp_align | default: 'left' }};line-height:{{ block.settings.rp_lh | default: 1.25 }};letter-spacing:{{ block.settings.rp_ls | default: 0 }}px;padding:{{ block.settings.rp_pt | default: 0 }}px {{ block.settings.rp_pr | default: 0 }}px {{ block.settings.rp_pb | default: 0 }}px {{ block.settings.rp_pl | default: 0 }}px;">
-                {{ block.settings.text }}
-              </div>
-            </div>
-          {%- endif -%}
-        {%- endfor -%}
+      <!-- THE LINE (grey base + growing dark fill) -->
+      <div class="uba-line-{{ section.id }}">
+        <div class="uba-fill-{{ section.id }}" id="UbaFill-{{ section.id }}"></div>
       </div>
-    </div>
 
+      <!-- STORY POINTS -->
+      <div class="uba-content-{{ section.id }}">
+        <div class="uba-points-{{ section.id }}">
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'right_point' -%}
+              <div class="uba-point-{{ section.id }} js-uba-point-{{ section.id }}" {{ block.shopify_attributes }}>
+                <div class="uba-dot-{{ section.id }}"></div>
+                <div style="{% if block.settings.rp_font != blank %}font-family:{{ block.settings.rp_font.family }},{{ block.settings.rp_font.fallback_families }};{% endif %}font-size:{{ block.settings.rp_size | default: 2.2 }}rem;color:{{ block.settings.rp_color | default: '#1a1a1a' }};font-weight:{{ block.settings.rp_weight | default: '700' }};font-style:{{ block.settings.rp_style | default: 'normal' }};text-align:{{ block.settings.rp_align | default: 'left' }};line-height:{{ block.settings.rp_lh | default: 1.3 }};letter-spacing:{{ block.settings.rp_ls | default: 0 }}px;padding:{{ block.settings.rp_pt | default: 0 }}px {{ block.settings.rp_pr | default: 0 }}px {{ block.settings.rp_pb | default: 0 }}px {{ block.settings.rp_pl | default: 0 }}px;">
+                  {{ block.settings.text }}
+                </div>
+              </div>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      </div>
+
+    </div>
   </div>
 </section>
 
@@ -214,15 +227,16 @@
 (function() {
   var sectionEl = document.getElementById('UsBrandsAbout-{{ section.id }}');
   if (!sectionEl) return;
-  var progressLine = document.getElementById('ProgressLine-{{ section.id }}');
-  var points = sectionEl.querySelectorAll('.js-about-point-{{ section.id }}');
+  var fillEl = document.getElementById('UbaFill-{{ section.id }}');
+  var lineEl = sectionEl.querySelector('.uba-line-{{ section.id }}');
+  var points = sectionEl.querySelectorAll('.js-uba-point-{{ section.id }}');
   if (!points.length) return;
 
-  function update() {
+  function onScroll() {
+    /* Mobile: simple fade-in on viewport entry */
     if (window.innerWidth < 750) {
       points.forEach(function(p) {
-        var r = p.getBoundingClientRect();
-        if (r.top < window.innerHeight * 0.8) {
+        if (p.getBoundingClientRect().top < window.innerHeight * 0.85) {
           p.style.opacity = '1';
           p.style.transform = 'translateY(0)';
           p.classList.add('is-active');
@@ -233,35 +247,32 @@
 
     var rect = sectionEl.getBoundingClientRect();
     var totalScroll = sectionEl.offsetHeight - window.innerHeight;
+    if (totalScroll <= 0) return;
     var progress = Math.max(0, Math.min(1, -rect.top / totalScroll));
 
-    /* Use the timeline column height (sticky visible area) as the fill reference */
-    var timelineCol = sectionEl.querySelector('.us-brands-about__timeline-{{ section.id }}');
-    var fullHeight = timelineCol ? timelineCol.offsetHeight : 400;
-
-    /* Story points reveal staggered by scroll progress */
+    /* Story points: staggered fade-in tied to scroll progress */
     points.forEach(function(p, i) {
-      var pStart = i / points.length;
-      var opacity = Math.min(1, Math.max(0, (progress - (pStart - 0.1)) / 0.2));
-      p.style.opacity = opacity;
-      if (opacity >= 0.8) {
+      var start = i / points.length;
+      var t = Math.min(1, Math.max(0, (progress - (start - 0.1)) / 0.2));
+      p.style.opacity = t;
+      if (t >= 0.8) {
         p.classList.add('is-active');
         p.style.transform = 'translateY(0)';
       } else {
         p.classList.remove('is-active');
-        p.style.transform = 'translateY(' + Math.max(0, 15 - opacity * 15) + 'px)';
+        p.style.transform = 'translateY(' + ((1 - t) * 15) + 'px)';
       }
     });
 
-    /* Line fills proportionally: 0% at section start → 100% at section end */
-    if (progressLine) {
-      progressLine.style.height = Math.round(progress * fullHeight) + 'px';
+    /* Timeline fill: progress × line height */
+    if (fillEl && lineEl) {
+      fillEl.style.height = Math.round(progress * lineEl.offsetHeight) + 'px';
     }
   }
 
-  window.addEventListener('scroll', update);
-  window.addEventListener('resize', update);
-  update();
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll);
+  onScroll();
 })();
 </script>
 
@@ -278,7 +289,7 @@
     { "type": "color", "id": "bg_color", "label": "Background Color", "default": "#ffffff" },
     { "type": "color", "id": "text_color", "label": "Default Text Color", "default": "#1a1a1a" },
     { "type": "color", "id": "line_light_color", "label": "Line Inactive Color", "default": "#e5e5e5" },
-    { "type": "color", "id": "line_active_color", "label": "Line Active Color", "default": "#6394FF" },
+    { "type": "color", "id": "line_active_color", "label": "Line Active Color", "default": "#1a1a1a" },
     { "type": "range", "id": "dot_size", "label": "Dot Size", "min": 6, "max": 40, "step": 2, "unit": "px", "default": 16 },
     { "type": "header", "content": "Padding" },
     { "type": "range", "id": "pt_desktop", "label": "Padding Top (Desktop)", "min": 0, "max": 200, "step": 10, "default": 100 },
@@ -308,7 +319,7 @@
           { "value": "italic", "label": "Italic" }
         ]},
         { "type": "range", "id": "heading_line_height", "label": "Line Height", "min": 0.8, "max": 2.5, "step": 0.1, "default": 1.1 },
-        { "type": "range", "id": "heading_letter_spacing", "label": "Letter Spacing (px)", "min": -5, "max": 10, "step": 0.5, "default": 0 },
+        { "type": "range", "id": "heading_letter_spacing", "label": "Letter Spacing (px)", "min": -5, "max": 10, "step": 1, "unit": "px", "default": 0 },
         { "type": "header", "content": "Alignment & Padding" },
         { "type": "select", "id": "heading_alignment", "label": "Alignment", "default": "left", "options": [
           { "value": "left", "label": "Left" },
