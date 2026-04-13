@@ -96,6 +96,22 @@
         "pb_mobile": 30
       }
     },
+    "video_heX83j": {
+      "type": "video",
+      "name": "t:sections.video.presets.name",
+      "settings": {
+        "heading": "Video",
+        "heading_size": "h1",
+        "enable_video_looping": true,
+        "video": "shopify://files/videos/From KlickPin CF Bhimseni Crystals [Video] _ Camphor crystal Pure products God illustrations.mp4",
+        "video_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
+        "description": "",
+        "full_width": false,
+        "color_scheme": "",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
     "sliding_products_7WRryd": {
       "type": "sliding-products",
       "blocks": {
@@ -442,6 +458,7 @@
     "main",
     "blocks_WTVjJc",
     "split_image_ckUfCR",
+    "video_heX83j",
     "sliding_products_7WRryd",
     "us_brands_about_us_6kR9cT",
     "us_brands_about_us_2_Ad9VDy"
