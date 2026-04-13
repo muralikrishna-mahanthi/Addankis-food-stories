@@ -6,9 +6,9 @@
         {{ heading_font | font_face: font_display: 'swap' }}
       {%- endif -%}
     {%- elsif block.type == 'right_point' -%}
-      {%- assign point_font = block.settings.point_font -%}
-      {%- if point_font != blank -%}
-        {{ point_font | font_face: font_display: 'swap' }}
+      {%- assign st_font = block.settings.st_font -%}
+      {%- if st_font != blank -%}
+        {{ st_font | font_face: font_display: 'swap' }}
       {%- endif -%}
     {%- endif -%}
   {%- endfor -%}
@@ -191,17 +191,17 @@
             <div class="us-brands-about__point js-about-point" {{ block.shopify_attributes }}>
               <div class="us-brands-about__dot"></div>
               <div class="us-brands-about__point-text" style="
-                {%- if block.settings.point_font != blank -%}font-family: {{ block.settings.point_font.family }}, {{ block.settings.point_font.fallback_families }};{%- endif -%}
-                font-size: {{ block.settings.point_size }}rem;
-                color: {{ block.settings.point_color }};
-                font-weight: {{ block.settings.point_weight }};
-                font-style: {{ block.settings.point_style }};
-                text-align: {{ block.settings.point_alignment }};
-                line-height: {{ block.settings.point_line_height }};
-                letter-spacing: {{ block.settings.point_letter_spacing }}px;
-                padding: {{ block.settings.point_pt }}px {{ block.settings.point_pr }}px {{ block.settings.point_pb }}px {{ block.settings.point_pl }}px;
+                {%- if block.settings.st_font != blank -%}font-family: {{ block.settings.st_font.family }}, {{ block.settings.st_font.fallback_families }};{%- endif -%}
+                font-size: {{ block.settings.st_size | default: 2.2 }}rem;
+                color: {{ block.settings.st_color | default: '#1a1a1a' }};
+                font-weight: {{ block.settings.st_weight | default: '700' }};
+                font-style: {{ block.settings.st_style | default: 'normal' }};
+                text-align: {{ block.settings.st_alignment | default: 'left' }};
+                line-height: {{ block.settings.st_line_height | default: 1.25 }};
+                letter-spacing: {{ block.settings.st_letter_spacing | default: 0 }}px;
+                padding: {{ block.settings.st_pt | default: 0 }}px {{ block.settings.st_pr | default: 0 }}px {{ block.settings.st_pb | default: 0 }}px {{ block.settings.st_pl | default: 0 }}px;
               ">
-                {{ block.settings.text }}
+                {{ block.settings.st_text }}
               </div>
             </div>
           {%- endif -%}
@@ -350,15 +350,14 @@
     },
     {
       "type": "right_point",
-      "name": "Story Point (Right)",
+      "name": ">>> STORY POINT (SETTINGS) <<<",
       "settings": [
-        { "type": "header", "content": "Story Point Settings" },
-        { "type": "text", "id": "text", "label": "Point Text", "default": "Inspired by the symbolism of the swan" },
+        { "type": "text", "id": "st_text", "label": "Point Text", "default": "Inspired by the symbolism of the swan" },
         { "type": "header", "content": "Typography" },
-        { "type": "font_picker", "id": "point_font", "label": "Font Family", "default": "assistant_n4" },
-        { "type": "range", "id": "point_size", "label": "Font Size", "min": 1, "max": 4, "step": 0.1, "unit": "rem", "default": 2.2 },
-        { "type": "color", "id": "point_color", "label": "Font Color", "default": "#1a1a1a" },
-        { "type": "select", "id": "point_weight", "label": "Font Weight", "options": [
+        { "type": "font_picker", "id": "st_font", "label": "Font Family", "default": "assistant_n4" },
+        { "type": "range", "id": "st_size", "label": "Font Size", "min": 1, "max": 4, "step": 0.1, "unit": "rem", "default": 2.2 },
+        { "type": "color", "id": "st_color", "label": "Font Color", "default": "#1a1a1a" },
+        { "type": "select", "id": "st_weight", "label": "Font Weight", "options": [
           { "value": "300", "label": "Light" },
           { "value": "400", "label": "Regular" },
           { "value": "500", "label": "Medium" },
@@ -367,22 +366,22 @@
           { "value": "800", "label": "Extra-Bold" },
           { "value": "900", "label": "Black" }
         ], "default": "700" },
-        { "type": "select", "id": "point_style", "label": "Font Style", "options": [
+        { "type": "select", "id": "st_style", "label": "Font Style", "options": [
           { "value": "normal", "label": "Normal" },
           { "value": "italic", "label": "Italic" }
         ], "default": "normal" },
-        { "type": "range", "id": "point_line_height", "label": "Line Height", "min": 0.8, "max": 2, "step": 0.1, "default": 1.25 },
-        { "type": "range", "id": "point_letter_spacing", "label": "Letter Spacing", "min": -5, "max": 10, "step": 0.2, "unit": "px", "default": 0 },
+        { "type": "range", "id": "st_line_height", "label": "Line Height", "min": 0.8, "max": 2, "step": 0.1, "default": 1.25 },
+        { "type": "range", "id": "st_letter_spacing", "label": "Letter Spacing", "min": -5, "max": 10, "step": 0.2, "unit": "px", "default": 0 },
         { "type": "header", "content": "Alignment & Spacing" },
-        { "type": "select", "id": "point_alignment", "label": "Text Alignment", "options": [
+        { "type": "select", "id": "st_alignment", "label": "Text Alignment", "options": [
           { "value": "left", "label": "Left" },
           { "value": "center", "label": "Center" },
           { "value": "right", "label": "Right" }
         ], "default": "left" },
-        { "type": "range", "id": "point_pt", "label": "Padding Top", "min": 0, "max": 100, "step": 2, "unit": "px", "default": 0 },
-        { "type": "range", "id": "point_pb", "label": "Padding Bottom", "min": 0, "max": 100, "step": 2, "unit": "px", "default": 0 },
-        { "type": "range", "id": "point_pl", "label": "Padding Left", "min": 0, "max": 100, "step": 2, "unit": "px", "default": 0 },
-        { "type": "range", "id": "point_pr", "label": "Padding Right", "min": 0, "max": 100, "step": 2, "unit": "px", "default": 0 }
+        { "type": "range", "id": "st_pt", "label": "Padding Top", "min": 0, "max": 100, "step": 2, "unit": "px", "default": 0 },
+        { "type": "range", "id": "st_pb", "label": "Padding Bottom", "min": 0, "max": 100, "step": 2, "unit": "px", "default": 0 },
+        { "type": "range", "id": "st_pl", "label": "Padding Left", "min": 0, "max": 100, "step": 2, "unit": "px", "default": 0 },
+        { "type": "range", "id": "st_pr", "label": "Padding Right", "min": 0, "max": 100, "step": 2, "unit": "px", "default": 0 }
       ]
     }
   ],
@@ -391,9 +390,9 @@
       "name": "US Brands About Us",
       "blocks": [
         { "type": "left_heading", "settings": { "title": "Meaning behind the brand" } },
-        { "type": "right_point", "settings": { "text": "Inspired by the symbolism of the swan" } },
-        { "type": "right_point", "settings": { "text": "A commitment to crystalline purity." } },
-        { "type": "right_point", "settings": { "text": "Luxury clinical wellness at its peak." } }
+        { "type": "right_point", "settings": { "st_text": "Inspired by the symbolism of the swan" } },
+        { "type": "right_point", "settings": { "st_text": "A commitment to crystalline purity." } },
+        { "type": "right_point", "settings": { "st_text": "Luxury clinical wellness at its peak." } }
       ]
     }
   ]
