@@ -191,40 +191,18 @@
     "us_brands_about_us_6kR9cT": {
       "type": "us-brands-about-us",
       "blocks": {
-        "left_heading_9cFDDX": {
-          "type": "left_heading",
+        "left_image_DHF69h": {
+          "type": "left_image",
           "settings": {
-            "title": "HAMSAA",
-            "heading_font": "assistant_n4",
-            "heading_size": 5.6,
-            "heading_color": "#144900",
-            "heading_weight": "800",
-            "heading_style": "normal",
-            "heading_line_height": 1.1,
-            "heading_letter_spacing": 0,
-            "heading_alignment": "center",
-            "heading_pt": 0,
-            "heading_pb": 0,
-            "heading_pl": 0,
-            "heading_pr": 0
-          }
-        },
-        "left_heading_CFhtJ4": {
-          "type": "left_heading",
-          "settings": {
-            "title": "Meaning behind the brand",
-            "heading_font": "assistant_n4",
-            "heading_size": 4.5,
-            "heading_color": "#6df26f",
-            "heading_weight": "700",
-            "heading_style": "normal",
-            "heading_line_height": 1.1,
-            "heading_letter_spacing": 0,
-            "heading_alignment": "center",
-            "heading_pt": 0,
-            "heading_pb": 0,
-            "heading_pl": 0,
-            "heading_pr": 0
+            "image": "shopify://shop_images/download.jpg",
+            "img_width": 100,
+            "img_max_height": 500,
+            "img_object_fit": "fill",
+            "img_align": "left",
+            "img_pt": 0,
+            "img_pb": 0,
+            "img_pl": 0,
+            "img_pr": 0
           }
         },
         "right_point_aaG4wF": {
@@ -301,8 +279,7 @@
         }
       },
       "block_order": [
-        "left_heading_9cFDDX",
-        "left_heading_CFhtJ4",
+        "left_image_DHF69h",
         "right_point_aaG4wF",
         "right_point_DFJf8V",
         "right_point_FrGKtN",
