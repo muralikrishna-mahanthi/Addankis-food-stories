@@ -1,4 +1,13 @@
 {%- style -%}
+  {%- for block in section.blocks -%}
+    {%- if block.type == 'left_heading' -%}
+      {%- assign heading_font = block.settings.heading_font -%}
+      {%- if heading_font != blank -%}
+        {{ heading_font | font_face: font_display: 'swap' }}
+      {%- endif -%}
+    {%- endif -%}
+  {%- endfor -%}
+
   /* Section Base Styles */
   #UsBrandsAbout-{{ section.id }} {
     background: {{ section.settings.bg_color }};
@@ -128,7 +137,34 @@
       {%- for block in section.blocks -%}
         {%- if block.type == 'left_heading' -%}
           <div class="us-brands-about__left-item" {{ block.shopify_attributes }}>
-            <h2 class="us-brands-about__left-heading">{{ block.settings.title }}</h2>
+            {%- liquid
+               assign h_font = block.settings.heading_font
+               assign h_size = block.settings.heading_size | default: 4.5
+               assign h_color = block.settings.heading_color | default: '#1a1a1a'
+               assign h_weight = block.settings.heading_weight | default: '700'
+               assign h_style = block.settings.heading_style | default: 'normal'
+               assign h_align = block.settings.heading_alignment | default: 'left'
+               assign h_lh = block.settings.heading_line_height | default: 1.1
+               assign h_ls = block.settings.heading_letter_spacing | default: 0
+               assign h_pt = block.settings.heading_pt | default: 0
+               assign h_pb = block.settings.heading_pb | default: 0
+               assign h_pl = block.settings.heading_pl | default: 0
+               assign h_pr = block.settings.heading_pr | default: 0
+            -%}
+            <h2 class="us-brands-about__left-heading" style="
+              {% if h_font != blank %}font-family: {{ h_font.family }}, {{ h_font.fallback_families }};{% endif %}
+              font-size: {{ h_size }}rem;
+              color: {{ h_color }};
+              font-weight: {{ h_weight }};
+              font-style: {{ h_style }};
+              text-align: {{ h_align }};
+              line-height: {{ h_lh }};
+              letter-spacing: {{ h_ls }}px;
+              padding: {{ h_pt }}px {{ h_pr }}px {{ h_pb }}px {{ h_pl }}px;
+              margin: 0;
+            ">
+              {{ block.settings.title }}
+            </h2>
           </div>
         {%- elsif block.type == 'left_image' -%}
           <div class="us-brands-about__left-item" {{ block.shopify_attributes }}>
@@ -248,7 +284,6 @@
     { "type": "header", "content": "Visuals" },
     { "type": "color", "id": "bg_color", "label": "Section Background", "default": "#ffffff" },
     { "type": "color", "id": "text_color", "label": "Text Color", "default": "#1a1a1a" },
-    { "type": "range", "id": "left_heading_size", "label": "Left Heading Size", "min": 2, "max": 8, "step": 0.5, "unit": "rem", "default": 4.5 },
     { "type": "header", "content": "Timeline Animation" },
     { "type": "color", "id": "line_light_color", "label": "Line/Dot Inactive Color", "default": "#e5e5e5" },
     { "type": "color", "id": "line_active_color", "label": "Line/Dot Active Color", "default": "#6394FF" },
@@ -264,7 +299,36 @@
       "type": "left_heading",
       "name": "Left Heading",
       "settings": [
-        { "type": "text", "id": "title", "label": "Heading Text", "default": "Meaning behind the brand" }
+        { "type": "text", "id": "title", "label": "Heading Text", "default": "Meaning behind the brand" },
+        { "type": "header", "content": "Typography" },
+        { "type": "font_picker", "id": "heading_font", "label": "Font Family", "default": "assistant_n4" },
+        { "type": "range", "id": "heading_size", "label": "Font Size", "min": 1, "max": 10, "step": 0.1, "unit": "rem", "default": 4.5 },
+        { "type": "color", "id": "heading_color", "label": "Font Color", "default": "#1a1a1a" },
+        { "type": "select", "id": "heading_weight", "label": "Font Weight", "options": [
+          { "value": "300", "label": "Light" },
+          { "value": "400", "label": "Regular" },
+          { "value": "500", "label": "Medium" },
+          { "value": "600", "label": "Semi-Bold" },
+          { "value": "700", "label": "Bold" },
+          { "value": "800", "label": "Extra-Bold" },
+          { "value": "900", "label": "Black" }
+        ], "default": "700" },
+        { "type": "select", "id": "heading_style", "label": "Font Style", "options": [
+          { "value": "normal", "label": "Normal" },
+          { "value": "italic", "label": "Italic" }
+        ], "default": "normal" },
+        { "type": "range", "id": "heading_line_height", "label": "Line Height", "min": 0.8, "max": 2, "step": 0.1, "default": 1.1 },
+        { "type": "range", "id": "heading_letter_spacing", "label": "Letter Spacing", "min": -5, "max": 10, "step": 0.2, "unit": "px", "default": 0 },
+        { "type": "header", "content": "Alignment & Spacing" },
+        { "type": "select", "id": "heading_alignment", "label": "Text Alignment", "options": [
+          { "value": "left", "label": "Left" },
+          { "value": "center", "label": "Center" },
+          { "value": "right", "label": "Right" }
+        ], "default": "left" },
+        { "type": "range", "id": "heading_pt", "label": "Padding Top", "min": 0, "max": 100, "step": 2, "unit": "px", "default": 0 },
+        { "type": "range", "id": "heading_pb", "label": "Padding Bottom", "min": 0, "max": 100, "step": 2, "unit": "px", "default": 0 },
+        { "type": "range", "id": "heading_pl", "label": "Padding Left", "min": 0, "max": 100, "step": 2, "unit": "px", "default": 0 },
+        { "type": "range", "id": "heading_pr", "label": "Padding Right", "min": 0, "max": 100, "step": 2, "unit": "px", "default": 0 }
       ]
     },
     {
