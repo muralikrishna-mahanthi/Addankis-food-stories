@@ -54,8 +54,7 @@
 
   .us-brands-about__right-{{ section.id }} {
     flex: 1;
-    padding-left: 8rem;
-    border-left: 2px solid {{ section.settings.line_light_color }};
+    padding-left: 4rem;
   }
 
   @media screen and (max-width: 749px) {
@@ -113,15 +112,38 @@
     max-width: 600px;
   }
 
-  .us-brands-about__progress-line-{{ section.id }} {
-    position: absolute;
-    left: -2px;
-    top: 0;
+  /* ---- TIMELINE COLUMN ---- */
+  .us-brands-about__timeline-{{ section.id }} {
+    position: sticky;
+    top: 20vh;
     width: 2px;
+    height: 60vh;
+    flex-shrink: 0;
+    margin: 0 4rem;
+    overflow: hidden;
+    border-radius: 2px;
+  }
+
+  .us-brands-about__timeline-bg-{{ section.id }} {
+    position: absolute;
+    inset: 0;
+    background: {{ section.settings.line_light_color }};
+  }
+
+  .us-brands-about__timeline-fill-{{ section.id }} {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
     height: 0;
     background: {{ section.settings.line_active_color }};
-    z-index: 2;
     will-change: height;
+  }
+
+  @media screen and (max-width: 749px) {
+    .us-brands-about__timeline-{{ section.id }} {
+      display: none;
+    }
   }
 {%- endstyle -%}
 
@@ -163,9 +185,14 @@
       {%- endfor -%}
     </div>
 
+    <!-- Timeline Column (between left and right) -->
+    <div class="us-brands-about__timeline-{{ section.id }}">
+      <div class="us-brands-about__timeline-bg-{{ section.id }}"></div>
+      <div class="us-brands-about__timeline-fill-{{ section.id }}" id="ProgressLine-{{ section.id }}"></div>
+    </div>
+
     <!-- Right Side -->
     <div class="us-brands-about__right-{{ section.id }}">
-      <div class="us-brands-about__progress-line-{{ section.id }}" id="ProgressLine-{{ section.id }}"></div>
       <div class="us-brands-about__point-list-{{ section.id }}">
         {%- for block in section.blocks -%}
           {%- if block.type == 'right_point' -%}
@@ -208,8 +235,9 @@
     var totalScroll = sectionEl.offsetHeight - window.innerHeight;
     var progress = Math.max(0, Math.min(1, -rect.top / totalScroll));
 
-    var rightPanel = sectionEl.querySelector('.us-brands-about__right-{{ section.id }}');
-    var fullHeight = rightPanel ? rightPanel.offsetHeight : 600;
+    /* Use the timeline column height (sticky visible area) as the fill reference */
+    var timelineCol = sectionEl.querySelector('.us-brands-about__timeline-{{ section.id }}');
+    var fullHeight = timelineCol ? timelineCol.offsetHeight : 400;
 
     /* Story points reveal staggered by scroll progress */
     points.forEach(function(p, i) {
