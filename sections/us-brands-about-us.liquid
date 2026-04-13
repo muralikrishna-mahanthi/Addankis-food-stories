@@ -5,7 +5,7 @@
       {%- if heading_font != blank -%}
         {{ heading_font | font_face: font_display: 'swap' }}
       {%- endif -%}
-    {%- elsif block.type == 'right_story_point' -%}
+    {%- elsif block.type == 'right_point' -%}
       {%- assign point_font = block.settings.point_font -%}
       {%- if point_font != blank -%}
         {{ point_font | font_face: font_display: 'swap' }}
@@ -187,7 +187,7 @@
       
       <div class="us-brands-about__point-list">
         {%- for block in section.blocks -%}
-          {%- if block.type == 'right_story_point' -%}
+          {%- if block.type == 'right_point' -%}
             <div class="us-brands-about__point js-about-point" {{ block.shopify_attributes }}>
               <div class="us-brands-about__dot"></div>
               <div class="us-brands-about__point-text" style="
@@ -349,12 +349,13 @@
       ]
     },
     {
-      "type": "right_story_point",
-      "name": "Story Point (Right Side)",
+      "type": "right_point",
+      "name": "Story Point (Right)",
       "settings": [
+        { "type": "header", "content": "Story Point Settings" },
         { "type": "text", "id": "text", "label": "Point Text", "default": "Inspired by the symbolism of the swan" },
         { "type": "header", "content": "Typography" },
-        { "type": "font_picker", "id": "point_font", "label": "Font Family", "default": "serif" },
+        { "type": "font_picker", "id": "point_font", "label": "Font Family", "default": "assistant_n4" },
         { "type": "range", "id": "point_size", "label": "Font Size", "min": 1, "max": 4, "step": 0.1, "unit": "rem", "default": 2.2 },
         { "type": "color", "id": "point_color", "label": "Font Color", "default": "#1a1a1a" },
         { "type": "select", "id": "point_weight", "label": "Font Weight", "options": [
@@ -390,9 +391,9 @@
       "name": "US Brands About Us",
       "blocks": [
         { "type": "left_heading", "settings": { "title": "Meaning behind the brand" } },
-        { "type": "right_story_point", "settings": { "text": "Inspired by the symbolism of the swan" } },
-        { "type": "right_story_point", "settings": { "text": "A commitment to crystalline purity." } },
-        { "type": "right_story_point", "settings": { "text": "Luxury clinical wellness at its peak." } }
+        { "type": "right_point", "settings": { "text": "Inspired by the symbolism of the swan" } },
+        { "type": "right_point", "settings": { "text": "A commitment to crystalline purity." } },
+        { "type": "right_point", "settings": { "text": "Luxury clinical wellness at its peak." } }
       ]
     }
   ]
