@@ -99,11 +99,11 @@
     "video_heX83j": {
       "type": "video",
       "custom_css": [
-        ".video-section {height: 100px}"
+        ".video-section {height: 100px;}"
       ],
       "name": "t:sections.video.presets.name",
       "settings": {
-        "heading": "Video",
+        "heading": "",
         "heading_size": "h1",
         "enable_video_looping": true,
         "video": "shopify://files/videos/From KlickPin CF Bhimseni Crystals [Video] _ Camphor crystal Pure products God illustrations.mp4",
