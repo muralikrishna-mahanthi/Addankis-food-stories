@@ -194,11 +194,29 @@
         "left_heading_qM8AAw": {
           "type": "left_heading",
           "settings": {
-            "title": "HAMSAA STANDS FOR",
+            "title": "HAMSAA",
             "heading_font": "anton_n4",
             "heading_size": 5,
-            "heading_color": "#1a1a1a",
+            "heading_color": "#8ebc29",
             "heading_weight": "800",
+            "heading_style": "normal",
+            "heading_line_height": 1.1,
+            "heading_letter_spacing": 0,
+            "heading_alignment": "right",
+            "heading_pt": 0,
+            "heading_pb": 0,
+            "heading_pl": 0,
+            "heading_pr": 0
+          }
+        },
+        "left_heading_pV6Ti6": {
+          "type": "left_heading",
+          "settings": {
+            "title": "STANDS FOR",
+            "heading_font": "anton_n4",
+            "heading_size": 4.5,
+            "heading_color": "#bfde7d",
+            "heading_weight": "700",
             "heading_style": "normal",
             "heading_line_height": 1.1,
             "heading_letter_spacing": 0,
@@ -284,6 +302,7 @@
       },
       "block_order": [
         "left_heading_qM8AAw",
+        "left_heading_pV6Ti6",
         "right_point_aaG4wF",
         "right_point_DFJf8V",
         "right_point_FrGKtN",
@@ -294,7 +313,7 @@
         "split_ratio": 50,
         "runway_height": 300,
         "container_width": 1400,
-        "bg_color": "#1f7000",
+        "bg_color": "#0f440e",
         "text_color": "#81e683",
         "line_light_color": "#e5e5e5",
         "line_active_color": "#6394ff",
@@ -363,11 +382,29 @@
         "right_heading_NeCewY": {
           "type": "right_heading",
           "settings": {
-            "title": "HAMSAA PHILOSOPHY",
+            "title": "HAMSAA",
             "heading_font": "anton_n4",
             "heading_size": 5,
-            "heading_color": "#1a1a1a",
+            "heading_color": "#8ebc29",
             "heading_weight": "800",
+            "heading_style": "normal",
+            "heading_line_height": 1.1,
+            "heading_letter_spacing": 0,
+            "heading_alignment": "left",
+            "heading_pt": 0,
+            "heading_pb": 0,
+            "heading_pl": 0,
+            "heading_pr": 0
+          }
+        },
+        "right_heading_BQ7hBY": {
+          "type": "right_heading",
+          "settings": {
+            "title": "PHILOSOPHY",
+            "heading_font": "anton_n4",
+            "heading_size": 4.5,
+            "heading_color": "#bfde7d",
+            "heading_weight": "700",
             "heading_style": "normal",
             "heading_line_height": 1.1,
             "heading_letter_spacing": 0,
@@ -383,14 +420,15 @@
         "left_point_bpakCj",
         "left_point_zBMmRP",
         "left_point_EYgbHz",
-        "right_heading_NeCewY"
+        "right_heading_NeCewY",
+        "right_heading_BQ7hBY"
       ],
       "name": "US Brand About Us 2",
       "settings": {
         "split_ratio": 50,
         "runway_height": 300,
         "container_width": 1400,
-        "bg_color": "#1f7000",
+        "bg_color": "#0f440e",
         "text_color": "#1a1a1a",
         "line_light_color": "#e5e5e5",
         "line_active_color": "#1a1a1a",
