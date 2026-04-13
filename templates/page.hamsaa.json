@@ -96,25 +96,6 @@
         "pb_mobile": 30
       }
     },
-    "video_heX83j": {
-      "type": "video",
-      "custom_css": [
-        ".video-section {height: 800px; width: 800px; object-fit: fill;}"
-      ],
-      "name": "t:sections.video.presets.name",
-      "settings": {
-        "heading": "",
-        "heading_size": "h1",
-        "enable_video_looping": true,
-        "video": "shopify://files/videos/From KlickPin CF Bhimseni Crystals [Video] _ Camphor crystal Pure products God illustrations.mp4",
-        "video_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
-        "description": "",
-        "full_width": false,
-        "color_scheme": "",
-        "padding_top": 36,
-        "padding_bottom": 36
-      }
-    },
     "sliding_products_7WRryd": {
       "type": "sliding-products",
       "blocks": {
@@ -455,15 +436,93 @@
         "pt_desktop": 100,
         "pb_desktop": 100
       }
+    },
+    "1776079067789a340e": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_390b68c_TaG9pr": {
+          "type": "ai_gen_block_390b68c",
+          "settings": {
+            "layout": "video_left",
+            "container_width": 1200,
+            "container_padding_horizontal": 20,
+            "section_padding_top": 60,
+            "section_padding_bottom": 60,
+            "section_background_color": "#ffffff",
+            "gap_between_columns": 40,
+            "gap_mobile": 30,
+            "vertical_alignment": "center",
+            "video_column_width": 50,
+            "video_type": "youtube",
+            "video_url": "",
+            "shopify_video": "shopify://files/videos/From KlickPin CF Bhimseni Crystals [Video] _ Camphor crystal Pure products God illustrations.mp4",
+            "video_aspect_ratio": "56.25",
+            "video_autoplay": true,
+            "video_loop": true,
+            "video_mute": true,
+            "video_controls": false,
+            "video_background_color": "#000000",
+            "video_border_radius": 0,
+            "heading": "Video with text",
+            "subheading": "Showcase your story",
+            "content": "<p>Use this section to tell your brand story, share product details, or highlight key features.</p>",
+            "text_alignment": "left",
+            "heading_size": 36,
+            "heading_size_mobile": 28,
+            "heading_color": "#121212",
+            "heading_spacing": 20,
+            "subheading_size": 20,
+            "subheading_size_mobile": 16,
+            "subheading_color": "#666666",
+            "subheading_spacing": 15,
+            "content_size": 16,
+            "content_size_mobile": 14,
+            "content_color": "#121212",
+            "content_spacing": 25,
+            "text_background_color": "#ffffff",
+            "text_border_radius": 0,
+            "text_padding_top": 0,
+            "text_padding_bottom": 0,
+            "text_padding_horizontal": 0,
+            "button_text": "",
+            "button_link": "",
+            "button_font_size": 16,
+            "button_padding_vertical": 12,
+            "button_padding_horizontal": 24,
+            "button_border_radius": 0,
+            "button_border_width": 1,
+            "button_background_color": "#121212",
+            "button_text_color": "#ffffff",
+            "button_border_color": "#121212",
+            "button_hover_background_color": "#000000",
+            "button_hover_text_color": "#ffffff",
+            "button_hover_border_color": "#000000",
+            "button_secondary_text": "",
+            "button_secondary_link": "",
+            "button_secondary_background_color": "#ffffff",
+            "button_secondary_text_color": "#121212",
+            "button_secondary_border_color": "#121212",
+            "button_secondary_hover_background_color": "#f3f3f3",
+            "button_secondary_hover_text_color": "#121212",
+            "button_secondary_hover_border_color": "#121212",
+            "mobile_button_layout": "inline"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_390b68c_TaG9pr"
+      ],
+      "settings": {}
     }
   },
   "order": [
     "main",
     "blocks_WTVjJc",
     "split_image_ckUfCR",
-    "video_heX83j",
     "sliding_products_7WRryd",
     "us_brands_about_us_6kR9cT",
-    "us_brands_about_us_2_Ad9VDy"
+    "us_brands_about_us_2_Ad9VDy",
+    "1776079067789a340e"
   ]
 }
