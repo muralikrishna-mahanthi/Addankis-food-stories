@@ -230,25 +230,73 @@
         "right_point_aaG4wF": {
           "type": "right_point",
           "settings": {
-            "text": "Uniqueness is a black swan among many — standing apart with purpose"
+            "text": "Uniqueness is a black swan among many — standing apart with purpose",
+            "rp_font": "assistant_n4",
+            "rp_size": 2.2,
+            "rp_color": "#1a1a1a",
+            "rp_weight": "700",
+            "rp_style": "normal",
+            "rp_lh": 1.25,
+            "rp_ls": 0,
+            "rp_align": "left",
+            "rp_pt": 0,
+            "rp_pb": 0,
+            "rp_pl": 0,
+            "rp_pr": 0
           }
         },
         "right_point_DFJf8V": {
           "type": "right_point",
           "settings": {
-            "text": "Transformation of products that uplift everyday rituals into moments of calm"
+            "text": "Transformation of products that uplift everyday rituals into moments of calm",
+            "rp_font": "assistant_n4",
+            "rp_size": 2.2,
+            "rp_color": "#1a1a1a",
+            "rp_weight": "700",
+            "rp_style": "normal",
+            "rp_lh": 1.25,
+            "rp_ls": 0,
+            "rp_align": "left",
+            "rp_pt": 0,
+            "rp_pb": 0,
+            "rp_pl": 0,
+            "rp_pr": 0
           }
         },
         "right_point_FrGKtN": {
           "type": "right_point",
           "settings": {
-            "text": "Elevated living where fragrance and purity meet mindful daily routines"
+            "text": "Elevated living where fragrance and purity meet mindful daily routines",
+            "rp_font": "assistant_n4",
+            "rp_size": 2.2,
+            "rp_color": "#1a1a1a",
+            "rp_weight": "700",
+            "rp_style": "normal",
+            "rp_lh": 1.25,
+            "rp_ls": 0,
+            "rp_align": "left",
+            "rp_pt": 0,
+            "rp_pb": 0,
+            "rp_pl": 0,
+            "rp_pr": 0
           }
         },
         "right_point_PV9AUq": {
           "type": "right_point",
           "settings": {
-            "text": "Inner balance creating spaces that breathe harmony and stillness"
+            "text": "Inner balance creating spaces that breathe harmony and stillness",
+            "rp_font": "assistant_n4",
+            "rp_size": 2.2,
+            "rp_color": "#1a1a1a",
+            "rp_weight": "700",
+            "rp_style": "normal",
+            "rp_lh": 1.25,
+            "rp_ls": 0,
+            "rp_align": "left",
+            "rp_pt": 0,
+            "rp_pb": 0,
+            "rp_pl": 0,
+            "rp_pr": 0
           }
         }
       },
@@ -269,7 +317,6 @@
         "line_light_color": "#e5e5e5",
         "line_active_color": "#6394ff",
         "dot_size": 20,
-        "point_size": 1.9,
         "container_width": 1400,
         "pt_desktop": 100,
         "pb_desktop": 100
