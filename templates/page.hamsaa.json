@@ -99,7 +99,7 @@
     "video_heX83j": {
       "type": "video",
       "custom_css": [
-        ".video-section {height: 800px;}"
+        ".video-section {height: 800px; width: 800px;}"
       ],
       "name": "t:sections.video.presets.name",
       "settings": {
