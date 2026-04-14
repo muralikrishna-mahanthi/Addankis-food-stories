@@ -514,41 +514,6 @@
         "ai_gen_block_a32dc21_XPBFNh"
       ],
       "settings": {}
-    },
-    "video_first_pGDgWA": {
-      "type": "video-first",
-      "name": "Video First",
-      "settings": {
-        "video": "shopify://files/videos/download.mp4",
-        "autoplay": true,
-        "loop_video": true,
-        "muted": true,
-        "show_controls": false,
-        "aspect_ratio": "1/1",
-        "video_object_fit": "cover",
-        "video_max_width": 50,
-        "video_border_radius": 0,
-        "shadow_size": 0,
-        "shadow_opacity": 20,
-        "bg_color": "#ffffff",
-        "section_height": 60,
-        "pt": 0,
-        "pb": 0,
-        "ph": 0,
-        "autoplay_mobile": true,
-        "loop_video_mobile": true,
-        "muted_mobile": true,
-        "show_controls_mobile": false,
-        "aspect_ratio_mobile": "9/16",
-        "video_object_fit_mobile": "cover",
-        "video_max_width_mobile": 100,
-        "video_border_radius_mobile": 0,
-        "bg_color_mobile": "#ffffff",
-        "section_height_mobile": 70,
-        "pt_mobile": 0,
-        "pb_mobile": 0,
-        "ph_mobile": 0
-      }
     }
   },
   "order": [
@@ -558,7 +523,6 @@
     "sliding_products_7WRryd",
     "us_brands_about_us_6kR9cT",
     "us_brands_about_us_2_Ad9VDy",
-    "17760793919685163c",
-    "video_first_pGDgWA"
+    "17760793919685163c"
   ]
 }
