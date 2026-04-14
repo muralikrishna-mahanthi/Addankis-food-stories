@@ -1,7 +1,13 @@
 {%- style -%}
+  {%- if section.settings.heading_font != blank -%}
+    {{ section.settings.heading_font | font_face: display: 'swap' }}
+  {%- endif -%}
+  {%- if section.settings.text_font != blank -%}
+    {{ section.settings.text_font | font_face: display: 'swap' }}
+  {%- endif -%}
+
   .vwt-section-{{ section.id }} {
     background-color: {{ section.settings.bg_color }};
-    color: {{ section.settings.text_color }};
     width: 100%;
     position: relative;
     overflow: hidden;
@@ -53,18 +59,25 @@
   }
 
   .vwt-heading-{{ section.id }} {
-    font-size: clamp(2rem, 5vw, 4rem);
+    font-size: clamp({{ section.settings.heading_size | times: 0.6 }}rem, 4vw, {{ section.settings.heading_size }}rem);
     margin-bottom: 1.5rem;
     line-height: 1.1;
-    font-weight: 700;
-    color: {{ section.settings.text_color }};
+    font-weight: {{ section.settings.heading_weight }};
+    color: {{ section.settings.heading_color }};
+    {% if section.settings.heading_font != blank %}
+      font-family: {{ section.settings.heading_font.family }}, {{ section.settings.heading_font.fallback_families }};
+    {% endif %}
   }
 
   .vwt-description-{{ section.id }} {
-    font-size: clamp(1rem, 2vw, 1.25rem);
+    font-size: clamp({{ section.settings.text_size | times: 0.8 }}rem, 2vw, {{ section.settings.text_size }}rem);
     line-height: 1.6;
-    color: {{ section.settings.text_color }};
+    color: {{ section.settings.desc_color }};
+    font-weight: {{ section.settings.text_weight }};
     opacity: 0.9;
+    {% if section.settings.text_font != blank %}
+      font-family: {{ section.settings.text_font.family }}, {{ section.settings.text_font.fallback_families }};
+    {% endif %}
   }
 
   @media screen and (max-width: 749px) {
@@ -214,6 +227,22 @@
     },
     {
       "type": "header",
+      "content": "Heading Styles"
+    },
+    { "type": "font_picker", "id": "heading_font", "label": "Heading Typography", "default": "assistant_n7" },
+    { "type": "range", "id": "heading_size", "label": "Heading Size (rem)", "min": 1, "max": 10, "step": 0.5, "default": 4.0 },
+    { "type": "select", "id": "heading_weight", "label": "Heading Font Weight", "options": [{"value":"300","label":"Light"},{"value":"400","label":"Normal"},{"value":"600","label":"Semi Bold"},{"value":"700","label":"Bold"},{"value":"900","label":"Black"}], "default": "700" },
+    { "type": "color", "id": "heading_color", "label": "Heading Color", "default": "#000000" },
+    {
+      "type": "header",
+      "content": "Description Styles"
+    },
+    { "type": "font_picker", "id": "text_font", "label": "Description Typography", "default": "assistant_n4" },
+    { "type": "range", "id": "text_size", "label": "Description Size (rem)", "min": 0.5, "max": 3, "step": 0.1, "default": 1.2 },
+    { "type": "select", "id": "text_weight", "label": "Description Font Weight", "options": [{"value":"300","label":"Light"},{"value":"400","label":"Normal"},{"value":"600","label":"Semi Bold"},{"value":"700","label":"Bold"}], "default": "400" },
+    { "type": "color", "id": "desc_color", "label": "Description Color", "default": "#333333" },
+    {
+      "type": "header",
       "content": "Styling & Colors"
     },
     {
@@ -221,12 +250,6 @@
       "id": "bg_color",
       "label": "Section Background",
       "default": "#ffffff"
-    },
-    {
-      "type": "color",
-      "id": "text_color",
-      "label": "Text Color",
-      "default": "#000000"
     },
     {
       "type": "range",
