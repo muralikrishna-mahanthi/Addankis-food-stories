@@ -41,9 +41,10 @@
 
   .strategy-scroller__track {
     display: flex;
-    padding-left: 4rem;
+    padding-left: {{ section.settings.track_pl }}rem;
+    padding-right: {{ section.settings.track_pr }}rem;
     will-change: transform;
-    gap: 4rem;
+    gap: {{ section.settings.card_gap }}rem;
   }
 
   .strategy-scroller__card {
@@ -209,7 +210,14 @@
     },
     { "type": "range", "id": "card_pt", "label": "Top Padding", "min": 0, "max": 10, "step": 0.5, "default": 3.0, "unit": "rem" },
     { "type": "range", "id": "card_pb", "label": "Bottom Padding", "min": 0, "max": 15, "step": 0.5, "default": 5.0, "unit": "rem" },
-    { "type": "range", "id": "card_px", "label": "Horizontal Padding", "min": 0, "max": 10, "step": 0.5, "default": 3.0, "unit": "rem" }
+    { "type": "range", "id": "card_px", "label": "Horizontal Padding", "min": 0, "max": 10, "step": 0.5, "default": 3.0, "unit": "rem" },
+    {
+      "type": "header",
+      "content": "Card Outer Spacing (Gap)"
+    },
+    { "type": "range", "id": "card_gap", "label": "Gap between Cards", "min": 0, "max": 20, "step": 0.5, "default": 4.0, "unit": "rem" },
+    { "type": "range", "id": "track_pl", "label": "Initial Left Offset", "min": 0, "max": 20, "step": 0.5, "default": 4.0, "unit": "rem" },
+    { "type": "range", "id": "track_pr", "label": "Final Right Offset", "min": 0, "max": 20, "step": 0.5, "default": 4.0, "unit": "rem" }
   ],
   "blocks": [
     {
