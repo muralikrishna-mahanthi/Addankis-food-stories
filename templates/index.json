@@ -201,7 +201,7 @@
         "item_gap": 5,
         "image_scale": 75,
         "image_radius": 20,
-        "scroll_speed": 3,
+        "scroll_speed": 2,
         "auto_speed": 0,
         "lerp_factor": 5,
         "dir_1": "right",
