@@ -89,10 +89,13 @@
 <div class="fmcg-marquee-wall-{{ section.id }}" id="FmcgMarqueeWall-{{ section.id }}">
   
   {%- for i in (1..4) -%}
-    {%- capture row_dir_key -%}dir_{{ i }}{%- endcapture -%}
+    {%- assign row_dir = section.settings.dir_1 -%}
+    {%- if i == 2 -%}{%- assign row_dir = section.settings.dir_2 -%}{%- endif -%}
+    {%- if i == 3 -%}{%- assign row_dir = section.settings.dir_3 -%}{%- endif -%}
+    {%- if i == 4 -%}{%- assign row_dir = section.settings.dir_4 -%}{%- endif -%}
     
     <div class="fmcg-marquee-wall__row fmcg-marquee-wall__row-{{ i }}" 
-         data-direction="{{ section.settings[row_dir_key] }}"
+         data-direction="{{ row_dir }}"
          id="Row-{{ section.id }}-{{ i }}">
       
       {%- capture row_content -%}
@@ -136,13 +139,12 @@
     if (!section) return;
 
     const rowEls = section.querySelectorAll('.fmcg-marquee-wall__row');
-    const intensity = {{ section.settings.scroll_speed | divided_by: 10.0 | default: 1.0 }};
-    const autoSpeed = {{ section.settings.auto_speed | default: 30 }} / 60; 
-    const lerpFactor = {{ section.settings.lerp_factor | divided_by: 100.0 | default: 0.1 }};
+    // Multiplier for direct scroll position mapping (increased for stronger effect)
+    const intensity = {{ section.settings.scroll_speed | divided_by: 2.0 | default: 1.5 }};
+    const lerpFactor = {{ section.settings.lerp_factor | divided_by: 100.0 | default: 0.08 }};
     
-    let targetScrollY = window.scrollY;
-    let currentScrollValue = window.scrollY;
-    let lastScrollValue = window.scrollY;
+    let targetScroll = window.scrollY || window.pageYOffset;
+    let currentScroll = targetScroll;
     
     const rows = [...rowEls].map(row => {
       const group = row.querySelector('.fmcg-marquee-wall__group');
@@ -150,8 +152,9 @@
         el: row,
         groupEl: group,
         width: group ? group.offsetWidth : 3000,
-        dir: row.dataset.direction === 'left' ? -1 : 1,
-        pos: Math.random() * 1000 
+        dir: row.dataset.direction === 'left' ? 1 : -1,
+        initialPos: Math.random() * 1000,
+        pos: 0
       };
     });
 
@@ -170,11 +173,12 @@
     }
     
     function updatePositions() {
-      currentScrollValue += (targetScrollY - currentScrollValue) * lerpFactor;
-      const scrollDelta = currentScrollValue - lastScrollValue;
+      // Lerp custom smoothing strictly for the scroll tethering
+      currentScroll += (targetScroll - currentScroll) * lerpFactor;
       
       rows.forEach((r) => {
-        r.pos += (autoSpeed * r.dir) + (scrollDelta * intensity * r.dir);
+        // Position is 1:1 mapped to current scroll depth, entirely stopping when scrolling stops
+        r.pos = r.initialPos + (currentScroll * intensity * r.dir);
         
         const wrapWidth = r.width;
         if (wrapWidth > 0) {
@@ -188,7 +192,7 @@
     }
 
     const onScroll = () => {
-      targetScrollY = window.scrollY;
+      targetScroll = window.scrollY || window.pageYOffset;
     };
 
     window.addEventListener('scroll', onScroll, { passive: true });
@@ -196,9 +200,8 @@
 
     document.addEventListener('shopify:section:load', (e) => {
       if(e.target.contains(section)){
-        targetScrollY = window.scrollY;
-        currentScrollValue = window.scrollY;
-        lastScrollValue = window.scrollY;
+        targetScroll = window.scrollY || window.pageYOffset;
+        currentScroll = targetScroll;
       }
     });
 
