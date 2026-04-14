@@ -10,6 +10,9 @@
     --font-weight: {{ section.settings.fw }};
     --letter-spacing: {{ section.settings.ls }}px;
     --row-gap: {{ section.settings.row_gap | default: 20 }}px;
+    --item-gap: {{ section.settings.item_gap | default: 0.5 }}rem;
+    --image-scale: {{ section.settings.image_scale | default: 0.85 }}em;
+    --image-radius: {{ section.settings.image_radius | default: 0.15 }}em;
     --section-min-height: {{ section.settings.section_height | default: '100vh' }};
 
     background-color: var(--bg-color);
@@ -32,6 +35,7 @@
     white-space: nowrap;
     display: flex;
     align-items: center;
+    gap: var(--item-gap);
     line-height: 1;
     margin-bottom: var(--row-gap);
     will-change: transform;
@@ -44,10 +48,18 @@
 
   .fmcg-marquee-wall__row:last-child { margin-bottom: 0; }
 
+  .fmcg-marquee-wall__row-items,
+  .fmcg-marquee-wall__group {
+    display: flex;
+    align-items: center;
+    gap: var(--item-gap);
+  }
+
   .fmcg-marquee-wall__item {
     display: flex;
     align-items: center;
-    padding: 0 1.5rem;
+    gap: var(--item-gap);
+    padding: 0;
     font-size: var(--fs-mobile);
   }
 
@@ -65,9 +77,9 @@
 
   .fmcg-marquee-wall__logo,
   .fmcg-marquee-wall__svg {
-    height: 1.1em;
+    height: var(--image-scale);
     width: auto;
-    margin: 0 1.2rem;
+    margin: 0;
     object-fit: contain;
     display: inline-flex;
     align-items: center;
@@ -75,18 +87,18 @@
   }
 
   .fmcg-marquee-wall__img {
-    height: 0.9em; /* Perfectly scales relative to the parent font-size */
+    height: var(--image-scale);
     width: auto;
-    margin: 0 1.2rem;
+    margin: 0;
     object-fit: cover;
-    border-radius: 0.15em;
+    border-radius: var(--image-radius);
     display: inline-flex;
     align-items: center;
     vertical-align: middle;
   }
 
   .fmcg-marquee-wall__svg svg {
-    height: 1.1em;
+    height: var(--image-scale);
     width: auto;
     display: block;
   }
@@ -174,11 +186,25 @@
       const group = row.querySelector('.fmcg-marquee-wall__group');
       return {
         el: row,
+        groupEl: group,
         width: group ? group.offsetWidth : 3000,
         dir: row.dataset.direction === 'left' ? -1 : 1,
         pos: Math.random() * 1000 // Random start for organic look
       };
     });
+
+    // ResizeObserver guarantees flawless seamless loops as async images load
+    if (typeof ResizeObserver !== 'undefined') {
+      const ro = new ResizeObserver((entries) => {
+        entries.forEach(entry => {
+          const row = rows.find(r => r.groupEl === entry.target);
+          if (row) row.width = entry.target.offsetWidth;
+        });
+      });
+      rows.forEach(r => {
+        if (r.groupEl) ro.observe(r.groupEl);
+      });
+    }
     
     function updatePositions() {
       // Smooth interpolation (LERP) for scroll value
@@ -191,9 +217,10 @@
         
         // Dynamic seamless loop
         const wrapWidth = r.width;
-        r.pos = ((r.pos % wrapWidth) + wrapWidth) % wrapWidth;
-        
-        r.el.style.transform = `translate3d(${-r.pos}px, 0, 0)`;
+        if (wrapWidth > 0) {
+          r.pos = ((r.pos % wrapWidth) + wrapWidth) % wrapWidth;
+          r.el.style.transform = `translate3d(${-r.pos}px, 0, 0)`;
+        }
       });
       
       lastScrollValue = currentScrollValue;
@@ -208,14 +235,6 @@
     
     // Initial and periodic sync
     requestAnimationFrame(updatePositions);
-
-    // Refresh widths on resize
-    window.addEventListener('resize', () => {
-      rows.forEach(r => {
-        const group = r.el.querySelector('.fmcg-marquee-wall__group');
-        if (group) r.width = group.offsetWidth;
-      });
-    });
 
     document.addEventListener('shopify:section:load', () => {
       targetScrollY = window.scrollY;
@@ -243,6 +262,13 @@
     { "type": "select", "id": "text_transform", "label": "Text Transform", "options": [{"value":"none","label":"None"},{"value":"uppercase","label":"UPPERCASE"}], "default": "uppercase" },
     { "type": "range", "id": "row_gap", "label": "Vertical Row Gap", "min": 0, "max": 100, "step": 4, "default": 20 },
     { "type": "select", "id": "section_height", "label": "Min Section Height", "options": [{"value":"50vh","label":"Small"},{"value":"100vh","label":"Full Screen"}], "default": "100vh" },
+    {
+      "type": "header",
+      "content": "Layout & Spacing"
+    },
+    { "type": "range", "id": "item_gap", "label": "Horizontal Gap", "min": 0, "max": 10, "step": 0.5, "default": 0.5, "unit": "rem" },
+    { "type": "range", "id": "image_scale", "label": "Image Height Ratio", "min": 0.5, "max": 1.5, "step": 0.05, "default": 0.85, "info": "1.0 = full line height. 0.85 = typical cap-height." },
+    { "type": "range", "id": "image_radius", "label": "Image Border Radius", "min": 0, "max": 1.0, "step": 0.05, "default": 0.15, "unit": "em" },
     {
       "type": "header",
       "content": "Global Styles"
@@ -283,10 +309,14 @@
     {
       "name": "FMCG Marquee Wall",
       "blocks": [
-        { "type": "word", "settings": { "text": "ORGANIC", "row_number": "1" } },
-        { "type": "word", "settings": { "text": "HEALTHY", "row_number": "1" } },
-        { "type": "word", "settings": { "text": "CRUNCHY", "row_number": "2" } },
-        { "type": "word", "settings": { "text": "SNACKY", "row_number": "2" } }
+        { "type": "word", "settings": { "text": "AHHH", "color": "#0077c8", "row_number": "1" } },
+        { "type": "word", "settings": { "text": "SNAP", "color": "#f2a900", "row_number": "1" } },
+        { "type": "word", "settings": { "text": "YUM", "color": "#f2a900", "row_number": "2" } },
+        { "type": "word", "settings": { "text": "SUSTAINABLE", "color": "#4b8b20", "row_number": "2" } },
+        { "type": "word", "settings": { "text": "INNOVATIVE", "color": "#4b8b20", "row_number": "3" } },
+        { "type": "word", "settings": { "text": "CRUNCHY", "color": "#f2a900", "row_number": "3" } },
+        { "type": "word", "settings": { "text": "SIP", "color": "#0077c8", "row_number": "4" } },
+        { "type": "word", "settings": { "text": "SAVOR", "color": "#f2a900", "row_number": "4" } }
       ]
     }
   ]
