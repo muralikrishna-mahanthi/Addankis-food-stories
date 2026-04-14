@@ -447,7 +447,7 @@
         "muted": true,
         "controls": false,
         "video_width_desktop": 50,
-        "video_width_mobile": 90,
+        "video_width_mobile": 85,
         "border_radius": 16,
         "heading": "Introducing the Future",
         "description": "<p>Combine an impactful video with compelling text to tell your brand story below the viewport.</p>",
