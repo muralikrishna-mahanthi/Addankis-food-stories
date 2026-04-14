@@ -136,13 +136,12 @@
     if (!section) return;
 
     const rowEls = section.querySelectorAll('.fmcg-marquee-wall__row');
-    const intensity = {{ section.settings.scroll_speed | default: 1.5 }};
+    const intensity = {{ section.settings.scroll_speed | divided_by: 10.0 | default: 1.5 }};
     const autoSpeed = {{ section.settings.auto_speed | default: 40 }} / 60; 
-    const lerpFactor = {{ section.settings.lerp_factor | default: 0.06 }};
+    const lerpFactor = {{ section.settings.lerp_factor | divided_by: 100.0 | default: 0.06 }};
     
-    let targetScrollY = window.scrollY;
-    let currentScrollValue = window.scrollY;
-    let lastScrollValue = window.scrollY;
+    let abstractVelocity = 0; // Completely untethered from window.scrollY
+    let lastTouchY = 0;
     
     const rows = [...rowEls].map(row => {
       const group = row.querySelector('.fmcg-marquee-wall__group');
@@ -170,11 +169,12 @@
     }
     
     function updatePositions() {
-      currentScrollValue += (targetScrollY - currentScrollValue) * lerpFactor;
-      const scrollDelta = currentScrollValue - lastScrollValue;
+      // Degrade the wheel velocity gracefully over time like ice (LERP friction)
+      abstractVelocity *= (1 - lerpFactor);
       
       rows.forEach((r) => {
-        r.pos += (autoSpeed * r.dir) + (scrollDelta * intensity * r.dir);
+        // Linear movement + Direct momentum injection
+        r.pos += (autoSpeed * r.dir) + (abstractVelocity * intensity * r.dir);
         
         const wrapWidth = r.width;
         if (wrapWidth > 0) {
@@ -183,24 +183,26 @@
         }
       });
       
-      lastScrollValue = currentScrollValue;
       requestAnimationFrame(updatePositions);
     }
 
-    const onScroll = () => {
-      targetScrollY = window.scrollY;
-    };
+    // Direct hardware interception instead of relying on broken theme scroll containers
+    window.addEventListener('wheel', (e) => {
+      abstractVelocity += (e.deltaY * 0.1); 
+    }, { passive: true });
 
-    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('touchstart', (e) => {
+      lastTouchY = e.touches[0].clientY;
+    }, { passive: true });
+
+    window.addEventListener('touchmove', (e) => {
+      const currentY = e.touches[0].clientY;
+      const deltaY = lastTouchY - currentY;
+      abstractVelocity += (deltaY * 0.2); 
+      lastTouchY = currentY;
+    }, { passive: true });
+
     requestAnimationFrame(updatePositions);
-
-    document.addEventListener('shopify:section:load', (e) => {
-      if(e.target.contains(section)){
-        targetScrollY = window.scrollY;
-        currentScrollValue = window.scrollY;
-        lastScrollValue = window.scrollY;
-      }
-    });
 
   })();
 </script>
