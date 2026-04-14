@@ -192,7 +192,7 @@
       "settings": {
         "font_family": "archivo_black_n4",
         "fs_desktop": 18,
-        "fs_mobile": 10,
+        "fs_mobile": 100,
         "fw": "900",
         "ls": -4,
         "text_transform": "uppercase",
