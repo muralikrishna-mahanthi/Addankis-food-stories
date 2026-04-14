@@ -6,14 +6,14 @@
   .fmcg-marquee-wall-{{ section.id }} {
     --bg-color: {{ section.settings.bg_color }};
     --fs-desktop: {{ section.settings.fs_desktop }}rem;
-    --fs-mobile: {{ section.settings.fs_mobile }}rem;
+    --fs-mobile: {{ section.settings.fs_mobile | divided_by: 10.0 }}rem;
     --font-weight: {{ section.settings.fw }};
     --letter-spacing: {{ section.settings.ls }}px;
-    --line-height: {{ section.settings.line_height }};
+    --line-height: {{ section.settings.line_height | divided_by: 100.0 }};
     --row-gap: {{ section.settings.row_gap | default: 0 }}px;
-    --item-gap: {{ section.settings.item_gap | default: 0.5 }}rem;
-    --image-scale: {{ section.settings.image_scale | default: 0.85 }}em;
-    --image-radius: {{ section.settings.image_radius | default: 0.2 }}em;
+    --item-gap: {{ section.settings.item_gap | divided_by: 10.0 }}rem;
+    --image-scale: {{ section.settings.image_scale | divided_by: 100.0 }}em;
+    --image-radius: {{ section.settings.image_radius | divided_by: 100.0 }}em;
     --section-min-height: {{ section.settings.section_height | default: '100vh' }};
 
     background-color: var(--bg-color);
@@ -136,12 +136,13 @@
     if (!section) return;
 
     const rowEls = section.querySelectorAll('.fmcg-marquee-wall__row');
-    const intensity = {{ section.settings.scroll_speed | divided_by: 10.0 | default: 1.5 }};
-    const autoSpeed = {{ section.settings.auto_speed | default: 40 }} / 60; 
-    const lerpFactor = {{ section.settings.lerp_factor | divided_by: 100.0 | default: 0.06 }};
+    const intensity = {{ section.settings.scroll_speed | divided_by: 10.0 | default: 1.0 }};
+    const autoSpeed = {{ section.settings.auto_speed | default: 30 }} / 60; 
+    const lerpFactor = {{ section.settings.lerp_factor | divided_by: 100.0 | default: 0.1 }};
     
-    let abstractVelocity = 0; // Completely untethered from window.scrollY
-    let lastTouchY = 0;
+    let targetScrollY = window.scrollY;
+    let currentScrollValue = window.scrollY;
+    let lastScrollValue = window.scrollY;
     
     const rows = [...rowEls].map(row => {
       const group = row.querySelector('.fmcg-marquee-wall__group');
@@ -169,12 +170,11 @@
     }
     
     function updatePositions() {
-      // Degrade the wheel velocity gracefully over time like ice (LERP friction)
-      abstractVelocity *= (1 - lerpFactor);
+      currentScrollValue += (targetScrollY - currentScrollValue) * lerpFactor;
+      const scrollDelta = currentScrollValue - lastScrollValue;
       
       rows.forEach((r) => {
-        // Linear movement + Direct momentum injection
-        r.pos += (autoSpeed * r.dir) + (abstractVelocity * intensity * r.dir);
+        r.pos += (autoSpeed * r.dir) + (scrollDelta * intensity * r.dir);
         
         const wrapWidth = r.width;
         if (wrapWidth > 0) {
@@ -183,26 +183,24 @@
         }
       });
       
+      lastScrollValue = currentScrollValue;
       requestAnimationFrame(updatePositions);
     }
 
-    // Direct hardware interception instead of relying on broken theme scroll containers
-    window.addEventListener('wheel', (e) => {
-      abstractVelocity += (e.deltaY * 0.1); 
-    }, { passive: true });
+    const onScroll = () => {
+      targetScrollY = window.scrollY;
+    };
 
-    window.addEventListener('touchstart', (e) => {
-      lastTouchY = e.touches[0].clientY;
-    }, { passive: true });
-
-    window.addEventListener('touchmove', (e) => {
-      const currentY = e.touches[0].clientY;
-      const deltaY = lastTouchY - currentY;
-      abstractVelocity += (deltaY * 0.2); 
-      lastTouchY = currentY;
-    }, { passive: true });
-
+    window.addEventListener('scroll', onScroll, { passive: true });
     requestAnimationFrame(updatePositions);
+
+    document.addEventListener('shopify:section:load', (e) => {
+      if(e.target.contains(section)){
+        targetScrollY = window.scrollY;
+        currentScrollValue = window.scrollY;
+        lastScrollValue = window.scrollY;
+      }
+    });
 
   })();
 </script>
@@ -219,26 +217,26 @@
     },
     { "type": "font_picker", "id": "font_family", "label": "Font Family", "default": "assistant_n4" },
     { "type": "range", "id": "fs_desktop", "label": "Desktop Size (rem)", "min": 2, "max": 50, "step": 1, "default": 8 },
-    { "type": "range", "id": "fs_mobile", "label": "Mobile Size (rem)", "min": 1, "max": 30, "step": 0.5, "default": 3.5 },
+    { "type": "range", "id": "fs_mobile", "label": "Mobile Size (rem)", "min": 10, "max": 300, "step": 5, "default": 35, "info": "10 = 1.0rem, 35 = 3.5rem" },
     { "type": "select", "id": "fw", "label": "Font Weight", "options": [{"value":"100","label":"100 - Thin"},{"value":"200","label":"200 - Extra Light"},{"value":"300","label":"300 - Light"},{"value":"400","label":"400 - Normal"},{"value":"500","label":"500 - Medium"},{"value":"600","label":"600 - Semi Bold"},{"value":"700","label":"700 - Bold"},{"value":"800","label":"800 - Extra Bold"},{"value":"900","label":"900 - Black"}], "default": "900" },
     { "type": "range", "id": "ls", "label": "Letter Spacing (px)", "min": -10, "max": 30, "step": 1, "default": -2 },
     { "type": "select", "id": "text_transform", "label": "Text Transform", "options": [{"value":"none","label":"None"},{"value":"uppercase","label":"UPPERCASE"}], "default": "uppercase" },
-    { "type": "range", "id": "line_height", "label": "Typography Line-Height", "min": 0.5, "max": 2.0, "step": 0.1, "default": 0.9, "info": "Tighten to pack lines closer like PepsiCo." },
+    { "type": "range", "id": "line_height", "label": "Typography Line-Height", "min": 50, "max": 200, "step": 10, "default": 90, "info": "50 = 0.5, 90 = 0.9. Tighten to pack lines closer." },
     {
       "type": "header",
       "content": "Layout & Dynamic Spacing"
     },
     { "type": "range", "id": "row_gap", "label": "Vertical Row Gap", "min": 0, "max": 100, "step": 2, "default": 0, "info": "Space beneath each horizontal row." },
-    { "type": "range", "id": "item_gap", "label": "Horizontal Gap", "min": 0, "max": 10, "step": 0.5, "default": 0.5, "unit": "rem", "info": "Packing distance between text and images." },
-    { "type": "range", "id": "image_scale", "label": "Image Height Ratio", "min": 0.5, "max": 1.5, "step": 0.05, "default": 0.75, "info": "Drag down slightly to perfectly match Uppercase Cap-height." },
-    { "type": "range", "id": "image_radius", "label": "Image Border Radius", "min": 0, "max": 1.0, "step": 0.05, "default": 0.2, "unit": "em" },
+    { "type": "range", "id": "item_gap", "label": "Horizontal Gap", "min": 0, "max": 100, "step": 5, "default": 5, "info": "0 = 0rem, 5 = 0.5rem. Packing distance." },
+    { "type": "range", "id": "image_scale", "label": "Image Height Ratio", "min": 50, "max": 150, "step": 5, "default": 75, "info": "75 = 0.75. Matches Uppercase Cap-height natively." },
+    { "type": "range", "id": "image_radius", "label": "Image Border Radius", "min": 0, "max": 100, "step": 5, "default": 20, "info": "20 = 0.2em" },
     {
       "type": "header",
       "content": "Animation Physics"
     },
-    { "type": "range", "id": "scroll_speed", "label": "Scroll Intensity", "min": 0, "max": 5.0, "step": 0.1, "default": 1.5, "info": "Violent acceleration/reversal mapped to the mouse-wheel." },
+    { "type": "range", "id": "scroll_speed", "label": "Scroll Intensity", "min": 0, "max": 50, "step": 1, "default": 15, "info": "15 = 1.5x. Violent acceleration/reversal mapped." },
     { "type": "range", "id": "auto_speed", "label": "Base Speed", "min": 0, "max": 300, "step": 5, "default": 40, "info": "Linear glide speed when not scrolling." },
-    { "type": "range", "id": "lerp_factor", "label": "LERP Smoothness", "min": 0.01, "max": 0.5, "step": 0.01, "default": 0.06, "info": "Momentum fade deceleration rate." },
+    { "type": "range", "id": "lerp_factor", "label": "LERP Smoothness", "min": 1, "max": 50, "step": 1, "default": 6, "info": "6 = 0.06. Momentum fade deceleration rate." },
     {
       "type": "header",
       "content": "Row Alignment Vectors"
