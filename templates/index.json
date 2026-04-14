@@ -143,6 +143,50 @@
     },
     "fmcg_marquee_wall_jG9bmF": {
       "type": "fmcg-marquee-wall",
+      "blocks": {
+        "word_DKVHWc": {
+          "type": "word",
+          "settings": {
+            "text": "Natural Nourish Health Harvest",
+            "color": "#efbf04",
+            "inline_image": "shopify://shop_images/fruits_sliced_by_a_person_on_a_table_wearing_head_mask_hand_gloves_and_mask_on_the_face.jpg",
+            "row_number": "1"
+          }
+        },
+        "word_Jfr8LA": {
+          "type": "word",
+          "settings": {
+            "text": "Harvest Roots Natural Sustain",
+            "color": "#4fa230",
+            "inline_image": "shopify://shop_images/gemini-3.1-flash-image-preview_nano-banana-2__a_remove_cap_on_men.png",
+            "row_number": "2"
+          }
+        },
+        "word_3qrbLq": {
+          "type": "word",
+          "settings": {
+            "text": "Natural Organic Pure Fresh",
+            "color": "#efbf04",
+            "inline_image": "shopify://shop_images/fruits_sliced_by_a_person_on_a_table_wearing_head_mask_hand_gloves_and_mask_on_the_face.jpg",
+            "row_number": "3"
+          }
+        },
+        "word_HYmtB4": {
+          "type": "word",
+          "settings": {
+            "text": "Iconic Harvest Fresh Feel",
+            "color": "#4fa230",
+            "inline_image": "shopify://shop_images/ChatGPTImageDec23_2025_04_12_30PM.jpg",
+            "row_number": "4"
+          }
+        }
+      },
+      "block_order": [
+        "word_DKVHWc",
+        "word_Jfr8LA",
+        "word_3qrbLq",
+        "word_HYmtB4"
+      ],
       "custom_css": [],
       "name": "FMCG Marquee Wall",
       "settings": {
