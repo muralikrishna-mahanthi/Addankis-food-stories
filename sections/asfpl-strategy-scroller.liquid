@@ -83,7 +83,7 @@
     bottom: 0;
     left: 0;
     width: 100%;
-    padding: 3rem 3rem 5rem; /* Increased padding below the text inside the card */
+    padding: {{ section.settings.card_pt }}rem {{ section.settings.card_px }}rem {{ section.settings.card_pb }}rem;
     z-index: 5;
     background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
     color: #ffffff;
@@ -202,7 +202,14 @@
     { "type": "color", "id": "bg_color", "label": "Background", "default": "#000000" },
     { "type": "color", "id": "text_color", "label": "Text Color", "default": "#ffffff" },
     { "type": "color", "id": "accent_color", "label": "Accent Color", "default": "#3b82f6" },
-    { "type": "text", "id": "heading", "label": "Section Heading", "default": "OUR STRATEGY" }
+    { "type": "text", "id": "heading", "label": "Section Heading", "default": "OUR STRATEGY" },
+    {
+      "type": "header",
+      "content": "Card Inner Padding"
+    },
+    { "type": "range", "id": "card_pt", "label": "Top Padding", "min": 0, "max": 10, "step": 0.5, "default": 3.0, "unit": "rem" },
+    { "type": "range", "id": "card_pb", "label": "Bottom Padding", "min": 0, "max": 15, "step": 0.5, "default": 5.0, "unit": "rem" },
+    { "type": "range", "id": "card_px", "label": "Horizontal Padding", "min": 0, "max": 10, "step": 0.5, "default": 3.0, "unit": "rem" }
   ],
   "blocks": [
     {
