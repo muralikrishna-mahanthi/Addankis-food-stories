@@ -1,0 +1,282 @@
+{%- style -%}
+  {%- if section.settings.font_family != blank -%}
+    {{ section.settings.font_family | font_face: display: 'swap' }}
+  {%- endif -%}
+
+  .fmcg-marquee-wall-{{ section.id }} {
+    --bg-color: {{ section.settings.bg_color }};
+    --fs-desktop: {{ section.settings.fs_desktop }}rem;
+    --fs-mobile: {{ section.settings.fs_mobile }}rem;
+    --font-weight: {{ section.settings.fw }};
+    --letter-spacing: {{ section.settings.ls }}px;
+    --row-gap: {{ section.settings.row_gap | default: 0 }}px;
+    --item-gap: {{ section.settings.item_gap | default: 0.5 }}rem;
+    --image-scale: {{ section.settings.image_scale | default: 0.85 }}em;
+    --image-radius: {{ section.settings.image_radius | default: 0.2 }}em;
+    --section-min-height: {{ section.settings.section_height | default: '100vh' }};
+
+    background-color: var(--bg-color);
+    width: 100%;
+    min-height: var(--section-min-height);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    padding: 6rem 0;
+    position: relative;
+    user-select: none;
+    {% if section.settings.font_family != blank %}
+      font-family: {{ section.settings.font_family.family }}, {{ section.settings.font_family.fallback_families }};
+    {% endif %}
+  }
+
+  .fmcg-marquee-wall__row {
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: var(--item-gap);
+    margin-bottom: var(--row-gap);
+    will-change: transform;
+    text-transform: {{ section.settings.text_transform }};
+    pointer-events: none;
+    width: fit-content;
+    backface-visibility: hidden;
+    transform-style: preserve-3d;
+  }
+
+  .fmcg-marquee-wall__row:last-child { margin-bottom: 0; }
+
+  .fmcg-marquee-wall__row-items,
+  .fmcg-marquee-wall__group {
+    display: flex;
+    align-items: center;
+    gap: var(--item-gap);
+  }
+
+  .fmcg-marquee-wall__item {
+    display: flex;
+    align-items: center;
+    gap: var(--item-gap);
+    font-size: var(--fs-mobile);
+  }
+
+  @media screen and (min-width: 750px) {
+    .fmcg-marquee-wall__item {
+      font-size: var(--fs-desktop);
+    }
+  }
+
+  .fmcg-marquee-wall__text {
+    font-weight: var(--font-weight);
+    letter-spacing: var(--letter-spacing);
+    line-height: {{ section.settings.line_height }};
+  }
+
+  .fmcg-marquee-wall__img {
+    height: var(--image-scale) !important;
+    width: auto !important;
+    max-width: none !important;
+    margin: 0;
+    object-fit: cover;
+    border-radius: var(--image-radius);
+    display: block !important;
+  }
+
+{%- endstyle -%}
+
+<div class="fmcg-marquee-wall-{{ section.id }}" id="FmcgMarqueeWall-{{ section.id }}">
+  
+  {%- for i in (1..4) -%}
+    {%- capture row_dir_key -%}dir_{{ i }}{%- endcapture -%}
+    
+    <div class="fmcg-marquee-wall__row fmcg-marquee-wall__row-{{ i }}" 
+         data-direction="{{ section.settings[row_dir_key] }}"
+         id="Row-{{ section.id }}-{{ i }}">
+      
+      {%- capture row_content -%}
+        {%- for block in section.blocks -%}
+          {%- assign row_num = block.settings.row_number | plus: 0 -%}
+          {%- if row_num == i -%}
+            <div class="fmcg-marquee-wall__item" {{ block.shopify_attributes }}>
+              
+              <span class="fmcg-marquee-wall__text" style="color: {{ block.settings.color }};">
+                {{ block.settings.text | strip }}
+              </span>
+              
+              {%- if block.settings.inline_image != blank -%}
+                {{ block.settings.inline_image | image_url: height: 800 | image_tag: class: 'fmcg-marquee-wall__img', loading: 'lazy' }}
+              {%- endif -%}
+              
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+      {%- endcapture -%}
+
+      {%- if row_content != blank -%}
+        <div class="fmcg-marquee-wall__row-items">
+          {%- for j in (1..4) -%}
+            <div class="fmcg-marquee-wall__group">{{ row_content }}</div>
+          {%- endfor -%}
+        </div>
+      {%- else -%}
+        <div class="fmcg-marquee-wall__item">
+          <span class="fmcg-marquee-wall__text" style="opacity:0.3;">Add 'Word' blocks to Row {{ i }}</span>
+        </div>
+      {%- endif -%}
+    </div>
+  {%- endfor -%}
+
+</div>
+
+<script>
+  (function() {
+    const section = document.getElementById('FmcgMarqueeWall-{{ section.id }}');
+    if (!section) return;
+
+    const rowEls = section.querySelectorAll('.fmcg-marquee-wall__row');
+    const intensity = {{ section.settings.scroll_speed | default: 1.0 }};
+    const autoSpeed = {{ section.settings.auto_speed | default: 30 }} / 60; 
+    const lerpFactor = {{ section.settings.lerp_factor | default: 0.1 }};
+    
+    let targetScrollY = window.scrollY;
+    let currentScrollValue = window.scrollY;
+    let lastScrollValue = window.scrollY;
+    
+    const rows = [...rowEls].map(row => {
+      const group = row.querySelector('.fmcg-marquee-wall__group');
+      return {
+        el: row,
+        groupEl: group,
+        width: group ? group.offsetWidth : 3000,
+        dir: row.dataset.direction === 'left' ? -1 : 1,
+        pos: Math.random() * 1000 
+      };
+    });
+
+    if (typeof ResizeObserver !== 'undefined') {
+      const ro = new ResizeObserver((entries) => {
+        entries.forEach(entry => {
+          const row = rows.find(r => r.groupEl === entry.target);
+          if (row && entry.target.offsetWidth > 0) {
+            row.width = entry.target.offsetWidth;
+          }
+        });
+      });
+      rows.forEach(r => {
+        if (r.groupEl) ro.observe(r.groupEl);
+      });
+    }
+    
+    function updatePositions() {
+      currentScrollValue += (targetScrollY - currentScrollValue) * lerpFactor;
+      const scrollDelta = currentScrollValue - lastScrollValue;
+      
+      rows.forEach((r) => {
+        r.pos += (autoSpeed * r.dir) + (scrollDelta * intensity * r.dir);
+        
+        const wrapWidth = r.width;
+        if (wrapWidth > 0) {
+          r.pos = ((r.pos % wrapWidth) + wrapWidth) % wrapWidth;
+          r.el.style.transform = `translate3d(${-r.pos}px, 0, 0)`;
+        }
+      });
+      
+      lastScrollValue = currentScrollValue;
+      requestAnimationFrame(updatePositions);
+    }
+
+    const onScroll = () => {
+      targetScrollY = window.scrollY;
+    };
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    requestAnimationFrame(updatePositions);
+
+    document.addEventListener('shopify:section:load', (e) => {
+      if(e.target.contains(section)){
+        targetScrollY = window.scrollY;
+        currentScrollValue = window.scrollY;
+        lastScrollValue = window.scrollY;
+      }
+    });
+
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "FMCG Marquee Wall",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Extreme Typography"
+    },
+    { "type": "font_picker", "id": "font_family", "label": "Font Family" },
+    { "type": "range", "id": "fs_desktop", "label": "Desktop Size (rem)", "min": 2, "max": 50, "step": 1, "default": 8 },
+    { "type": "range", "id": "fs_mobile", "label": "Mobile Size (rem)", "min": 1, "max": 30, "step": 0.5, "default": 3.5 },
+    { "type": "select", "id": "fw", "label": "Font Weight", "options": [{"value":"100","label":"100 - Thin"},{"value":"200","label":"200 - Extra Light"},{"value":"300","label":"300 - Light"},{"value":"400","label":"400 - Normal"},{"value":"500","label":"500 - Medium"},{"value":"600","label":"600 - Semi Bold"},{"value":"700","label":"700 - Bold"},{"value":"800","label":"800 - Extra Bold"},{"value":"900","label":"900 - Black"}], "default": "900" },
+    { "type": "range", "id": "ls", "label": "Letter Spacing (px)", "min": -10, "max": 30, "step": 1, "default": -2 },
+    { "type": "select", "id": "text_transform", "label": "Text Transform", "options": [{"value":"none","label":"None"},{"value":"uppercase","label":"UPPERCASE"}], "default": "uppercase" },
+    { "type": "range", "id": "line_height", "label": "Typography Line-Height", "min": 0.5, "max": 2.0, "step": 0.1, "default": 0.9, "info": "Tighten to pack lines closer like PepsiCo." },
+    {
+      "type": "header",
+      "content": "Layout & Dynamic Spacing"
+    },
+    { "type": "range", "id": "row_gap", "label": "Vertical Row Gap", "min": -50, "max": 100, "step": 2, "default": 0, "info": "Space beneath each horizontal row." },
+    { "type": "range", "id": "item_gap", "label": "Horizontal Gap", "min": 0, "max": 10, "step": 0.5, "default": 0.5, "unit": "rem", "info": "Packing distance between text and images." },
+    { "type": "range", "id": "image_scale", "label": "Image Height Ratio", "min": 0.5, "max": 1.5, "step": 0.05, "default": 0.75, "info": "Drag down slightly beneath 1.0 to perfectly match Uppercase Cap-height natively." },
+    { "type": "range", "id": "image_radius", "label": "Image Border Radius", "min": 0, "max": 1.0, "step": 0.05, "default": 0.2, "unit": "em" },
+    {
+      "type": "header",
+      "content": "Animation Physics"
+    },
+    { "type": "range", "id": "scroll_speed", "label": "Scroll Intensity", "min": 0, "max": 5.0, "step": 0.1, "default": 1.5, "info": "Violent acceleration/reversal mapped to the mouse-wheel." },
+    { "type": "range", "id": "auto_speed", "label": "Base Speed", "min": 0, "max": 300, "step": 5, "default": 40, "info": "Linear glide speed when not scrolling." },
+    { "type": "range", "id": "lerp_factor", "label": "LERP Smoothness", "min": 0.01, "max": 0.5, "step": 0.01, "default": 0.06, "info": "Momentum fade deceleration rate." },
+    {
+      "type": "header",
+      "content": "Row Alignment Vectors"
+    },
+    { "type": "select", "id": "dir_1", "label": "Row 1", "options": [{"value":"left","label":"Left"},{"value":"right","label":"Right"}], "default": "left" },
+    { "type": "select", "id": "dir_2", "label": "Row 2", "options": [{"value":"left","label":"Left"},{"value":"right","label":"Right"}], "default": "right" },
+    { "type": "select", "id": "dir_3", "label": "Row 3", "options": [{"value":"left","label":"Left"},{"value":"right","label":"Right"}], "default": "left" },
+    { "type": "select", "id": "dir_4", "label": "Row 4", "options": [{"value":"left","label":"Left"},{"value":"right","label":"Right"}], "default": "right" },
+    {
+      "type": "header",
+      "content": "Background"
+    },
+    { "type": "color", "id": "bg_color", "label": "Section Background", "default": "#ffffff" },
+    { "type": "select", "id": "section_height", "label": "Min Section Height", "options": [{"value":"50vh","label":"Small"},{"value":"100vh","label":"Full Screen"}], "default": "100vh" }
+  ],
+  "blocks": [
+    {
+      "type": "word",
+      "name": "Custom Word",
+      "settings": [
+        { "type": "text", "id": "text", "label": "Word", "default": "AHHH" },
+        { "type": "color", "id": "color", "label": "Word Color", "default": "#0077c8" },
+        { "type": "image_picker", "id": "inline_image", "label": "Inline Photo", "info": "Displays as a matching-size photo identically adjacent to this word." },
+        { "type": "select", "id": "row_number", "label": "Row Allocation", "options": [{"value":"1","label":"Row 1"},{"value":"2","label":"Row 2"},{"value":"3","label":"Row 3"},{"value":"4","label":"Row 4"}], "default": "1" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "FMCG Marquee Wall",
+      "blocks": [
+        { "type": "word", "settings": { "text": "AHHH", "color": "#0077c8", "row_number": "1" } },
+        { "type": "word", "settings": { "text": "SNAP", "color": "#f2a900", "row_number": "1" } },
+        { "type": "word", "settings": { "text": "YUM", "color": "#f2a900", "row_number": "2" } },
+        { "type": "word", "settings": { "text": "SUSTAIN", "color": "#4b8b20", "row_number": "2" } },
+        { "type": "word", "settings": { "text": "SAVOR", "color": "#f2a900", "row_number": "3" } },
+        { "type": "word", "settings": { "text": "INNOVATE", "color": "#4b8b20", "row_number": "3" } },
+        { "type": "word", "settings": { "text": "CRUNCH", "color": "#0077c8", "row_number": "4" } },
+        { "type": "word", "settings": { "text": "SNACK", "color": "#f2a900", "row_number": "4" } }
+      ]
+    }
+  ]
+}
+{% endschema %}
