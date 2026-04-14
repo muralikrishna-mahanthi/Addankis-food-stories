@@ -503,7 +503,10 @@
         "bg_color": "#000000",
         "text_color": "#ffffff",
         "accent_color": "#3b82f6",
-        "heading": "OUR STRATEGY"
+        "heading": "OUR STRATEGY",
+        "card_pt": 3,
+        "card_pb": 5.5,
+        "card_px": 3
       }
     }
   },
