@@ -446,7 +446,7 @@
         "loop": true,
         "muted": true,
         "controls": false,
-        "video_width_desktop": 50,
+        "video_width_desktop": 45,
         "video_width_mobile": 85,
         "border_radius": 16,
         "heading": "Introducing the Future",
