@@ -514,6 +514,27 @@
         "ai_gen_block_a32dc21_XPBFNh"
       ],
       "settings": {}
+    },
+    "video_with_text_nj8TBq": {
+      "type": "video-with-text",
+      "name": "Video with Text",
+      "settings": {
+        "video": "shopify://files/videos/download.mp4",
+        "autoplay": true,
+        "loop": true,
+        "muted": true,
+        "controls": false,
+        "video_width_desktop": 50,
+        "video_width_mobile": 90,
+        "border_radius": 16,
+        "heading": "Introducing the Future",
+        "description": "<p>Combine an impactful video with compelling text to tell your brand story below the viewport.</p>",
+        "text_alignment": "center",
+        "bg_color": "#ffffff",
+        "text_color": "#000000",
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
     }
   },
   "order": [
@@ -523,6 +544,7 @@
     "sliding_products_7WRryd",
     "us_brands_about_us_6kR9cT",
     "us_brands_about_us_2_Ad9VDy",
-    "17760793919685163c"
+    "17760793919685163c",
+    "video_with_text_nj8TBq"
   ]
 }
