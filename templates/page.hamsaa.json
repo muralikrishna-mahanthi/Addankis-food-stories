@@ -452,8 +452,16 @@
         "heading": "Introducing the Future",
         "description": "<p>Combine an impactful video with compelling text to tell your brand story below the viewport.</p>",
         "text_alignment": "center",
+        "heading_font": "archivo_black_n4",
+        "heading_size": 4,
+        "heading_weight": "700",
+        "heading_color": "#efbf04",
+        "text_font": "assistant_n4",
+        "text_size": 1.2,
+        "text_weight": "400",
+        "desc_color": "#333333",
         "bg_color": "#ffffff",
-        "padding_top": 48,
+        "padding_top": 0,
         "padding_bottom": 80
       }
     }
