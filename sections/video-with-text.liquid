@@ -86,12 +86,13 @@
   <!-- Top Full viewport block for Video -->
   <div class="vwt-video-wrapper-{{ section.id }}">
     {%- if section.settings.video != blank -%}
+      {%- assign video_class = 'vwt-video-' | append: section.id -%}
       {{ section.settings.video | video_tag: 
           autoplay: section.settings.autoplay, 
           loop: section.settings.loop, 
           muted: section.settings.muted, 
           controls: section.settings.controls, 
-          class: 'vwt-video-' | append: section.id, 
+          class: video_class, 
           image_size: '1200x' 
       }}
     {%- else -%}
