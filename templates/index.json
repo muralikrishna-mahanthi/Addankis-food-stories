@@ -146,8 +146,8 @@
       "custom_css": [],
       "name": "FMCG Marquee Wall",
       "settings": {
-        "font_family": "anton_n4",
-        "fs_desktop": 14,
+        "font_family": "archivo_black_n4",
+        "fs_desktop": 16,
         "fs_mobile": 10,
         "fw": "900",
         "ls": -4,
