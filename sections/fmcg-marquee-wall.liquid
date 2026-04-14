@@ -48,18 +48,19 @@
     display: flex;
     align-items: center;
     padding: 0 1.5rem;
-  }
-
-  .fmcg-marquee-wall__text {
     font-size: var(--fs-mobile);
-    font-weight: var(--font-weight);
-    letter-spacing: var(--letter-spacing);
   }
 
   @media screen and (min-width: 750px) {
-    .fmcg-marquee-wall__text {
+    .fmcg-marquee-wall__item {
       font-size: var(--fs-desktop);
     }
+  }
+
+  .fmcg-marquee-wall__text {
+    font-weight: var(--font-weight);
+    letter-spacing: var(--letter-spacing);
+    line-height: 1;
   }
 
   .fmcg-marquee-wall__logo,
@@ -68,6 +69,17 @@
     width: auto;
     margin: 0 1.2rem;
     object-fit: contain;
+    display: inline-flex;
+    align-items: center;
+    vertical-align: middle;
+  }
+
+  .fmcg-marquee-wall__img {
+    height: 0.9em; /* Perfectly scales relative to the parent font-size */
+    width: auto;
+    margin: 0 1.2rem;
+    object-fit: cover;
+    border-radius: 0.15em;
     display: inline-flex;
     align-items: center;
     vertical-align: middle;
@@ -110,7 +122,9 @@
                 {{ block.settings.text | strip }}
               </span>
               
-              {%- if block.settings.svg_code != blank -%}
+              {%- if block.settings.inline_image != blank -%}
+                {{ block.settings.inline_image | image_url: height: 400 | image_tag: class: 'fmcg-marquee-wall__img', loading: 'lazy' }}
+              {%- elsif block.settings.svg_code != blank -%}
                 <div class="fmcg-marquee-wall__svg" style="color: {{ block.settings.color }};">
                   {{ block.settings.svg_code }}
                 </div>
@@ -258,6 +272,7 @@
       "settings": [
         { "type": "text", "id": "text", "label": "Word", "default": "BRAND" },
         { "type": "color", "id": "color", "label": "Word Color", "default": "#000000" },
+        { "type": "image_picker", "id": "inline_image", "label": "Inline Photo", "info": "Displays as a matching-size photo with rounded corners right next to your word." },
         { "type": "image_picker", "id": "icon", "label": "Custom Icon" },
         { "type": "textarea", "id": "svg_code", "label": "Custom SVG Code", "info": "Paste <svg>...</svg> code here for sharpest logos." },
         { "type": "select", "id": "row_number", "label": "Row Assignment", "options": [{"value":"1","label":"Row 1"},{"value":"2","label":"Row 2"},{"value":"3","label":"Row 3"},{"value":"4","label":"Row 4"}], "default": "1" }
