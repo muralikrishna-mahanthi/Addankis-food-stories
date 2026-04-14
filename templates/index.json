@@ -147,7 +147,7 @@
       "name": "FMCG Marquee Wall",
       "settings": {
         "font_family": "archivo_black_n4",
-        "fs_desktop": 16,
+        "fs_desktop": 18,
         "fs_mobile": 10,
         "fw": "900",
         "ls": -4,
@@ -160,10 +160,10 @@
         "scroll_speed": 3,
         "auto_speed": 0,
         "lerp_factor": 5,
-        "dir_1": "left",
-        "dir_2": "right",
-        "dir_3": "left",
-        "dir_4": "right",
+        "dir_1": "right",
+        "dir_2": "left",
+        "dir_3": "right",
+        "dir_4": "left",
         "bg_color": "#ffffff",
         "section_height": "100vh"
       }
