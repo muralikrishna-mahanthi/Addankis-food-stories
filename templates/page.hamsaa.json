@@ -531,7 +531,7 @@
         "shadow_size": 0,
         "shadow_opacity": 20,
         "bg_color": "#ffffff",
-        "section_height": 100,
+        "section_height": 60,
         "pt": 0,
         "pb": 0,
         "ph": 0,
