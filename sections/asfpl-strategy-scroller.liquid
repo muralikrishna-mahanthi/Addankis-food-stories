@@ -26,7 +26,7 @@
   }
 
   .strategy-scroller__heading {
-    font-size: clamp(3rem, 10vw, 12rem);
+    font-size: {{ section.settings.heading_size_desktop }}rem;
     font-weight: 950;
     line-height: 0.9;
     letter-spacing: -0.04em;
@@ -101,14 +101,14 @@
   }
 
   .strategy-scroller__card-title {
-    font-size: 3.2rem;
+    font-size: {{ section.settings.card_heading_size_desktop }}rem;
     font-weight: 900;
     margin-bottom: 1rem;
     line-height: 1.1;
   }
 
   .strategy-scroller__card-text {
-    font-size: 1.6rem;
+    font-size: {{ section.settings.card_text_size_desktop }}rem;
     line-height: 1.4;
     opacity: 0.8;
   }
@@ -119,7 +119,13 @@
       height: 50vh;
     }
     .strategy-scroller__heading {
-      font-size: 5rem;
+      font-size: {{ section.settings.heading_size_mobile }}rem;
+    }
+    .strategy-scroller__card-title {
+      font-size: {{ section.settings.card_heading_size_mobile }}rem;
+    }
+    .strategy-scroller__card-text {
+      font-size: {{ section.settings.card_text_size_mobile }}rem;
     }
     .strategy-scroller__sticky {
       padding-bottom: {{ section.settings.track_pb_mobile }}vh;
@@ -141,13 +147,17 @@
           <div class="strategy-scroller__card" {{ block.shopify_attributes }}>
             <div class="strategy-scroller__card-media">
               {%- if block.settings.image != blank -%}
-                {{ block.settings.image | image_url: width: 1200 | image_tag: loading: 'lazy' }}
+                {{ block.settings.image | image_url: width: 1200 | image_tag: loading: 'lazy', alt: block.settings.title }}
               {%- else -%}
                 {{ 'collection-' | append: forloop.index | placeholder_svg_tag: 'placeholder-svg' }}
               {%- endif -%}
             </div>
             <div class="strategy-scroller__card-info">
-              <span class="strategy-scroller__card-step">Pillar 0{{ forloop.index }}</span>
+              {%- if block.settings.step_text != blank -%}
+                <span class="strategy-scroller__card-step">{{ block.settings.step_text }}</span>
+              {%- else -%}
+                <span class="strategy-scroller__card-step">Pillar 0{{ forloop.index }}</span>
+              {%- endif -%}
               <h3 class="strategy-scroller__card-title">{{ block.settings.title }}</h3>
               <p class="strategy-scroller__card-text">{{ block.settings.text }}</p>
             </div>
@@ -222,7 +232,17 @@
     { "type": "range", "id": "track_pl", "label": "Initial Left Offset", "min": 0, "max": 20, "step": 0.5, "default": 4.0, "unit": "rem" },
     { "type": "range", "id": "track_pr", "label": "Final Right Offset", "min": 0, "max": 20, "step": 0.5, "default": 4.0, "unit": "rem" },
     { "type": "range", "id": "track_pb_desktop", "label": "Desktop Bottom Space Lift", "min": 0, "max": 30, "step": 1, "default": 6, "unit": "vh" },
-    { "type": "range", "id": "track_pb_mobile", "label": "Mobile Bottom Space Lift", "min": 0, "max": 30, "step": 1, "default": 12, "unit": "vh" }
+    { "type": "range", "id": "track_pb_mobile", "label": "Mobile Bottom Space Lift", "min": 0, "max": 30, "step": 1, "default": 12, "unit": "vh" },
+    {
+      "type": "header",
+      "content": "Typography Settings"
+    },
+    { "type": "range", "id": "heading_size_desktop", "label": "Section Heading Size (Desktop)", "min": 2, "max": 20, "step": 0.5, "default": 8.0, "unit": "rem" },
+    { "type": "range", "id": "heading_size_mobile", "label": "Section Heading Size (Mobile)", "min": 2, "max": 15, "step": 0.5, "default": 5.0, "unit": "rem" },
+    { "type": "range", "id": "card_heading_size_desktop", "label": "Card Heading Size (Desktop)", "min": 1, "max": 10, "step": 0.2, "default": 3.2, "unit": "rem" },
+    { "type": "range", "id": "card_heading_size_mobile", "label": "Card Heading Size (Mobile)", "min": 1, "max": 8, "step": 0.2, "default": 2.4, "unit": "rem" },
+    { "type": "range", "id": "card_text_size_desktop", "label": "Card Text Size (Desktop)", "min": 1, "max": 5, "step": 0.1, "default": 1.6, "unit": "rem" },
+    { "type": "range", "id": "card_text_size_mobile", "label": "Card Text Size (Mobile)", "min": 1, "max": 4, "step": 0.1, "default": 1.6, "unit": "rem" }
   ],
   "blocks": [
     {
@@ -230,6 +250,7 @@
       "name": "Strategy Pillar",
       "settings": [
         { "type": "image_picker", "id": "image", "label": "Pillar Image" },
+        { "type": "text", "id": "step_text", "label": "Eyebrow Text", "info": "Overrides the default 'Pillar 0X'. Type your Title or any custom text here." },
         { "type": "text", "id": "title", "label": "Title", "default": "Sustainability" },
         { "type": "textarea", "id": "text", "label": "Description", "default": "Building a positive value chain for every sip and every bite." }
       ]
