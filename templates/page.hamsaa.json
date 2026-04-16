@@ -447,7 +447,7 @@
         "muted": true,
         "controls": false,
         "video_width_desktop": 40,
-        "video_width_mobile": 85,
+        "video_width_mobile": 100,
         "border_radius": 16,
         "heading": "",
         "description": "",
@@ -462,7 +462,7 @@
         "desc_color": "#333333",
         "bg_color": "#ffffff",
         "padding_top": 0,
-        "padding_bottom": 80
+        "padding_bottom": 0
       }
     },
     "asfpl_strategy_scroller_WdjFae": {
@@ -528,12 +528,12 @@
         "heading_weight": "900",
         "heading_color": "#efbf04",
         "heading_size_desktop": 5,
-        "heading_size_mobile": 5,
+        "heading_size_mobile": 3,
         "description_font": "sans_serif_n4",
         "description_weight": "700",
         "description_color": "#121212",
         "description_size_desktop": 1.6,
-        "description_size_mobile": 1.4,
+        "description_size_mobile": 1.1,
         "card_heading_font": "assistant_n4",
         "card_heading_weight": "700",
         "card_heading_color": "#3b82f6",
