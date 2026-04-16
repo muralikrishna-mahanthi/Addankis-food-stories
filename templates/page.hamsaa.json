@@ -508,7 +508,8 @@
         "card_gap": 4,
         "track_pl": 4,
         "track_pr": 4,
-        "track_pb": 20
+        "track_pb_desktop": 6,
+        "track_pb_mobile": 30
       }
     }
   },
