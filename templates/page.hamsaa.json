@@ -496,7 +496,7 @@
         "pillar_BjqLr3"
       ],
       "custom_css": [
-        "h2 {padding-top: 25px;}"
+        "h2 {padding-top: 35px;}"
       ],
       "name": "ASFPL Strategy Scroller",
       "settings": {
