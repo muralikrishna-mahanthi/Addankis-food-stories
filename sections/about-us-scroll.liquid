@@ -61,30 +61,34 @@
 
   @media screen and (max-width: 749px) {
     .about-us-split-{{ section.id }} {
-      height: auto;
+      height: {{ section.blocks.size | times: 120 }}vh; /* 120vh per block to make it 'slow' on mobile */
     }
     .about-us-split__sticky {
-      position: relative;
-      height: auto;
-      min-height: unset;
-      overflow: visible;
+      position: sticky;
+      top: 0;
+      min-height: 100vh;
+      overflow: hidden;
     }
     .about-us-split__left,
     .about-us-split__right {
       width: 100%;
     }
     .about-us-split__left {
-      height: 50vh;
+      height: 40vh;
       min-height: unset;
+      position: relative;
     }
     .about-us-split__media-layer {
-      display: none;
-    }
-    .about-us-split__media-layer.active {
+      position: absolute;
       display: block;
     }
     .about-us-split__right {
-      padding: 4rem 1.5rem;
+      padding: 3rem 1.5rem;
+      min-height: 60vh;
+      justify-content: flex-start;
+    }
+    .about-us-split__pills {
+      margin-bottom: 2rem;
     }
   }
 
