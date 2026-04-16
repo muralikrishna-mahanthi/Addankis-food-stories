@@ -639,6 +639,91 @@
         "ai_gen_block_83fd5aa_TtU4Wn"
       ],
       "settings": {}
+    },
+    "follow_social_XNywbN": {
+      "type": "follow-social",
+      "blocks": {
+        "social_icon_HpYpg4": {
+          "type": "social_icon",
+          "settings": {
+            "platform": "instagram",
+            "link": ""
+          }
+        },
+        "social_icon_G9ExTw": {
+          "type": "social_icon",
+          "settings": {
+            "platform": "facebook",
+            "link": ""
+          }
+        },
+        "social_icon_FyWkNX": {
+          "type": "social_icon",
+          "settings": {
+            "platform": "tiktok",
+            "link": ""
+          }
+        },
+        "social_icon_RdmUnW": {
+          "type": "social_icon",
+          "settings": {
+            "platform": "x",
+            "link": ""
+          }
+        },
+        "social_icon_3P7V6N": {
+          "type": "social_icon",
+          "settings": {
+            "platform": "youtube",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "social_icon_HpYpg4",
+        "social_icon_G9ExTw",
+        "social_icon_FyWkNX",
+        "social_icon_RdmUnW",
+        "social_icon_3P7V6N"
+      ],
+      "name": "Follow Social",
+      "settings": {
+        "bg_color": "#f9f8f6",
+        "container_width": 1400,
+        "pt_desktop": 80,
+        "pb_desktop": 80,
+        "pt_mobile": 50,
+        "pb_mobile": 50,
+        "desktop_alignment": "split",
+        "subheading": "Stay connected",
+        "sh_font_desk": "assistant_n4",
+        "sh_size_desk": 1.6,
+        "sh_weight_desk": "600",
+        "sh_color": "#8B4513",
+        "sh_size_mob": 1.4,
+        "sh_mb": 16,
+        "heading": "FOLLOW LAY'S",
+        "h_font_desk": "assistant_n4",
+        "h_size_desk": 4.4,
+        "h_weight_desk": "900",
+        "h_color": "#C87C10",
+        "h_size_mob": 3.2,
+        "h_mb": 24,
+        "h_transform": "uppercase",
+        "desc": "Stay in the know on the latest products, recipes, and inspo.",
+        "d_font_desk": "assistant_n4",
+        "d_size_desk": 1.6,
+        "d_weight_desk": "500",
+        "d_color": "#1a1a1a",
+        "d_size_mob": 1.4,
+        "icon_size": 64,
+        "icon_svg_scale": 50,
+        "icon_bg": "#ffffff",
+        "icon_fill": "#111111",
+        "icon_bg_hover": "#111111",
+        "icon_fill_hover": "#ffffff",
+        "icon_gap": 20
+      }
     }
   },
   "order": [
@@ -650,6 +735,7 @@
     "us_brands_about_us_2_Ad9VDy",
     "video_with_text_nj8TBq",
     "asfpl_strategy_scroller_WdjFae",
-    "177632081915f62c41"
+    "177632081915f62c41",
+    "follow_social_XNywbN"
   ]
 }
