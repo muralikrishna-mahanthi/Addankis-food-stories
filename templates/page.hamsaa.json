@@ -432,7 +432,7 @@
         "text_color": "#1a1a1a",
         "line_light_color": "#e5e5e5",
         "line_active_color": "#1a1a1a",
-        "dot_size": 16,
+        "dot_size": 20,
         "pt_desktop": 100,
         "pb_desktop": 100
       }
