@@ -524,7 +524,7 @@
         "card_gap": 4,
         "track_pl": 4,
         "track_pr": 4,
-        "track_pb_desktop": 30,
+        "track_pb_desktop": 10,
         "track_pb_mobile": 5,
         "heading_size_desktop": 8,
         "heading_size_mobile": 5,
