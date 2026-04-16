@@ -514,8 +514,8 @@
       "custom_css": [],
       "name": "ASFPL Strategy Scroller",
       "settings": {
-        "bg_color": "#000000",
-        "text_color": "#ffffff",
+        "bg_color": "#ffffff",
+        "text_color": "#efbf04",
         "accent_color": "#3b82f6",
         "heading": "Become a Distributor",
         "card_pt": 0,
