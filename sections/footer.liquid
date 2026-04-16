@@ -136,6 +136,22 @@
     line-height: 1.2;
     display: block;
   }
+
+  @media screen and (max-width: 749px) {
+    .footer-logo-col,
+    .footer-col {
+      text-align: {{ section.settings.mobile_alignment }};
+      display: flex;
+      flex-direction: column;
+      align-items: {% if section.settings.mobile_alignment == 'center' %}center{% elsif section.settings.mobile_alignment == 'right' %}flex-end{% else %}flex-start{% endif %};
+    }
+    .footer-menu-cols {
+      justify-content: {% if section.settings.mobile_alignment == 'center' %}center{% elsif section.settings.mobile_alignment == 'right' %}flex-end{% else %}flex-start{% endif %};
+    }
+    .footer-brand-name {
+      width: 100%;
+    }
+  }
 {%- endstyle -%}
 
 <footer class="footer">
@@ -400,6 +416,17 @@
       "unit": "px",
       "label": "Padding Bottom",
       "default": 60
+    },
+    {
+      "type": "select",
+      "id": "mobile_alignment",
+      "label": "Mobile Text Alignment",
+      "default": "left",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ]
     }
   ],
   "default": {
