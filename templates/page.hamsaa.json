@@ -331,7 +331,7 @@
         "split_ratio": 50,
         "runway_height": 300,
         "container_width": 1400,
-        "bg_color": "#0f440e",
+        "bg_color": "#613305",
         "text_color": "#81e683",
         "line_light_color": "#e5e5e5",
         "line_active_color": "#6394ff",
