@@ -1,6 +1,423 @@
+{% doc %}
+  @prompt
+    create a "rich text button" section and give button in that section and give all customize settings for content allingement and fonts customize settings and name this section as rich text with button and give customize settings like font style, font family, font weight, font color and font size for the settings
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-rich-text-button-{{ ai_gen_id }} {
+    display: block;
+    width: {{ block.settings.desktop_width_percent }}%;
+    max-width: 100%;
+    padding: {{ block.settings.section_padding }}px 20px;
+    background-color: {{ block.settings.background_color }};
+  }
+
+  .ai-rich-text-button-container-{{ ai_gen_id }} {
+    max-width: {{ block.settings.content_max_width }}px;
+    margin: 0 auto;
+    text-align: {{ block.settings.content_alignment }};
+  }
+
+  .ai-rich-text-button-content-{{ ai_gen_id }} {
+    margin-bottom: {{ block.settings.text_button_spacing }}px;
+    font-family: {{ block.settings.text_font.family }}, {{ block.settings.text_font.fallback_families }};
+    font-weight: {{ block.settings.text_font.weight }};
+    font-style: {{ block.settings.text_font.style }};
+    font-size: {{ block.settings.text_font_size }}px;
+    color: {{ block.settings.text_color }};
+    line-height: 1.6;
+  }
+
+  .ai-rich-text-button-content-{{ ai_gen_id }} p {
+    margin: 0 0 16px 0;
+  }
+
+  .ai-rich-text-button-content-{{ ai_gen_id }} p:last-child {
+    margin-bottom: 0;
+  }
+
+  .ai-rich-text-button-content-{{ ai_gen_id }} h1,
+  .ai-rich-text-button-content-{{ ai_gen_id }} h2,
+  .ai-rich-text-button-content-{{ ai_gen_id }} h3,
+  .ai-rich-text-button-content-{{ ai_gen_id }} h4,
+  .ai-rich-text-button-content-{{ ai_gen_id }} h5,
+  .ai-rich-text-button-content-{{ ai_gen_id }} h6 {
+    margin: 0 0 16px 0;
+    font-family: {{ block.settings.heading_font.family }}, {{ block.settings.heading_font.fallback_families }};
+    font-weight: {{ block.settings.heading_font.weight }};
+    font-style: {{ block.settings.heading_font.style }};
+    color: {{ block.settings.heading_color }};
+  }
+
+  .ai-rich-text-button-content-{{ ai_gen_id }} h1 {
+    font-size: {{ block.settings.heading_font_size }}px;
+  }
+
+  .ai-rich-text-button-content-{{ ai_gen_id }} h2 {
+    font-size: calc({{ block.settings.heading_font_size }}px * 0.85);
+  }
+
+  .ai-rich-text-button-content-{{ ai_gen_id }} h3 {
+    font-size: calc({{ block.settings.heading_font_size }}px * 0.75);
+  }
+
+  .ai-rich-text-button-content-{{ ai_gen_id }} h4 {
+    font-size: calc({{ block.settings.heading_font_size }}px * 0.65);
+  }
+
+  .ai-rich-text-button-content-{{ ai_gen_id }} h5 {
+    font-size: calc({{ block.settings.heading_font_size }}px * 0.55);
+  }
+
+  .ai-rich-text-button-content-{{ ai_gen_id }} h6 {
+    font-size: calc({{ block.settings.heading_font_size }}px * 0.5);
+  }
+
+  .ai-rich-text-button-content-{{ ai_gen_id }} ul,
+  .ai-rich-text-button-content-{{ ai_gen_id }} ol {
+    margin: 0 0 16px 20px;
+    padding: 0;
+  }
+
+  .ai-rich-text-button-content-{{ ai_gen_id }} li {
+    margin-bottom: 8px;
+  }
+
+  .ai-rich-text-button-content-{{ ai_gen_id }} a {
+    color: {{ block.settings.link_color }};
+    text-decoration: underline;
+  }
+
+  .ai-rich-text-button-content-{{ ai_gen_id }} a:hover {
+    opacity: 0.8;
+  }
+
+  .ai-rich-text-button-wrapper-{{ ai_gen_id }} {
+    display: inline-block;
+  }
+
+  .ai-rich-text-button-btn-{{ ai_gen_id }} {
+    display: inline-block;
+    padding: {{ block.settings.button_padding_vertical }}px {{ block.settings.button_padding_horizontal }}px;
+    background-color: {{ block.settings.button_background_color }};
+    color: {{ block.settings.button_text_color }};
+    font-family: {{ block.settings.button_font.family }}, {{ block.settings.button_font.fallback_families }};
+    font-weight: {{ block.settings.button_font.weight }};
+    font-style: {{ block.settings.button_font.style }};
+    font-size: {{ block.settings.button_font_size }}px;
+    text-decoration: none;
+    border: {{ block.settings.button_border_width }}px solid {{ block.settings.button_border_color }};
+    border-radius: {{ block.settings.button_border_radius }}px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .ai-rich-text-button-btn-{{ ai_gen_id }}:hover {
+    background-color: {{ block.settings.button_hover_background_color }};
+    color: {{ block.settings.button_hover_text_color }};
+    border-color: {{ block.settings.button_hover_border_color }};
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-rich-text-button-{{ ai_gen_id }} {
+      width: 100%;
+    }
+
+    .ai-rich-text-button-content-{{ ai_gen_id }} {
+      font-size: calc({{ block.settings.text_font_size }}px * 0.9);
+    }
+
+    .ai-rich-text-button-content-{{ ai_gen_id }} h1 {
+      font-size: calc({{ block.settings.heading_font_size }}px * 0.8);
+    }
+
+    .ai-rich-text-button-btn-{{ ai_gen_id }} {
+      font-size: calc({{ block.settings.button_font_size }}px * 0.9);
+    }
+  }
+{% endstyle %}
+
+<div class="ai-rich-text-button-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-rich-text-button-container-{{ ai_gen_id }}">
+    {% if block.settings.rich_text != blank %}
+      <div class="ai-rich-text-button-content-{{ ai_gen_id }}">
+        {{ block.settings.rich_text }}
+      </div>
+    {% endif %}
+
+    {% if block.settings.button_text != blank %}
+      <div class="ai-rich-text-button-wrapper-{{ ai_gen_id }}">
+        <a
+          href="{{ block.settings.button_link }}"
+          class="ai-rich-text-button-btn-{{ ai_gen_id }}"
+        >
+          {{ block.settings.button_text }}
+        </a>
+      </div>
+    {% endif %}
+  </div>
+</div>
+
 {% schema %}
- {
-   "name": "AI_Block",
-   "tag": "shopify-ai-generated-block"
- }
+{
+  "name": "Rich text with button",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "richtext",
+      "id": "rich_text",
+      "label": "Rich text",
+      "default": "<h2>Rich text with button</h2><p>Use this section to add rich text content with a call-to-action button.</p>"
+    },
+    {
+      "type": "select",
+      "id": "content_alignment",
+      "label": "Content alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "range",
+      "id": "content_max_width",
+      "label": "Content max width",
+      "min": 400,
+      "max": 1200,
+      "step": 50,
+      "unit": "px",
+      "default": 800
+    },
+    {
+      "type": "range",
+      "id": "desktop_width_percent",
+      "label": "Desktop width",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 100
+    },
+    {
+      "type": "header",
+      "content": "Heading style"
+    },
+    {
+      "type": "font_picker",
+      "id": "heading_font",
+      "label": "Font family",
+      "default": "assistant_n4"
+    },
+    {
+      "type": "range",
+      "id": "heading_font_size",
+      "label": "Font size",
+      "min": 16,
+      "max": 72,
+      "step": 2,
+      "unit": "px",
+      "default": 32
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Color",
+      "default": "#121212"
+    },
+    {
+      "type": "header",
+      "content": "Text style"
+    },
+    {
+      "type": "font_picker",
+      "id": "text_font",
+      "label": "Font family",
+      "default": "assistant_n4"
+    },
+    {
+      "type": "range",
+      "id": "text_font_size",
+      "label": "Font size",
+      "min": 12,
+      "max": 32,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Color",
+      "default": "#121212"
+    },
+    {
+      "type": "color",
+      "id": "link_color",
+      "label": "Link color",
+      "default": "#121212"
+    },
+    {
+      "type": "header",
+      "content": "Button"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button text",
+      "default": "Shop now"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "font_picker",
+      "id": "button_font",
+      "label": "Font family",
+      "default": "assistant_n4"
+    },
+    {
+      "type": "range",
+      "id": "button_font_size",
+      "label": "Font size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "button_padding_vertical",
+      "label": "Vertical padding",
+      "min": 8,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "button_padding_horizontal",
+      "label": "Horizontal padding",
+      "min": 16,
+      "max": 64,
+      "step": 4,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "color",
+      "id": "button_background_color",
+      "label": "Background color",
+      "default": "#121212"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_background_color",
+      "label": "Hover background color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_text_color",
+      "label": "Hover text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "button_border_width",
+      "label": "Border width",
+      "min": 0,
+      "max": 4,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "color",
+      "id": "button_border_color",
+      "label": "Border color",
+      "default": "#121212"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_border_color",
+      "label": "Hover border color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "button_border_radius",
+      "label": "Border radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "section_padding",
+      "label": "Section padding",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "text_button_spacing",
+      "label": "Text to button spacing",
+      "min": 10,
+      "max": 60,
+      "step": 5,
+      "unit": "px",
+      "default": 30
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#ffffff"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Rich text with button"
+    }
+  ]
+}
 {% endschema %}
