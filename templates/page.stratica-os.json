@@ -17,57 +17,57 @@
         "padding_bottom": 28
       }
     },
-    "blocks_EpccG4": {
+    "blocks_rp3xn6": {
       "type": "_blocks",
       "blocks": {
-        "ai_gen_block_4ff1c27_tYL7Bk": {
+        "ai_gen_block_4ff1c27_fnzHqT": {
           "type": "ai_gen_block_4ff1c27",
           "settings": {
-            "heading": "Rich text heading",
-            "text": "<p>Use this section to create unique side-by-side layouts with various content blocks. Pair text with images, newsletter blocks, products, videos, testimonials and more.</p>",
-            "heading_font": "assistant_n4",
-            "heading_weight": "bold",
-            "heading_size": 40,
-            "heading_size_mobile": 28,
-            "heading_color": "#121212",
-            "heading_spacing": 20,
+            "heading": "STRATICA OS",
+            "text": "<p>Instead of brands struggling to build distribution, sales teams, and market presence from scratch, STRATICA OS provides a <strong>structured system to launch and scale products across multiple channels.</strong></p>",
+            "heading_font": "archivo_black_n4",
+            "heading_weight": "bolder",
+            "heading_size": 84,
+            "heading_size_mobile": 34,
+            "heading_color": "#efbf04",
+            "heading_spacing": 0,
             "heading_padding_top": 0,
-            "heading_padding_bottom": 0,
+            "heading_padding_bottom": 28,
             "heading_padding_horizontal": 0,
             "heading_padding_top_mobile": 0,
-            "heading_padding_bottom_mobile": 0,
+            "heading_padding_bottom_mobile": 20,
             "heading_padding_horizontal_mobile": 0,
-            "text_font": "assistant_n4",
-            "text_size": 16,
+            "text_font": "sans_serif_n7",
+            "text_size": 18,
             "text_size_mobile": 14,
-            "text_color": "#121212",
+            "text_color": "#242833",
             "text_line_height": 1.5,
             "paragraph_spacing": 16,
             "text_padding_top": 0,
             "text_padding_bottom": 0,
-            "text_padding_horizontal": 0,
+            "text_padding_horizontal": 100,
             "text_padding_top_mobile": 0,
             "text_padding_bottom_mobile": 0,
             "text_padding_horizontal_mobile": 0,
-            "text_alignment": "left",
-            "horizontal_alignment": "flex-start",
-            "vertical_alignment": "flex-start",
+            "text_alignment": "center",
+            "horizontal_alignment": "center",
+            "vertical_alignment": "center",
             "desktop_width_percent": 100,
-            "min_height": 300,
+            "min_height": 400,
             "min_height_mobile": 200,
-            "padding_top": 40,
-            "padding_bottom": 40,
-            "padding_horizontal": 40,
-            "padding_top_mobile": 24,
-            "padding_bottom_mobile": 24,
+            "padding_top": 100,
+            "padding_bottom": 100,
+            "padding_horizontal": 48,
+            "padding_top_mobile": 44,
+            "padding_bottom_mobile": 40,
             "padding_horizontal_mobile": 20,
-            "background_color": "#f3f3f3"
+            "background_color": "#ffffff"
           },
           "blocks": {}
         }
       },
       "block_order": [
-        "ai_gen_block_4ff1c27_tYL7Bk"
+        "ai_gen_block_4ff1c27_fnzHqT"
       ],
       "name": "Rich text",
       "settings": {}
@@ -83,7 +83,7 @@
         "height_mobile": 300,
         "border_radius": 0,
         "gap": 0,
-        "bg_color": "transparent",
+        "bg_color": "rgba(0,0,0,0)",
         "container_width": 1400,
         "side_padding": 2,
         "stack_on_mobile": true,
@@ -174,7 +174,7 @@
   },
   "order": [
     "main",
-    "blocks_EpccG4",
+    "blocks_rp3xn6",
     "split_image_bKREzK",
     "sliding_products_MdRbTa"
   ]
