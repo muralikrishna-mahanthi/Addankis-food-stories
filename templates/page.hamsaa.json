@@ -657,20 +657,6 @@
             "link": ""
           }
         },
-        "social_icon_FyWkNX": {
-          "type": "social_icon",
-          "settings": {
-            "platform": "tiktok",
-            "link": ""
-          }
-        },
-        "social_icon_RdmUnW": {
-          "type": "social_icon",
-          "settings": {
-            "platform": "x",
-            "link": ""
-          }
-        },
         "social_icon_3P7V6N": {
           "type": "social_icon",
           "settings": {
@@ -682,8 +668,6 @@
       "block_order": [
         "social_icon_HpYpg4",
         "social_icon_G9ExTw",
-        "social_icon_FyWkNX",
-        "social_icon_RdmUnW",
         "social_icon_3P7V6N"
       ],
       "name": "Follow Social",
