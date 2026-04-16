@@ -626,10 +626,10 @@
             "button_border_radius": 6,
             "button_border_width": 1,
             "button_background_color": "#ffd73b",
-            "button_text_color": "#121212",
+            "button_text_color": "#9c6644",
             "button_border_color": "#ffd73b",
             "button_hover_background_color": "#efbf04",
-            "button_hover_text_color": "#121212",
+            "button_hover_text_color": "#613305",
             "button_hover_border_color": "#efbf04"
           },
           "blocks": {}
