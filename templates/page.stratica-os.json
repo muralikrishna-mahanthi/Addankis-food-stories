@@ -95,11 +95,64 @@
         "pt_mobile": 30,
         "pb_mobile": 30
       }
+    },
+    "split_image_slide_BydbQc": {
+      "type": "split-image-slide",
+      "blocks": {
+        "slide_e4aE8U": {
+          "type": "slide",
+          "settings": {
+            "image_left": "shopify://shop_images/gemini-3.1-flash-image-preview_nano-banana-2__a_decrease_some_height.png",
+            "image_middle": "shopify://shop_images/gemini-3.1-flash-image-preview_nano-banana-2__a_decrease_some_height.png",
+            "image_right": "shopify://shop_images/gemini-3.1-flash-image-preview_nano-banana-2__a_decrease_some_height.png"
+          }
+        },
+        "slide_4wMfXx": {
+          "type": "slide",
+          "settings": {
+            "image_left": "shopify://shop_images/download.jpg",
+            "image_middle": "shopify://shop_images/download.jpg",
+            "image_right": "shopify://shop_images/download.jpg"
+          }
+        },
+        "slide_BHbTJx": {
+          "type": "slide",
+          "settings": {
+            "image_left": "shopify://shop_images/fruits_sliced_by_a_person_on_a_table_wearing_head_mask_hand_gloves_and_mask_on_the_face.jpg",
+            "image_middle": "shopify://shop_images/fruits_sliced_by_a_person_on_a_table_wearing_head_mask_hand_gloves_and_mask_on_the_face.jpg",
+            "image_right": "shopify://shop_images/fruits_sliced_by_a_person_on_a_table_wearing_head_mask_hand_gloves_and_mask_on_the_face.jpg"
+          }
+        }
+      },
+      "block_order": [
+        "slide_e4aE8U",
+        "slide_4wMfXx",
+        "slide_BHbTJx"
+      ],
+      "name": "Split Image Slide",
+      "settings": {
+        "page_width": 1400,
+        "background_color": "#ffffff",
+        "background_gradient": "",
+        "desktop_height": 700,
+        "left_column_width": 25,
+        "middle_column_width": 50,
+        "column_gap": 30,
+        "border_radius": 32,
+        "mobile_height": 500,
+        "border_radius_mobile": 24,
+        "autoplay_speed": 5,
+        "fade_speed": 800,
+        "arrow_color": "#121212",
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
     }
   },
   "order": [
     "main",
     "blocks_rp3xn6",
-    "split_image_PpWeH8"
+    "split_image_PpWeH8",
+    "split_image_slide_BydbQc"
   ]
 }
