@@ -41,25 +41,40 @@
     gap: 4px;
     max-width: 100%;
     overflow-x: auto;
-    scrollbar-width: none; /* Hide scrollbar Hide scrollbar for clean look */
+    scrollbar-width: none;
     -ms-overflow-style: none;
+    position: relative; /* For indicator */
   }
 
   .heading-sliding-products__tabs::-webkit-scrollbar {
     display: none;
   }
 
-  .heading-sliding-products__tab {
-    padding: 10px 24px;
+  .heading-sliding-products__tab-indicator {
+    position: absolute;
+    top: 6px;
+    left: 6px;
+    height: calc(100% - 12px);
+    background: {{ section.settings.active_tab_bg | default: '#bada55' }};
     border-radius: 50px;
-    background: transparent;
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    z-index: 1;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  }
+
+  .heading-sliding-products__tab {
+    padding: {{ section.settings.tab_pv }}px {{ section.settings.tab_ph }}px;
+    border-radius: 50px;
+    background: transparent !important;
     color: #4a4a4a;
     font-size: 1.5rem;
     font-weight: 600;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: color 0.3s ease;
     border: none;
     white-space: nowrap;
+    position: relative;
+    z-index: 2;
     font-family: {{ section.settings.heading_font.family }}, {{ section.settings.heading_font.fallback_families }};
   }
 
@@ -68,9 +83,7 @@
   }
 
   .heading-sliding-products__tab.is-active {
-    background: {{ section.settings.active_tab_bg | default: '#bada55' }};
     color: {{ section.settings.active_tab_text | default: '#000' }};
-    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
   }
 
   @media screen and (max-width: 749px) {
@@ -83,8 +96,14 @@
       padding: 5px;
     }
 
+    .heading-sliding-products__tab-indicator {
+      top: 5px;
+      left: 5px;
+      height: calc(100% - 10px);
+    }
+
     .heading-sliding-products__tab {
-      padding: 8px 18px;
+      padding: {{ section.settings.tab_pv | times: 0.8 }}px {{ section.settings.tab_ph | times: 0.8 }}px;
       font-size: 1.4rem;
     }
   }
@@ -241,6 +260,7 @@
     <!-- Tab Filter -->
     <div class="heading-sliding-products__tabs-wrap">
       <div class="heading-sliding-products__tabs">
+        <div class="heading-sliding-products__tab-indicator"></div>
         {%- assign tab_names = "" -%}
         {%- for block in section.blocks -%}
           {%- if block.type == 'tab' -%}
@@ -427,19 +447,45 @@
       setTimeout(checkLoop, 600);
     });
 
+    function moveIndicator(tab) {
+      const indicator = section.querySelector('.heading-sliding-products__tab-indicator');
+      if (!indicator || !tab) return;
+      
+      indicator.style.width = tab.offsetWidth + 'px';
+      indicator.style.left = tab.offsetLeft + 'px';
+
+      // Ensure active tab is visible when scrolling
+      if (window.innerWidth < 750) {
+        const tabsWrap = section.querySelector('.heading-sliding-products__tabs');
+        tabsWrap.scrollTo({
+          left: tab.offsetLeft - (tabsWrap.offsetWidth / 2) + (tab.offsetWidth / 2),
+          behavior: 'smooth'
+        });
+      }
+    }
+
     tabs.forEach(tab => {
       tab.addEventListener('click', () => {
         tabs.forEach(t => t.classList.remove('is-active'));
         tab.classList.add('is-active');
+        moveIndicator(tab);
         initTab(tab.dataset.tab);
       });
     });
 
-    window.addEventListener('resize', () => updateSlider(false));
+    window.addEventListener('resize', () => {
+      updateSlider(false);
+      const activeTab = section.querySelector('.heading-sliding-products__tab.is-active');
+      if (activeTab) moveIndicator(activeTab);
+    });
 
     // Initial Load
     const activeTab = section.querySelector('.heading-sliding-products__tab.is-active');
-    if (activeTab) initTab(activeTab.dataset.tab);
+    if (activeTab) {
+      initTab(activeTab.dataset.tab);
+      // Timeout to ensure offsetLeft/offsetWidth are calculated after rendering
+      setTimeout(() => moveIndicator(activeTab), 100);
+    }
 
     // Design Mode
     if (Shopify.designMode) {
@@ -459,9 +505,11 @@
     { "type": "font_picker", "id": "slide_font", "label": "Slide Title Font", "default": "assistant_n4" },
     { "type": "range", "id": "slide_title_size", "label": "Slide Title Size", "min": 1, "max": 5, "step": 0.1, "unit": "rem", "default": 2.8 },
     { "type": "color", "id": "heading_color", "label": "Primary Color", "default": "#e8c15a" },
-    { "type": "header", "content": "Tab Colors" },
+    { "type": "header", "content": "Tab Colors & Spacing" },
     { "type": "color", "id": "active_tab_bg", "label": "Active Tab Background", "default": "#bada55" },
     { "type": "color", "id": "active_tab_text", "label": "Active Tab Text", "default": "#000000" },
+    { "type": "range", "id": "tab_pv", "label": "Tab Vertical Padding", "min": 5, "max": 30, "step": 1, "default": 12 },
+    { "type": "range", "id": "tab_ph", "label": "Tab Horizontal Padding", "min": 10, "max": 60, "step": 2, "default": 28 },
     { "type": "header", "content": "Constant Button" },
     { "type": "text", "id": "btn_label", "label": "Button Label", "default": "Shop HAMSAA" },
     { "type": "url", "id": "btn_link", "label": "Button Link" },
