@@ -87,41 +87,48 @@
     flex: 1;
   }
 
-  /* Navigation Arrows */
+  /* Controls Area (Below Images) */
+  .split-image-slide__controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin-top: 32px;
+    min-height: 56px;
+  }
+
   .split-image-slide__nav-group {
     position: absolute;
-    bottom: 40px;
-    right: 40px;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
     display: flex;
-    gap: 15px;
+    gap: 12px;
     z-index: 10;
   }
 
   .split-image-slide__nav {
-    width: 56px;
-    height: 56px;
-    background: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    width: 50px;
+    height: 50px;
+    background: rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(0, 0, 0, 0.1);
     border-radius: 50%;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transition: all 0.3s ease;
     color: {{ section.settings.arrow_color }};
   }
 
   .split-image-slide__nav:hover {
-    background: rgba(255, 255, 255, 0.3);
-    transform: scale(1.15);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    background: rgba(0, 0, 0, 0.1);
+    transform: scale(1.05);
   }
 
   .split-image-slide__nav svg {
-    width: 28px;
-    height: 28px;
+    width: 24px;
+    height: 24px;
     fill: none;
     stroke: currentColor;
     stroke-width: 2;
@@ -133,8 +140,7 @@
   .split-image-slide__indicators {
     display: flex;
     justify-content: center;
-    gap: 12px;
-    margin-top: 24px;
+    gap: 8px;
   }
 
   .split-image-slide__dot {
@@ -200,24 +206,22 @@
       border-radius: {{ section.settings.border_radius_mobile }}px;
     }
 
+    .split-image-slide__controls {
+      margin-top: 20px;
+      flex-direction: column;
+      gap: 15px;
+    }
+
     .split-image-slide__nav-group {
-      bottom: 20px;
-      right: 20px;
-      gap: 10px;
+      position: static;
+      transform: none;
+      justify-content: center;
+      width: 100%;
     }
 
     .split-image-slide__nav {
       width: 44px;
       height: 44px;
-    }
-
-    .split-image-slide__nav svg {
-      width: 22px;
-      height: 22px;
-    }
-    
-    .split-image-slide__indicators {
-      margin-top: 15px;
     }
   }
 {%- endstyle -%}
@@ -253,19 +257,21 @@
     </div>
 
     {%- if section.blocks.size > 1 -%}
-      <div class="split-image-slide__nav-group">
-        <button class="split-image-slide__nav split-image-slide__nav--prev" aria-label="Previous slide">
-          <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"></polyline></svg>
-        </button>
-        <button class="split-image-slide__nav split-image-slide__nav--next" aria-label="Next slide">
-          <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
-        </button>
-      </div>
+      <div class="split-image-slide__controls">
+        <div class="split-image-slide__indicators">
+          {%- for block in section.blocks -%}
+            <button class="split-image-slide__dot {% if forloop.first %}is-active{% endif %}" aria-label="Go to slide {{ forloop.index }}" data-index="{{ forloop.index0 }}"></button>
+          {%- endfor -%}
+        </div>
 
-      <div class="split-image-slide__indicators">
-        {%- for block in section.blocks -%}
-          <button class="split-image-slide__dot {% if forloop.first %}is-active{% endif %}" aria-label="Go to slide {{ forloop.index }}" data-index="{{ forloop.index0 }}"></button>
-        {%- endfor -%}
+        <div class="split-image-slide__nav-group">
+          <button class="split-image-slide__nav split-image-slide__nav--prev" aria-label="Previous slide">
+            <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"></polyline></svg>
+          </button>
+          <button class="split-image-slide__nav split-image-slide__nav--next" aria-label="Next slide">
+            <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
+          </button>
+        </div>
       </div>
     {%- endif -%}
   </div>
