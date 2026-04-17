@@ -186,10 +186,12 @@
       "settings": {
         "heading_font": "sans_serif_n4",
         "slide_font": "sans_serif_n4",
-        "slide_title_size": 2.8,
+        "slide_title_size": 3,
         "heading_color": "#e8c15a",
         "active_tab_bg": "#004d98",
         "active_tab_text": "#ffffff",
+        "tab_pv": 12,
+        "tab_ph": 28,
         "btn_label": "Shop HAMSAA",
         "btn_link": "",
         "btn_bg_color": "#e8c15a",
