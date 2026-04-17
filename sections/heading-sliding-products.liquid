@@ -5,37 +5,17 @@
   {{ desc_font | font_face: font_display: 'swap' }}
 
   #HeadingSlidingProducts-{{ section.id }} {
+    --active-tab-bg: {{ section.settings.active_tab_bg | default: '#c0df8a' }};
+    --tabs-container-bg: {{ section.settings.tabs_container_bg | default: '#f2f2f2' }};
     background: {{ section.settings.bg_color }};
     padding: {{ section.settings.pt_desktop }}px 0 {{ section.settings.pb_desktop }}px;
     overflow: hidden;
     position: relative;
   }
 
-  @media screen and (max-width: 749px) {
-    #HeadingSlidingProducts-{{ section.id }} {
-      padding: {{ section.settings.pt_mobile }}px 0 {{ section.settings.pb_mobile }}px;
-    }
-  }
-
-  .heading-sliding-products__container {
-    width: 100%;
-    margin: 0;
-    position: relative;
-    max-width: {{ section.settings.container_width }}px;
-    margin: 0 auto;
-  }
-
-  /* Tabs Bar */
-  .heading-sliding-products__tabs-wrap {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 40px;
-    padding: 0 20px;
-  }
-
   .heading-sliding-products__tabs {
     display: inline-flex;
-    background: {{ section.settings.tabs_container_bg | default: '#f2f2f2' }}; 
+    background: var(--tabs-container-bg) !important;
     padding: 6px;
     border-radius: 60px;
     gap: 4px;
@@ -46,21 +26,17 @@
     position: relative;
   }
 
-  .heading-sliding-products__tabs::-webkit-scrollbar {
-    display: none;
-  }
-
   .heading-sliding-products__tab-indicator {
     position: absolute;
-    top: 5px;
+    top: 6px;
+    bottom: 6px;
     left: 0;
-    height: calc(100% - 10px);
-    background-color: {{ section.settings.active_tab_bg | default: '#c0df8a' }};
+    background-color: var(--active-tab-bg) !important;
     border-radius: 50px;
     transition: width 0.3s ease, transform 0.3s ease, opacity 0.2s ease;
-    z-index: 10;
+    z-index: 1; /* Below text, above container bg */
     box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-    display: block;
+    display: block !important;
     pointer-events: none;
     opacity: 0;
     width: 0;
@@ -70,7 +46,7 @@
   .heading-sliding-products__tab {
     padding: {{ section.settings.tab_pv }}px {{ section.settings.tab_ph }}px;
     border-radius: 50px;
-    background: transparent;
+    background: transparent !important;
     color: {{ section.settings.inactive_tab_text | default: '#444' }};
     font-size: 1.5rem;
     font-weight: 600;
@@ -79,14 +55,14 @@
     border: none;
     white-space: nowrap;
     position: relative;
-    z-index: 20;
+    z-index: 5; /* Above indicator */
     font-family: {{ section.settings.heading_font.family }}, {{ section.settings.heading_font.fallback_families }};
     line-height: 1;
   }
 
   /* Fallback highlight if JS hasn't run yet */
   .heading-sliding-products__tab.is-active:not(.js-initialized) {
-    background: {{ section.settings.active_tab_bg | default: '#c0df8a' }};
+    background: var(--active-tab-bg) !important;
     box-shadow: 0 2px 8px rgba(0,0,0,0.08);
   }
 
@@ -115,8 +91,7 @@
 
     .heading-sliding-products__tab-indicator {
       top: 5px;
-      left: 5px;
-      height: calc(100% - 10px);
+      bottom: 5px;
     }
 
     .heading-sliding-products__tab {
@@ -479,7 +454,7 @@
         indicator.style.width = width + 'px';
         indicator.style.transform = `translateX(${left}px)`;
         indicator.style.opacity = '1';
-        indicator.style.backgroundColor = '{{ section.settings.active_tab_bg | default: '#c0df8a' }}';
+        indicator.style.backgroundColor = 'var(--active-tab-bg)';
       }
 
       // Ensure active tab is visible when scrolling on mobile
