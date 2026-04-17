@@ -124,11 +124,90 @@
         "padding_top": 60,
         "padding_bottom": 60
       }
+    },
+    "heading_sliding_products_EgwnhT": {
+      "type": "heading-sliding-products",
+      "blocks": {
+        "tab_iR6JRB": {
+          "type": "tab",
+          "settings": {
+            "title": "Featured"
+          }
+        },
+        "tab_bMUeVX": {
+          "type": "tab",
+          "settings": {
+            "title": "Food"
+          }
+        },
+        "tab_CMtdWj": {
+          "type": "tab",
+          "settings": {
+            "title": "Drinks"
+          }
+        },
+        "product_gER8RH": {
+          "type": "product",
+          "settings": {
+            "tab_name": "Featured",
+            "title": "Product 1",
+            "link": ""
+          }
+        },
+        "product_mUXFb4": {
+          "type": "product",
+          "settings": {
+            "tab_name": "Food",
+            "title": "Product 2",
+            "link": ""
+          }
+        },
+        "product_M8Rwzw": {
+          "type": "product",
+          "settings": {
+            "tab_name": "Drinks",
+            "title": "Product 3",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "tab_iR6JRB",
+        "tab_bMUeVX",
+        "tab_CMtdWj",
+        "product_gER8RH",
+        "product_mUXFb4",
+        "product_M8Rwzw"
+      ],
+      "name": "Heading Sliding Products",
+      "settings": {
+        "heading_font": "assistant_n4",
+        "slide_font": "assistant_n4",
+        "slide_title_size": 2.8,
+        "heading_color": "#e8c15a",
+        "active_tab_bg": "#bada55",
+        "active_tab_text": "#000000",
+        "btn_label": "Shop HAMSAA",
+        "btn_link": "",
+        "btn_bg_color": "#e8c15a",
+        "btn_text_color": "#ffffff",
+        "btn_hover_color": "#d4ab3c",
+        "btn_radius": 50,
+        "arrow_bg_color": "#e8c15a",
+        "u_curve_intensity": 80,
+        "bg_color": "#ffffff",
+        "container_width": 1400,
+        "pt_desktop": 80,
+        "pb_desktop": 80,
+        "pt_mobile": 50,
+        "pb_mobile": 50
+      }
     }
   },
   "order": [
     "main",
     "blocks_rp3xn6",
-    "split_image_slide_BydbQc"
+    "split_image_slide_BydbQc",
+    "heading_sliding_products_EgwnhT"
   ]
 }
