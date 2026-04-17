@@ -88,10 +88,16 @@
   }
 
   /* Navigation Arrows */
-  .split-image-slide__nav {
+  .split-image-slide__nav-group {
     position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
+    bottom: 40px;
+    right: 40px;
+    display: flex;
+    gap: 15px;
+    z-index: 10;
+  }
+
+  .split-image-slide__nav {
     width: 56px;
     height: 56px;
     background: rgba(255, 255, 255, 0.15);
@@ -103,23 +109,14 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 10;
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     color: {{ section.settings.arrow_color }};
   }
 
   .split-image-slide__nav:hover {
     background: rgba(255, 255, 255, 0.3);
-    transform: translateY(-50%) scale(1.15);
+    transform: scale(1.15);
     box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-  }
-
-  .split-image-slide__nav--prev {
-    left: 40px;
-  }
-
-  .split-image-slide__nav--next {
-    right: 40px;
   }
 
   .split-image-slide__nav svg {
@@ -203,8 +200,20 @@
       border-radius: {{ section.settings.border_radius_mobile }}px;
     }
 
+    .split-image-slide__nav-group {
+      bottom: 20px;
+      right: 20px;
+      gap: 10px;
+    }
+
     .split-image-slide__nav {
-      display: none;
+      width: 44px;
+      height: 44px;
+    }
+
+    .split-image-slide__nav svg {
+      width: 22px;
+      height: 22px;
     }
     
     .split-image-slide__indicators {
@@ -244,12 +253,14 @@
     </div>
 
     {%- if section.blocks.size > 1 -%}
-      <button class="split-image-slide__nav split-image-slide__nav--prev" aria-label="Previous slide">
-        <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"></polyline></svg>
-      </button>
-      <button class="split-image-slide__nav split-image-slide__nav--next" aria-label="Next slide">
-        <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
-      </button>
+      <div class="split-image-slide__nav-group">
+        <button class="split-image-slide__nav split-image-slide__nav--prev" aria-label="Previous slide">
+          <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"></polyline></svg>
+        </button>
+        <button class="split-image-slide__nav split-image-slide__nav--next" aria-label="Next slide">
+          <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        </button>
+      </div>
 
       <div class="split-image-slide__indicators">
         {%- for block in section.blocks -%}
