@@ -13,6 +13,28 @@
     position: relative;
   }
 
+  @media screen and (max-width: 749px) {
+    #HeadingSlidingProducts-{{ section.id }} {
+      padding: {{ section.settings.pt_mobile }}px 0 {{ section.settings.pb_mobile }}px;
+    }
+  }
+
+  .heading-sliding-products__container {
+    width: 100%;
+    margin: 0;
+    position: relative;
+    max-width: {{ section.settings.container_width }}px;
+    margin: 0 auto;
+  }
+
+  /* Tabs Bar */
+  .heading-sliding-products__tabs-wrap {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 40px;
+    padding: 0 20px;
+  }
+
   .heading-sliding-products__tabs {
     display: inline-flex;
     background: var(--tabs-container-bg) !important;
