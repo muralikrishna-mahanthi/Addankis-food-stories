@@ -1,0 +1,501 @@
+{%- style -%}
+  {{ section.settings.heading_font | font_face: font_display: 'swap' }}
+  {{ section.settings.slide_font | font_face: font_display: 'swap' }}
+  {%- assign desc_font = section.settings.desc_font -%}
+  {{ desc_font | font_face: font_display: 'swap' }}
+
+  #HeadingSlidingProducts-{{ section.id }} {
+    background: {{ section.settings.bg_color }};
+    padding: {{ section.settings.pt_desktop }}px 0 {{ section.settings.pb_desktop }}px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  @media screen and (max-width: 749px) {
+    #HeadingSlidingProducts-{{ section.id }} {
+      padding: {{ section.settings.pt_mobile }}px 0 {{ section.settings.pb_mobile }}px;
+    }
+  }
+
+  .heading-sliding-products__container {
+    width: 100%;
+    margin: 0;
+    position: relative;
+    max-width: {{ section.settings.container_width }}px;
+    margin: 0 auto;
+  }
+
+  /* Tabs Bar */
+  .heading-sliding-products__tabs {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 40px;
+    padding: 0 20px;
+    flex-wrap: wrap;
+  }
+
+  .heading-sliding-products__tab {
+    padding: 12px 28px;
+    border-radius: 50px;
+    background: #f0f0f0;
+    color: #333;
+    font-size: 1.6rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+    font-family: {{ section.settings.heading_font.family }}, {{ section.settings.heading_font.fallback_families }};
+  }
+
+  .heading-sliding-products__tab:hover {
+    background: #e5e5e5;
+  }
+
+  .heading-sliding-products__tab.is-active {
+    background: {{ section.settings.active_tab_bg | default: '#bada55' }};
+    color: {{ section.settings.active_tab_text | default: '#000' }};
+  }
+
+  /* Slider Track */
+  .heading-sliding-products__track-wrap {
+    position: relative;
+    width: 100%;
+    overflow: visible;
+    padding: 4rem 0 4rem;
+    perspective: 2000px;
+  }
+
+  @media screen and (max-width: 749px) {
+    .heading-sliding-products__track-wrap {
+      overflow: hidden;
+      padding: 2rem 0;
+    }
+  }
+
+  .heading-sliding-products__track {
+    display: flex;
+    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+    will-change: transform;
+    align-items: center;
+    transform-style: preserve-3d;
+  }
+
+  .heading-sliding-products__slide {
+    flex: 0 0 65%;
+    margin: 0 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+    position: relative;
+    backface-visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .heading-sliding-products__slide.is-visible {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  @media screen and (max-width: 749px) {
+    .heading-sliding-products__slide {
+      flex: 0 0 75%;
+      margin: 0 10px;
+    }
+  }
+
+  @media screen and (min-width: 750px) {
+    .heading-sliding-products__slide {
+      flex: 0 0 22%;
+      margin: 0 1.5%;
+    }
+  }
+
+  .heading-sliding-products__img-wrap {
+    width: 100%;
+    border-radius: 50%; /* Image in image shared is round */
+    overflow: hidden;
+    cursor: pointer;
+    aspect-ratio: 1 / 1;
+    background: #fff;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+  }
+
+  .heading-sliding-products__img-wrap img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: contain; /* For round product containers, contain is often better */
+    padding: 10%;
+  }
+
+  /* Info Bar */
+  .heading-sliding-products__info-bar {
+    text-align: center;
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 140px;
+  }
+
+  .heading-sliding-products__active-title {
+    font-family: {{ section.settings.slide_font.family }}, {{ section.settings.slide_font.fallback_families }} !important;
+    font-size: {{ section.settings.slide_title_size | default: '2.8' }}rem;
+    font-weight: 800;
+    color: {{ section.settings.heading_color }};
+    margin: 0 0 1rem;
+    transition: opacity 0.3s ease;
+  }
+
+  .heading-sliding-products__constant-btn {
+    display: inline-flex;
+    padding: 1.5rem 4rem;
+    background: {{ section.settings.btn_bg_color }};
+    color: {{ section.settings.btn_text_color }};
+    text-decoration: none;
+    font-size: 1.6rem;
+    font-weight: 700;
+    border-radius: {{ section.settings.btn_radius }}px;
+    transition: all 0.4s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 1rem;
+  }
+
+  .heading-sliding-products__constant-btn:hover {
+    transform: scale(1.05);
+    background: {{ section.settings.btn_hover_color }};
+  }
+
+  /* Navigation */
+  .heading-sliding-products__nav {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 40px;
+    pointer-events: none;
+    z-index: 50;
+    transform: translateY(-100%);
+  }
+
+  @media screen and (max-width: 749px) {
+    .heading-sliding-products__nav {
+      top: 45%;
+      padding: 0 15px;
+    }
+  }
+
+  .heading-sliding-products__btn {
+    width: 50px;
+    height: 50px;
+    background: {{ section.settings.arrow_bg_color | default: '#e8c15a' }};
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    pointer-events: auto;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+  }
+
+  .heading-sliding-products__btn:hover {
+    transform: scale(1.1);
+    opacity: 0.9;
+  }
+
+  .heading-sliding-products__btn svg { width: 24px; height: 24px; }
+{%- endstyle -%}
+
+<section id="HeadingSlidingProducts-{{ section.id }}" class="heading-sliding-products">
+  <div class="heading-sliding-products__container">
+    
+    <!-- Tab Filter -->
+    <div class="heading-sliding-products__tabs">
+      {%- assign tab_names = "" -%}
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'tab' -%}
+          <button class="heading-sliding-products__tab {% if forloop.first %}is-active{% endif %}" data-tab="{{ block.settings.title | handle }}">
+            {{ block.settings.title }}
+          </button>
+          {%- capture tab_names -%}{{ tab_names }}{% if tab_names != "" %},{% endif %}{{ block.settings.title | handle }}{%- endcapture -%}
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+
+    <div class="heading-sliding-products__track-wrap">
+      <div class="heading-sliding-products__track">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'product' -%}
+            <div class="heading-sliding-products__slide hamsaa-product" 
+                 data-tab="{{ block.settings.tab_name | handle }}"
+                 data-title="{{ block.settings.title | escape }}" 
+                 data-link="{{ block.settings.link | default: '#' }}"
+                 {{ block.shopify_attributes }}>
+              <a href="{{ block.settings.link | default: '#' }}" class="heading-sliding-products__img-wrap">
+                {%- if block.settings.image != blank -%}
+                   {{ block.settings.image | image_url: width: 800 | image_tag: loading: 'lazy' }}
+                {%- else -%}
+                   {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+                {%- endif -%}
+              </a>
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    </div>
+
+    <div class="heading-sliding-products__nav">
+      <div class="heading-sliding-products__btn hamsaa-prev">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 19l-7-7 7-7"/></svg>
+      </div>
+      <div class="heading-sliding-products__btn hamsaa-next">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 5l7 7-7 7"/></svg>
+      </div>
+    </div>
+
+    <div class="heading-sliding-products__info-bar">
+      <h3 class="heading-sliding-products__active-title"></h3>
+      {%- if section.settings.btn_label != blank -%}
+        <a href="{{ section.settings.btn_link | default: '#' }}" class="heading-sliding-products__constant-btn">
+          {{ section.settings.btn_label }}
+        </a>
+      {%- endif -%}
+    </div>
+
+  </div>
+</section>
+
+<script>
+  (function() {
+    const section = document.getElementById('HeadingSlidingProducts-{{ section.id }}');
+    if (!section) return;
+
+    const track = section.querySelector('.heading-sliding-products__track');
+    const allProducts = Array.from(section.querySelectorAll('.hamsaa-product'));
+    const tabs = section.querySelectorAll('.heading-sliding-products__tab');
+    const nextBtn = section.querySelector('.hamsaa-next');
+    const prevBtn = section.querySelector('.hamsaa-prev');
+    const titleEl = section.querySelector('.heading-sliding-products__active-title');
+    
+    let currentSlides = [];
+    let currentIndex = 0;
+    let interval = null;
+    const intensity = {{ section.settings.u_curve_intensity | default: 80 }};
+
+    function initTab(tabHandle) {
+      // Clear track
+      track.innerHTML = '';
+      
+      // Filter products
+      const filtered = allProducts.filter(p => p.dataset.tab === tabHandle || tabHandle === 'all');
+      if (filtered.length === 0) return;
+
+      // Clone for infinite loop
+      const originalCount = filtered.length;
+      const clonesToCreate = Math.max(3, originalCount);
+      
+      const newSlides = [];
+      
+      // Pre-clones
+      for(let i=0; i<clonesToCreate; i++) {
+        const index = (originalCount - 1 - (i % originalCount)) % originalCount;
+        const clone = filtered[index].cloneNode(true);
+        clone.classList.add('is-clone');
+        newSlides.unshift(clone);
+      }
+      
+      // Originals
+      filtered.forEach(p => {
+        const original = p.cloneNode(true);
+        original.classList.add('is-original');
+        newSlides.push(original);
+      });
+
+      // Post-clones
+      for(let i=0; i<clonesToCreate; i++) {
+        const index = i % originalCount;
+        const clone = filtered[index].cloneNode(true);
+        clone.classList.add('is-clone');
+        newSlides.push(clone);
+      }
+
+      newSlides.forEach(s => {
+        s.classList.add('is-visible');
+        track.appendChild(s);
+      });
+
+      currentSlides = Array.from(track.querySelectorAll('.heading-sliding-products__slide'));
+      currentIndex = clonesToCreate; // Start at first original
+      
+      updateSlider(false);
+    }
+
+    function updateSlider(animate = true) {
+      if (currentSlides.length === 0) return;
+      
+      if (!animate) track.style.transition = 'none';
+      else track.style.transition = 'transform 0.7s cubic-bezier(0.23, 1, 0.32, 1)';
+
+      const containerWrap = section.querySelector('.heading-sliding-products__track-wrap');
+      const containerWidth = containerWrap.offsetWidth;
+      const isMobile = window.innerWidth < 750;
+      
+      const originalCount = currentSlides.filter(s => s.classList.contains('is-original')).length;
+      const clonesAtStart = currentSlides.findIndex(s => s.classList.contains('is-original'));
+
+      currentSlides.forEach((slide, i) => {
+        const distance = Math.abs(i - currentIndex);
+        let yOffset = isMobile ? 0 : distance * intensity;
+        let rotation = (i - currentIndex) * -10;
+        let scale = isMobile ? (1 - (distance * 0.25)) : (1 - (distance * 0.15));
+        let opacity = 1 - (distance * 0.3);
+
+        if (i === currentIndex) {
+          yOffset = 0;
+          rotation = 0;
+          scale = isMobile ? 1.1 : 1.4;
+          opacity = 1;
+
+          if (titleEl) {
+            titleEl.style.opacity = '0';
+            setTimeout(() => {
+              titleEl.textContent = slide.dataset.title;
+              titleEl.style.opacity = '1';
+            }, 150);
+          }
+        }
+
+        slide.style.transform = `translateY(${yOffset}px) rotateY(${rotation}deg) scale(${scale})`;
+        slide.style.opacity = Math.max(0.1, opacity);
+        slide.style.zIndex = 100 - distance;
+      });
+
+      const activeSlide = currentSlides[currentIndex];
+      const offset = (containerWidth / 2) - (activeSlide.offsetLeft + activeSlide.offsetWidth / 2);
+      track.style.transform = `translateX(${offset}px)`;
+
+      if (!animate) {
+        track.offsetHeight;
+        track.style.transition = 'transform 0.7s cubic-bezier(0.23, 1, 0.32, 1)';
+      }
+    }
+
+    function checkLoop() {
+      const originalCount = currentSlides.filter(s => s.classList.contains('is-original')).length;
+      const clonesAtStart = currentSlides.findIndex(s => s.classList.contains('is-original'));
+
+      if (currentIndex >= clonesAtStart + originalCount) {
+        currentIndex = clonesAtStart;
+        updateSlider(false);
+      } else if (currentIndex < clonesAtStart) {
+        currentIndex = clonesAtStart + originalCount - 1;
+        updateSlider(false);
+      }
+    }
+
+    nextBtn.addEventListener('click', () => {
+      currentIndex++;
+      updateSlider();
+      setTimeout(checkLoop, 600);
+    });
+
+    prevBtn.addEventListener('click', () => {
+      currentIndex--;
+      updateSlider();
+      setTimeout(checkLoop, 600);
+    });
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(t => t.classList.remove('is-active'));
+        tab.classList.add('is-active');
+        initTab(tab.dataset.tab);
+      });
+    });
+
+    window.addEventListener('resize', () => updateSlider(false));
+
+    // Initial Load
+    const activeTab = section.querySelector('.heading-sliding-products__tab.is-active');
+    if (activeTab) initTab(activeTab.dataset.tab);
+
+    // Design Mode
+    if (Shopify.designMode) {
+      document.addEventListener('shopify:section:load', () => location.reload());
+    }
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Heading Sliding Products",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    { "type": "header", "content": "Typography" },
+    { "type": "font_picker", "id": "heading_font", "label": "Heading Font", "default": "assistant_n4" },
+    { "type": "font_picker", "id": "slide_font", "label": "Slide Title Font", "default": "assistant_n4" },
+    { "type": "range", "id": "slide_title_size", "label": "Slide Title Size", "min": 1, "max": 5, "step": 0.1, "unit": "rem", "default": 2.8 },
+    { "type": "color", "id": "heading_color", "label": "Primary Color", "default": "#e8c15a" },
+    { "type": "header", "content": "Tab Colors" },
+    { "type": "color", "id": "active_tab_bg", "label": "Active Tab Background", "default": "#bada55" },
+    { "type": "color", "id": "active_tab_text", "label": "Active Tab Text", "default": "#000000" },
+    { "type": "header", "content": "Constant Button" },
+    { "type": "text", "id": "btn_label", "label": "Button Label", "default": "Shop HAMSAA" },
+    { "type": "url", "id": "btn_link", "label": "Button Link" },
+    { "type": "color", "id": "btn_bg_color", "label": "Button Background", "default": "#e8c15a" },
+    { "type": "color", "id": "btn_text_color", "label": "Button Text Color", "default": "#ffffff" },
+    { "type": "color", "id": "btn_hover_color", "label": "Button Hover Color", "default": "#d4ab3c" },
+    { "type": "range", "id": "btn_radius", "label": "Button Corner Radius", "min": 0, "max": 50, "step": 2, "default": 50 },
+    { "type": "header", "content": "Slider Settings" },
+    { "type": "color", "id": "arrow_bg_color", "label": "Arrow Background", "default": "#e8c15a" },
+    { "type": "range", "id": "u_curve_intensity", "label": "Arch Depth Intensity", "min": 0, "max": 150, "step": 5, "default": 80 },
+    { "type": "header", "content": "Layout Spacing" },
+    { "type": "color", "id": "bg_color", "label": "Section Background", "default": "#ffffff" },
+    { "type": "range", "id": "container_width", "label": "Container Width", "min": 1000, "max": 1600, "step": 50, "default": 1400 },
+    { "type": "range", "id": "pt_desktop", "label": "Top Padding (Desktop)", "min": 0, "max": 100, "step": 5, "default": 80 },
+    { "type": "range", "id": "pb_desktop", "label": "Bottom Padding (Desktop)", "min": 0, "max": 100, "step": 5, "default": 80 },
+    { "type": "range", "id": "pt_mobile", "label": "Top Padding (Mobile)", "min": 0, "max": 100, "step": 5, "default": 50 },
+    { "type": "range", "id": "pb_mobile", "label": "Bottom Padding (Mobile)", "min": 0, "max": 100, "step": 5, "default": 50 }
+  ],
+  "blocks": [
+    {
+      "type": "tab",
+      "name": "Tab/Brand",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Tab Name", "default": "Brand Name" }
+      ]
+    },
+    {
+      "type": "product",
+      "name": "Product Slide",
+      "settings": [
+        { "type": "text", "id": "tab_name", "label": "Assign to Tab (Matches Tab Name Exactly)", "default": "Brand Name" },
+        { "type": "image_picker", "id": "image", "label": "Product Image" },
+        { "type": "text", "id": "title", "label": "Product Title", "default": "Luxury Essential Oil" },
+        { "type": "url", "id": "link", "label": "Link Location" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Heading Sliding Products",
+      "blocks": [
+        { "type": "tab", "settings": { "title": "Featured" } },
+        { "type": "tab", "settings": { "title": "Food" } },
+        { "type": "tab", "settings": { "title": "Drinks" } },
+        { "type": "product", "settings": { "title": "Product 1", "tab_name": "Featured" } },
+        { "type": "product", "settings": { "title": "Product 2", "tab_name": "Food" } },
+        { "type": "product", "settings": { "title": "Product 3", "tab_name": "Drinks" } }
+      ]
+    }
+  ]
+}
+{% endschema %}
