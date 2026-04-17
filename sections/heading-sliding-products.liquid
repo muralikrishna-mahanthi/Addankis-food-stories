@@ -52,14 +52,14 @@
 
   .heading-sliding-products__tab-indicator {
     position: absolute;
-    top: 6px;
+    top: 5px;
     left: 0;
-    height: calc(100% - 12px);
+    height: calc(100% - 10px);
     background-color: {{ section.settings.active_tab_bg | default: '#badb7e' }};
     border-radius: 50px;
-    transition: width 0.35s cubic-bezier(0.25, 1, 0.5, 1), transform 0.35s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.2s ease;
-    z-index: 1;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    transition: width 0.3s ease, transform 0.3s ease, opacity 0.2s ease;
+    z-index: 10; /* High enough to be sure */
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
     display: block;
     pointer-events: none;
     opacity: 0;
@@ -70,17 +70,24 @@
   .heading-sliding-products__tab {
     padding: {{ section.settings.tab_pv }}px {{ section.settings.tab_ph }}px;
     border-radius: 50px;
-    background: transparent !important; 
-    color: #444;
+    background: transparent;
+    color: #333;
     font-size: 1.5rem;
     font-weight: 600;
     cursor: pointer;
-    transition: color 0.3s ease;
+    transition: all 0.3s ease;
     border: none;
     white-space: nowrap;
     position: relative;
-    z-index: 2; /* Content above indicator */
+    z-index: 20; /* Content above everything */
     font-family: {{ section.settings.heading_font.family }}, {{ section.settings.heading_font.fallback_families }};
+    line-height: 1;
+  }
+
+  /* Fallback highlight if JS hasn't run yet */
+  .heading-sliding-products__tab.is-active:not(.js-initialized) {
+    background: {{ section.settings.active_tab_bg | default: '#badb7e' }};
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
   }
 
   .heading-sliding-products__tab-text {
@@ -461,9 +468,10 @@
       const indicator = section.querySelector('.heading-sliding-products__tab-indicator');
       const tabsContainer = section.querySelector('.heading-sliding-products__tabs');
       if (!indicator || !tab || !tabsContainer) return;
+
+      // Mark that we are using the indicator system
+      tabs.forEach(t => t.classList.add('js-initialized'));
       
-      // We use offsetLeft relative to the tabsContainer which is position:relative
-      // This is more stable than getBoundingClientRect for sliding inside a scrollable flex parent
       const width = tab.offsetWidth;
       const left = tab.offsetLeft;
 
