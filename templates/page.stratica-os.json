@@ -216,12 +216,60 @@
         "pt_mobile": 50,
         "pb_mobile": 50
       }
+    },
+    "animate_points_nbnbaf": {
+      "type": "animate-points",
+      "blocks": {
+        "point_rixprj": {
+          "type": "point",
+          "settings": {
+            "text": "Whether you sell through kirana stores, modern retail chains, e-commerce portals, or quick-commerce platforms..."
+          }
+        },
+        "point_VVrkai": {
+          "type": "point",
+          "settings": {
+            "text": "Whether you sell through kirana stores, modern retail chains, e-commerce portals, or quick-commerce platforms..."
+          }
+        },
+        "point_ApnKaT": {
+          "type": "point",
+          "settings": {
+            "text": "Whether you sell through kirana stores, modern retail chains, e-commerce portals, or quick-commerce platforms..."
+          }
+        },
+        "point_fJagVL": {
+          "type": "point",
+          "settings": {
+            "text": "Whether you sell through kirana stores, modern retail chains, e-commerce portals, or quick-commerce platforms..."
+          }
+        }
+      },
+      "block_order": [
+        "point_rixprj",
+        "point_VVrkai",
+        "point_ApnKaT",
+        "point_fJagVL"
+      ],
+      "name": "Animate Points",
+      "settings": {
+        "heading": "BUILT FOR HOW FMCG ACTUALLY WORKS",
+        "heading_font": "archivo_black_n4",
+        "text_font": "assistant_n4",
+        "heading_size": 60,
+        "heading_color": "#002e50",
+        "bg_color": "#ffffff",
+        "container_width": 1200,
+        "pt": 100,
+        "pb": 100
+      }
     }
   },
   "order": [
     "main",
     "blocks_rp3xn6",
     "split_image_slide_BydbQc",
-    "heading_sliding_products_EgwnhT"
+    "heading_sliding_products_EgwnhT",
+    "animate_points_nbnbaf"
   ]
 }
