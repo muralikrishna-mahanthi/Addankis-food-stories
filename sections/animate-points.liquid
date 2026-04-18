@@ -173,18 +173,25 @@
 
     const rows = section.querySelectorAll('.js-ap-row');
     
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
+    const animateRows = () => {
+      const vh = window.innerHeight;
+      rows.forEach(row => {
+        const rect = row.getBoundingClientRect();
+        const trigger = vh * 0.85; // Lower 15% of screen
+        const exitTrigger = vh * 0.1; // Top 10% of screen
+        
+        // Appear if top enters the trigger from bottom OR if visible
+        if (rect.top < trigger && rect.bottom > exitTrigger) {
+          row.classList.add('is-visible');
+        } else {
+          row.classList.remove('is-visible');
         }
       });
-    }, { 
-      threshold: 0.1,
-      rootMargin: "0px 0px -100px 0px"
-    });
+    };
 
-    rows.forEach(row => observer.observe(row));
+    window.addEventListener('scroll', animateRows, { passive: true });
+    animateRows(); // Initial check
+
   }
 
   document.addEventListener('DOMContentLoaded', initAnimatePoints);
@@ -192,7 +199,6 @@
     if (e.target.id.includes('{{ section.id }}')) initAnimatePoints();
   });
 </script>
-
 {% schema %}
 {
   "name": "Animate Points",
