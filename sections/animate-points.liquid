@@ -172,15 +172,19 @@
       const vh = window.innerHeight;
       rows.forEach(row => {
         const rect = row.getBoundingClientRect();
-        const center = vh / 2;
         
-        // Calculate progress based on distance from center
-        // 0 at bottom/top of viewport, 1 at center
-        const rowCenter = rect.top + rect.height / 2;
-        const dist = Math.abs(center - rowCenter);
-        const maxDist = center * 0.8;
+        // Calculate how much the row is "into" the viewport
+        // 0 = just entered from bottom, 0.5 = middle, 1 = just leaving at top
+        const viewportPosition = (vh - rect.top) / (vh + rect.height);
         
-        let progress = 1 - (dist / maxDist);
+        // We want a progress that stays at 1 in the middle
+        // and goes to 0 at the extreme edges
+        let progress = 0;
+        if (viewportPosition > 0 && viewportPosition < 1) {
+          // peak at 0.5, fade at ends
+          progress = 1 - Math.abs(0.5 - viewportPosition) * 2.5; 
+        }
+        
         progress = Math.max(0, Math.min(1, progress));
         
         row.style.setProperty('--anim-progress', progress.toFixed(3));
