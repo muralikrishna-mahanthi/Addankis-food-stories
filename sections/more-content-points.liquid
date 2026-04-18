@@ -5,103 +5,25 @@
     background-color: {{ section.settings.bg_color }};
     font-family: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     color: {{ section.settings.text_color }};
+    {% if section.settings.height_type == 'full' %}
+      height: 100vh;
+      display: flex;
+      align-items: center;
+    {% elsif section.settings.height_type == 'custom' %}
+      height: {{ section.settings.custom_height }}px;
+      display: flex;
+      align-items: center;
+    {% endif %}
   }
 
   .mcp-container {
     max-width: {{ section.settings.container_width }}px;
     margin: 0 auto;
     padding: 0 20px;
-  }
-
-  /* Top Flow Styling */
-  .mcp-top-flow {
-    display: {% if section.settings.show_top_flow %}flex{% else %}none{% endif %};
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 0 60px 0;
-    position: relative;
-    margin-bottom: 20px;
-  }
-
-  .mcp-flow-title {
-    font-size: 14px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    color: #666;
-    margin-right: 40px;
-    white-space: nowrap;
-  }
-
-  .mcp-flow-steps {
-    display: flex;
-    flex-grow: 1;
-    justify-content: space-between;
-    align-items: center;
-    position: relative;
-    max-width: 900px;
-  }
-
-  .mcp-flow-steps::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 0;
-    right: 0;
-    height: 3px;
-    background: #4a6fa5;
-    z-index: 1;
-    transform: translateY(-50%);
-  }
-
-  .mcp-flow-step {
-    position: relative;
-    z-index: 2;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
-
-  .mcp-step-circle {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background: #fff;
-    border: 2px solid #e0e0e0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 700;
-    font-size: 11px;
-    margin-bottom: 12px;
-    transition: all 0.3s ease;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-  }
-
-  .mcp-step-label {
-    font-size: 13px;
-    color: #888;
-    position: absolute;
-    top: 65px;
-    white-space: nowrap;
-    font-weight: 500;
-  }
-
-  .mcp-truck-icon {
-    position: absolute;
-    top: -22px;
-    right: -12px;
-    background: #3d5afe;
-    color: white;
-    width: 34px;
-    height: 22px;
-    border-radius: 4px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 10px;
-    z-index: 3;
+    width: 100%;
+    {% if section.settings.height_type != 'auto' %}
+      height: calc(100% - {{ section.settings.padding_top | plus: section.settings.padding_bottom }}px);
+    {% endif %}
   }
 
   /* Main Layout Grid */
@@ -112,8 +34,12 @@
     border-radius: {{ section.settings.border_radius }}px;
     overflow: hidden;
     box-shadow: 0 20px 40px rgba(0,0,0,0.04);
-    min-height: {{ section.settings.min_height }}px;
     border: 1px solid #f0f0f0;
+    {% if section.settings.height_type != 'auto' %}
+      height: 100%;
+    {% else %}
+      min-height: {{ section.settings.min_height }}px;
+    {% endif %}
   }
 
   /* Sidebar */
@@ -121,6 +47,20 @@
     width: {{ section.settings.sidebar_width }}%;
     border-right: 1px solid #f0f0f0;
     background: #fafafa;
+    {% if section.settings.height_type != 'auto' %}
+      overflow-y: auto;
+    {% endif %}
+  }
+
+  /* Custom Scrollbar for Sidebar and Panel */
+  .mcp-sidebar::-webkit-scrollbar,
+  .mcp-content-panel::-webkit-scrollbar {
+    width: 6px;
+  }
+  .mcp-sidebar::-webkit-scrollbar-thumb,
+  .mcp-content-panel::-webkit-scrollbar-thumb {
+    background: #e0e0e0;
+    border-radius: 10px;
   }
 
   .mcp-sidebar-item {
@@ -189,6 +129,9 @@
     padding: {{ section.settings.panel_padding }}px;
     position: relative;
     background: #fff;
+    {% if section.settings.height_type != 'auto' %}
+      overflow-y: auto;
+    {% endif %}
   }
 
   .mcp-block-content {
@@ -346,12 +289,11 @@
   }
 
   @media (max-width: 991px) {
-    .mcp-grid { flex-direction: column; height: auto; }
-    .mcp-sidebar { width: 100%; border-right: none; border-bottom: 1px solid #f0f0f0; }
-    .mcp-content-panel { width: 100%; padding: 40px 20px; }
-    .mcp-top-flow { overflow-x: auto; padding: 20px 0; justify-content: flex-start; }
-    .mcp-flow-title { margin-bottom: 20px; }
-    .mcp-flow-steps { min-width: 750px; padding: 40px 20px; }
+    .more-content-points-{{ section.id }} { height: auto !important; }
+    .mcp-container { height: auto !important; }
+    .mcp-grid { flex-direction: column; height: auto !important; }
+    .mcp-sidebar { width: 100%; border-right: none; border-bottom: 1px solid #f0f0f0; overflow: visible !important; }
+    .mcp-content-panel { width: 100%; padding: 40px 20px; overflow: visible !important; }
     .mcp-cards-grid { grid-template-columns: 1fr; }
     .mcp-perf-item { flex-wrap: wrap; gap: 10px; }
     .mcp-perf-label { width: 100%; }
@@ -361,47 +303,6 @@
 <div class="more-content-points more-content-points-{{ section.id }}" id="section-{{ section.id }}">
   <div class="mcp-container">
     
-    <!-- Top Flow Header -->
-    <div class="mcp-top-flow">
-      <div class="mcp-flow-title">{{ section.settings.flow_title }}</div>
-      <div class="mcp-flow-steps">
-        <div class="mcp-flow-step">
-          <div class="mcp-step-circle" style="background: #edf7ed; border-color: #c3e6cb; color: #2e7d32;">MFG</div>
-          <div class="mcp-step-label">Manufacturer</div>
-        </div>
-        
-        <div class="mcp-flow-step">
-          <div class="mcp-step-circle" style="background: #ffffff; border-color: #3d5afe; color: #3d5afe;">C&F</div>
-          <div class="mcp-step-label">C&F Agent</div>
-        </div>
-        
-        <div class="mcp-flow-step">
-          <div class="mcp-step-circle" style="background: #fff8e1; border-color: #ffe082; color: #f57f17;">SS</div>
-          <div class="mcp-step-label">Super Stockist</div>
-        </div>
-        
-        <div class="mcp-flow-step">
-          <div class="mcp-step-circle" style="background: #e0f2f1; border-color: #80cbc4; color: #00695c;">DB</div>
-          <div class="mcp-step-label">Distributor</div>
-        </div>
-        
-        <div class="mcp-flow-step">
-          <div class="mcp-truck-icon">
-            <svg width="14" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
-          </div>
-          <div class="mcp-step-circle" style="background: #ffebee; border-color: #ffcdd2; color: #c62828;">RT</div>
-          <div class="mcp-step-label">Retail Outlet</div>
-        </div>
-        
-        <div class="mcp-flow-step">
-          <div class="mcp-step-circle" style="background: #eef2ff; border-color: #c7d2fe; color: #3730a3;">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-          </div>
-          <div class="mcp-step-label">Consumer</div>
-        </div>
-      </div>
-    </div>
-
     <!-- Main Content Area -->
     <div class="mcp-grid">
       <!-- Sidebar Triggers -->
@@ -589,6 +490,31 @@
   "settings": [
     {
       "type": "header",
+      "content": "Height & Fit Settings"
+    },
+    {
+      "type": "select",
+      "id": "height_type",
+      "label": "Section Height Type",
+      "options": [
+        {"value": "auto", "label": "Auto (Fit Content)"},
+        {"value": "full", "label": "Full Screen (100vh)"},
+        {"value": "custom", "label": "Custom Fixed Height"}
+      ],
+      "default": "auto"
+    },
+    {
+      "type": "range",
+      "id": "custom_height",
+      "min": 400,
+      "max": 1200,
+      "step": 20,
+      "unit": "px",
+      "label": "Custom Height Value",
+      "default": 800
+    },
+    {
+      "type": "header",
       "content": "Layout Settings"
     },
     {
@@ -614,11 +540,11 @@
     {
       "type": "range",
       "id": "min_height",
-      "min": 500,
+      "min": 400,
       "max": 1000,
       "step": 50,
       "unit": "px",
-      "label": "Min Section Height",
+      "label": "Min Section Height (Auto Mode)",
       "default": 800
     },
     {
@@ -630,22 +556,6 @@
       "unit": "px",
       "label": "Border Radius",
       "default": 12
-    },
-    {
-      "type": "header",
-      "content": "Top Flow Settings"
-    },
-    {
-      "type": "checkbox",
-      "id": "show_top_flow",
-      "label": "Show Top Flow Header",
-      "default": true
-    },
-    {
-      "type": "text",
-      "id": "flow_title",
-      "label": "Flow Section Title",
-      "default": "LIVE DISTRIBUTION FLOW"
     },
     {
       "type": "header",
