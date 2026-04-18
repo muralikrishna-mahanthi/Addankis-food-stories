@@ -223,25 +223,29 @@
         "point_rixprj": {
           "type": "point",
           "settings": {
-            "text": "Whether you sell through kirana stores, modern retail chains, e-commerce portals, or quick-commerce platforms..."
+            "title": "Real market experience",
+            "text": "Every feature and workflow is shaped by professionals who have personally managed FMCG sales pipelines, distributor networks, and on-ground execution — so the platform solves real problems, not theoretical ones."
           }
         },
         "point_VVrkai": {
           "type": "point",
           "settings": {
-            "text": "Whether you sell through kirana stores, modern retail chains, e-commerce portals, or quick-commerce platforms..."
+            "title": "Multi-channel expertise",
+            "text": "Whether you sell through kirana stores, modern retail chains, e-commerce portals, or quick-commerce platforms, Stratica OS gives you unified visibility and control — without juggling separate tools per channel."
           }
         },
         "point_ApnKaT": {
           "type": "point",
           "settings": {
-            "text": "Whether you sell through kirana stores, modern retail chains, e-commerce portals, or quick-commerce platforms..."
+            "title": "Execution focus",
+            "text": "Stratica OS is built around implementation, not just planning. Every module is tied to trackable KPIs — coverage, productivity, sell-through, and more — so you always know what's working and what needs fixing."
           }
         },
         "point_fJagVL": {
           "type": "point",
           "settings": {
-            "text": "Whether you sell through kirana stores, modern retail chains, e-commerce portals, or quick-commerce platforms..."
+            "title": "Scalable systems",
+            "text": "From a single city launch to a multi-market rollout, Stratica OS is structured to scale without re-architecting your operations — the same playbooks, hierarchies, and reporting logic expand as your distribution footprint grows."
           }
         }
       },
@@ -258,6 +262,10 @@
         "heading_size": 60,
         "heading_weight": "800",
         "heading_color": "#002e50",
+        "title_size": 24,
+        "title_weight": "400",
+        "title_color": "#d5e6f6",
+        "title_align": "center",
         "text_font": "sans_serif_n4",
         "text_size": 20,
         "text_weight": "700",
