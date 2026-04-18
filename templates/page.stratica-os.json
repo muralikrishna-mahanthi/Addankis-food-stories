@@ -223,25 +223,29 @@
         "point_rixprj": {
           "type": "point",
           "settings": {
-            "text": "Whether you sell through kirana stores, modern retail chains, e-commerce portals, or quick-commerce platforms..."
+            "title": "Real market experience",
+            "text": "Every feature and workflow is shaped by professionals who have personally managed FMCG sales pipelines, distributor networks, and on-ground execution — so the platform solves real problems, not theoretical ones."
           }
         },
         "point_VVrkai": {
           "type": "point",
           "settings": {
-            "text": "Whether you sell through kirana stores, modern retail chains, e-commerce portals, or quick-commerce platforms..."
+            "title": "Multi-channel expertise",
+            "text": "Whether you sell through kirana stores, modern retail chains, e-commerce portals, or quick-commerce platforms, Stratica OS gives you unified visibility and control — without juggling separate tools per channel."
           }
         },
         "point_ApnKaT": {
           "type": "point",
           "settings": {
-            "text": "Whether you sell through kirana stores, modern retail chains, e-commerce portals, or quick-commerce platforms..."
+            "title": "Execution focus",
+            "text": "Stratica OS is built around implementation, not just planning. Every module is tied to trackable KPIs — coverage, productivity, sell-through, and more — so you always know what's working and what needs fixing."
           }
         },
         "point_fJagVL": {
           "type": "point",
           "settings": {
-            "text": "Whether you sell through kirana stores, modern retail chains, e-commerce portals, or quick-commerce platforms..."
+            "title": "Scalable systems",
+            "text": "From a single city launch to a multi-market rollout, Stratica OS is structured to scale without re-architecting your operations — the same playbooks, hierarchies, and reporting logic expand as your distribution footprint grows."
           }
         }
       },
@@ -258,8 +262,12 @@
         "heading_size": 60,
         "heading_weight": "800",
         "heading_color": "#002e50",
+        "title_size": 24,
+        "title_weight": "400",
+        "title_color": "#d5e6f6",
+        "title_align": "center",
         "text_font": "sans_serif_n4",
-        "text_size": 20,
+        "text_size": 16,
         "text_weight": "700",
         "text_color": "#ffffff",
         "line_thickness": 2,
@@ -267,8 +275,70 @@
         "line_active_color": "#000000",
         "bg_color": "#3680ce",
         "container_width": 1200,
-        "pt": 100,
-        "pb": 100
+        "pt": 70,
+        "pb": 70
+      }
+    },
+    "animate_points_fHzTzG": {
+      "type": "animate-points",
+      "blocks": {
+        "point_jPydgi": {
+          "type": "point",
+          "settings": {
+            "title": "Strategy",
+            "text": "We map your product positioning, consumer behaviour, and market whitespace — so every decision is evidence-led, not assumed."
+          }
+        },
+        "point_FRyVNK": {
+          "type": "point",
+          "settings": {
+            "title": "Structure",
+            "text": "We design your distribution network, territory layout, and sales hierarchy — infrastructure that carries growth without breaking down."
+          }
+        },
+        "point_jWRHjY": {
+          "type": "point",
+          "settings": {
+            "title": "Scale",
+            "text": "We deepen retail coverage, improve shelf presence, and activate trade levers — driving sell-through where market share is won."
+          }
+        },
+        "point_HgRhwq": {
+          "type": "point",
+          "settings": {
+            "title": "Sustain",
+            "text": "Analytics, dashboards, and review cadences keep your teams accountable and your growth trajectory on track long-term."
+          }
+        }
+      },
+      "block_order": [
+        "point_jPydgi",
+        "point_FRyVNK",
+        "point_jWRHjY",
+        "point_HgRhwq"
+      ],
+      "name": "Animate Points",
+      "settings": {
+        "heading": "A STRUCTURED PATH FROM INSIGHT TO SCALE",
+        "heading_font": "archivo_black_n4",
+        "heading_size": 60,
+        "heading_weight": "800",
+        "heading_color": "#002e50",
+        "title_size": 24,
+        "title_weight": "400",
+        "title_color": "#d5e6f6",
+        "title_align": "center",
+        "text_font": "sans_serif_n4",
+        "text_size": 16,
+        "text_weight": "700",
+        "text_color": "#ffffff",
+        "line_thickness": 2,
+        "line_base_color": "#ffffff",
+        "line_active_color": "#000000",
+        "bg_color": "#3680ce",
+        "container_width": 1200,
+        "pt": 70,
+        "pb": 70
       }
     }
   },
@@ -277,6 +347,7 @@
     "blocks_rp3xn6",
     "split_image_slide_BydbQc",
     "heading_sliding_products_EgwnhT",
-    "animate_points_nbnbaf"
+    "animate_points_nbnbaf",
+    "animate_points_fHzTzG"
   ]
 }
