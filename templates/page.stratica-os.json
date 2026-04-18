@@ -340,6 +340,216 @@
         "pt": 70,
         "pb": 70
       }
+    },
+    "more_content_points_AQgn3L": {
+      "type": "more-content-points",
+      "blocks": {
+        "content_block_tzJJrf": {
+          "type": "content_block",
+          "settings": {
+            "sidebar_icon": "<svg width=\"22\" height=\"22\" viewbox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\"><path d=\"M22 7l-9 9-4-4-7 7\"></path><path d=\"M16 7h6v6\"></path></svg>",
+            "icon_bg_color": "#edf7ed",
+            "icon_color": "#2e7d32",
+            "sidebar_title": "Market entry strategy",
+            "sidebar_subtitle": "GTM Planning",
+            "index_number": "01",
+            "badge": "Entry strategy",
+            "main_heading": "Market entry strategy",
+            "panel_icon": "",
+            "description": "We craft a precision go-to-market blueprint — combining consumer research, competitive positioning, and channel strategy — so your brand enters new markets with confidence and momentum from day one.",
+            "feature_1": "Market research & positioning",
+            "feature_2": "Pricing strategy",
+            "feature_3": "Channel selection",
+            "feature_4": "Launch planning",
+            "feature_5": "Sales activation",
+            "feature_6": "",
+            "perf_1_label": "Market readiness",
+            "perf_1_value": 95,
+            "perf_2_label": "Channel fit",
+            "perf_2_value": 90,
+            "perf_3_label": "Launch velocity",
+            "perf_3_value": 82
+          }
+        },
+        "content_block_NNcdpW": {
+          "type": "content_block",
+          "settings": {
+            "sidebar_icon": "<svg width=\"22\" height=\"22\" viewbox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\"><path d=\"M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z\"></path></svg>",
+            "icon_bg_color": "#e3f2fd",
+            "icon_color": "#2196f3",
+            "sidebar_title": "Distribution network",
+            "sidebar_subtitle": "Network Build",
+            "index_number": "02",
+            "badge": "Fastest growing ↑",
+            "main_heading": "Quick commerce activation",
+            "panel_icon": "",
+            "description": "Quick commerce is the fastest-growing FMCG channel in India. We place your brand inside dark stores, coordinate inventory for 10-minute delivery windows, and run campaigns that dominate the instant shelf.",
+            "feature_1": "Quick commerce listing strategy",
+            "feature_2": "Dark store placement planning",
+            "feature_3": "Inventory management coordination",
+            "feature_4": "Sales performance monitoring",
+            "feature_5": "Promotional campaign support",
+            "feature_6": "",
+            "perf_1_label": "Dark store placement",
+            "perf_1_value": 95,
+            "perf_2_label": "Inventory fill rate",
+            "perf_2_value": 90,
+            "perf_3_label": "Q-comm market share",
+            "perf_3_value": 82
+          }
+        },
+        "content_block_GFCByr": {
+          "type": "content_block",
+          "settings": {
+            "sidebar_icon": "<svg width=\"22\" height=\"22\" viewbox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\"><path d=\"M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2\"></path><circle cx=\"12\" cy=\"7\" r=\"4\"></circle></svg>",
+            "icon_bg_color": "#fff3e0",
+            "icon_color": "#ff9800",
+            "sidebar_title": "Sales team deployment",
+            "sidebar_subtitle": "Field Deployment",
+            "index_number": "03",
+            "badge": "Fastest growing ↑",
+            "main_heading": "Quick commerce activation",
+            "panel_icon": "",
+            "description": "Quick commerce is the fastest-growing FMCG channel in India. We place your brand inside dark stores, coordinate inventory for 10-minute delivery windows, and run campaigns that dominate the instant shelf.",
+            "feature_1": "Quick commerce listing strategy",
+            "feature_2": "Dark store placement planning",
+            "feature_3": "Inventory management coordination",
+            "feature_4": "Sales performance monitoring",
+            "feature_5": "Promotional campaign support",
+            "feature_6": "",
+            "perf_1_label": "Dark store placement",
+            "perf_1_value": 95,
+            "perf_2_label": "Inventory fill rate",
+            "perf_2_value": 90,
+            "perf_3_label": "Q-comm market share",
+            "perf_3_value": 82
+          }
+        },
+        "content_block_UGBbfk": {
+          "type": "content_block",
+          "settings": {
+            "sidebar_icon": "<svg width=\"22\" height=\"22\" viewbox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\"><path d=\"M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z\"></path><polyline points=\"9 22 9 12 15 12 15 22\"></polyline></svg>",
+            "icon_bg_color": "#e0f2f1",
+            "icon_color": "#009688",
+            "sidebar_title": "Trade & rural expansion",
+            "sidebar_subtitle": "Kirana & Rural",
+            "index_number": "04",
+            "badge": "Fastest growing ↑",
+            "main_heading": "Quick commerce activation",
+            "panel_icon": "",
+            "description": "Quick commerce is the fastest-growing FMCG channel in India. We place your brand inside dark stores, coordinate inventory for 10-minute delivery windows, and run campaigns that dominate the instant shelf.",
+            "feature_1": "Quick commerce listing strategy",
+            "feature_2": "Dark store placement planning",
+            "feature_3": "Inventory management coordination",
+            "feature_4": "Sales performance monitoring",
+            "feature_5": "Promotional campaign support",
+            "feature_6": "",
+            "perf_1_label": "Dark store placement",
+            "perf_1_value": 95,
+            "perf_2_label": "Inventory fill rate",
+            "perf_2_value": 90,
+            "perf_3_label": "Q-comm market share",
+            "perf_3_value": 82
+          }
+        },
+        "content_block_rVr6bQ": {
+          "type": "content_block",
+          "settings": {
+            "sidebar_icon": "<svg width=\"22\" height=\"22\" viewbox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\"><rect x=\"2\" y=\"7\" width=\"20\" height=\"14\" rx=\"2\" ry=\"2\"></rect><path d=\"M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16\"></path></svg>",
+            "icon_bg_color": "#f3e5f5",
+            "icon_color": "#9c27b0",
+            "sidebar_title": "Modern trade expansion",
+            "sidebar_subtitle": "Chain Retail",
+            "index_number": "05",
+            "badge": "Fastest growing ↑",
+            "main_heading": "Quick commerce activation",
+            "panel_icon": "",
+            "description": "Quick commerce is the fastest-growing FMCG channel in India. We place your brand inside dark stores, coordinate inventory for 10-minute delivery windows, and run campaigns that dominate the instant shelf.",
+            "feature_1": "Quick commerce listing strategy",
+            "feature_2": "Dark store placement planning",
+            "feature_3": "Inventory management coordination",
+            "feature_4": "Sales performance monitoring",
+            "feature_5": "Promotional campaign support",
+            "feature_6": "",
+            "perf_1_label": "Dark store placement",
+            "perf_1_value": 95,
+            "perf_2_label": "Inventory fill rate",
+            "perf_2_value": 90,
+            "perf_3_label": "Q-comm market share",
+            "perf_3_value": 82
+          }
+        },
+        "content_block_hDrYwX": {
+          "type": "content_block",
+          "settings": {
+            "sidebar_icon": "<svg width=\"22\" height=\"22\" viewbox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\"><circle cx=\"9\" cy=\"21\" r=\"1\"></circle><circle cx=\"20\" cy=\"21\" r=\"1\"></circle><path d=\"M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6\"></path></svg>",
+            "icon_bg_color": "#fff0f0",
+            "icon_color": "#e57373",
+            "sidebar_title": "E-commerce growth",
+            "sidebar_subtitle": "Online Marketplaces",
+            "index_number": "06",
+            "badge": "Fastest growing ↑",
+            "main_heading": "Quick commerce activation",
+            "panel_icon": "",
+            "description": "Quick commerce is the fastest-growing FMCG channel in India. We place your brand inside dark stores, coordinate inventory for 10-minute delivery windows, and run campaigns that dominate the instant shelf.",
+            "feature_1": "Quick commerce listing strategy",
+            "feature_2": "Dark store placement planning",
+            "feature_3": "Inventory management coordination",
+            "feature_4": "Sales performance monitoring",
+            "feature_5": "Promotional campaign support",
+            "feature_6": "",
+            "perf_1_label": "Dark store placement",
+            "perf_1_value": 95,
+            "perf_2_label": "Inventory fill rate",
+            "perf_2_value": 90,
+            "perf_3_label": "Q-comm market share",
+            "perf_3_value": 82
+          }
+        },
+        "content_block_PFGHz9": {
+          "type": "content_block",
+          "settings": {
+            "sidebar_icon": "<svg width=\"22\" height=\"22\" viewbox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\"><path d=\"M12 2v20M2 12h20M4.93 4.93l14.14 14.14M4.93 19.07L19.07 4.93\"></path></svg>",
+            "icon_bg_color": "#f0f2ff",
+            "icon_color": "#3d5afe",
+            "sidebar_title": "Quick commerce activation",
+            "sidebar_subtitle": "Instant Delivery",
+            "index_number": "07",
+            "badge": "Fastest growing ↑",
+            "main_heading": "Quick commerce activation",
+            "panel_icon": "",
+            "description": "Quick commerce is the fastest-growing FMCG channel in India. We place your brand inside dark stores, coordinate inventory for 10-minute delivery windows, and run campaigns that dominate the instant shelf.",
+            "feature_1": "Quick commerce listing strategy",
+            "feature_2": "Dark store placement planning",
+            "feature_3": "Inventory management coordination",
+            "feature_4": "Sales performance monitoring",
+            "feature_5": "Promotional campaign support",
+            "feature_6": "",
+            "perf_1_label": "Dark store placement",
+            "perf_1_value": 95,
+            "perf_2_label": "Inventory fill rate",
+            "perf_2_value": 90,
+            "perf_3_label": "Q-comm market share",
+            "perf_3_value": 82
+          }
+        }
+      },
+      "block_order": [
+        "content_block_tzJJrf",
+        "content_block_NNcdpW",
+        "content_block_GFCByr",
+        "content_block_UGBbfk",
+        "content_block_rVr6bQ",
+        "content_block_hDrYwX",
+        "content_block_PFGHz9"
+      ],
+      "name": "More Content Points",
+      "settings": {
+        "bg_color": "#f4f3ed",
+        "flow_title": "LIVE DISTRIBUTION FLOW",
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
     }
   },
   "order": [
@@ -348,6 +558,7 @@
     "split_image_slide_BydbQc",
     "heading_sliding_products_EgwnhT",
     "animate_points_nbnbaf",
-    "animate_points_fHzTzG"
+    "animate_points_fHzTzG",
+    "more_content_points_AQgn3L"
   ]
 }
