@@ -355,6 +355,7 @@
         "right_point_zD6xCy",
         "right_point_REwHEY"
       ],
+      "disabled": true,
       "name": "US Brands About Us",
       "settings": {
         "split_ratio": 50,
@@ -368,6 +369,45 @@
         "pt_desktop": 100,
         "pb_desktop": 100
       }
+    },
+    "animation_points_Ud3MXj": {
+      "type": "animation-points",
+      "blocks": {
+        "point_XWhhKw": {
+          "type": "point",
+          "settings": {
+            "title": "Foundation",
+            "description": "<p>Where it all started, with a vision for excellence.</p>"
+          }
+        },
+        "point_wV8C3R": {
+          "type": "point",
+          "settings": {
+            "title": "Growth",
+            "description": "<p>Expanding horizons and reaching new milestones.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "point_XWhhKw",
+        "point_wV8C3R"
+      ],
+      "name": "Animation Points",
+      "settings": {
+        "heading": "The Journey of Excellence",
+        "heading_font": "archivo_black_n4",
+        "text_font": "sans_serif_n4",
+        "heading_size": 64,
+        "heading_color": "#121212",
+        "bg_color": "#004d98",
+        "text_color": "#121212",
+        "line_base_color": "#f0f0f0",
+        "line_active_color": "#000000",
+        "block_bg_color": "#ffffff",
+        "container_width": 1400,
+        "padding_top": 120,
+        "padding_bottom": 120
+      }
     }
   },
   "order": [
@@ -375,6 +415,7 @@
     "blocks_rp3xn6",
     "split_image_slide_BydbQc",
     "heading_sliding_products_EgwnhT",
-    "us_brands_about_us_tHhafP"
+    "us_brands_about_us_tHhafP",
+    "animation_points_Ud3MXj"
   ]
 }
