@@ -275,8 +275,8 @@
         "line_active_color": "#000000",
         "bg_color": "#3680ce",
         "container_width": 1200,
-        "pt": 100,
-        "pb": 100
+        "pt": 70,
+        "pb": 70
       }
     }
   },
