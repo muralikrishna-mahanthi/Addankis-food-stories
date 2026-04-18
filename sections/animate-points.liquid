@@ -1,0 +1,297 @@
+{%- style -%}
+  {%- liquid
+    assign heading_font = section.settings.heading_font
+    assign text_font = section.settings.text_font
+  -%}
+
+  {{ heading_font | font_face: font_display: 'swap' }}
+  {{ text_font | font_face: font_display: 'swap' }}
+
+  #AnimatePoints-{{ section.id }} {
+    padding-top: {{ section.settings.pt }}px;
+    padding-bottom: {{ section.settings.pb }}px;
+    background: {{ section.settings.bg_color }};
+    overflow: hidden;
+    font-family: {{ text_font.family }}, {{ text_font.fallback_families }};
+  }
+
+  .ap-container {
+    max-width: {{ section.settings.container_width }}px;
+    margin: 0 auto;
+    padding: 0 20px;
+    position: relative;
+  }
+
+  .ap-header {
+    text-align: center;
+    margin-bottom: 80px;
+  }
+
+  .ap-main-heading {
+    margin: 0;
+    font-size: {{ section.settings.heading_size }}px;
+    font-weight: 800;
+    color: {{ section.settings.heading_color }};
+    line-height: 1.1;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    font-family: {{ heading_font.family }}, {{ heading_font.fallback_families }};
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .ap-timeline-wrapper {
+    position: relative;
+    padding: 40px 0;
+  }
+
+  .ap-central-line {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 6px;
+    background: #000000;
+    transform: translateX(-50%);
+    z-index: 1;
+  }
+
+  .ap-rows-container {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 100px;
+  }
+
+  .ap-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+    position: relative;
+  }
+
+  .ap-point {
+    width: 42%;
+    opacity: 0;
+    transition: transform 1.5s cubic-bezier(0.19, 1, 0.22, 1), opacity 1.2s ease;
+  }
+
+  .ap-point-left {
+    text-align: center;
+    transform: translateX(-100vw);
+  }
+
+  .ap-point-right {
+    text-align: center;
+    transform: translateX(100vw);
+  }
+
+  .ap-row.is-visible .ap-point {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .ap-text {
+    margin: 0;
+    font-size: 20px;
+    line-height: 1.4;
+    font-weight: 700;
+    color: #000000;
+    text-align: center;
+  }
+
+  @media screen and (max-width: 767px) {
+    .ap-central-line {
+      left: 20px;
+      transform: none;
+    }
+    .ap-row {
+      flex-direction: column;
+      gap: 60px;
+      padding-left: 50px;
+    }
+    .ap-point {
+      width: 100%;
+      transform: translateX(100vw) !important;
+    }
+    .ap-point-left {
+        transform: translateX(-100vw) !important;
+    }
+    .ap-main-heading {
+      font-size: 32px;
+    }
+    .ap-text {
+      font-size: 16px;
+    }
+  }
+{%- endstyle -%}
+
+<section id="AnimatePoints-{{ section.id }}" class="ap-section">
+  <div class="ap-container">
+    <div class="ap-header">
+      <h2 class="ap-main-heading">{{ section.settings.heading }}</h2>
+    </div>
+
+    <div class="ap-timeline-wrapper">
+      <div class="ap-central-line"></div>
+      
+      <div class="ap-rows-container">
+        {%- assign blocks = section.blocks -%}
+        {%- for i in (0..blocks.size) -%}
+          {%- assign index = i | times: 2 -%}
+          {%- if index < blocks.size -%}
+            <div class="ap-row js-ap-row">
+              <!-- Left Item -->
+              {%- assign left_block = blocks[index] -%}
+              <div class="ap-point ap-point-left" {{ left_block.shopify_attributes }}>
+                <p class="ap-text">{{ left_block.settings.text | escape }}</p>
+              </div>
+
+              <!-- Right Item -->
+              {%- assign right_index = index | plus: 1 -%}
+              {%- assign right_block = blocks[right_index] -%}
+              {%- if right_block != blank -%}
+                <div class="ap-point ap-point-right" {{ right_block.shopify_attributes }}>
+                  <p class="ap-text">{{ right_block.settings.text | escape }}</p>
+                </div>
+              {%- endif -%}
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  function initAnimatePoints() {
+    const section = document.querySelector('#AnimatePoints-{{ section.id }}');
+    if (!section || section.dataset.initialized) return;
+    section.dataset.initialized = "true";
+
+    const rows = section.querySelectorAll('.js-ap-row');
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+        }
+      });
+    }, { 
+      threshold: 0.1,
+      rootMargin: "0px 0px -100px 0px"
+    });
+
+    rows.forEach(row => observer.observe(row));
+  }
+
+  document.addEventListener('DOMContentLoaded', initAnimatePoints);
+  document.addEventListener('shopify:section:load', (e) => {
+    if (e.target.id.includes('{{ section.id }}')) initAnimatePoints();
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Animate Points",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "BUILT FOR HOW FMCG ACTUALLY WORKS"
+    },
+    {
+      "type": "font_picker",
+      "id": "heading_font",
+      "label": "Heading Font",
+      "default": "assistant_n7"
+    },
+    {
+      "type": "font_picker",
+      "id": "text_font",
+      "label": "Text Font",
+      "default": "assistant_n4"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "label": "Heading Size",
+      "min": 20,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "container_width",
+      "label": "Container Width",
+      "min": 800,
+      "max": 1600,
+      "step": 50,
+      "unit": "px",
+      "default": 1200
+    },
+    {
+      "type": "range",
+      "id": "pt",
+      "label": "Padding Top",
+      "min": 0,
+      "max": 200,
+      "step": 10,
+      "unit": "px",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "pb",
+      "label": "Padding Bottom",
+      "min": 0,
+      "max": 200,
+      "step": 10,
+      "unit": "px",
+      "default": 100
+    }
+  ],
+  "blocks": [
+    {
+      "type": "point",
+      "name": "Point",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Text Content",
+          "default": "Whether you sell through kirana stores, modern retail chains, e-commerce portals, or quick-commerce platforms..."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Animate Points",
+      "blocks": [
+        { "type": "point" },
+        { "type": "point" },
+        { "type": "point" },
+        { "type": "point" }
+      ]
+    }
+  ]
+}
+{% endschema %}
