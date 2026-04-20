@@ -38,6 +38,12 @@
     z-index: 1;
   }
 
+  .asfpl-hero--{{ section.id }}.asfpl-hero--parallax .asfpl-hero__media {
+    height: 140%;
+    top: -20%;
+    will-change: transform;
+  }
+
   .asfpl-hero__media img,
   .asfpl-hero__media video,
   .asfpl-hero__media iframe {
@@ -223,7 +229,7 @@
 
 {%- endstyle -%}
 
-<div class="asfpl-hero asfpl-hero--{{ section.id }} section-{{ section.id }}-padding">
+<div class="asfpl-hero asfpl-hero--{{ section.id }} section-{{ section.id }}-padding {% if section.settings.enable_parallax %}asfpl-hero--parallax{% endif %}">
   
   <div class="asfpl-hero__media">
     {%- if section.settings.video != blank -%}
@@ -285,10 +291,9 @@
 
 <script>
   (function() {
-    const containerId = 'AsfplDynamicWords-{{ section.id }}';
-    const speed = {{ section.settings.animation_speed | default: 2000 }};
-
-    function init() {
+    function initDynamicWords() {
+      const containerId = 'AsfplDynamicWords-{{ section.id }}';
+      const speed = {{ section.settings.animation_speed | default: 2000 }};
       const wrapper = document.getElementById(containerId);
       if (!wrapper) return;
       
@@ -312,18 +317,65 @@
       wrapper.dataset.intervalId = intervalId;
     }
 
-    document.addEventListener('DOMContentLoaded', init);
-    if (document.readyState !== 'loading') init();
+    function initParallax() {
+      const hero = document.querySelector('.asfpl-hero--{{ section.id }}');
+      if (!hero) return;
+      
+      const media = hero.querySelector('.asfpl-hero__media');
+      const isEnabled = {{ section.settings.enable_parallax | default: false }};
+      const intensity = {{ section.settings.parallax_speed | default: 30 }};
+      
+      if (!media || !isEnabled) {
+        media.style.transform = '';
+        return;
+      }
+
+      const handleScroll = () => {
+        const rect = hero.getBoundingClientRect();
+        const winH = window.innerHeight;
+        
+        if (rect.top < winH && rect.bottom > 0) {
+          const totalDistance = winH + rect.height;
+          const currentDistance = winH - rect.top;
+          const progress = currentDistance / totalDistance; // 0 to 1
+          
+          // Map 0 -> 1 progress to range -> -range
+          // At height 140% and top -20%, we have 20% room at top and bottom
+          const moveRange = (intensity / 100) * 20; 
+          const yPos = (progress - 0.5) * -2 * moveRange;
+          
+          media.style.transform = `translate3d(0, ${yPos}%, 0)`;
+        }
+      };
+
+      window.addEventListener('scroll', handleScroll, { passive: true });
+      handleScroll();
+      
+      hero._asfplParallaxHandler = handleScroll;
+    }
+
+    function initAll() {
+      initDynamicWords();
+      initParallax();
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initAll);
+    } else {
+      initAll();
+    }
     
     document.addEventListener('shopify:section:load', (e) => {
-      if (e.detail.sectionId === '{{ section.id }}') {
-        init();
-      }
+      if (e.detail.sectionId === '{{ section.id }}') initAll();
     });
     
     document.addEventListener('shopify:section:unload', (e) => {
       if (e.detail.sectionId === '{{ section.id }}') {
-        const wrapper = document.getElementById(containerId);
+        const hero = document.querySelector('.asfpl-hero--{{ section.id }}');
+        if (hero && hero._asfplParallaxHandler) {
+          window.removeEventListener('scroll', hero._asfplParallaxHandler);
+        }
+        const wrapper = document.getElementById('AsfplDynamicWords-{{ section.id }}');
         if (wrapper && wrapper.dataset.intervalId) {
           clearInterval(parseInt(wrapper.dataset.intervalId));
         }
@@ -347,6 +399,26 @@
     },
     { "type": "image_picker", "id": "image", "label": "Background Image" },
     { "type": "video", "id": "video", "label": "Background Video" },
+    {
+      "type": "header",
+      "content": "Parallax Effect"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_parallax",
+      "label": "Enable Parallax",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "parallax_speed",
+      "label": "Parallax Intensity",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "default": 50,
+      "info": "Controls how fast the image moves during scroll."
+    },
     {
       "type": "header",
       "content": "Overlay Styling"
