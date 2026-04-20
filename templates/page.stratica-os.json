@@ -362,13 +362,7 @@
             "feature_3": "Channel selection",
             "feature_4": "Launch planning",
             "feature_5": "Sales activation",
-            "feature_6": "",
-            "perf_1_label": "Market readiness",
-            "perf_1_value": 88,
-            "perf_2_label": "Channel fit",
-            "perf_2_value": 92,
-            "perf_3_label": "Launch velocity",
-            "perf_3_value": 78
+            "feature_6": ""
           }
         },
         "content_block_9rFJzD": {
@@ -389,13 +383,7 @@
             "feature_3": "Territory mapping",
             "feature_4": "Channel partner onboarding",
             "feature_5": "Sales territory planning",
-            "feature_6": "",
-            "perf_1_label": "Network reach",
-            "perf_1_value": 94,
-            "perf_2_label": "Fill rate efficiency",
-            "perf_2_value": 87,
-            "perf_3_label": "Distributor ROI",
-            "perf_3_value": 82
+            "feature_6": ""
           }
         },
         "content_block_H6EniW": {
@@ -416,13 +404,7 @@
             "feature_3": "Retail outlet coverage",
             "feature_4": "Beat planning & tracking",
             "feature_5": "Field sales monitoring",
-            "feature_6": "",
-            "perf_1_label": "Outlet coverage",
-            "perf_1_value": 90,
-            "perf_2_label": "Beat adherence",
-            "perf_2_value": 86,
-            "perf_3_label": "Productivity index",
-            "perf_3_value": 80
+            "feature_6": ""
           }
         },
         "content_block_3LYBRH": {
@@ -443,13 +425,7 @@
             "feature_3": "Secondary sales growth",
             "feature_4": "Retail engagement programs",
             "feature_5": "Rural market penetration",
-            "feature_6": "",
-            "perf_1_label": "Kirana coverage",
-            "perf_1_value": 85,
-            "perf_2_label": "Rural penetration",
-            "perf_2_value": 72,
-            "perf_3_label": "Secondary sales lift",
-            "perf_3_value": 78
+            "feature_6": ""
           }
         },
         "content_block_9khE4H": {
@@ -470,13 +446,7 @@
             "feature_3": "Store listing support",
             "feature_4": "Shelf placement strategy",
             "feature_5": "In-store promotions & visibility",
-            "feature_6": "",
-            "perf_1_label": "Chain penetration",
-            "perf_1_value": 76,
-            "perf_2_label": "Shelf share",
-            "perf_2_value": 70,
-            "perf_3_label": "In-store conversion",
-            "perf_3_value": 68
+            "feature_6": ""
           }
         },
         "content_block_N8WxdV": {
@@ -489,21 +459,15 @@
             "sidebar_subtitle": "Online Marketplaces",
             "index_number": "06",
             "badge": "",
-            "main_heading": "Quick commerce activation",
+            "main_heading": "E-commerce growth",
             "panel_icon": "",
-            "description": "Quick commerce is the fastest-growing FMCG channel in India. We place your brand inside dark stores, coordinate inventory for 10-minute delivery windows, and run campaigns that dominate the instant shelf.",
-            "feature_1": "Quick commerce listing strategy",
-            "feature_2": "Dark store placement planning",
-            "feature_3": "Inventory management coordination",
-            "feature_4": "Sales performance monitoring",
-            "feature_5": "Promotional campaign support",
-            "feature_6": "",
-            "perf_1_label": "Dark store placement",
-            "perf_1_value": 95,
-            "perf_2_label": "Inventory fill rate",
-            "perf_2_value": 90,
-            "perf_3_label": "Q-comm market share",
-            "perf_3_value": 82
+            "description": "Stratica OS scales your brand across India's major online marketplaces — optimising listings, managing pricing strategy, and tracking online sales performance to consistently grow your digital shelf share.",
+            "feature_1": "Marketplace onboarding",
+            "feature_2": "Product listing optimization",
+            "feature_3": "Pricing & promotion strategy",
+            "feature_4": "Digital catalog management",
+            "feature_5": "Online sales performance tracking",
+            "feature_6": ""
           }
         },
         "content_block_9gPqfY": {
@@ -524,13 +488,7 @@
             "feature_3": "Inventory management coordination",
             "feature_4": "Sales performance monitoring",
             "feature_5": "Promotional campaign support",
-            "feature_6": "",
-            "perf_1_label": "Dark store placement",
-            "perf_1_value": 95,
-            "perf_2_label": "Inventory fill rate",
-            "perf_2_value": 90,
-            "perf_3_label": "Q-comm market share",
-            "perf_3_value": 82
+            "feature_6": ""
           }
         }
       },
@@ -563,7 +521,6 @@
         "panel_padding": 70,
         "cards_per_row": "3",
         "card_text_size": 14,
-        "bar_height": 8,
         "padding_top": 60,
         "padding_bottom": 60
       }
