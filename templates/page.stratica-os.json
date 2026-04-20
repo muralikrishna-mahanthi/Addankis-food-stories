@@ -512,7 +512,7 @@
         "bg_color": "#f4f3ed",
         "text_color": "#1a1a1a",
         "active_color": "#3d5afe",
-        "sidebar_title_size": 19,
+        "sidebar_title_size": 15,
         "sidebar_title_weight": "700",
         "sidebar_subtitle_size": 14,
         "main_heading_size": 42,
