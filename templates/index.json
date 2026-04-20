@@ -12,7 +12,7 @@
     "asfpl_hero_8fNkUE": {
       "type": "asfpl-hero",
       "custom_css": [
-        "h1 {padding-bottom: 30px;}"
+        "h1 {padding-bottom: 90px;}"
       ],
       "name": "ASFPL Hero",
       "settings": {
@@ -37,7 +37,7 @@
         "heading_transform": "uppercase",
         "heading_animation": "blur-in",
         "heading_delay": 300,
-        "description": "<p>Addanki’s Food Stories Pvt. Ltd. is an emerging Indian FMCG company focused on building scalable consumer brands and enabling strong distribution networks across urban and rural markets.</p>",
+        "description": "",
         "description_color": "#ffffff",
         "description_size": 1.6,
         "description_weight_desktop": "700",
