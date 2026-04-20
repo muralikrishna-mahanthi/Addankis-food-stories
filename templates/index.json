@@ -36,7 +36,7 @@
         "heading_letter_spacing_mobile": 1,
         "heading_transform": "uppercase",
         "heading_animation": "blur-in",
-        "heading_delay": 300,
+        "heading_delay": 100,
         "description": "",
         "description_color": "#ffffff",
         "description_size": 1.6,
