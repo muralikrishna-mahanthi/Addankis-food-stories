@@ -33,7 +33,7 @@
         "heading_size_mobile": 2.5,
         "heading_weight_mobile": "900",
         "heading_line_height_mobile": 1.1,
-        "heading_letter_spacing_mobile": -1,
+        "heading_letter_spacing_mobile": 1,
         "heading_transform": "uppercase",
         "heading_animation": "blur-in",
         "heading_delay": 300,
