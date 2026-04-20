@@ -3,7 +3,8 @@
     padding-top: {{ section.settings.padding_top }}px;
     padding-bottom: {{ section.settings.padding_bottom }}px;
     background-color: {{ section.settings.bg_color }};
-    font-family: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    {{ section.settings.global_font | font_face: display: 'swap' }}
+    font-family: {{ section.settings.global_font.family }}, {{ section.settings.global_font.fallback_families }};
     color: {{ section.settings.text_color }};
     {% if section.settings.height_type == 'full' %}
       height: 100vh;
@@ -103,24 +104,30 @@
   }
 
   .mcp-item-title {
+    {{ section.settings.sidebar_title_font | font_face: display: 'swap' }}
+    font-family: {{ section.settings.sidebar_title_font.family }}, {{ section.settings.sidebar_title_font.fallback_families }};
     font-size: {{ section.settings.sidebar_title_size }}px;
     font-weight: {{ section.settings.sidebar_title_weight }};
     margin: 0;
-    color: #1a1a1a;
+    color: {{ section.settings.sidebar_title_color }};
     letter-spacing: -0.2px;
   }
 
   .mcp-item-subtitle {
+    {{ section.settings.sidebar_subtitle_font | font_face: display: 'swap' }}
+    font-family: {{ section.settings.sidebar_subtitle_font.family }}, {{ section.settings.sidebar_subtitle_font.fallback_families }};
     font-size: {{ section.settings.sidebar_subtitle_size }}px;
-    color: #888;
+    font-weight: {{ section.settings.sidebar_subtitle_weight }};
+    color: {{ section.settings.sidebar_subtitle_color }};
     margin-top: 2px;
-    font-weight: 500;
   }
 
   .mcp-item-number {
-    font-size: 14px;
-    color: #ccc;
-    font-weight: 600;
+    {{ section.settings.sidebar_number_font | font_face: display: 'swap' }}
+    font-family: {{ section.settings.sidebar_number_font.family }}, {{ section.settings.sidebar_number_font.fallback_families }};
+    font-size: {{ section.settings.sidebar_number_size }}px;
+    color: {{ section.settings.sidebar_number_color }};
+    font-weight: {{ section.settings.sidebar_number_weight }};
   }
 
   /* Content Panel */
@@ -158,20 +165,24 @@
   .mcp-badge {
     display: inline-block;
     padding: 8px 18px;
-    background: #ece9ff;
-    color: {{ section.settings.active_color }};
+    background: {{ section.settings.badge_bg_color }};
+    color: {{ section.settings.badge_color }};
     border-radius: 30px;
-    font-size: 13px;
-    font-weight: 600;
+    {{ section.settings.badge_font | font_face: display: 'swap' }}
+    font-family: {{ section.settings.badge_font.family }}, {{ section.settings.badge_font.fallback_families }};
+    font-size: {{ section.settings.badge_size }}px;
+    font-weight: {{ section.settings.badge_weight }};
     margin-bottom: 25px;
   }
 
   .mcp-main-heading {
+    {{ section.settings.main_heading_font | font_face: display: 'swap' }}
+    font-family: {{ section.settings.main_heading_font.family }}, {{ section.settings.main_heading_font.fallback_families }};
     font-size: {{ section.settings.main_heading_size }}px;
     font-weight: {{ section.settings.main_heading_weight }};
     margin: 0;
     line-height: 1.15;
-    color: #101828;
+    color: {{ section.settings.main_heading_color }};
     letter-spacing: -1px;
   }
 
@@ -192,9 +203,12 @@
   }
 
   .mcp-description {
+    {{ section.settings.desc_font | font_face: display: 'swap' }}
+    font-family: {{ section.settings.desc_font.family }}, {{ section.settings.desc_font.fallback_families }};
     font-size: {{ section.settings.desc_size }}px;
+    font-weight: {{ section.settings.desc_weight }};
     line-height: 1.6;
-    color: #475467;
+    color: {{ section.settings.desc_color }};
     margin-bottom: 50px;
     max-width: 100%;
   }
@@ -231,9 +245,11 @@
   }
 
   .mcp-card-text {
+    {{ section.settings.card_text_font | font_face: display: 'swap' }}
+    font-family: {{ section.settings.card_text_font.family }}, {{ section.settings.card_text_font.fallback_families }};
     font-size: {{ section.settings.card_text_size }}px;
-    font-weight: 700;
-    color: #344054;
+    font-weight: {{ section.settings.card_text_weight }};
+    color: {{ section.settings.card_text_color }};
     line-height: 1.4;
   }
 
@@ -485,72 +501,76 @@
       "default": "#3d5afe"
     },
     {
+      "type": "font_picker",
+      "id": "global_font",
+      "label": "Global Font Family",
+      "default": "assistant_n4"
+    },
+    {
       "type": "header",
       "content": "Detailed Typography"
     },
     {
-      "type": "range",
-      "id": "sidebar_title_size",
-      "min": 14,
-      "max": 24,
-      "step": 1,
-      "unit": "px",
-      "label": "Sidebar Item Title Size",
-      "default": 19
+      "type": "subheader",
+      "content": "Sidebar - Title"
+    },
+    { "type": "font_picker", "id": "sidebar_title_font", "label": "Title Font", "default": "assistant_n4" },
+    { "type": "range", "id": "sidebar_title_size", "min": 12, "max": 40, "step": 1, "unit": "px", "label": "Title Size", "default": 19 },
+    { "type": "select", "id": "sidebar_title_weight", "label": "Title Weight", "options": [{"value":"300","label":"Light"},{"value":"400","label":"Normal"},{"value":"500","label":"Medium"},{"value":"600","label":"Semi-Bold"},{"value":"700","label":"Bold"},{"value":"800","label":"Extra-Bold"},{"value":"900","label":"Black"}], "default": "700" },
+    { "type": "color", "id": "sidebar_title_color", "label": "Title Color", "default": "#1a1a1a" },
+    {
+      "type": "subheader",
+      "content": "Sidebar - Subtitle"
+    },
+    { "type": "font_picker", "id": "sidebar_subtitle_font", "label": "Subtitle Font", "default": "assistant_n4" },
+    { "type": "range", "id": "sidebar_subtitle_size", "min": 10, "max": 30, "step": 1, "unit": "px", "label": "Subtitle Size", "default": 14 },
+    { "type": "select", "id": "sidebar_subtitle_weight", "label": "Subtitle Weight", "options": [{"value":"300","label":"Light"},{"value":"400","label":"Normal"},{"value":"500","label":"Medium"},{"value":"600","label":"Semi-Bold"},{"value":"700","label":"Bold"}], "default": "500" },
+    { "type": "color", "id": "sidebar_subtitle_color", "label": "Subtitle Color", "default": "#888888" },
+    {
+      "type": "subheader",
+      "content": "Sidebar - Index Number"
+    },
+    { "type": "font_picker", "id": "sidebar_number_font", "label": "Number Font", "default": "assistant_n4" },
+    { "type": "range", "id": "sidebar_number_size", "min": 10, "max": 40, "step": 1, "unit": "px", "label": "Number Size", "default": 14 },
+    { "type": "select", "id": "sidebar_number_weight", "label": "Number Weight", "options": [{"value":"400","label":"Normal"},{"value":"600","label":"Semi-Bold"},{"value":"700","label":"Bold"},{"value":"900","label":"Black"}], "default": "600" },
+    { "type": "color", "id": "sidebar_number_color", "label": "Number Color", "default": "#cccccc" },
+    {
+      "type": "header",
+      "content": "Content Panel Typography"
     },
     {
-      "type": "select",
-      "id": "sidebar_title_weight",
-      "label": "Sidebar Item Title Weight",
-      "options": [
-        {"value": "400", "label": "Normal"},
-        {"value": "600", "label": "Semi-Bold"},
-        {"value": "700", "label": "Bold"},
-        {"value": "800", "label": "Extra-Bold"}
-      ],
-      "default": "700"
+      "type": "subheader",
+      "content": "Badge"
     },
+    { "type": "font_picker", "id": "badge_font", "label": "Badge Font", "default": "assistant_n4" },
+    { "type": "range", "id": "badge_size", "min": 10, "max": 24, "step": 1, "unit": "px", "label": "Badge Size", "default": 13 },
+    { "type": "select", "id": "badge_weight", "label": "Badge Weight", "options": [{"value":"400","label":"Normal"},{"value":"600","label":"Semi-Bold"},{"value":"700","label":"Bold"}], "default": "600" },
+    { "type": "color", "id": "badge_color", "label": "Badge Color", "default": "#3d5afe" },
+    { "type": "color", "id": "badge_bg_color", "label": "Badge Background", "default": "#ece9ff" },
     {
-      "type": "range",
-      "id": "sidebar_subtitle_size",
-      "min": 10,
-      "max": 18,
-      "step": 1,
-      "unit": "px",
-      "label": "Sidebar Item Subtitle Size",
-      "default": 14
+      "type": "subheader",
+      "content": "Main Heading"
     },
+    { "type": "font_picker", "id": "main_heading_font", "label": "Heading Font", "default": "assistant_n4" },
+    { "type": "range", "id": "main_heading_size", "min": 18, "max": 100, "step": 1, "unit": "px", "label": "Heading Size", "default": 42 },
+    { "type": "select", "id": "main_heading_weight", "label": "Heading Weight", "options": [{"value":"400","label":"Normal"},{"value":"600","label":"Semi-Bold"},{"value":"700","label":"Bold"},{"value":"800","label":"Extra-Bold"},{"value":"900","label":"Black"}], "default": "800" },
+    { "type": "color", "id": "main_heading_color", "label": "Heading Color", "default": "#101828" },
     {
-      "type": "range",
-      "id": "main_heading_size",
-      "min": 24,
-      "max": 64,
-      "step": 2,
-      "unit": "px",
-      "label": "Main Heading Font Size",
-      "default": 42
+      "type": "subheader",
+      "content": "Description"
     },
+    { "type": "font_picker", "id": "desc_font", "label": "Description Font", "default": "assistant_n4" },
+    { "type": "range", "id": "desc_size", "min": 12, "max": 32, "step": 1, "unit": "px", "label": "Description Size", "default": 18 },
+    { "type": "select", "id": "desc_weight", "label": "Description Weight", "options": [{"value":"300","label":"Light"},{"value":"400","label":"Normal"},{"value":"500","label":"Medium"}], "default": "400" },
+    { "type": "color", "id": "desc_color", "label": "Description Color", "default": "#475467" },
     {
-      "type": "select",
-      "id": "main_heading_weight",
-      "label": "Main Heading Weight",
-      "options": [
-        {"value": "600", "label": "Semi-Bold"},
-        {"value": "700", "label": "Bold"},
-        {"value": "800", "label": "Extra-Bold"}
-      ],
-      "default": "800"
+      "type": "subheader",
+      "content": "Feature Cards"
     },
-    {
-      "type": "range",
-      "id": "desc_size",
-      "min": 12,
-      "max": 24,
-      "step": 1,
-      "unit": "px",
-      "label": "Description Font Size",
-      "default": 18
-    },
+    { "type": "font_picker", "id": "card_text_font", "label": "Card Font", "default": "assistant_n4" },
+    { "type": "range", "id": "card_text_size", "min": 12, "max": 30, "step": 1, "unit": "px", "label": "Card Text Size", "default": 15 },
+    { "type": "select", "id": "card_text_weight", "label": "Card Text Weight", "options": [{"value":"400","label":"Normal"},{"value":"600","label":"Semi-Bold"},{"value":"700","label":"Bold"}], "default": "700" },
+    { "type": "color", "id": "card_text_color", "label": "Card Text Color", "default": "#344054" },
     {
       "type": "header",
       "content": "Components Styling"
@@ -575,16 +595,6 @@
         {"value": "3", "label": "3"}
       ],
       "default": "2"
-    },
-    {
-      "type": "range",
-      "id": "card_text_size",
-      "min": 12,
-      "max": 20,
-      "step": 1,
-      "unit": "px",
-      "label": "Card Text Size",
-      "default": 15
     },
     {
       "type": "header",
