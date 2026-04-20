@@ -237,56 +237,6 @@
     line-height: 1.4;
   }
 
-  /* Performance Indicators */
-  .mcp-perf-section-title {
-    font-size: 13px;
-    font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    color: #98a2b3;
-    margin-bottom: 30px;
-  }
-
-  .mcp-perf-item {
-    margin-bottom: 20px;
-    display: flex;
-    align-items: center;
-    gap: 25px;
-  }
-
-  .mcp-perf-label {
-    width: 220px;
-    font-size: 15px;
-    font-weight: 600;
-    color: #344054;
-    flex-shrink: 0;
-  }
-
-  .mcp-perf-bar-wrapper {
-    flex-grow: 1;
-    height: {{ section.settings.bar_height }}px;
-    background: #f2f4f7;
-    border-radius: 10px;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .mcp-perf-bar-fill {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    border-radius: 10px;
-    transition: width 1s cubic-bezier(0.65, 0, 0.35, 1);
-  }
-
-  .mcp-perf-percentage {
-    width: 50px;
-    font-size: 14px;
-    font-weight: 700;
-    color: #667085;
-    text-align: right;
-  }
 
   @media (max-width: 991px) {
     .more-content-points-{{ section.id }} { height: auto !important; }
@@ -295,8 +245,6 @@
     .mcp-sidebar { width: 100%; border-right: none; border-bottom: 1px solid #f0f0f0; overflow: visible !important; }
     .mcp-content-panel { width: 100%; padding: 40px 20px; overflow: visible !important; }
     .mcp-cards-grid { grid-template-columns: 1fr; }
-    .mcp-perf-item { flex-wrap: wrap; gap: 10px; }
-    .mcp-perf-label { width: 100%; }
   }
 {%- endstyle -%}
 
@@ -393,40 +341,6 @@
               {% endif %}
             </div>
 
-            <!-- Performance Indicators -->
-            <div class="mcp-performance-indicators">
-              <h4 class="mcp-perf-section-title">Performance Indicators</h4>
-              
-              {% if block.settings.perf_1_label != blank %}
-              <div class="mcp-perf-item">
-                <div class="mcp-perf-label">{{ block.settings.perf_1_label }}</div>
-                <div class="mcp-perf-bar-wrapper">
-                  <div class="mcp-perf-bar-fill" data-value="{{ block.settings.perf_1_value }}" style="width: {{ block.settings.perf_1_value }}%; background-color: {{ block.settings.icon_color }};"></div>
-                </div>
-                <div class="mcp-perf-percentage">{{ block.settings.perf_1_value }}%</div>
-              </div>
-              {% endif %}
-
-              {% if block.settings.perf_2_label != blank %}
-              <div class="mcp-perf-item">
-                <div class="mcp-perf-label">{{ block.settings.perf_2_label }}</div>
-                <div class="mcp-perf-bar-wrapper">
-                  <div class="mcp-perf-bar-fill" data-value="{{ block.settings.perf_2_value }}" style="width: {{ block.settings.perf_2_value }}%; background-color: {{ block.settings.icon_color }};"></div>
-                </div>
-                <div class="mcp-perf-percentage">{{ block.settings.perf_2_value }}%</div>
-              </div>
-              {% endif %}
-
-              {% if block.settings.perf_3_label != blank %}
-              <div class="mcp-perf-item">
-                <div class="mcp-perf-label">{{ block.settings.perf_3_label }}</div>
-                <div class="mcp-perf-bar-wrapper">
-                  <div class="mcp-perf-bar-fill" data-value="{{ block.settings.perf_3_value }}" style="width: {{ block.settings.perf_3_value }}%; background-color: {{ block.settings.icon_color }};"></div>
-                </div>
-                <div class="mcp-perf-percentage">{{ block.settings.perf_3_value }}%</div>
-              </div>
-              {% endif %}
-            </div>
           </div>
         {% endfor %}
       </div>
@@ -454,15 +368,6 @@
           if (block.id === targetId) {
             block.classList.add('active');
             
-            // Restart progress bar animations
-            const bars = block.querySelectorAll('.mcp-perf-bar-fill');
-            bars.forEach(bar => {
-              const width = bar.getAttribute('data-value') + '%';
-              bar.style.width = '0%';
-              setTimeout(() => {
-                bar.style.width = width;
-              }, 50);
-            });
           }
         });
     }
@@ -682,16 +587,6 @@
       "default": 15
     },
     {
-      "type": "range",
-      "id": "bar_height",
-      "min": 4,
-      "max": 20,
-      "step": 1,
-      "unit": "px",
-      "label": "Progress Bar Height",
-      "default": 10
-    },
-    {
       "type": "header",
       "content": "Section Spacing"
     },
@@ -828,58 +723,6 @@
           "id": "feature_6",
           "label": "Feature 6"
         },
-        {
-          "type": "header",
-          "content": "Performance Indicators"
-        },
-        {
-          "type": "text",
-          "id": "perf_1_label",
-          "label": "Indicator 1 Label",
-          "default": "Dark store placement"
-        },
-        {
-          "type": "range",
-          "id": "perf_1_value",
-          "min": 0,
-          "max": 100,
-          "step": 1,
-          "unit": "%",
-          "label": "Indicator 1 Value",
-          "default": 95
-        },
-        {
-          "type": "text",
-          "id": "perf_2_label",
-          "label": "Indicator 2 Label",
-          "default": "Inventory fill rate"
-        },
-        {
-          "type": "range",
-          "id": "perf_2_value",
-          "min": 0,
-          "max": 100,
-          "step": 1,
-          "unit": "%",
-          "label": "Indicator 2 Value",
-          "default": 90
-        },
-        {
-          "type": "text",
-          "id": "perf_3_label",
-          "label": "Indicator 3 Label",
-          "default": "Q-comm market share"
-        },
-        {
-          "type": "range",
-          "id": "perf_3_value",
-          "min": 0,
-          "max": 100,
-          "step": 1,
-          "unit": "%",
-          "label": "Indicator 3 Value",
-          "default": 82
-        }
       ]
     }
   ],
