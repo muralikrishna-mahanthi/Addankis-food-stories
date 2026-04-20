@@ -368,7 +368,7 @@
             "perf_2_label": "Channel fit",
             "perf_2_value": 92,
             "perf_3_label": "Launch velocity",
-            "perf_3_value": 82
+            "perf_3_value": 78
           }
         },
         "content_block_9rFJzD": {
@@ -381,10 +381,10 @@
             "sidebar_subtitle": "Network Build",
             "index_number": "02",
             "badge": "",
-            "main_heading": "Quick commerce activation",
+            "main_heading": "Distribution network",
             "panel_icon": "",
-            "description": "Quick commerce is the fastest-growing FMCG channel in India. We place your brand inside dark stores, coordinate inventory for 10-minute delivery windows, and run campaigns that dominate the instant shelf.",
-            "feature_1": "Quick commerce listing strategy",
+            "description": "Stratica OS builds your entire distribution infrastructure — from appointing super stockists to mapping sales territories — ensuring your product reaches every viable outlet efficiently and profitably.",
+            "feature_1": "Super stockist appointment",
             "feature_2": "Dark store placement planning",
             "feature_3": "Inventory management coordination",
             "feature_4": "Sales performance monitoring",
