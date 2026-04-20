@@ -73,7 +73,7 @@
         "text_alignment": "center",
         "desktop_height": "100vh",
         "mobile_height": "100vh",
-        "content_alignment_desktop": "flex-end",
+        "content_alignment_desktop": "center",
         "padding_top": 36,
         "padding_bottom": 36
       }
