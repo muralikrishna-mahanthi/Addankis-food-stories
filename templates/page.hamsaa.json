@@ -512,6 +512,7 @@
         "pillar_qYwgtW": {
           "type": "pillar",
           "settings": {
+            "image": "shopify://shop_images/About.jpg",
             "title": "Super stockists and distributors",
             "text": "A tiered distribution network of super stockists and regional distributors handles bulk movement of goods, ensuring timely replenishment across geographies and reducing supply chain gaps."
           }
