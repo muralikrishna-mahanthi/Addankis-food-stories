@@ -137,9 +137,9 @@
           "type": "product",
           "settings": {
             "tab_name": "Philips",
-            "image": "shopify://shop_images/gemini-3.1-flash-image-preview_nano-banana-2__a_make_the_image_clear.png",
-            "title": "Luxury Essential Oil",
-            "link": ""
+            "image": "shopify://shop_images/redbatterypoweralkaline.png",
+            "title": "Power Alkaline",
+            "link": "shopify://products/power-alkaline-aa"
           }
         },
         "product_UBgXfe": {
