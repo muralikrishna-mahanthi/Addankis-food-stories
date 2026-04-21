@@ -536,6 +536,7 @@
         "pillar_NL8zpj": {
           "type": "pillar",
           "settings": {
+            "image": "shopify://shop_images/Phil_Reese_Arizona_Business_Broker.jpg",
             "title": "Institutional buyers",
             "text": "HAMSAA supplies to and bulk buyers through B2B channels — an important revenue stream for FMCG brands scaling volume."
           }
