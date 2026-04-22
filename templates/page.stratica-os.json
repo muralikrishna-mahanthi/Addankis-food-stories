@@ -243,6 +243,7 @@
           "type": "product",
           "settings": {
             "tab_name": "Ripple purple",
+            "image": "shopify://shop_images/ripple_purple_8.png",
             "title": "Hoper Surprise Red Ball Gems",
             "link": "shopify://products/hoper-surprise-red-ball-gems"
           }
