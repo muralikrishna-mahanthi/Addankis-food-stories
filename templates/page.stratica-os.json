@@ -240,6 +240,14 @@
             "link": "shopify://products/hoper-surprise-red-ball-gems"
           }
         },
+        "product_tNf4xT": {
+          "type": "product",
+          "settings": {
+            "tab_name": "Ripple purple",
+            "title": "Hoper Surprise Yellow Ball Gems",
+            "link": "shopify://products/hoper-surprise-yellow-ball-gems"
+          }
+        },
         "tab_hF6nxB": {
           "type": "tab",
           "settings": {
@@ -268,6 +276,7 @@
         "product_KYkFFn",
         "product_ENxyzw",
         "product_QEg89B",
+        "product_tNf4xT",
         "tab_hF6nxB",
         "tab_bMUeVX"
       ],
