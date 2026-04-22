@@ -264,6 +264,14 @@
             "link": "shopify://products/choco-flow-cone"
           }
         },
+        "product_kzTLip": {
+          "type": "product",
+          "settings": {
+            "tab_name": "Ripple purple",
+            "title": "Dips Stick's",
+            "link": "shopify://products/dips-sticks"
+          }
+        },
         "tab_hF6nxB": {
           "type": "tab",
           "settings": {
@@ -295,6 +303,7 @@
         "product_tNf4xT",
         "product_XGcfm6",
         "product_JcyiiB",
+        "product_kzTLip",
         "tab_hF6nxB",
         "tab_bMUeVX"
       ],
