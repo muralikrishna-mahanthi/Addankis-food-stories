@@ -272,6 +272,14 @@
             "link": "shopify://products/dips-sticks"
           }
         },
+        "product_Q4q3AQ": {
+          "type": "product",
+          "settings": {
+            "tab_name": "Ripple purple",
+            "title": "My Cycle Gems",
+            "link": "shopify://products/my-cycle-gems"
+          }
+        },
         "tab_hF6nxB": {
           "type": "tab",
           "settings": {
@@ -304,6 +312,7 @@
         "product_XGcfm6",
         "product_JcyiiB",
         "product_kzTLip",
+        "product_Q4q3AQ",
         "tab_hF6nxB",
         "tab_bMUeVX"
       ],
