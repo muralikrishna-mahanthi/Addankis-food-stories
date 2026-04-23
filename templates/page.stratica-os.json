@@ -287,6 +287,7 @@
           "type": "product",
           "settings": {
             "tab_name": "Ripple purple",
+            "image": "shopify://shop_images/ripple_purple_12.png",
             "title": "My Cycle Gems",
             "link": "shopify://products/my-cycle-gems"
           }
