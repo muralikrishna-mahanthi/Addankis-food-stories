@@ -386,8 +386,21 @@
       currentSlides = Array.from(track.querySelectorAll('.heading-sliding-products__slide'));
       currentIndex = clonesToCreate;
       
-      updateSlider(false);
-      requestAnimationFrame(() => updateSlider(false));
+      // Robust layout verification loop
+      const activeSlide = currentSlides[currentIndex];
+      let attempts = 0;
+      function ensureLayout() {
+        if (!activeSlide) return;
+        // Wait until browser has actually calculated the flexbox layout
+        if (activeSlide.offsetLeft > 10 || attempts > 20) {
+          updateSlider(false);
+          setTimeout(() => updateSlider(false), 50); // Safari safety net
+        } else {
+          attempts++;
+          requestAnimationFrame(ensureLayout);
+        }
+      }
+      ensureLayout();
     }
 
     function updateSlider(animate = true) {
@@ -395,15 +408,13 @@
       if (!containerWrap) return;
       
       const containerWidth = containerWrap.offsetWidth;
-      if (containerWidth === 0) return; // Prevent layout calculation if hidden
+      if (containerWidth === 0) return; 
 
       if (!animate) track.style.transition = 'none';
       else track.style.transition = 'transform 0.7s cubic-bezier(0.23, 1, 0.32, 1)';
 
       const isMobile = window.innerWidth < 750;
-      const originalCount = currentSlides.filter(s => s.classList.contains('is-original')).length;
-      const clonesAtStart = currentSlides.findIndex(s => s.classList.contains('is-original'));
-
+      
       currentSlides.forEach((slide, i) => {
         const distance = Math.abs(i - currentIndex);
         let yOffset = isMobile ? 0 : distance * intensity;
@@ -517,6 +528,16 @@
         }
       });
       ro.observe(containerWrap);
+    }
+    
+    // IntersectionObserver guarantees layout calculation when scrolled into view
+    if (window.IntersectionObserver) {
+      const io = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting) {
+          updateSlider(false);
+        }
+      }, { threshold: 0.05 });
+      io.observe(section);
     }
 
     // Initial Load Setup
