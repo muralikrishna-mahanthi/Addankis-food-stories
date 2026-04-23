@@ -342,28 +342,22 @@
     const tabs = section.querySelectorAll('.heading-sliding-products__tab');
     const nextBtn = section.querySelector('.hamsaa-next');
     const prevBtn = section.querySelector('.hamsaa-prev');
-    const titleEl = section.querySelector('.heading-sliding-products__active-title');
+    const containerWrap = section.querySelector('.heading-sliding-products__track-wrap');
     
     let currentSlides = [];
     let currentIndex = 0;
-    let interval = null;
     const intensity = {{ section.settings.u_curve_intensity | default: 80 }};
 
     function initTab(tabHandle) {
-      // Clear track
       track.innerHTML = '';
       
-      // Filter products
       const filtered = allProducts.filter(p => p.dataset.tab === tabHandle || tabHandle === 'all');
       if (filtered.length === 0) return;
 
-      // Clone for infinite loop
       const originalCount = filtered.length;
       const clonesToCreate = Math.max(3, originalCount);
-      
       const newSlides = [];
       
-      // Pre-clones
       for(let i=0; i<clonesToCreate; i++) {
         const index = (originalCount - 1 - (i % originalCount)) % originalCount;
         const clone = filtered[index].cloneNode(true);
@@ -371,14 +365,12 @@
         newSlides.unshift(clone);
       }
       
-      // Originals
       filtered.forEach(p => {
         const original = p.cloneNode(true);
         original.classList.add('is-original');
         newSlides.push(original);
       });
 
-      // Post-clones
       for(let i=0; i<clonesToCreate; i++) {
         const index = i % originalCount;
         const clone = filtered[index].cloneNode(true);
@@ -392,21 +384,23 @@
       });
 
       currentSlides = Array.from(track.querySelectorAll('.heading-sliding-products__slide'));
-      currentIndex = clonesToCreate; // Start at first original
+      currentIndex = clonesToCreate;
       
       updateSlider(false);
+      requestAnimationFrame(() => updateSlider(false));
     }
 
     function updateSlider(animate = true) {
       if (currentSlides.length === 0) return;
+      if (!containerWrap) return;
       
+      const containerWidth = containerWrap.offsetWidth;
+      if (containerWidth === 0) return; // Prevent layout calculation if hidden
+
       if (!animate) track.style.transition = 'none';
       else track.style.transition = 'transform 0.7s cubic-bezier(0.23, 1, 0.32, 1)';
 
-      const containerWrap = section.querySelector('.heading-sliding-products__track-wrap');
-      const containerWidth = containerWrap.offsetWidth;
       const isMobile = window.innerWidth < 750;
-      
       const originalCount = currentSlides.filter(s => s.classList.contains('is-original')).length;
       const clonesAtStart = currentSlides.findIndex(s => s.classList.contains('is-original'));
 
@@ -424,17 +418,25 @@
           opacity = 1;
         }
 
+        if (!animate) slide.style.transition = 'none';
         slide.style.transform = `translateY(${yOffset}px) rotateY(${rotation}deg) scale(${scale})`;
         slide.style.opacity = Math.max(0.1, opacity);
         slide.style.zIndex = 100 - distance;
+        
+        if (!animate) {
+          void slide.offsetHeight;
+          slide.style.transition = 'all 0.6s cubic-bezier(0.25, 1, 0.5, 1)';
+        }
       });
 
       const activeSlide = currentSlides[currentIndex];
-      const offset = (containerWidth / 2) - (activeSlide.offsetLeft + activeSlide.offsetWidth / 2);
-      track.style.transform = `translateX(${offset}px)`;
+      if (activeSlide) {
+        const offset = (containerWidth / 2) - (activeSlide.offsetLeft + activeSlide.offsetWidth / 2);
+        track.style.transform = `translateX(${offset}px)`;
+      }
 
       if (!animate) {
-        track.offsetHeight;
+        void track.offsetHeight;
         track.style.transition = 'transform 0.7s cubic-bezier(0.23, 1, 0.32, 1)';
       }
     }
@@ -452,26 +454,28 @@
       }
     }
 
-    nextBtn.addEventListener('click', () => {
-      currentIndex++;
-      updateSlider();
-      setTimeout(checkLoop, 600);
-    });
+    if (nextBtn) {
+      nextBtn.addEventListener('click', () => {
+        currentIndex++;
+        updateSlider();
+        setTimeout(checkLoop, 600);
+      });
+    }
 
-    prevBtn.addEventListener('click', () => {
-      currentIndex--;
-      updateSlider();
-      setTimeout(checkLoop, 600);
-    });
+    if (prevBtn) {
+      prevBtn.addEventListener('click', () => {
+        currentIndex--;
+        updateSlider();
+        setTimeout(checkLoop, 600);
+      });
+    }
 
     function moveIndicator(tab) {
       const indicator = section.querySelector('.heading-sliding-products__tab-indicator');
       const tabsContainer = section.querySelector('.heading-sliding-products__tabs');
       if (!indicator || !tab || !tabsContainer) return;
 
-      // Mark that we are using the indicator system
       tabs.forEach(t => t.classList.add('js-initialized'));
-      
       const width = tab.offsetWidth;
       const left = tab.offsetLeft;
 
@@ -482,7 +486,6 @@
         indicator.style.backgroundColor = 'var(--active-tab-bg)';
       }
 
-      // Ensure active tab is visible when scrolling on mobile
       if (window.innerWidth < 750) {
         tabsContainer.scrollTo({
           left: tab.offsetLeft - (tabsContainer.offsetWidth / 2) + (tab.offsetWidth / 2),
@@ -500,37 +503,38 @@
       });
     });
 
-    window.addEventListener('resize', () => {
-      updateSlider(false);
-      const activeTab = section.querySelector('.heading-sliding-products__tab.is-active');
-      if (activeTab) moveIndicator(activeTab);
-    });
+    // ResizeObserver ensures slider initializes ONLY when visible and recalculates exactly when container size changes
+    if (window.ResizeObserver && containerWrap) {
+      let isFirstRender = true;
+      const ro = new ResizeObserver(() => {
+        if (containerWrap.offsetWidth > 0) {
+          updateSlider(false);
+          if (isFirstRender) {
+             const activeTab = section.querySelector('.heading-sliding-products__tab.is-active');
+             if (activeTab) moveIndicator(activeTab);
+             isFirstRender = false;
+          }
+        }
+      });
+      ro.observe(containerWrap);
+    }
 
-    // Initial Load
+    // Initial Load Setup
     const activeTab = section.querySelector('.heading-sliding-products__tab.is-active');
     if (activeTab) {
       initTab(activeTab.dataset.tab);
-      // Multiple attempts to ensure layout is ready
-      setTimeout(() => { moveIndicator(activeTab); updateSlider(false); }, 100);
-      setTimeout(() => { moveIndicator(activeTab); updateSlider(false); }, 500);
-      setTimeout(() => { moveIndicator(activeTab); updateSlider(false); }, 1000);
+      requestAnimationFrame(() => moveIndicator(activeTab));
     }
-    
-    window.addEventListener('load', () => {
-      const activeTab = section.querySelector('.heading-sliding-products__tab.is-active');
-      if (activeTab) moveIndicator(activeTab);
-      updateSlider(false);
-    });
 
     // Theme Editor Sync
-    document.addEventListener('shopify:section:load', () => {
-      const activeTab = section.querySelector('.heading-sliding-products__tab.is-active');
-      if (activeTab) moveIndicator(activeTab);
-      updateSlider(false);
-    });
-    
-    if (Shopify.designMode) {
-      // Re-init on any change
+    if (window.Shopify && Shopify.designMode) {
+      document.addEventListener('shopify:section:load', (e) => {
+        if (e.target.id === 'shopify-section-' + section.id.replace('HeadingSlidingProducts-', '')) {
+          const activeTab = section.querySelector('.heading-sliding-products__tab.is-active');
+          if (activeTab) moveIndicator(activeTab);
+          updateSlider(false);
+        }
+      });
       document.addEventListener('shopify:section:select', (e) => {
         const activeTab = section.querySelector('.heading-sliding-products__tab.is-active');
         if (activeTab) moveIndicator(activeTab);
