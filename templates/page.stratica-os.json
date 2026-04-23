@@ -261,6 +261,7 @@
           "type": "product",
           "settings": {
             "tab_name": "Ripple purple",
+            "image": "shopify://shop_images/ripple_purple_10.png",
             "title": "Scoopy Go Chocolate",
             "link": "shopify://products/scoopy-go-chocolate"
           }
