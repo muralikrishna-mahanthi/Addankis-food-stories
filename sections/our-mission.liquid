@@ -180,18 +180,8 @@
     margin: 40px auto 0;
     padding: 0 5%;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: center;
-  }
-
-  .drag-explore-{{ section.id }} {
-    font-size: 11px;
-    color: #999;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
   }
 
   .mission-nav-{{ section.id }} {
@@ -312,10 +302,6 @@
   </div>
 
   <div class="mission-footer-{{ section.id }}">
-    <div class="drag-explore-{{ section.id }}">
-      DRAG TO EXPLORE <span style="margin-left:5px">→</span>
-    </div>
-
     <div class="mission-nav-{{ section.id }}">
       <button class="nav-btn-{{ section.id }}" id="prev-{{ section.id }}" aria-label="Previous slide">
         <svg viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
