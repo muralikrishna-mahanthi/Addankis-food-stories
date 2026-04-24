@@ -103,6 +103,7 @@
         "slide_rpdBcN": {
           "type": "slide",
           "settings": {
+            "icon": "shopify://shop_images/icon_1.jpg",
             "title": "Trusted Brands Rooted in Indian Traditions",
             "text": "We develop consumer brands that honour India's culinary heritage while adapting to modern Indian lifestyles — authentic at heart, contemporary in form."
           }
@@ -110,29 +111,31 @@
         "slide_AexdDa": {
           "type": "slide",
           "settings": {
-            "title": "Trusted Brands Rooted in Indian Traditions",
-            "text": "We develop consumer brands that honour India's culinary heritage while adapting to modern Indian lifestyles — authentic at heart, contemporary in form."
+            "icon": "shopify://shop_images/icon_2.jpg",
+            "title": "Distribution That Reaches Every Town & Village",
+            "text": "We are building efficient, last-mile distribution systems ensuring our products arrive on shelves in metros, semi-urban corridors, and the deepest rural markets."
           }
         },
         "slide_eNnWJV": {
           "type": "slide",
           "settings": {
-            "title": "Trusted Brands Rooted in Indian Traditions",
-            "text": "We develop consumer brands that honour India's culinary heritage while adapting to modern Indian lifestyles — authentic at heart, contemporary in form."
+            "icon": "shopify://shop_images/icon_3.jpg",
+            "title": "Empowering Entrepreneurs & Brands",
+            "text": "Through sales consulting and market expansion services, we unlock new revenue frontiers for partner brands and entrepreneurs looking to scale across India."
           }
         },
         "slide_8y8dry": {
           "type": "slide",
           "settings": {
-            "title": "Trusted Brands Rooted in Indian Traditions",
-            "text": "We develop consumer brands that honour India's culinary heritage while adapting to modern Indian lifestyles — authentic at heart, contemporary in form."
+            "title": "High Quality at Affordable Prices",
+            "text": "We firmly believe that quality should never be a luxury. Our products are crafted to the highest standards and priced so every Indian household can enjoy them without compromise."
           }
         },
         "slide_MmNQNt": {
           "type": "slide",
           "settings": {
-            "title": "Trusted Brands Rooted in Indian Traditions",
-            "text": "We develop consumer brands that honour India's culinary heritage while adapting to modern Indian lifestyles — authentic at heart, contemporary in form."
+            "title": "Sustainable & Scalable FMCG Platform",
+            "text": "We are building not just a company, but a living platform — one that is environmentally responsible, financially resilient, and designed from the ground up to support continuous innovation and scalable growth."
           }
         }
       },
