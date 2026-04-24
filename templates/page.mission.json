@@ -194,12 +194,66 @@
         "card_p_size_mob": 13,
         "card_p_color": "#666666"
       }
+    },
+    "long_term_goal_QRJn3k": {
+      "type": "long-term-goal",
+      "blocks": {
+        "point_XVK8kR": {
+          "type": "point",
+          "settings": {
+            "title": "Multiple Successful Consumer Brands",
+            "text": "incubated, built, and scaled under our ecosystem umbrella."
+          }
+        },
+        "point_GkLRhM": {
+          "type": "point",
+          "settings": {
+            "title": "Millions of Households Reached",
+            "text": "across urban, semi-urban, and rural India through our distribution network."
+          }
+        },
+        "point_gzCTbc": {
+          "type": "point",
+          "settings": {
+            "title": "India's Strongest Rural Distribution",
+            "text": "enabling products to reach the last mile, where growth truly awaits."
+          }
+        },
+        "point_fUwjdF": {
+          "type": "point",
+          "settings": {
+            "title": "₹1000 Crore Ecosystem",
+            "text": "a landmark reflecting our scale, impact, and trust earned across markets."
+          }
+        }
+      },
+      "block_order": [
+        "point_XVK8kR",
+        "point_GkLRhM",
+        "point_gzCTbc",
+        "point_fUwjdF"
+      ],
+      "name": "Long Term Goal",
+      "settings": {
+        "bg_color": "#1a3628",
+        "h_color": "#ffffff",
+        "p_color": "#ffffff",
+        "accent_color": "#e68d45",
+        "height_desktop": 90,
+        "height_mob": 80,
+        "h_font": "assistant_n4",
+        "p_font": "assistant_n4",
+        "subheading": "LONG-TERM GOAL",
+        "heading": "Leading India's <em>Brand Builder</em> & Distribution Era",
+        "description": "Addanki's Food Stories aims to become the most trusted FMCG brand builder and distribution platform in India — supporting multiple successful consumer brands and reaching millions of households across every state and district."
+      }
     }
   },
   "order": [
     "main",
     "mission_hero_TFbdac",
     "vision_section_ah9TiK",
-    "our_mission_ipbFiz"
+    "our_mission_ipbFiz",
+    "long_term_goal_QRJn3k"
   ]
 }
