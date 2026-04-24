@@ -16,9 +16,51 @@
         "padding_top": 28,
         "padding_bottom": 28
       }
+    },
+    "mission_hero_TFbdac": {
+      "type": "mission-hero",
+      "name": "Mission Hero",
+      "settings": {
+        "bg_color": "#1a3628",
+        "section_height": 80,
+        "padding_top": 100,
+        "padding_bottom": 100,
+        "subheading": "OUR PURPOSE & DIRECTION",
+        "subheading_font": "sans_serif_n7",
+        "subheading_weight": "700",
+        "subheading_size": 12,
+        "subheading_size_mobile": 10,
+        "subheading_color": "#e68d45",
+        "subheading_line_color": "#e68d45",
+        "heading": "Where <em>Indian Flavours</em> Meet Global Ambition",
+        "heading_font": "archivo_black_n4",
+        "heading_weight": "700",
+        "heading_size": 72,
+        "heading_size_mobile": 42,
+        "heading_color": "#FFFFFF",
+        "heading_highlight_color": "#e68d45",
+        "text": "Rooted in tradition, driven by innovation — Addanki's Food Stories is reshaping how India's FMCG ecosystem nourishes millions of households.",
+        "text_font": "sans_serif_n7",
+        "text_weight": "700",
+        "text_size": 16,
+        "text_size_mobile": 14,
+        "text_color": "#cfdbd4",
+        "btn_text": "<strong>₹1000 Cr</strong> ECOSYSTEM VISION",
+        "btn_link": "",
+        "btn_font": "assistant_n4",
+        "btn_weight": "600",
+        "btn_size": 12,
+        "btn_size_mobile": 10,
+        "btn_text_color": "#FFFFFF",
+        "btn_highlight_color": "#e68d45",
+        "btn_bg_color": "rgba(43, 64, 53, 0.5)",
+        "btn_border_color": "rgba(230, 141, 69, 0.3)",
+        "btn_border_radius": 30
+      }
     }
   },
   "order": [
-    "main"
+    "main",
+    "mission_hero_TFbdac"
   ]
 }
