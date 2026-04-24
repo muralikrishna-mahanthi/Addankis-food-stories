@@ -174,8 +174,9 @@
     border-radius: 50%;
   }
 
-  .ring-1-{{ section.id }} { width: 320px; height: 320px; }
-  .ring-2-{{ section.id }} { width: 500px; height: 500px; }
+  .ring-1-{{ section.id }} { width: 240px; height: 240px; }
+  .ring-2-{{ section.id }} { width: 380px; height: 380px; }
+  .ring-3-{{ section.id }} { width: 520px; height: 520px; }
 
   .center-node-{{ section.id }} {
     width: 140px;
@@ -201,6 +202,7 @@
   .center-node-{{ section.id }} span {
     font-size: 20px;
     font-weight: 700;
+    line-height: 1;
   }
 
   .center-node-{{ section.id }} small {
@@ -248,12 +250,16 @@
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 1px;
+    position: absolute;
+    bottom: -20px;
+    width: 100%;
+    text-align: center;
   }
 
-  .node-brands-{{ section.id }} { top: 0; right: 15%; }
-  .node-partners-{{ section.id }} { top: 35%; left: -5%; }
-  .node-urban-{{ section.id }} { bottom: 25%; right: -5%; }
-  .node-rural-{{ section.id }} { bottom: 0; left: 15%; }
+  .node-brands-{{ section.id }} { top: -40px; left: 50%; transform: translateX(-50%); }
+  .node-partners-{{ section.id }} { bottom: -40px; left: 50%; transform: translateX(-50%); }
+  .node-urban-{{ section.id }} { left: -40px; top: 50%; transform: translateY(-50%); }
+  .node-rural-{{ section.id }} { right: -40px; top: 50%; transform: translateY(-50%); }
 
   @media screen and (max-width: 1023px) {
     .goal-visual-{{ section.id }} {
@@ -261,8 +267,9 @@
       margin-top: 40px;
     }
     .orbit-container-{{ section.id }} { width: 350px; height: 350px; }
-    .ring-1-{{ section.id }} { width: 220px; height: 220px; }
-    .ring-2-{{ section.id }} { width: 350px; height: 350px; }
+    .ring-1-{{ section.id }} { width: 160px; height: 160px; }
+    .ring-2-{{ section.id }} { width: 250px; height: 250px; }
+    .ring-3-{{ section.id }} { width: 350px; height: 350px; }
     .orbit-node-{{ section.id }} { width: 70px; height: 70px; }
     .center-node-{{ section.id }} { width: 110px; height: 110px; }
   }
@@ -323,9 +330,10 @@
       <div class="orbit-container-{{ section.id }}">
         <div class="orbit-ring-{{ section.id }} ring-1-{{ section.id }}"></div>
         <div class="orbit-ring-{{ section.id }} ring-2-{{ section.id }}"></div>
+        <div class="orbit-ring-{{ section.id }} ring-3-{{ section.id }}"></div>
         
         <div class="center-node-{{ section.id }}">
-          <span>{{ section.settings.center_text }}</span>
+          <span>₹{{ section.settings.center_text }}</span>
           <small>{{ section.settings.center_subtext }}</small>
         </div>
 
