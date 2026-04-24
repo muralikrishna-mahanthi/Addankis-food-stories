@@ -73,6 +73,7 @@
     -ms-overflow-style: none;  /* IE and Edge */
     padding-bottom: 40px;
     scroll-snap-type: x mandatory;
+    padding-top: 20px;
   }
 
   .mission-track-{{ section.id }}::-webkit-scrollbar {
@@ -81,7 +82,8 @@
 
   /* Card Styles */
   .mission-card-{{ section.id }} {
-    flex: 0 0 320px;
+    flex: 0 0 {{ section.settings.card_width_mob }}px;
+    min-height: {{ section.settings.card_height_mob }}px;
     background: {{ section.settings.card_bg }};
     border-radius: {{ section.settings.card_radius }}px;
     padding: 40px;
@@ -90,13 +92,17 @@
     scroll-snap-align: start;
     display: flex;
     flex-direction: column;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-    transition: transform 0.3s ease;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  }
+
+  .mission-card-{{ section.id }}:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.08);
   }
 
   @media screen and (max-width: 767px) {
     .mission-card-{{ section.id }} {
-      flex: 0 0 280px;
       padding: 30px;
     }
   }
@@ -112,7 +118,7 @@
     background: linear-gradient(
       120deg,
       transparent,
-      rgba(255, 255, 255, 0.3),
+      rgba(255, 255, 255, 0.4),
       transparent
     );
     transition: 0.6s;
@@ -124,10 +130,15 @@
   }
 
   .card-line-{{ section.id }} {
-    width: 30px;
+    width: {{ section.settings.line_width }}px;
     height: 2px;
     background-color: {{ section.settings.sub_color }};
-    margin-bottom: 25px;
+    margin-bottom: {{ section.settings.m_line_icon }}px;
+    transition: width 0.3s ease;
+  }
+
+  .mission-card-{{ section.id }}:hover .card-line-{{ section.id }} {
+    width: {{ section.settings.line_width | plus: 15 }}px;
   }
 
   .card-num-{{ section.id }} {
@@ -142,9 +153,9 @@
   }
 
   .card-icon-{{ section.id }} {
-    width: 50px;
-    height: 50px;
-    margin-bottom: 25px;
+    width: {{ section.settings.icon_width }}px;
+    height: auto;
+    margin-bottom: {{ section.settings.m_icon_h }}px;
     object-fit: contain;
   }
 
@@ -153,7 +164,7 @@
     font-size: {{ section.settings.card_h_size }}px;
     font-weight: 700;
     line-height: 1.3;
-    margin-bottom: 15px;
+    margin-bottom: {{ section.settings.m_h_p }}px;
   }
 
   .card-p-{{ section.id }} {
@@ -220,6 +231,11 @@
       padding-top: {{ section.settings.padding_top_desktop }}px;
       padding-bottom: {{ section.settings.padding_bottom_desktop }}px;
     }
+
+    .mission-card-{{ section.id }} {
+      flex: 0 0 {{ section.settings.card_width }}px;
+      min-height: {{ section.settings.card_height }}px;
+    }
   }
 
   /* Font Handling */
@@ -269,7 +285,7 @@
           <div class="card-line-{{ section.id }}"></div>
           
           {% if block.settings.icon != blank %}
-            <img src="{{ block.settings.icon | image_url: width: 100 }}" class="card-icon-{{ section.id }}" alt="{{ block.settings.title }}" loading="lazy">
+            <img src="{{ block.settings.icon | image_url: width: 200 }}" class="card-icon-{{ section.id }}" alt="{{ block.settings.title }}" loading="lazy">
           {% endif %}
           
           <h3 class="card-h-{{ section.id }}">{{ block.settings.title }}</h3>
@@ -303,14 +319,16 @@ document.addEventListener('DOMContentLoaded', function() {
   
   if (!track || !nextBtn || !prevBtn) return;
 
-  const cardWidth = track.querySelector('.mission-card-{{ section.id }}').offsetWidth + 30; // card + gap
-
   nextBtn.addEventListener('click', () => {
-    track.scrollBy({ left: cardWidth, behavior: 'smooth' });
+    const card = track.querySelector('.mission-card-{{ section.id }}');
+    const step = card.offsetWidth + 30;
+    track.scrollBy({ left: step, behavior: 'smooth' });
   });
 
   prevBtn.addEventListener('click', () => {
-    track.scrollBy({ left: -cardWidth, behavior: 'smooth' });
+    const card = track.querySelector('.mission-card-{{ section.id }}');
+    const step = card.offsetWidth + 30;
+    track.scrollBy({ left: -step, behavior: 'smooth' });
   });
 });
 </script>
@@ -371,7 +389,105 @@ document.addEventListener('DOMContentLoaded', function() {
     },
     {
       "type": "header",
-      "content": "Subheading"
+      "content": "Card Dimensions"
+    },
+    {
+      "type": "range",
+      "id": "card_width",
+      "min": 250,
+      "max": 500,
+      "step": 10,
+      "unit": "px",
+      "label": "Desktop Card Width",
+      "default": 320
+    },
+    {
+      "type": "range",
+      "id": "card_height",
+      "min": 300,
+      "max": 600,
+      "step": 10,
+      "unit": "px",
+      "label": "Desktop Card Min Height",
+      "default": 450
+    },
+    {
+      "type": "range",
+      "id": "card_width_mob",
+      "min": 200,
+      "max": 400,
+      "step": 10,
+      "unit": "px",
+      "label": "Mobile Card Width",
+      "default": 280
+    },
+    {
+      "type": "range",
+      "id": "card_height_mob",
+      "min": 300,
+      "max": 600,
+      "step": 10,
+      "unit": "px",
+      "label": "Mobile Card Min Height",
+      "default": 400
+    },
+    {
+      "type": "header",
+      "content": "Internal Spacing (Margins)"
+    },
+    {
+      "type": "range",
+      "id": "line_width",
+      "min": 10,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Initial Line Width",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "m_line_icon",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Margin: Line to Icon",
+      "default": 25
+    },
+    {
+      "type": "range",
+      "id": "icon_width",
+      "min": 20,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Icon Width",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "m_icon_h",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Margin: Icon to Heading",
+      "default": 25
+    },
+    {
+      "type": "range",
+      "id": "m_h_p",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Margin: Heading to Text",
+      "default": 15
+    },
+    {
+      "type": "header",
+      "content": "Subheading Settings"
     },
     {
       "type": "text",
@@ -424,7 +540,7 @@ document.addEventListener('DOMContentLoaded', function() {
     },
     {
       "type": "header",
-      "content": "Heading"
+      "content": "Heading Settings"
     },
     {
       "type": "inline_richtext",
@@ -477,7 +593,7 @@ document.addEventListener('DOMContentLoaded', function() {
     },
     {
       "type": "header",
-      "content": "Description"
+      "content": "Description Settings"
     },
     {
       "type": "textarea",
