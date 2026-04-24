@@ -1,0 +1,611 @@
+{%- style -%}
+  .mission-slider-{{ section.id }} {
+    background-color: {{ section.settings.bg_color }};
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .mission-header-{{ section.id }} {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 60px;
+    padding: 0 20px;
+  }
+
+  .mission-sub-{{ section.id }} {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    color: {{ section.settings.sub_color }};
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: {{ section.settings.sub_size_mob }}px;
+    font-weight: {{ section.settings.sub_weight }};
+    margin-bottom: 20px;
+  }
+
+  .mission-sub-{{ section.id }}::before,
+  .mission-sub-{{ section.id }}::after {
+    content: "";
+    width: 30px;
+    height: 1.5px;
+    background-color: {{ section.settings.sub_color }};
+  }
+
+  .mission-h-{{ section.id }} {
+    color: {{ section.settings.h_color }};
+    font-size: {{ section.settings.h_size_mob }}px;
+    font-weight: {{ section.settings.h_weight }};
+    line-height: 1.2;
+    margin-bottom: 20px;
+  }
+
+  .mission-h-{{ section.id }} em, 
+  .mission-h-{{ section.id }} i {
+    color: {{ section.settings.sub_color }};
+    font-style: italic;
+  }
+
+  .mission-desc-{{ section.id }} {
+    color: {{ section.settings.desc_color }};
+    font-size: {{ section.settings.desc_size_mob }}px;
+    line-height: 1.6;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  /* Slider Container */
+  .mission-track-wrapper-{{ section.id }} {
+    padding-left: 5%;
+    padding-right: 5%;
+    position: relative;
+  }
+
+  .mission-track-{{ section.id }} {
+    display: flex;
+    gap: 30px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;  /* IE and Edge */
+    padding-bottom: 40px;
+    scroll-snap-type: x mandatory;
+  }
+
+  .mission-track-{{ section.id }}::-webkit-scrollbar {
+    display: none; /* Chrome, Safari and Opera */
+  }
+
+  /* Card Styles */
+  .mission-card-{{ section.id }} {
+    flex: 0 0 320px;
+    background: {{ section.settings.card_bg }};
+    border-radius: {{ section.settings.card_radius }}px;
+    padding: 40px;
+    position: relative;
+    overflow: hidden;
+    scroll-snap-align: start;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease;
+  }
+
+  @media screen and (max-width: 767px) {
+    .mission-card-{{ section.id }} {
+      flex: 0 0 280px;
+      padding: 30px;
+    }
+  }
+
+  /* Glass Shine Effect */
+  .mission-card-{{ section.id }}::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -150%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      120deg,
+      transparent,
+      rgba(255, 255, 255, 0.3),
+      transparent
+    );
+    transition: 0.6s;
+    z-index: 2;
+  }
+
+  .mission-card-{{ section.id }}:hover::before {
+    left: 150%;
+  }
+
+  .card-line-{{ section.id }} {
+    width: 30px;
+    height: 2px;
+    background-color: {{ section.settings.sub_color }};
+    margin-bottom: 25px;
+  }
+
+  .card-num-{{ section.id }} {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    font-size: 48px;
+    font-weight: 700;
+    color: rgba(230, 141, 69, 0.1);
+    line-height: 1;
+    font-family: serif;
+  }
+
+  .card-icon-{{ section.id }} {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 25px;
+    object-fit: contain;
+  }
+
+  .card-h-{{ section.id }} {
+    color: {{ section.settings.card_h_color }};
+    font-size: {{ section.settings.card_h_size }}px;
+    font-weight: 700;
+    line-height: 1.3;
+    margin-bottom: 15px;
+  }
+
+  .card-p-{{ section.id }} {
+    color: {{ section.settings.card_p_color }};
+    font-size: {{ section.settings.card_p_size }}px;
+    line-height: 1.6;
+  }
+
+  /* Footer Section */
+  .mission-footer-{{ section.id }} {
+    max-width: 1400px;
+    margin: 40px auto 0;
+    padding: 0 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .drag-explore-{{ section.id }} {
+    font-size: 11px;
+    color: #999;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .mission-nav-{{ section.id }} {
+    display: flex;
+    gap: 10px;
+  }
+
+  .nav-btn-{{ section.id }} {
+    width: 40px;
+    height: 40px;
+    border: 1px solid #ddd;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: transparent;
+  }
+
+  .nav-btn-{{ section.id }}:hover {
+    border-color: {{ section.settings.sub_color }};
+    color: {{ section.settings.sub_color }};
+  }
+
+  .nav-btn-{{ section.id }} svg {
+    width: 16px;
+    height: 16px;
+    fill: currentColor;
+  }
+
+  @media screen and (min-width: 768px) {
+    .mission-sub-{{ section.id }} { font-size: {{ section.settings.sub_size }}px; }
+    .mission-h-{{ section.id }} { font-size: {{ section.settings.h_size }}px; }
+    .mission-desc-{{ section.id }} { font-size: {{ section.settings.desc_size }}px; }
+    
+    .mission-slider-{{ section.id }} {
+      padding-top: {{ section.settings.padding_top_desktop }}px;
+      padding-bottom: {{ section.settings.padding_bottom_desktop }}px;
+    }
+  }
+
+  /* Font Handling */
+  {% if section.settings.h_font.family %}
+    {{ section.settings.h_font | font_face: font_display: 'swap' }}
+    .mission-h-{{ section.id }}, .card-h-{{ section.id }} { 
+      font-family: {{ section.settings.h_font.family }}, {{ section.settings.h_font.fallback_families }}; 
+    }
+  {% endif %}
+  {% if section.settings.sub_font.family %}
+    {{ section.settings.sub_font | font_face: font_display: 'swap' }}
+    .mission-sub-{{ section.id }}, .card-num-{{ section.id }} { 
+      font-family: {{ section.settings.sub_font.family }}, {{ section.settings.sub_font.fallback_families }}; 
+    }
+  {% endif %}
+  {% if section.settings.desc_font.family %}
+    {{ section.settings.desc_font | font_face: font_display: 'swap' }}
+    .mission-desc-{{ section.id }}, .card-p-{{ section.id }} { 
+      font-family: {{ section.settings.desc_font.family }}, {{ section.settings.desc_font.fallback_families }}; 
+    }
+  {% endif %}
+
+{%- endstyle -%}
+
+<div class="mission-slider-{{ section.id }}">
+  <div class="mission-header-{{ section.id }}">
+    {% if section.settings.subheading != blank %}
+      <div class="mission-sub-{{ section.id }}">{{ section.settings.subheading }}</div>
+    {% endif %}
+    
+    {% if section.settings.heading != blank %}
+      <h2 class="mission-h-{{ section.id }}">{{ section.settings.heading }}</h2>
+    {% endif %}
+    
+    {% if section.settings.description != blank %}
+      <div class="mission-desc-{{ section.id }}">
+        {{ section.settings.description }}
+      </div>
+    {% endif %}
+  </div>
+
+  <div class="mission-track-wrapper-{{ section.id }}">
+    <div class="mission-track-{{ section.id }}" id="missionTrack-{{ section.id }}">
+      {% for block in section.blocks %}
+        <div class="mission-card-{{ section.id }}" {{ block.shopify_attributes }}>
+          <div class="card-num-{{ section.id }}">0{{ forloop.index }}</div>
+          <div class="card-line-{{ section.id }}"></div>
+          
+          {% if block.settings.icon != blank %}
+            <img src="{{ block.settings.icon | image_url: width: 100 }}" class="card-icon-{{ section.id }}" alt="{{ block.settings.title }}" loading="lazy">
+          {% endif %}
+          
+          <h3 class="card-h-{{ section.id }}">{{ block.settings.title }}</h3>
+          <div class="card-p-{{ section.id }}">{{ block.settings.text }}</div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <div class="mission-footer-{{ section.id }}">
+    <div class="drag-explore-{{ section.id }}">
+      DRAG TO EXPLORE <span style="margin-left:5px">→</span>
+    </div>
+
+    <div class="mission-nav-{{ section.id }}">
+      <button class="nav-btn-{{ section.id }}" id="prev-{{ section.id }}" aria-label="Previous slide">
+        <svg viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+      </button>
+      <button class="nav-btn-{{ section.id }}" id="next-{{ section.id }}" aria-label="Next slide">
+        <svg viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const track = document.getElementById('missionTrack-{{ section.id }}');
+  const nextBtn = document.getElementById('next-{{ section.id }}');
+  const prevBtn = document.getElementById('prev-{{ section.id }}');
+  
+  if (!track || !nextBtn || !prevBtn) return;
+
+  const cardWidth = track.querySelector('.mission-card-{{ section.id }}').offsetWidth + 30; // card + gap
+
+  nextBtn.addEventListener('click', () => {
+    track.scrollBy({ left: cardWidth, behavior: 'smooth' });
+  });
+
+  prevBtn.addEventListener('click', () => {
+    track.scrollBy({ left: -cardWidth, behavior: 'smooth' });
+  });
+});
+</script>
+
+{% schema %}
+{
+  "name": "Our Mission",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section Layout"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#fcfaf7"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "unit": "px",
+      "label": "Mobile Padding Top",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "unit": "px",
+      "label": "Mobile Padding Bottom",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_top_desktop",
+      "min": 0,
+      "max": 300,
+      "step": 5,
+      "unit": "px",
+      "label": "Desktop Padding Top",
+      "default": 120
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_desktop",
+      "min": 0,
+      "max": 300,
+      "step": 5,
+      "unit": "px",
+      "label": "Desktop Padding Bottom",
+      "default": 120
+    },
+    {
+      "type": "header",
+      "content": "Subheading"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "OUR MISSION"
+    },
+    {
+      "type": "font_picker",
+      "id": "sub_font",
+      "label": "Subheading Font Family",
+      "default": "assistant_n4"
+    },
+    {
+        "type": "select",
+        "id": "sub_weight",
+        "label": "Subheading Font Weight",
+        "options": [
+          { "value": "400", "label": "Normal" },
+          { "value": "600", "label": "Semi Bold" },
+          { "value": "700", "label": "Bold" }
+        ],
+        "default": "600"
+    },
+    {
+      "type": "range",
+      "id": "sub_size",
+      "min": 10,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Desktop Font Size",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "sub_size_mob",
+      "min": 10,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Mobile Font Size",
+      "default": 11
+    },
+    {
+      "type": "color",
+      "id": "sub_color",
+      "label": "Accent Color",
+      "default": "#e68d45"
+    },
+    {
+      "type": "header",
+      "content": "Heading"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Five Pillars of <em>Purposeful Growth</em>"
+    },
+    {
+      "type": "font_picker",
+      "id": "h_font",
+      "label": "Heading Font Family",
+      "default": "assistant_n4"
+    },
+    {
+        "type": "select",
+        "id": "h_weight",
+        "label": "Heading Font Weight",
+        "options": [
+          { "value": "400", "label": "Normal" },
+          { "value": "600", "label": "Semi Bold" },
+          { "value": "700", "label": "Bold" }
+        ],
+        "default": "400"
+    },
+    {
+      "type": "range",
+      "id": "h_size",
+      "min": 20,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Desktop Font Size",
+      "default": 56
+    },
+    {
+      "type": "range",
+      "id": "h_size_mob",
+      "min": 20,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "label": "Mobile Font Size",
+      "default": 36
+    },
+    {
+      "type": "color",
+      "id": "h_color",
+      "label": "Heading Color",
+      "default": "#1a3628"
+    },
+    {
+      "type": "header",
+      "content": "Description"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description Text",
+      "default": "Every decision we make, every brand we build, every shelf we stock — guided by these five commitments."
+    },
+    {
+      "type": "font_picker",
+      "id": "desc_font",
+      "label": "Description Font Family",
+      "default": "assistant_n4"
+    },
+    {
+      "type": "range",
+      "id": "desc_size",
+      "min": 12,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Desktop Font Size",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "desc_size_mob",
+      "min": 10,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Mobile Font Size",
+      "default": 14
+    },
+    {
+      "type": "color",
+      "id": "desc_color",
+      "label": "Description Color",
+      "default": "#666666"
+    },
+    {
+      "type": "header",
+      "content": "Card Styling"
+    },
+    {
+      "type": "color",
+      "id": "card_bg",
+      "label": "Card Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "card_radius",
+      "min": 0,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "label": "Card Corner Radius",
+      "default": 20
+    },
+    {
+      "type": "color",
+      "id": "card_h_color",
+      "label": "Card Heading Color",
+      "default": "#1a3628"
+    },
+    {
+      "type": "range",
+      "id": "card_h_size",
+      "min": 14,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "label": "Card Heading Size",
+      "default": 22
+    },
+    {
+      "type": "color",
+      "id": "card_p_color",
+      "label": "Card Text Color",
+      "default": "#666666"
+    },
+    {
+      "type": "range",
+      "id": "card_p_size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Card Text Size",
+      "default": 14
+    }
+  ],
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "Mission Card",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Icon Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Heading",
+          "default": "Trusted Brands Rooted in Indian Traditions"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Description",
+          "default": "We develop consumer brands that honour India's culinary heritage while adapting to modern Indian lifestyles — authentic at heart, contemporary in form."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Our Mission",
+      "blocks": [
+        { "type": "slide" },
+        { "type": "slide" },
+        { "type": "slide" },
+        { "type": "slide" },
+        { "type": "slide" }
+      ]
+    }
+  ]
+}
+{% endschema %}
