@@ -252,7 +252,7 @@
     <!-- Stat 1 -->
     <div class="stat-item-{{ section.id }}">
       <div class="stat-num-{{ section.id }}">
-        <span class="count-up" data-target="{{ section.settings.stat1_num }}">0</span>
+        <span class="count-up" data-target="{{ section.settings.stat1_num }}" data-duration="{{ section.settings.stat1_duration }}">0</span>
         {{ section.settings.stat1_suffix }}
       </div>
       <div class="stat-label-{{ section.id }}">{{ section.settings.stat1_label }}</div>
@@ -269,7 +269,7 @@
     <!-- Stat 3 -->
     <div class="stat-item-{{ section.id }}">
       <div class="stat-num-{{ section.id }}">
-        <span class="count-up" data-target="{{ section.settings.stat3_num }}">0</span>
+        <span class="count-up" data-target="{{ section.settings.stat3_num }}" data-duration="{{ section.settings.stat3_duration }}">0</span>
         {{ section.settings.stat3_suffix }}
       </div>
       <div class="stat-label-{{ section.id }}">{{ section.settings.stat3_label }}</div>
@@ -296,7 +296,8 @@ document.addEventListener('DOMContentLoaded', function() {
         // Trigger Counter Animation
         countElements.forEach(el => {
           const target = parseInt(el.getAttribute('data-target'));
-          animateValue(el, 0, target, 2000);
+          const duration = parseInt(el.getAttribute('data-duration')) || 2000;
+          animateValue(el, 0, target, duration);
         });
         
         observer.unobserve(entry.target);
@@ -635,6 +636,16 @@ document.addEventListener('DOMContentLoaded', function() {
       "default": "TARGET ECOSYSTEM"
     },
     {
+      "type": "range",
+      "id": "stat1_duration",
+      "min": 500,
+      "max": 10000,
+      "step": 100,
+      "unit": "ms",
+      "label": "Animation Duration",
+      "default": 1000
+    },
+    {
       "type": "header",
       "content": "Stat 2 (Static Text)"
     },
@@ -671,6 +682,16 @@ document.addEventListener('DOMContentLoaded', function() {
       "id": "stat3_label",
       "label": "Label",
       "default": "HOUSEHOLDS TARGET"
+    },
+    {
+      "type": "range",
+      "id": "stat3_duration",
+      "min": 500,
+      "max": 10000,
+      "step": 100,
+      "unit": "ms",
+      "label": "Animation Duration",
+      "default": 4000
     }
   ],
   "presets": [
