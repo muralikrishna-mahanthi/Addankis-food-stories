@@ -127,6 +127,7 @@
         "slide_8y8dry": {
           "type": "slide",
           "settings": {
+            "icon": "shopify://shop_images/icon_4.jpg",
             "title": "High Quality at Affordable Prices",
             "text": "We firmly believe that quality should never be a luxury. Our products are crafted to the highest standards and priced so every Indian household can enjoy them without compromise."
           }
@@ -134,6 +135,7 @@
         "slide_MmNQNt": {
           "type": "slide",
           "settings": {
+            "icon": "shopify://shop_images/icon_5.jpg",
             "title": "Sustainable & Scalable FMCG Platform",
             "text": "We are building not just a company, but a living platform — one that is environmentally responsible, financially resilient, and designed from the ground up to support continuous innovation and scalable growth."
           }
