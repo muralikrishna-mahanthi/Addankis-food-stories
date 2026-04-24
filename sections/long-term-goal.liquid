@@ -174,9 +174,9 @@
     border-radius: 50%;
   }
 
-  .ring-1-{{ section.id }} { width: 240px; height: 240px; }
-  .ring-2-{{ section.id }} { width: 380px; height: 380px; }
-  .ring-3-{{ section.id }} { width: 520px; height: 520px; }
+  .ring-1-{{ section.id }} { width: 220px; height: 220px; }
+  .ring-2-{{ section.id }} { width: 400px; height: 400px; }
+  .ring-3-{{ section.id }} { width: 580px; height: 580px; }
 
   .center-node-{{ section.id }} {
     width: 140px;
@@ -215,8 +215,8 @@
 
   .orbit-node-{{ section.id }} {
     position: absolute;
-    width: 80px;
-    height: 80px;
+    width: 90px;
+    height: 90px;
     background: rgba(255, 255, 255, 0.08);
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.15);
@@ -239,27 +239,29 @@
   }
 
   .node-icon-{{ section.id }} {
-    width: 24px;
-    height: 24px;
+    width: 28px;
+    height: 28px;
     margin-bottom: 5px;
     object-fit: contain;
   }
 
   .node-label-{{ section.id }} {
-    font-size: 9px;
+    font-size: 10px;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 1px;
     position: absolute;
-    bottom: -20px;
+    bottom: -25px;
     width: 100%;
     text-align: center;
+    color: rgba(255,255,255,0.7);
   }
 
-  .node-brands-{{ section.id }} { top: -40px; left: 50%; transform: translateX(-50%); }
-  .node-partners-{{ section.id }} { bottom: -40px; left: 50%; transform: translateX(-50%); }
-  .node-urban-{{ section.id }} { left: -40px; top: 50%; transform: translateY(-50%); }
-  .node-rural-{{ section.id }} { right: -40px; top: 50%; transform: translateY(-50%); }
+  /* Cardinal Positions on Ring 2 (400px diameter) */
+  .node-brands-{{ section.id }} { top: -45px; left: 50%; transform: translateX(-50%); }
+  .node-partners-{{ section.id }} { bottom: -45px; left: 50%; transform: translateX(-50%); }
+  .node-urban-{{ section.id }} { left: -45px; top: 50%; transform: translateY(-50%); }
+  .node-rural-{{ section.id }} { right: -45px; top: 50%; transform: translateY(-50%); }
 
   @media screen and (max-width: 1023px) {
     .goal-visual-{{ section.id }} {
@@ -267,11 +269,16 @@
       margin-top: 40px;
     }
     .orbit-container-{{ section.id }} { width: 350px; height: 350px; }
-    .ring-1-{{ section.id }} { width: 160px; height: 160px; }
-    .ring-2-{{ section.id }} { width: 250px; height: 250px; }
-    .ring-3-{{ section.id }} { width: 350px; height: 350px; }
+    .ring-1-{{ section.id }} { width: 140px; height: 140px; }
+    .ring-2-{{ section.id }} { width: 280px; height: 280px; }
+    .ring-3-{{ section.id }} { width: 420px; height: 420px; }
     .orbit-node-{{ section.id }} { width: 70px; height: 70px; }
     .center-node-{{ section.id }} { width: 110px; height: 110px; }
+    
+    .node-brands-{{ section.id }} { top: -35px; }
+    .node-partners-{{ section.id }} { bottom: -35px; }
+    .node-urban-{{ section.id }} { left: -35px; }
+    .node-rural-{{ section.id }} { right: -35px; }
   }
 
   /* Font Handling */
