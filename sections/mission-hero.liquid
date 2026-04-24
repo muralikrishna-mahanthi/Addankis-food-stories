@@ -1,7 +1,7 @@
 {%- style -%}
   .mission-hero-{{ section.id }} {
     background-color: {{ section.settings.bg_color }};
-    min-height: {{ section.settings.section_height }}vh;
+    min-height: {{ section.settings.section_height_mobile }}vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -42,7 +42,7 @@
     color: {{ section.settings.subheading_color }};
     text-transform: uppercase;
     letter-spacing: 2px;
-    margin-bottom: 30px;
+    margin-bottom: {{ section.settings.subheading_margin_bottom }}px;
   }
 
   .mission-hero-{{ section.id }} .subheading::before,
@@ -65,7 +65,7 @@
     font-size: {{ section.settings.heading_size_mobile }}px;
     color: {{ section.settings.heading_color }};
     line-height: 1.2;
-    margin: 0 0 30px 0;
+    margin-bottom: {{ section.settings.heading_margin_bottom }}px;
     max-width: 900px;
   }
 
@@ -88,13 +88,15 @@
     color: {{ section.settings.text_color }};
     max-width: 650px;
     line-height: 1.6;
-    margin: 0 0 40px 0;
+    margin-bottom: {{ section.settings.description_margin_bottom }}px;
   }
 
   @media screen and (min-width: 768px) {
+    .mission-hero-{{ section.id }} {
+      min-height: {{ section.settings.section_height }}vh;
+    }
     .mission-hero-{{ section.id }} .subheading {
       font-size: {{ section.settings.subheading_size }}px;
-      margin-bottom: 40px;
     }
     .mission-hero-{{ section.id }} .subheading::before,
     .mission-hero-{{ section.id }} .subheading::after {
@@ -102,11 +104,9 @@
     }
     .mission-hero-{{ section.id }} .heading {
       font-size: {{ section.settings.heading_size }}px;
-      margin: 0 0 40px 0;
     }
     .mission-hero-{{ section.id }} .description {
       font-size: {{ section.settings.text_size }}px;
-      margin: 0 0 50px 0;
     }
   }
 {%- endstyle -%}
@@ -150,8 +150,18 @@
       "max": 100,
       "step": 5,
       "unit": "vh",
-      "label": "Minimum Height",
+      "label": "Desktop Minimum Height",
       "default": 80
+    },
+    {
+      "type": "range",
+      "id": "section_height_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "vh",
+      "label": "Mobile Minimum Height",
+      "default": 60
     },
     {
       "type": "range",
@@ -222,6 +232,16 @@
       "default": 10
     },
     {
+      "type": "range",
+      "id": "subheading_margin_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Margin Bottom",
+      "default": 30
+    },
+    {
       "type": "color",
       "id": "subheading_color",
       "label": "Text Color",
@@ -283,6 +303,16 @@
       "default": 42
     },
     {
+      "type": "range",
+      "id": "heading_margin_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Margin Bottom",
+      "default": 30
+    },
+    {
       "type": "color",
       "id": "heading_color",
       "label": "Text Color",
@@ -341,6 +371,16 @@
       "unit": "px",
       "label": "Mobile Font Size",
       "default": 14
+    },
+    {
+      "type": "range",
+      "id": "description_margin_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Margin Bottom",
+      "default": 40
     },
     {
       "type": "color",
