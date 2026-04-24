@@ -55,7 +55,7 @@
       "type": "vision-section",
       "name": "Vision Section",
       "settings": {
-        "bg_color": "#fcfaf7",
+        "bg_color": "#ffffff",
         "padding_top": 60,
         "padding_bottom": 60,
         "padding_top_desktop": 120,
