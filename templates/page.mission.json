@@ -294,7 +294,7 @@
         "node_label_color": "#121212",
         "ring_color": "#242833",
         "ring_width": 2,
-        "ring_spacing": 200,
+        "ring_spacing": 500,
         "center_text": "1K Cr",
         "center_subtext": "VISION",
         "icon_brands": "shopify://shop_images/icon_2.jpg",
