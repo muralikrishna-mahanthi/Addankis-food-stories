@@ -163,21 +163,17 @@
   .orbit-container-{{ section.id }} {
     position: relative;
     width: 550px;
-    height: 550px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
   }
 
-  .orbit-ring-{{ section.id }} {
+  .orbit-svg-{{ section.id }} {
     position: absolute;
-    border: {{ section.settings.ring_width }}px dotted {{ section.settings.ring_color }};
-    border-radius: 50%;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    z-index: 2;
-    opacity: 1; /* Forced full visibility */
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
   }
 
   {% assign ring_1_size = 240 %}
@@ -185,9 +181,23 @@
   {% assign ring_2_size = ring_1_size | plus: spacing %}
   {% assign ring_3_size = ring_2_size | plus: spacing %}
 
-  .ring-1-{{ section.id }} { width: {{ ring_1_size }}px; height: {{ ring_1_size }}px; }
-  .ring-2-{{ section.id }} { width: {{ ring_2_size }}px; height: {{ ring_2_size }}px; }
-  .ring-3-{{ section.id }} { width: {{ ring_3_size }}px; height: {{ ring_3_size }}px; }
+  /* Node Positions on the outer ring */
+  .node-brands-{{ section.id }} { top: calc(50% - {{ ring_3_size | divided_by: 2 }}px); left: 50%; transform: translate(-50%, -50%); }
+  .node-partners-{{ section.id }} { top: calc(50% + {{ ring_3_size | divided_by: 2 }}px); left: 50%; transform: translate(-50%, -50%); }
+  .node-urban-{{ section.id }} { left: calc(50% - {{ ring_3_size | divided_by: 2 }}px); top: 50%; transform: translate(-50%, -50%); }
+  .node-rural-{{ section.id }} { left: calc(50% + {{ ring_3_size | divided_by: 2 }}px); top: 50%; transform: translate(-50%, -50%); }
+
+  @media screen and (max-width: 1023px) {
+    {% assign r1_mob = 150 %}
+    {% assign sp_mob = spacing | times: 0.6 %}
+    {% assign r2_mob = r1_mob | plus: sp_mob %}
+    {% assign r3_mob = r2_mob | plus: sp_mob %}
+
+    .node-brands-{{ section.id }} { top: calc(50% - {{ r3_mob | divided_by: 2 }}px); }
+    .node-partners-{{ section.id }} { top: calc(50% + {{ r3_mob | divided_by: 2 }}px); }
+    .node-urban-{{ section.id }} { left: calc(50% - {{ r3_mob | divided_by: 2 }}px); }
+    .node-rural-{{ section.id }} { left: calc(50% + {{ r3_mob | divided_by: 2 }}px); }
+  }
 
   .center-node-{{ section.id }} {
     width: 160px;
@@ -258,20 +268,17 @@
   }
 
   /* Positions on the outer ring */
-  .node-brands-{{ section.id }} { top: 0; left: 50%; transform: translate(-50%, -50%); }
-  .node-partners-{{ section.id }} { bottom: 0; left: 50%; transform: translate(-50%, 50%); }
-  .node-urban-{{ section.id }} { left: 0; top: 50%; transform: translate(-50%, -50%); }
-  .node-rural-{{ section.id }} { right: 0; top: 50%; transform: translate(50%, -50%); }
+  .node-brands-{{ section.id }} { top: calc(50% - {{ ring_3_size | divided_by: 2 }}px); left: 50%; transform: translate(-50%, -50%); }
+  .node-partners-{{ section.id }} { top: calc(50% + {{ ring_3_size | divided_by: 2 }}px); left: 50%; transform: translate(-50%, -50%); }
+  .node-urban-{{ section.id }} { left: calc(50% - {{ ring_3_size | divided_by: 2 }}px); top: 50%; transform: translate(-50%, -50%); }
+  .node-rural-{{ section.id }} { left: calc(50% + {{ ring_3_size | divided_by: 2 }}px); top: 50%; transform: translate(-50%, -50%); }
 
   @media screen and (max-width: 1023px) {
     .goal-visual-{{ section.id }} {
       height: 450px;
       margin-top: 60px;
     }
-    .orbit-container-{{ section.id }} { width: 340px; height: 340px; }
-    .ring-1-{{ section.id }} { width: 150px; height: 150px; }
-    .ring-2-{{ section.id }} { width: 245px; height: 245px; }
-    .ring-3-{{ section.id }} { width: 340px; height: 340px; }
+    .orbit-container-{{ section.id }} { width: 400px; height: 400px; }
     
     .orbit-node-{{ section.id }} { width: 70px; height: 70px; }
     .node-icon-{{ section.id }} { width: 30px; height: 30px; }
@@ -380,9 +387,12 @@
 
     <div class="goal-visual-{{ section.id }}">
       <div class="orbit-container-{{ section.id }}">
-        <div class="orbit-ring-{{ section.id }} ring-1-{{ section.id }}"></div>
-        <div class="orbit-ring-{{ section.id }} ring-2-{{ section.id }}"></div>
-        <div class="orbit-ring-{{ section.id }} ring-3-{{ section.id }}"></div>
+        <!-- SVG Dotted Rings -->
+        <svg class="orbit-svg-{{ section.id }}" viewBox="0 0 800 800">
+          <circle cx="400" cy="400" r="{{ ring_1_size | divided_by: 2 }}" fill="none" stroke="{{ section.settings.ring_color }}" stroke-width="{{ section.settings.ring_width }}" stroke-dasharray="1 12" stroke-linecap="round" />
+          <circle cx="400" cy="400" r="{{ ring_2_size | divided_by: 2 }}" fill="none" stroke="{{ section.settings.ring_color }}" stroke-width="{{ section.settings.ring_width }}" stroke-dasharray="1 12" stroke-linecap="round" />
+          <circle cx="400" cy="400" r="{{ ring_3_size | divided_by: 2 }}" fill="none" stroke="{{ section.settings.ring_color }}" stroke-width="{{ section.settings.ring_width }}" stroke-dasharray="1 12" stroke-linecap="round" />
+        </svg>
         
         <div class="center-node-{{ section.id }}">
           <span>₹{{ section.settings.center_text }}</span>
