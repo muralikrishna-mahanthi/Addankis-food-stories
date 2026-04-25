@@ -202,28 +202,60 @@
           "type": "point",
           "settings": {
             "title": "Multiple Successful Consumer Brands",
-            "text": "incubated, built, and scaled under our ecosystem umbrella."
+            "text": "incubated, built, and scaled under our ecosystem umbrella.",
+            "title_font": "sans_serif_n7",
+            "title_size": 15,
+            "title_weight": "700",
+            "title_color": "#121212",
+            "text_font": "sans_serif_n4",
+            "text_size": 15,
+            "text_weight": "400",
+            "text_color": "#121212"
           }
         },
         "point_GkLRhM": {
           "type": "point",
           "settings": {
             "title": "Millions of Households Reached",
-            "text": "across urban, semi-urban, and rural India through our distribution network."
+            "text": "across urban, semi-urban, and rural India through our distribution network.",
+            "title_font": "sans_serif_n7",
+            "title_size": 15,
+            "title_weight": "700",
+            "title_color": "#121212",
+            "text_font": "sans_serif_n4",
+            "text_size": 15,
+            "text_weight": "400",
+            "text_color": "#121212"
           }
         },
         "point_gzCTbc": {
           "type": "point",
           "settings": {
             "title": "India's Strongest Rural Distribution",
-            "text": "enabling products to reach the last mile, where growth truly awaits."
+            "text": "enabling products to reach the last mile, where growth truly awaits.",
+            "title_font": "sans_serif_n7",
+            "title_size": 15,
+            "title_weight": "700",
+            "title_color": "#121212",
+            "text_font": "sans_serif_n4",
+            "text_size": 15,
+            "text_weight": "400",
+            "text_color": "#121212"
           }
         },
         "point_fUwjdF": {
           "type": "point",
           "settings": {
             "title": "₹1000 Crore Ecosystem",
-            "text": "a landmark reflecting our scale, impact, and trust earned across markets."
+            "text": "a landmark reflecting our scale, impact, and trust earned across markets.",
+            "title_font": "sans_serif_n7",
+            "title_size": 15,
+            "title_weight": "700",
+            "title_color": "#121212",
+            "text_font": "sans_serif_n4",
+            "text_size": 15,
+            "text_weight": "400",
+            "text_color": "#121212"
           }
         }
       },
@@ -242,7 +274,12 @@
         "height_desktop": 90,
         "height_mob": 80,
         "h_font": "assistant_n4",
+        "h_size_desktop": 64,
+        "h_size_mob": 32,
+        "h_weight": "400",
         "p_font": "assistant_n4",
+        "p_size": 16,
+        "p_weight": "400",
         "subheading": "LONG-TERM GOAL",
         "heading": "Leading India's <em>Brand Builder</em> & Distribution Era",
         "description": "Addanki's Food Stories aims to become the most trusted FMCG brand builder and distribution platform in India — supporting multiple successful consumer brands and reaching millions of households across every state and district.",
