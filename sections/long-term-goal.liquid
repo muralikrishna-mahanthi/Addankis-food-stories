@@ -176,6 +176,8 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    z-index: 2;
+    opacity: 0.3; /* Added default opacity for better blending */
   }
 
   {% assign ring_1_size = 240 %}
@@ -658,7 +660,7 @@
       "type": "color",
       "id": "ring_color",
       "label": "Ring Color",
-      "default": "rgba(255, 255, 255, 0.2)"
+      "default": "#ffffff"
     },
     {
       "type": "range",
