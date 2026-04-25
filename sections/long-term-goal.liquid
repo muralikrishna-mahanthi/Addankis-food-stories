@@ -153,73 +153,28 @@
   /* Right Side Visual Graphic */
   .goal-visual-{{ section.id }} {
     position: relative;
-    height: 600px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    aspect-ratio: 1 / 1;
     overflow: visible;
   }
 
-  .orbit-container-{{ section.id }} {
-    position: relative;
-    width: 600px;
-    height: 600px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
   .orbit-svg-{{ section.id }} {
-    position: absolute;
-    top: 0;
-    left: 0;
     width: 100%;
     height: 100%;
-    z-index: 1;
-    pointer-events: none;
+    overflow: visible;
   }
 
-  {% assign ring_1_size = 240 %}
   {% assign spacing = section.settings.ring_spacing %}
-  {% assign ring_2_size = ring_1_size | plus: spacing %}
-  {% assign ring_3_size = ring_2_size | plus: spacing %}
-
-  /* Node Positions on the outer ring */
-  .orbit-node-wrapper-{{ section.id }} {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 0;
-    height: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    z-index: 5;
-  }
-
-  .node-brands-{{ section.id }} { transform: translate(-50%, calc(-50% - {{ ring_3_size | divided_by: 2 }}px)); }
-  .node-partners-{{ section.id }} { transform: translate(-50%, calc(-50% + {{ ring_3_size | divided_by: 2 }}px)); }
-  .node-urban-{{ section.id }} { transform: translate(calc(-50% - {{ ring_3_size | divided_by: 2 }}px), -50%); }
-  .node-rural-{{ section.id }} { transform: translate(calc(-50% + {{ ring_3_size | divided_by: 2 }}px), -50%); }
-
-  @media screen and (max-width: 1023px) {
-    .orbit-container-{{ section.id }} { width: 350px; height: 350px; }
-    {% assign r1_mob = 130 %}
-    {% assign sp_mob = spacing | times: 0.5 %}
-    {% assign r3_mob = r1_mob | plus: sp_mob | plus: sp_mob %}
-
-    .node-brands-{{ section.id }} { transform: translate(-50%, calc(-50% - {{ r3_mob | divided_by: 2 }}px)); }
-    .node-partners-{{ section.id }} { transform: translate(-50%, calc(-50% + {{ r3_mob | divided_by: 2 }}px)); }
-    .node-urban-{{ section.id }} { transform: translate(calc(-50% - {{ r3_mob | divided_by: 2 }}px), -50%); }
-    .node-rural-{{ section.id }} { transform: translate(calc(-50% + {{ r3_mob | divided_by: 2 }}px), -50%); }
-  }
+  {% assign r1 = 240 | divided_by: 2 %}
+  {% assign r2 = r1 | plus: spacing | divided_by: 2 %}
+  {% assign r3 = r2 | plus: spacing | divided_by: 2 %}
 
   .center-node-{{ section.id }} {
     width: 160px;
     height: 160px;
-    background-color: #d15a1a; /* Exact orange from image */
+    background-color: #d15a1a;
     border-radius: 50%;
     display: flex;
     flex-direction: column;
@@ -227,18 +182,7 @@
     justify-content: center;
     color: #fff;
     text-align: center;
-    z-index: 10;
     box-shadow: 0 0 40px rgba(209, 90, 26, 0.3);
-    position: relative; /* Centered via parent flex */
-  }
-
-  .orbit-node-wrapper-{{ section.id }} {
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    z-index: 5;
   }
 
   .orbit-node-{{ section.id }} {
@@ -250,13 +194,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: all 0.3s ease;
-  }
-
-  .node-icon-{{ section.id }} {
-    width: calc({{ section.settings.node_size }}px * 0.45);
-    height: calc({{ section.settings.node_size }}px * 0.45);
-    object-fit: contain;
   }
 
   .node-label-{{ section.id }} {
@@ -265,25 +202,16 @@
     text-transform: uppercase;
     letter-spacing: 1.5px;
     color: {{ section.settings.node_label_color }};
-    margin-top: 15px;
+    margin-top: 10px;
     text-align: center;
-    text-shadow: 0 0 10px rgba(0,0,0,0.5); /* Better readability on mixed backgrounds */
+    width: 150px;
+    white-space: nowrap;
   }
 
-
-
   @media screen and (max-width: 1023px) {
-    .goal-visual-{{ section.id }} {
-      height: 450px;
-      margin-top: 60px;
-    }
-    
-    .orbit-node-{{ section.id }} { width: 70px; height: 70px; }
-    .node-icon-{{ section.id }} { width: 30px; height: 30px; }
     .center-node-{{ section.id }} { width: 110px; height: 110px; }
-    .center-node-{{ section.id }} span { font-size: 20px; }
-    .center-node-{{ section.id }} small { font-size: 10px; }
-    .node-label-{{ section.id }} { font-size: 10px; margin-top: 10px; }
+    .orbit-node-{{ section.id }} { width: 70px; height: 70px; }
+    .node-label-{{ section.id }} { font-size: 10px; }
   }
 
   /* Font Handling */
@@ -382,62 +310,70 @@
         {% endfor %}
       </div>
     </div>
-
     <div class="goal-visual-{{ section.id }}">
-      <div class="orbit-container-{{ section.id }}">
-        <!-- SVG Dotted Rings -->
-        <svg class="orbit-svg-{{ section.id }}" viewBox="0 0 600 600">
-          <circle cx="300" cy="300" r="{{ ring_1_size | divided_by: 2 }}" fill="none" stroke="{{ section.settings.ring_color }}" stroke-width="{{ section.settings.ring_width }}" stroke-dasharray="1 12" stroke-linecap="round" />
-          <circle cx="300" cy="300" r="{{ ring_2_size | divided_by: 2 }}" fill="none" stroke="{{ section.settings.ring_color }}" stroke-width="{{ section.settings.ring_width }}" stroke-dasharray="1 12" stroke-linecap="round" />
-          <circle cx="300" cy="300" r="{{ ring_3_size | divided_by: 2 }}" fill="none" stroke="{{ section.settings.ring_color }}" stroke-width="{{ section.settings.ring_width }}" stroke-dasharray="1 12" stroke-linecap="round" />
-        </svg>
+      <svg class="orbit-svg-{{ section.id }}" viewBox="0 0 800 800">
+        <!-- Dotted Rings -->
+        <circle cx="400" cy="400" r="{{ r1 }}" fill="none" stroke="{{ section.settings.ring_color }}" stroke-width="{{ section.settings.ring_width }}" stroke-dasharray="1 12" stroke-linecap="round" />
+        <circle cx="400" cy="400" r="{{ r2 }}" fill="none" stroke="{{ section.settings.ring_color }}" stroke-width="{{ section.settings.ring_width }}" stroke-dasharray="1 12" stroke-linecap="round" />
+        <circle cx="400" cy="400" r="{{ r3 }}" fill="none" stroke="{{ section.settings.ring_color }}" stroke-width="{{ section.settings.ring_width }}" stroke-dasharray="1 12" stroke-linecap="round" />
         
-        <div class="center-node-{{ section.id }}">
-          <span>₹{{ section.settings.center_text }}</span>
-          <small>{{ section.settings.center_subtext }}</small>
-        </div>
-
-        <!-- Brands Node -->
-        <div class="orbit-node-wrapper-{{ section.id }} node-brands-{{ section.id }}">
-          <div class="orbit-node-{{ section.id }}">
-            {% if section.settings.icon_brands != blank %}
-              <img src="{{ section.settings.icon_brands | image_url: width: 100 }}" class="node-icon-{{ section.id }}" alt="Brands" loading="lazy">
-            {% endif %}
+        <!-- Center Node -->
+        <foreignObject x="320" y="320" width="160" height="160">
+          <div class="center-node-{{ section.id }}">
+            <span style="font-size: 32px; font-weight: 700; line-height: 1;">₹{{ section.settings.center_text }}</span>
+            <small style="font-size: 14px; text-transform: uppercase; letter-spacing: 2px; margin-top: 8px;">{{ section.settings.center_subtext }}</small>
           </div>
-          <span class="node-label-{{ section.id }}">BRANDS</span>
-        </div>
+        </foreignObject>
 
-        <!-- Urban Node -->
-        <div class="orbit-node-wrapper-{{ section.id }} node-urban-{{ section.id }}">
-          <div class="orbit-node-{{ section.id }}">
-            {% if section.settings.icon_urban != blank %}
-              <img src="{{ section.settings.icon_urban | image_url: width: 100 }}" class="node-icon-{{ section.id }}" alt="Urban" loading="lazy">
-            {% endif %}
+        <!-- Brands Node (Top) -->
+        <foreignObject x="325" y="{{ 400 | minus: r3 | minus: 80 }}" width="150" height="150">
+          <div style="display: flex; flex-direction: column; align-items: center;">
+            <div class="orbit-node-{{ section.id }}">
+              {% if section.settings.icon_brands != blank %}
+                <img src="{{ section.settings.icon_brands | image_url: width: 100 }}" style="width: 45%; height: 45%; object-fit: contain;" alt="Brands">
+              {% endif %}
+            </div>
+            <span class="node-label-{{ section.id }}">BRANDS</span>
           </div>
-          <span class="node-label-{{ section.id }}">URBAN</span>
-        </div>
+        </foreignObject>
 
-        <!-- Rural Node -->
-        <div class="orbit-node-wrapper-{{ section.id }} node-rural-{{ section.id }}">
-          <div class="orbit-node-{{ section.id }}">
-            {% if section.settings.icon_rural != blank %}
-              <img src="{{ section.settings.icon_rural | image_url: width: 100 }}" class="node-icon-{{ section.id }}" alt="Rural" loading="lazy">
-            {% endif %}
+        <!-- Partners Node (Bottom) -->
+        <foreignObject x="325" y="{{ 400 | plus: r3 | minus: 50 }}" width="150" height="150">
+          <div style="display: flex; flex-direction: column; align-items: center;">
+            <div class="orbit-node-{{ section.id }}">
+              {% if section.settings.icon_partners != blank %}
+                <img src="{{ section.settings.icon_partners | image_url: width: 100 }}" style="width: 45%; height: 45%; object-fit: contain;" alt="Partners">
+              {% endif %}
+            </div>
+            <span class="node-label-{{ section.id }}">PARTNERS</span>
           </div>
-          <span class="node-label-{{ section.id }}">RURAL</span>
-        </div>
+        </foreignObject>
 
-        <!-- Partners Node -->
-        <div class="orbit-node-wrapper-{{ section.id }} node-partners-{{ section.id }}">
-          <div class="orbit-node-{{ section.id }}">
-            {% if section.settings.icon_partners != blank %}
-              <img src="{{ section.settings.icon_partners | image_url: width: 100 }}" class="node-icon-{{ section.id }}" alt="Partners" loading="lazy">
-            {% endif %}
+        <!-- Urban Node (Left) -->
+        <foreignObject x="{{ 400 | minus: r3 | minus: 120 }}" y="325" width="150" height="150">
+          <div style="display: flex; flex-direction: column; align-items: center;">
+            <div class="orbit-node-{{ section.id }}">
+              {% if section.settings.icon_urban != blank %}
+                <img src="{{ section.settings.icon_urban | image_url: width: 100 }}" style="width: 45%; height: 45%; object-fit: contain;" alt="Urban">
+              {% endif %}
+            </div>
+            <span class="node-label-{{ section.id }}">URBAN</span>
           </div>
-          <span class="node-label-{{ section.id }}">PARTNERS</span>
-        </div>
-      </div>
-    </div>
+        </foreignObject>
+
+        <!-- Rural Node (Right) -->
+        <foreignObject x="{{ 400 | plus: r3 | minus: 30 }}" y="325" width="150" height="150">
+          <div style="display: flex; flex-direction: column; align-items: center;">
+            <div class="orbit-node-{{ section.id }}">
+              {% if section.settings.icon_rural != blank %}
+                <img src="{{ section.settings.icon_rural | image_url: width: 100 }}" style="width: 45%; height: 45%; object-fit: contain;" alt="Rural">
+              {% endif %}
+            </div>
+            <span class="node-label-{{ section.id }}">RURAL</span>
+          </div>
+        </foreignObject>
+      </svg>
+    </div>div>
 
   </div>
 </section>
