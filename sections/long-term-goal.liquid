@@ -185,6 +185,13 @@
     align-items: center;
     justify-content: center;
     position: relative;
+    animation: orbit-rotate-{{ section.id }} {{ section.settings.rotation_speed }}s linear infinite;
+    transform-origin: center center;
+  }
+
+  @keyframes orbit-rotate-{{ section.id }} {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
   }
 
   .center-node-{{ section.id }} {
@@ -200,6 +207,8 @@
     text-align: center;
     box-shadow: 0 0 40px rgba(209, 90, 26, 0.3);
     z-index: 10;
+    /* Prevent center node from rotating with the orbit */
+    animation: orbit-counter-rotate-{{ section.id }} {{ section.settings.rotation_speed }}s linear infinite;
   }
 
   .orbit-node-wrapper-{{ section.id }} {
@@ -208,12 +217,19 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    /* Counter-rotate to stay upright */
+    animation: orbit-counter-rotate-{{ section.id }} {{ section.settings.rotation_speed }}s linear infinite;
   }
 
-  .node-brands-{{ section.id }} { transform: translateY(-{{ r3 }}px); }
-  .node-partners-{{ section.id }} { transform: translateY({{ r3 }}px); }
-  .node-urban-{{ section.id }} { transform: translateX(-{{ r3 }}px); }
-  .node-rural-{{ section.id }} { transform: translateX({{ r3 }}px); }
+  @keyframes orbit-counter-rotate-{{ section.id }} {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(-360deg); }
+  }
+
+  .node-brands-{{ section.id }} { top: calc(50% - {{ r3 }}px - 50px); }
+  .node-partners-{{ section.id }} { top: calc(50% + {{ r3 }}px - 50px); }
+  .node-urban-{{ section.id }} { left: calc(50% - {{ r3 }}px - 75px); }
+  .node-rural-{{ section.id }} { left: calc(50% + {{ r3 }}px - 75px); }
 
   .orbit-node-{{ section.id }} {
     width: {{ section.settings.node_size }}px;
@@ -661,6 +677,16 @@
       "unit": "px",
       "label": "Ring Spacing (Radius Gap)",
       "default": 80
+    },
+    {
+      "type": "range",
+      "id": "rotation_speed",
+      "min": 10,
+      "max": 60,
+      "step": 2,
+      "unit": "s",
+      "label": "Rotation Speed (Duration)",
+      "default": 30
     },
     {
       "type": "header",
