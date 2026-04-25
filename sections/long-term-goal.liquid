@@ -284,10 +284,55 @@
   {% endif %}
   {% if section.settings.p_font.family %}
     {{ section.settings.p_font | font_face: font_display: 'swap' }}
-    .goal-p-{{ section.id }}, .goal-item-text-{{ section.id }} { 
+    .goal-p-{{ section.id }} { 
       font-family: {{ section.settings.p_font.family }}, {{ section.settings.p_font.fallback_families }}; 
     }
   {% endif %}
+
+  .goal-h-{{ section.id }} {
+    font-size: {{ section.settings.h_size_mob }}px;
+    font-weight: {{ section.settings.h_weight }};
+    color: {{ section.settings.h_color }};
+  }
+
+  @media screen and (min-width: 768px) {
+    .goal-h-{{ section.id }} {
+      font-size: {{ section.settings.h_size_desktop }}px;
+    }
+  }
+
+  .goal-p-{{ section.id }} {
+    font-size: {{ section.settings.p_size }}px;
+    font-weight: {{ section.settings.p_weight }};
+    color: {{ section.settings.p_color }};
+  }
+
+  {% for block in section.blocks %}
+    {% if block.settings.title_font.family %}
+      {{ block.settings.title_font | font_face: font_display: 'swap' }}
+      .goal-item-{{ block.id }} strong { 
+        font-family: {{ block.settings.title_font.family }}, {{ block.settings.title_font.fallback_families }}; 
+      }
+    {% endif %}
+    {% if block.settings.text_font.family %}
+      {{ block.settings.text_font | font_face: font_display: 'swap' }}
+      .goal-item-{{ block.id }} .goal-item-text-{{ section.id }} { 
+        font-family: {{ block.settings.text_font.family }}, {{ block.settings.text_font.fallback_families }}; 
+      }
+    {% endif %}
+
+    .goal-item-{{ block.id }} strong {
+      font-size: {{ block.settings.title_size }}px;
+      font-weight: {{ block.settings.title_weight }};
+      color: {{ block.settings.title_color }};
+    }
+
+    .goal-item-{{ block.id }} .goal-item-text-{{ section.id }} {
+      font-size: {{ block.settings.text_size }}px;
+      font-weight: {{ block.settings.text_weight }};
+      color: {{ block.settings.text_color }};
+    }
+  {% endfor %}
 
 {%- endstyle -%}
 
@@ -317,7 +362,7 @@
 
       <div class="goal-items-{{ section.id }}">
         {% for block in section.blocks %}
-          <div class="goal-item-{{ section.id }}" {{ block.shopify_attributes }}>
+          <div class="goal-item-{{ section.id }} goal-item-{{ block.id }}" {{ block.shopify_attributes }}>
             <div class="goal-dot-{{ section.id }}"></div>
             <div class="goal-item-text-{{ section.id }}">
               <strong>{{ block.settings.title }}</strong> — {{ block.settings.text }}
@@ -434,7 +479,7 @@
     },
     {
       "type": "header",
-      "content": "Typography"
+      "content": "Section Typography"
     },
     {
       "type": "font_picker",
@@ -443,10 +488,65 @@
       "default": "assistant_n4"
     },
     {
+      "type": "range",
+      "id": "h_size_desktop",
+      "min": 20,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Heading Size (Desktop)",
+      "default": 64
+    },
+    {
+      "type": "range",
+      "id": "h_size_mob",
+      "min": 20,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "label": "Heading Size (Mobile)",
+      "default": 32
+    },
+    {
+      "type": "select",
+      "id": "h_weight",
+      "label": "Heading Weight",
+      "options": [
+        { "value": "300", "label": "Light" },
+        { "value": "400", "label": "Regular" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi-Bold" },
+        { "value": "700", "label": "Bold" }
+      ],
+      "default": "400"
+    },
+    {
       "type": "font_picker",
       "id": "p_font",
-      "label": "Text Font Family",
+      "label": "Description Font Family",
       "default": "assistant_n4"
+    },
+    {
+      "type": "range",
+      "id": "p_size",
+      "min": 12,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Description Size",
+      "default": 16
+    },
+    {
+      "type": "select",
+      "id": "p_weight",
+      "label": "Description Weight",
+      "options": [
+        { "value": "300", "label": "Light" },
+        { "value": "400", "label": "Regular" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi-Bold" }
+      ],
+      "default": "400"
     },
     {
       "type": "header",
@@ -521,6 +621,81 @@
           "type": "textarea",
           "id": "text",
           "label": "Point Description"
+        },
+        {
+          "type": "header",
+          "content": "Title Typography"
+        },
+        {
+          "type": "font_picker",
+          "id": "title_font",
+          "label": "Title Font Family",
+          "default": "assistant_n4"
+        },
+        {
+          "type": "range",
+          "id": "title_size",
+          "min": 12,
+          "max": 30,
+          "step": 1,
+          "unit": "px",
+          "label": "Title Size",
+          "default": 15
+        },
+        {
+          "type": "select",
+          "id": "title_weight",
+          "label": "Title Weight",
+          "options": [
+            { "value": "400", "label": "Regular" },
+            { "value": "500", "label": "Medium" },
+            { "value": "600", "label": "Semi-Bold" },
+            { "value": "700", "label": "Bold" }
+          ],
+          "default": "700"
+        },
+        {
+          "type": "color",
+          "id": "title_color",
+          "label": "Title Color",
+          "default": "#ffffff"
+        },
+        {
+          "type": "header",
+          "content": "Description Typography"
+        },
+        {
+          "type": "font_picker",
+          "id": "text_font",
+          "label": "Description Font Family",
+          "default": "assistant_n4"
+        },
+        {
+          "type": "range",
+          "id": "text_size",
+          "min": 10,
+          "max": 24,
+          "step": 1,
+          "unit": "px",
+          "label": "Description Size",
+          "default": 15
+        },
+        {
+          "type": "select",
+          "id": "text_weight",
+          "label": "Description Weight",
+          "options": [
+            { "value": "300", "label": "Light" },
+            { "value": "400", "label": "Regular" },
+            { "value": "500", "label": "Medium" }
+          ],
+          "default": "400"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Description Color",
+          "default": "#ffffff"
         }
       ]
     }
