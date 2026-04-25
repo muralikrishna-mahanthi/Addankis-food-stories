@@ -185,13 +185,7 @@
     align-items: center;
     justify-content: center;
     position: relative;
-    animation: orbit-rotate-{{ section.id }} {{ section.settings.rotation_speed }}s linear infinite;
     transform-origin: center center;
-  }
-
-  @keyframes orbit-rotate-{{ section.id }} {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
   }
 
   .center-node-{{ section.id }} {
@@ -207,29 +201,42 @@
     text-align: center;
     box-shadow: 0 0 40px rgba(209, 90, 26, 0.3);
     z-index: 10;
-    /* Prevent center node from rotating with the orbit */
-    animation: orbit-counter-rotate-{{ section.id }} {{ section.settings.rotation_speed }}s linear infinite;
   }
 
   .orbit-node-wrapper-{{ section.id }} {
     position: absolute;
+    top: 50%;
+    left: 50%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    /* Counter-rotate to stay upright */
-    animation: orbit-counter-rotate-{{ section.id }} {{ section.settings.rotation_speed }}s linear infinite;
+    z-index: 5;
+    width: 0;
+    height: 0;
   }
 
-  @keyframes orbit-counter-rotate-{{ section.id }} {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(-360deg); }
-  }
+  .node-brands-{{ section.id }} { animation: orbit-brands-{{ section.id }} {{ section.settings.rotation_speed }}s linear infinite; }
+  .node-partners-{{ section.id }} { animation: orbit-partners-{{ section.id }} {{ section.settings.rotation_speed }}s linear infinite; }
+  .node-urban-{{ section.id }} { animation: orbit-urban-{{ section.id }} {{ section.settings.rotation_speed }}s linear infinite; }
+  .node-rural-{{ section.id }} { animation: orbit-rural-{{ section.id }} {{ section.settings.rotation_speed }}s linear infinite; }
 
-  .node-brands-{{ section.id }} { top: calc(50% - {{ r3 }}px - 50px); }
-  .node-partners-{{ section.id }} { top: calc(50% + {{ r3 }}px - 50px); }
-  .node-urban-{{ section.id }} { left: calc(50% - {{ r3 }}px - 75px); }
-  .node-rural-{{ section.id }} { left: calc(50% + {{ r3 }}px - 75px); }
+  @keyframes orbit-brands-{{ section.id }} {
+    from { transform: rotate(0deg) translateY(-{{ r3 }}px) rotate(0deg); }
+    to { transform: rotate(360deg) translateY(-{{ r3 }}px) rotate(-360deg); }
+  }
+  @keyframes orbit-partners-{{ section.id }} {
+    from { transform: rotate(180deg) translateY(-{{ r3 }}px) rotate(-180deg); }
+    to { transform: rotate(540deg) translateY(-{{ r3 }}px) rotate(-540deg); }
+  }
+  @keyframes orbit-urban-{{ section.id }} {
+    from { transform: rotate(270deg) translateY(-{{ r3 }}px) rotate(-270deg); }
+    to { transform: rotate(630deg) translateY(-{{ r3 }}px) rotate(-630deg); }
+  }
+  @keyframes orbit-rural-{{ section.id }} {
+    from { transform: rotate(90deg) translateY(-{{ r3 }}px) rotate(-90deg); }
+    to { transform: rotate(450deg) translateY(-{{ r3 }}px) rotate(-450deg); }
+  }
 
   .orbit-node-{{ section.id }} {
     width: {{ section.settings.node_size }}px;
