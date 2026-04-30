@@ -17,19 +17,106 @@
         "padding_bottom": 36
       }
     },
-    "form": {
-      "type": "contact-form",
+    "custom_contact_VbdKkP": {
+      "type": "custom-contact",
+      "blocks": {
+        "heading_mcB8kE": {
+          "type": "heading",
+          "settings": {
+            "text": "Consumer Inquiries",
+            "font": "sans_serif_n7",
+            "weight": "700",
+            "size": 32,
+            "size_mob": 24,
+            "color": "#111111",
+            "margin_top": 0,
+            "margin_bottom": 16
+          }
+        },
+        "text_3LGDc8": {
+          "type": "text",
+          "settings": {
+            "text": "<p>To contact our consumer response team, please email <a href=\"#\">support@afsplcom.com</a> or call us at +91 96662 86789</p>",
+            "font": "sans_serif_n4",
+            "weight": "400",
+            "size": 16,
+            "size_mob": 14,
+            "color": "#333333",
+            "margin_top": 0,
+            "margin_bottom": 20
+          }
+        },
+        "heading_7F48zk": {
+          "type": "heading",
+          "settings": {
+            "text": "Mailing address",
+            "font": "sans_serif_n7",
+            "weight": "700",
+            "size": 32,
+            "size_mob": 24,
+            "color": "#111111",
+            "margin_top": 40,
+            "margin_bottom": 16
+          }
+        },
+        "text_zdxtPi": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Addanki's Food Stories Private Limited</p>",
+            "font": "sans_serif_n4",
+            "weight": "400",
+            "size": 16,
+            "size_mob": 14,
+            "color": "#333333",
+            "margin_top": 0,
+            "margin_bottom": 16
+          }
+        },
+        "text_AVtiwD": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Ground Floor, Plot No.27/N, Chandrapuri Colony, L.B Nagar, Hyderabad, Telangana, 500074, India or Call us at +919666286789</p>",
+            "font": "sans_serif_n4",
+            "weight": "400",
+            "size": 16,
+            "size_mob": 14,
+            "color": "#333333",
+            "margin_top": 0,
+            "margin_bottom": 20
+          }
+        },
+        "map_Ucgieq": {
+          "type": "map",
+          "settings": {
+            "iframe_code": "<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3808.3415666520564!2d78.55088391045427!3d17.347289599790052!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb9984e887bdcb%3A0xacde4565b72cbbb7!2sAddanki's%20Food%20Stories%20Pvt%20Ltd!5e0!3m2!1sen!2sin!4v1777554719948!5m2!1sen!2sin\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>",
+            "height": 400,
+            "height_mob": 300,
+            "margin_top": 30
+          }
+        }
+      },
+      "block_order": [
+        "heading_mcB8kE",
+        "text_3LGDc8",
+        "heading_7F48zk",
+        "text_zdxtPi",
+        "text_AVtiwD",
+        "map_Ucgieq"
+      ],
+      "name": "Custom Contact Info",
       "settings": {
-        "heading": "",
-        "heading_size": "h1",
-        "color_scheme": "scheme-1",
-        "padding_top": 36,
-        "padding_bottom": 36
+        "bg_color": "#ffffff",
+        "max_width": 1200,
+        "link_color": "#0070f3",
+        "padding_top": 40,
+        "padding_bottom": 40,
+        "padding_top_desktop": 60,
+        "padding_bottom_desktop": 60
       }
     }
   },
   "order": [
     "main",
-    "form"
+    "custom_contact_VbdKkP"
   ]
 }
