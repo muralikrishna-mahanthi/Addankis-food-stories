@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <g stroke="#111" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" fill="#FFD13B">
+    <!-- Left Hand -->
+    <path d="M30 46 C30 46 24 50 16 46 C10 42 8 34 8 28 C8 24 12 20 16 24 C16 24 16 16 20 16 C24 16 24 24 24 24 C24 24 24 14 28 14 C32 14 32 24 32 24" />
+    <!-- Right Hand -->
+    <path d="M34 46 C34 46 40 50 48 46 C54 42 56 34 56 28 C56 24 52 20 48 24 C48 24 48 16 44 16 C40 16 40 24 40 24 C40 24 40 14 36 14 C32 14 32 24 32 24" />
+  </g>
+</svg>
