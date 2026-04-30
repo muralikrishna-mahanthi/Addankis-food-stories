@@ -308,6 +308,83 @@
         "icon_urban": "shopify://shop_images/icon_1.jpg",
         "icon_rural": "shopify://shop_images/icon_5.jpg"
       }
+    },
+    "what_we_stand_for_panxra": {
+      "type": "what-we-stand-for",
+      "blocks": {
+        "value_JhkMiB": {
+          "type": "value",
+          "settings": {
+            "title": "Indian at Heart",
+            "text": "Every brand, every product, every story we tell is deeply rooted in India's rich culinary culture and consumer values."
+          }
+        },
+        "value_XHBHQk": {
+          "type": "value",
+          "settings": {
+            "title": "Innovation First",
+            "text": "We constantly explore new product ideas, formats, and technologies pushing the boundaries of what FMCG can be in India."
+          }
+        },
+        "value_8xUrm7": {
+          "type": "value",
+          "settings": {
+            "title": "Sustainability",
+            "text": "We build with a long view — responsible sourcing, ethical partnerships, and environmental stewardship guide every decision."
+          }
+        },
+        "value_VRNPL9": {
+          "type": "value",
+          "settings": {
+            "title": "Inclusive Growth",
+            "text": "Our success belongs to every farmer, distributor, retailer, and entrepreneur who is part of the Addanki's ecosystem."
+          }
+        }
+      },
+      "block_order": [
+        "value_JhkMiB",
+        "value_XHBHQk",
+        "value_8xUrm7",
+        "value_VRNPL9"
+      ],
+      "name": "What We Stand For",
+      "settings": {
+        "bg_color": "#fcfaf7",
+        "padding_top": 60,
+        "padding_bottom": 60,
+        "padding_top_desktop": 120,
+        "padding_bottom_desktop": 120,
+        "subheading": "WHAT WE STAND FOR",
+        "sub_font": "assistant_n4",
+        "sub_weight": "600",
+        "sub_size": 12,
+        "sub_size_mob": 11,
+        "sub_color": "#e68d45",
+        "heading": "The Values Behind Every <em>Food Story</em>",
+        "h_font": "assistant_n4",
+        "h_weight": "400",
+        "h_size": 48,
+        "h_size_mob": 32,
+        "h_color": "#1a3628",
+        "box_bg": "transparent",
+        "border_color": "#e5e5e5",
+        "box_radius": 24,
+        "card_padding": 40,
+        "card_padding_mob": 30,
+        "icon_width": 50,
+        "m_icon_h": 20,
+        "m_h_p": 16,
+        "card_h_font": "assistant_n4",
+        "card_h_weight": "600",
+        "card_h_size": 20,
+        "card_h_size_mob": 18,
+        "card_h_color": "#1a3628",
+        "card_p_font": "assistant_n4",
+        "card_p_weight": "400",
+        "card_p_size": 14,
+        "card_p_size_mob": 14,
+        "card_p_color": "#666666"
+      }
     }
   },
   "order": [
@@ -315,6 +392,7 @@
     "mission_hero_TFbdac",
     "vision_section_ah9TiK",
     "our_mission_ipbFiz",
-    "long_term_goal_QRJn3k"
+    "long_term_goal_QRJn3k",
+    "what_we_stand_for_panxra"
   ]
 }
