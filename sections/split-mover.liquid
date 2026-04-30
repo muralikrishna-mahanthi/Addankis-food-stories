@@ -5,6 +5,10 @@
   "class": "section split-mover-slider",
   "settings": [
     {
+      "type": "header",
+      "content": "Section Content"
+    },
+    {
       "type": "text",
       "id": "subtitle",
       "label": "Subtitle",
@@ -23,6 +27,10 @@
       "default": "STORIES"
     },
     {
+      "type": "header",
+      "content": "Card & Image Sizing"
+    },
+    {
       "type": "range",
       "id": "card_width_desktop",
       "min": 300,
@@ -31,16 +39,6 @@
       "unit": "px",
       "label": "Desktop Card Width",
       "default": 450
-    },
-    {
-      "type": "range",
-      "id": "card_radius",
-      "min": 0,
-      "max": 50,
-      "step": 2,
-      "unit": "px",
-      "label": "Card Border Radius",
-      "default": 12
     },
     {
       "type": "select",
@@ -54,6 +52,10 @@
         { "value": "0.75", "label": "Portrait (3:4)" }
       ],
       "default": "1.777"
+    },
+    {
+      "type": "header",
+      "content": "Subtitle Typography"
     },
     {
       "type": "font_picker",
@@ -88,6 +90,10 @@
       "id": "subtitle_color",
       "label": "Subtitle Color",
       "default": "#11571F"
+    },
+    {
+      "type": "header",
+      "content": "Tabs Typography"
     },
     {
       "type": "font_picker",
@@ -139,14 +145,8 @@
       "default": "#11571F"
     },
     {
-      "type": "range",
-      "id": "tab_border_thickness",
-      "min": 0,
-      "max": 15,
-      "step": 1,
-      "unit": "px",
-      "label": "Active Tab Border Thickness",
-      "default": 6
+      "type": "header",
+      "content": "Card Heading Typography"
     },
     {
       "type": "font_picker",
@@ -182,6 +182,10 @@
       "default": "#11571F"
     },
     {
+      "type": "header",
+      "content": "Card Badge Typography"
+    },
+    {
       "type": "font_picker",
       "id": "card_badge_font",
       "label": "Card Badge Font",
@@ -214,44 +218,8 @@
       "default": "#ffffff"
     },
     {
-      "type": "range",
-      "id": "badge_pv",
-      "min": 0,
-      "max": 100,
-      "step": 2,
-      "unit": "px",
-      "label": "Badge Internal Padding (V)",
-      "default": 10
-    },
-    {
-      "type": "range",
-      "id": "badge_ph",
-      "min": 0,
-      "max": 100,
-      "step": 2,
-      "unit": "px",
-      "label": "Badge Internal Padding (H)",
-      "default": 20
-    },
-    {
-      "type": "range",
-      "id": "badge_bottom",
-      "min": 0,
-      "max": 100,
-      "step": 2,
-      "unit": "px",
-      "label": "Badge Bottom Offset",
-      "default": 20
-    },
-    {
-      "type": "range",
-      "id": "badge_left",
-      "min": 0,
-      "max": 100,
-      "step": 2,
-      "unit": "px",
-      "label": "Badge Left Offset",
-      "default": 20
+      "type": "header",
+      "content": "Global Colors & Spacing"
     },
     {
       "type": "color",
@@ -273,173 +241,23 @@
     },
     {
       "type": "range",
-      "id": "pt_desktop",
+      "id": "padding_top",
       "min": 0,
-      "max": 200,
+      "max": 150,
       "step": 5,
       "unit": "px",
-      "label": "Desktop Top Padding",
+      "label": "Top Padding",
       "default": 80
     },
     {
       "type": "range",
-      "id": "pb_desktop",
+      "id": "padding_bottom",
       "min": 0,
-      "max": 200,
+      "max": 150,
       "step": 5,
       "unit": "px",
-      "label": "Desktop Bottom Padding",
+      "label": "Bottom Padding",
       "default": 80
-    },
-    {
-      "type": "range",
-      "id": "pl_desktop",
-      "min": 0,
-      "max": 150,
-      "step": 5,
-      "unit": "px",
-      "label": "Desktop Left Padding",
-      "default": 40
-    },
-    {
-      "type": "range",
-      "id": "pr_desktop",
-      "min": 0,
-      "max": 150,
-      "step": 5,
-      "unit": "px",
-      "label": "Desktop Right Padding",
-      "default": 40
-    },
-    {
-      "type": "range",
-      "id": "pt_mobile",
-      "min": 0,
-      "max": 150,
-      "step": 5,
-      "unit": "px",
-      "label": "Mobile Top Padding",
-      "default": 40
-    },
-    {
-      "type": "range",
-      "id": "pb_mobile",
-      "min": 0,
-      "max": 150,
-      "step": 5,
-      "unit": "px",
-      "label": "Mobile Bottom Padding",
-      "default": 40
-    },
-    {
-      "type": "range",
-      "id": "pl_mobile",
-      "min": 0,
-      "max": 100,
-      "step": 5,
-      "unit": "px",
-      "label": "Mobile Left Padding",
-      "default": 20
-    },
-    {
-      "type": "range",
-      "id": "pr_mobile",
-      "min": 0,
-      "max": 100,
-      "step": 5,
-      "unit": "px",
-      "label": "Mobile Right Padding",
-      "default": 20
-    },
-    {
-      "type": "range",
-      "id": "tab_gap",
-      "min": 0,
-      "max": 100,
-      "step": 5,
-      "unit": "px",
-      "label": "Tab Button Gap",
-      "default": 25
-    },
-    {
-      "type": "range",
-      "id": "tab_pv",
-      "min": 0,
-      "max": 50,
-      "step": 2,
-      "unit": "px",
-      "label": "Tab Internal Padding (V)",
-      "default": 0
-    },
-    {
-      "type": "range",
-      "id": "tab_ph",
-      "min": 0,
-      "max": 50,
-      "step": 2,
-      "unit": "px",
-      "label": "Tab Internal Padding (H)",
-      "default": 0
-    },
-    {
-      "type": "range",
-      "id": "card_gap",
-      "min": 10,
-      "max": 100,
-      "step": 5,
-      "unit": "px",
-      "label": "Card Horizontal Gap",
-      "default": 20
-    },
-    {
-      "type": "range",
-      "id": "subtitle_mb",
-      "min": 0,
-      "max": 100,
-      "step": 2,
-      "unit": "px",
-      "label": "Subtitle Bottom Margin",
-      "default": 16
-    },
-    {
-      "type": "range",
-      "id": "header_mb",
-      "min": 0,
-      "max": 150,
-      "step": 5,
-      "unit": "px",
-      "label": "Header Area Bottom Margin",
-      "default": 32
-    },
-    {
-      "type": "range",
-      "id": "img_mb",
-      "min": 0,
-      "max": 100,
-      "step": 2,
-      "unit": "px",
-      "label": "Card Image Bottom Margin",
-      "default": 16
-    },
-    {
-      "type": "range",
-      "id": "controls_mt",
-      "min": 0,
-      "max": 150,
-      "step": 5,
-      "unit": "px",
-      "label": "Controls Top Margin",
-      "default": 32
-    },
-    {
-      "type": "range",
-      "id": "controls_gap",
-      "min": 0,
-      "max": 150,
-      "step": 5,
-      "unit": "px",
-      "label": "Dots-to-Arrows Gap",
-      "default": 40
     }
   ],
   "blocks": [
@@ -506,46 +324,56 @@
   {{ card_badge_font | font_face: display: 'swap' }}
 
   .split-mover-{{ section.id }} {
-    padding: {{ section.settings.pt_mobile }}px {{ section.settings.pr_mobile }}px {{ section.settings.pb_mobile }}px {{ section.settings.pl_mobile }}px;
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
     background-color: {{ section.settings.bg_color }};
     overflow: hidden; 
   }
 
   @media screen and (min-width: 768px) {
     .split-mover-{{ section.id }} {
-      padding: {{ section.settings.pt_desktop }}px {{ section.settings.pr_desktop }}px {{ section.settings.pb_desktop }}px {{ section.settings.pl_desktop }}px;
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
     }
   }
 
   .sms-container {
     max-width: var(--page-width, 1440px);
     margin: 0 auto;
-    width: 100%;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  
+  @media screen and (min-width: 768px) {
+    .sms-container { padding-left: 40px; padding-right: 40px; }
+  }
+  
+  @media screen and (min-width: 1440px) {
+    .sms-container { padding-left: 0; padding-right: 0; }
   }
 
+  /* Subtitle Typography */
   .sms-subtitle {
     font-family: {{ subtitle_font.family }}, {{ subtitle_font.fallback_families }};
     font-size: {{ section.settings.subtitle_size }}px;
     font-weight: {{ section.settings.subtitle_weight }};
     color: {{ section.settings.subtitle_color }};
-    margin-bottom: {{ section.settings.subtitle_mb }}px;
+    margin-bottom: 1rem;
   }
 
-  .sms-header {
-    margin-bottom: {{ section.settings.header_mb }}px;
-  }
-
+  /* Tabs Typography */
   .sms-tabs {
     display: flex;
     align-items: baseline;
-    gap: {{ section.settings.tab_gap }}px;
+    gap: 1.5rem;
     flex-wrap: wrap;
+    margin-bottom: 2rem;
   }
 
   .sms-tab-btn {
     background: none;
     border: none;
-    padding: {{ section.settings.tab_pv }}px {{ section.settings.tab_ph }}px;
+    padding: 0;
     margin: 0;
     font-family: {{ tabs_font.family }}, {{ tabs_font.fallback_families }};
     font-weight: {{ section.settings.tabs_weight }};
@@ -558,7 +386,7 @@
   .sms-tab-btn.active {
     font-size: {{ section.settings.tabs_size_active }}px;
     color: {{ section.settings.tabs_color_active }};
-    border-bottom: {{ section.settings.tab_border_thickness }}px solid {{ section.settings.tabs_color_active }};
+    border-bottom: 6px solid {{ section.settings.tabs_color_active }};
     padding-bottom: 4px;
     opacity: 1;
   }
@@ -566,7 +394,7 @@
   .sms-tab-btn:not(.active) {
     font-size: {{ section.settings.tabs_size_inactive }}px;
     color: {{ section.settings.tabs_color_inactive }};
-    border-bottom: {{ section.settings.tab_border_thickness }}px solid transparent; 
+    border-bottom: 6px solid transparent; 
     padding-bottom: 4px;
     opacity: 0.7;
   }
@@ -578,16 +406,17 @@
     .sms-tab-btn:not(.active) { font-size: calc({{ section.settings.tabs_size_inactive }}px * 0.7); }
   }
 
+  /* Slider & Card Sizing */
   .sms-slider-wrapper {
     position: relative;
-    margin-right: -{{ section.settings.pr_mobile }}px;
+    margin-right: -20px;
   }
-  @media screen and (min-width: 768px) { .sms-slider-wrapper { margin-right: -{{ section.settings.pr_desktop }}px; } }
-  @media screen and (min-width: 1440px) { .sms-slider-wrapper { margin-right: calc((100vw - 1440px) * -0.5 - {{ section.settings.pr_desktop }}px); } }
+  @media screen and (min-width: 768px) { .sms-slider-wrapper { margin-right: -40px; } }
+  @media screen and (min-width: 1440px) { .sms-slider-wrapper { margin-right: calc((100vw - 1440px) / -2); } }
 
   .sms-slider {
     display: flex;
-    gap: {{ section.settings.card_gap }}px;
+    gap: 20px;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     scrollbar-width: none; 
@@ -614,9 +443,9 @@
     position: relative;
     width: 100%;
     padding-top: calc(100% / {{ section.settings.image_ratio }});
-    border-radius: {{ section.settings.card_radius }}px;
+    border-radius: 12px;
     overflow: hidden;
-    margin-bottom: {{ section.settings.img_mb }}px;
+    margin-bottom: 1rem;
     background-color: rgba(0,0,0,0.05); 
   }
 
@@ -631,6 +460,7 @@
   }
   .sms-card:hover .sms-card-img { transform: scale(1.05); }
 
+  /* Card Heading Typography */
   .sms-card-heading {
     font-family: {{ card_heading_font.family }}, {{ card_heading_font.fallback_families }};
     font-size: {{ section.settings.card_heading_size }}px;
@@ -644,29 +474,32 @@
     overflow: hidden;
   }
 
+  /* Card Badge Typography */
   .sms-card-badge {
     position: absolute;
-    bottom: {{ section.settings.badge_bottom }}px;
-    left: {{ section.settings.badge_left }}px;
-    padding: {{ section.settings.badge_pv }}px {{ section.settings.badge_ph }}px;
-    background: rgba(0,0,0,0.6);
-    border-radius: 4px;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 60px 20px 20px 20px;
+    background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0) 100%);
     font-family: {{ card_badge_font.family }}, {{ card_badge_font.fallback_families }};
     font-size: {{ section.settings.card_badge_size }}px;
     font-weight: {{ section.settings.card_badge_weight }};
     color: {{ section.settings.card_badge_color }};
     pointer-events: none;
-    z-index: 2;
   }
 
+  /* Controls Area */
   .sms-controls {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: {{ section.settings.controls_mt }}px;
+    margin-top: 2rem;
+    padding-right: 20px;
   }
+  @media screen and (min-width: 1440px) { .sms-controls { padding-right: 0; } }
 
-  .sms-dots { display: flex; gap: 8px; align-items: center; margin-right: {{ section.settings.controls_gap }}px; }
+  .sms-dots { display: flex; gap: 8px; align-items: center; }
   .sms-dot {
     width: 10px;
     height: 10px;
@@ -721,7 +554,10 @@
     <div class="sms-slider-wrapper">
       <div class="sms-slider">
         {% for block in section.blocks %}
-          <div class="sms-card" data-tab="{{ block.settings.tab_assignment }}" {{ block.shopify_attributes }}>
+          {%- liquid
+             assign link_url = block.settings.link | default: "#"
+          -%}
+          <a href="{{ link_url }}" class="sms-card" data-tab="{{ block.settings.tab_assignment }}" {{ block.shopify_attributes }}>
             <div class="sms-card-image-wrap">
               {% if block.settings.image != blank %}
                 <img src="{{ block.settings.image | img_url: '800x' }}"
@@ -733,14 +569,14 @@
               {% endif %}
               
               {% if block.settings.badge_text != blank %}
-                <div class="sms-card-badge" data-tab="{{ block.settings.tab_assignment }}">{{ block.settings.badge_text | escape }}</div>
+                <div class="sms-card-badge">{{ block.settings.badge_text | escape }}</div>
               {% endif %}
             </div>
             
             {% if block.settings.heading != blank %}
               <div class="sms-card-heading">{{ block.settings.heading | escape }}</div>
             {% endif %}
-          </div>
+          </a>
         {% endfor %}
       </div>
     </div>
@@ -853,27 +689,9 @@
       filterCards();
     }
 
-    document.addEventListener("DOMContentLoaded", () => {
-       document.querySelectorAll('.sms-section').forEach(initSlider);
-    });
-
+    document.addEventListener("DOMContentLoaded", () => { document.querySelectorAll('.sms-section').forEach(initSlider); });
     if (window.Shopify && window.Shopify.designMode) {
-      document.addEventListener("shopify:section:load", (e) => {
-        if(e.target.classList.contains('split-mover-slider') || e.target.querySelector('.sms-section')) {
-           initSlider(e.target.classList.contains('sms-section') ? e.target : e.target.querySelector('.sms-section'));
-        }
-      });
-      document.addEventListener("shopify:block:select", (e) => {
-        const section = e.target.closest('.sms-section');
-        if(section) {
-          const badge = e.target.querySelector('.sms-card-badge');
-          const tab = badge ? badge.getAttribute('data-tab') : e.target.getAttribute('data-tab');
-          if(tab) {
-            const btn = section.querySelector('.sms-tab-btn[data-target="' + tab + '"]');
-            if(btn && !btn.classList.contains('active')) btn.click();
-          }
-        }
-      });
+      document.addEventListener("shopify:section:load", (e) => { if(e.target.classList.contains('split-mover-slider')) initSlider(e.target); });
     }
   })();
 </script>
