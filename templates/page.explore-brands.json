@@ -33,7 +33,7 @@
           "type": "brand",
           "settings": {
             "image": "shopify://shop_images/Untitled_design_19.png",
-            "heading": "Brand Name",
+            "heading": "RIPPLE PURPLE",
             "link": "shopify://collections/ripple-purple",
             "width_desktop": "25"
           }
@@ -41,16 +41,27 @@
         "brand_h7yfyJ": {
           "type": "brand",
           "settings": {
-            "heading": "Brand Name",
-            "link": "",
+            "image": "shopify://shop_images/gemini-3.1-flash-image-preview_nano-banana-2_web-search__a_make_the_screen_size.png",
+            "heading": "MANGALAM",
+            "link": "shopify://collections/mangalam",
             "width_desktop": "50"
+          }
+        },
+        "brand_APRJrk": {
+          "type": "brand",
+          "settings": {
+            "image": "shopify://shop_images/Mastering_SEO_for_Moving_Companies.jpg",
+            "heading": "FLOWER ORGANICS",
+            "link": "",
+            "width_desktop": "33.33"
           }
         }
       },
       "block_order": [
         "brand_XVTJf8",
         "brand_3dPjyi",
-        "brand_h7yfyJ"
+        "brand_h7yfyJ",
+        "brand_APRJrk"
       ],
       "name": "Explore Collaborated Brands",
       "settings": {
@@ -59,9 +70,9 @@
         "heading_color": "#000000",
         "gap": 20,
         "image_radius": 16,
-        "aspect_ratio": "3/4",
+        "aspect_ratio": "1/1",
         "overlay_color": "#000000",
-        "overlay_opacity": 0.6,
+        "overlay_opacity": 0,
         "text_color": "#ffffff",
         "padding_top": 40,
         "padding_bottom": 40
