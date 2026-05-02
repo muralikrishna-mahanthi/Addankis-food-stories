@@ -610,7 +610,7 @@
             "text_color": "#121212",
             "link_color": "#121212",
             "button_text": "Become a Distributor",
-            "button_link": "",
+            "button_link": "shopify://pages/distributor",
             "button_font": "assistant_n4",
             "button_font_size": 16,
             "button_padding_vertical": 12,
