@@ -469,7 +469,7 @@
         "btn_1_text": "Careers",
         "btn_1_link": "",
         "btn_2_text": "Leadership",
-        "btn_2_link": "",
+        "btn_2_link": "shopify://pages/leadership",
         "btn_3_text": "Awards",
         "btn_3_link": "",
         "btn_4_text": "Partner With Us",
