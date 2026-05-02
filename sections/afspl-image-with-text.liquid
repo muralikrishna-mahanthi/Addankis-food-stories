@@ -1,0 +1,293 @@
+{%- style -%}
+  {{ section.settings.heading_font | font_face: font_display: 'swap' }}
+  {{ section.settings.subheading_font | font_face: font_display: 'swap' }}
+
+  .afspl-img-text-{{ section.id }} {
+    display: flex;
+    flex-direction: column;
+    min-height: {{ section.settings.mobile_min_height }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .afspl-img-text-{{ section.id }} {
+      flex-direction: {% if section.settings.layout == 'image_first' %}row{% else %}row-reverse{% endif %};
+      min-height: {{ section.settings.desktop_min_height }}px;
+    }
+  }
+
+  .afspl-img-text__image-{{ section.id }} {
+    flex: 1;
+    background-color: {{ section.settings.image_bg_color }};
+    position: relative;
+    display: flex;
+    align-items: flex-end; 
+    justify-content: center;
+    overflow: hidden;
+  }
+  
+  @media screen and (max-width: 749px) {
+    .afspl-img-text__image-{{ section.id }} {
+       min-height: {{ section.settings.mobile_min_height | divided_by: 2 }}px;
+       order: {% if section.settings.layout == 'image_first' %}1{% else %}2{% endif %};
+    }
+    .afspl-img-text__content-{{ section.id }} {
+       order: {% if section.settings.layout == 'image_first' %}2{% else %}1{% endif %};
+    }
+  }
+
+  .afspl-img-text__image-{{ section.id }} img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  .afspl-img-text__content-{{ section.id }} {
+    flex: 1;
+    background-color: {{ section.settings.bg_color }};
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 3rem 2rem;
+  }
+
+  @media screen and (min-width: 750px) {
+    .afspl-img-text__content-{{ section.id }} {
+      padding: 5rem 4rem;
+    }
+  }
+
+  .afspl-img-text__heading-{{ section.id }} {
+    font-family: {{ section.settings.heading_font.family }}, {{ section.settings.heading_font.fallback_families }};
+    font-size: {{ section.settings.heading_size_mobile }}px;
+    font-weight: {{ section.settings.heading_weight }};
+    color: {{ section.settings.heading_color }};
+    margin: 0 0 2rem 0;
+    line-height: 1.1;
+    text-transform: uppercase;
+  }
+
+  @media screen and (min-width: 750px) {
+    .afspl-img-text__heading-{{ section.id }} {
+      font-size: {{ section.settings.heading_size_desktop }}px;
+    }
+  }
+
+  .afspl-img-text__subheading-{{ section.id }} {
+    font-family: {{ section.settings.subheading_font.family }}, {{ section.settings.subheading_font.fallback_families }};
+    font-size: {{ section.settings.subheading_size_mobile }}px;
+    font-weight: {{ section.settings.subheading_weight }};
+    color: {{ section.settings.subheading_color }};
+    margin: 0;
+    line-height: 1.4;
+  }
+
+  @media screen and (min-width: 750px) {
+    .afspl-img-text__subheading-{{ section.id }} {
+      font-size: {{ section.settings.subheading_size_desktop }}px;
+    }
+  }
+{%- endstyle -%}
+
+<div class="afspl-img-text-{{ section.id }}">
+  <div class="afspl-img-text__image-{{ section.id }}">
+    {%- if section.settings.image != blank -%}
+      {{ section.settings.image | image_url: width: 1500 | image_tag: loading: 'lazy' }}
+    {%- else -%}
+      {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+    {%- endif -%}
+  </div>
+  
+  <div class="afspl-img-text__content-{{ section.id }}">
+    <div class="afspl-img-text__content-inner">
+      {%- if section.settings.heading != blank -%}
+        <h2 class="afspl-img-text__heading-{{ section.id }}">{{ section.settings.heading | newline_to_br }}</h2>
+      {%- endif -%}
+    </div>
+    
+    {%- if section.settings.subheading != blank -%}
+      <div class="afspl-img-text__subheading-{{ section.id }}">{{ section.settings.subheading }}</div>
+    {%- endif -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "AFSPL Image with Text",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Layout Settings"
+    },
+    {
+      "type": "select",
+      "id": "layout",
+      "label": "Desktop Layout",
+      "options": [
+        { "value": "image_first", "label": "Image first" },
+        { "value": "text_first", "label": "Text first" }
+      ],
+      "default": "text_first"
+    },
+    {
+      "type": "range",
+      "id": "desktop_min_height",
+      "min": 400,
+      "max": 1000,
+      "step": 20,
+      "unit": "px",
+      "label": "Desktop Min Height",
+      "default": 600
+    },
+    {
+      "type": "range",
+      "id": "mobile_min_height",
+      "min": 400,
+      "max": 1000,
+      "step": 20,
+      "unit": "px",
+      "label": "Mobile Min Height",
+      "default": 600
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Text Side Background Color",
+      "default": "#3481D0"
+    },
+    {
+      "type": "color",
+      "id": "image_bg_color",
+      "label": "Image Side Background Color",
+      "default": "#e2ceb9"
+    },
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "Heading",
+      "default": "RAMON L.\nLAGUARTA"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Chairman and Chief Executive Officer"
+    },
+    {
+      "type": "header",
+      "content": "Heading Typography"
+    },
+    {
+      "type": "font_picker",
+      "id": "heading_font",
+      "label": "Heading Font"
+    },
+    {
+      "type": "range",
+      "id": "heading_size_desktop",
+      "min": 20,
+      "max": 120,
+      "step": 2,
+      "unit": "px",
+      "label": "Heading Size (Desktop)",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "heading_size_mobile",
+      "min": 20,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "label": "Heading Size (Mobile)",
+      "default": 48
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading Color",
+      "default": "#002b5e"
+    },
+    {
+      "type": "select",
+      "id": "heading_weight",
+      "label": "Heading Font Weight",
+      "options": [
+        { "value": "400", "label": "Normal (400)" },
+        { "value": "500", "label": "Medium (500)" },
+        { "value": "600", "label": "Semi Bold (600)" },
+        { "value": "700", "label": "Bold (700)" },
+        { "value": "800", "label": "Extra Bold (800)" },
+        { "value": "900", "label": "Black (900)" }
+      ],
+      "default": "900"
+    },
+    {
+      "type": "header",
+      "content": "Subheading Typography"
+    },
+    {
+      "type": "font_picker",
+      "id": "subheading_font",
+      "label": "Subheading Font"
+    },
+    {
+      "type": "range",
+      "id": "subheading_size_desktop",
+      "min": 12,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "label": "Subheading Size (Desktop)",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "subheading_size_mobile",
+      "min": 12,
+      "max": 32,
+      "step": 1,
+      "unit": "px",
+      "label": "Subheading Size (Mobile)",
+      "default": 18
+    },
+    {
+      "type": "color",
+      "id": "subheading_color",
+      "label": "Subheading Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "select",
+      "id": "subheading_weight",
+      "label": "Subheading Font Weight",
+      "options": [
+        { "value": "300", "label": "Light (300)" },
+        { "value": "400", "label": "Normal (400)" },
+        { "value": "500", "label": "Medium (500)" },
+        { "value": "600", "label": "Semi Bold (600)" },
+        { "value": "700", "label": "Bold (700)" }
+      ],
+      "default": "700"
+    }
+  ],
+  "presets": [
+    {
+      "name": "AFSPL Image with Text"
+    }
+  ]
+}
+{% endschema %}
