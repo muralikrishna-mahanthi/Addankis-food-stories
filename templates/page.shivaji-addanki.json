@@ -61,7 +61,7 @@
             "text_color": "#727272",
             "letter_spacing": 1,
             "word_spacing": 1,
-            "text_alignment": "center",
+            "text_alignment": "left",
             "margin_bottom": 32
           }
         },
@@ -76,7 +76,7 @@
             "text_color": "#727272",
             "letter_spacing": 1,
             "word_spacing": 1,
-            "text_alignment": "center",
+            "text_alignment": "left",
             "margin_bottom": 32
           }
         },
@@ -91,7 +91,7 @@
             "text_color": "#727272",
             "letter_spacing": 1,
             "word_spacing": 1,
-            "text_alignment": "center",
+            "text_alignment": "left",
             "margin_bottom": 32
           }
         },
@@ -106,7 +106,7 @@
             "text_color": "#727272",
             "letter_spacing": 1,
             "word_spacing": 1,
-            "text_alignment": "center",
+            "text_alignment": "left",
             "margin_bottom": 32
           }
         }
