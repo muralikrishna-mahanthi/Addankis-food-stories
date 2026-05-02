@@ -22,7 +22,7 @@
       "name": "AFSPL Image with Text",
       "settings": {
         "layout": "text_first",
-        "desktop_min_height": 600,
+        "desktop_min_height": 580,
         "mobile_min_height": 600,
         "bg_color": "#3481D0",
         "image_bg_color": "#e2ceb9",
