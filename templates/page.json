@@ -1,14 +1,80 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "main": {
       "type": "main-page",
+      "disabled": true,
       "settings": {
         "padding_top": 28,
         "padding_bottom": 28
       }
+    },
+    "blocks_cLx3CK": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_4ff1c27_KDcRqQ": {
+          "type": "ai_gen_block_4ff1c27",
+          "settings": {
+            "heading": "LEADERSHIP TEAM",
+            "text": "<p>Building India's strongest FMCG ecosystem through visionary leadership and unwavering commitment to excellence</p>",
+            "heading_font": "archivo_black_n4",
+            "heading_weight": "bolder",
+            "heading_size": 84,
+            "heading_size_mobile": 34,
+            "heading_color": "#efbf04",
+            "heading_spacing": 0,
+            "heading_padding_top": 0,
+            "heading_padding_bottom": 28,
+            "heading_padding_horizontal": 0,
+            "heading_padding_top_mobile": 0,
+            "heading_padding_bottom_mobile": 20,
+            "heading_padding_horizontal_mobile": 0,
+            "text_font": "sans_serif_n7",
+            "text_size": 18,
+            "text_size_mobile": 14,
+            "text_color": "#242833",
+            "text_line_height": 1.5,
+            "paragraph_spacing": 16,
+            "text_padding_top": 0,
+            "text_padding_bottom": 0,
+            "text_padding_horizontal": 100,
+            "text_padding_top_mobile": 0,
+            "text_padding_bottom_mobile": 0,
+            "text_padding_horizontal_mobile": 0,
+            "text_alignment": "center",
+            "horizontal_alignment": "center",
+            "vertical_alignment": "center",
+            "desktop_width_percent": 100,
+            "min_height": 400,
+            "min_height_mobile": 200,
+            "padding_top": 100,
+            "padding_bottom": 100,
+            "padding_horizontal": 48,
+            "padding_top_mobile": 44,
+            "padding_bottom_mobile": 40,
+            "padding_horizontal_mobile": 20,
+            "background_color": "#ffffff"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_4ff1c27_KDcRqQ"
+      ],
+      "name": "Rich text",
+      "settings": {}
     }
   },
   "order": [
-    "main"
+    "main",
+    "blocks_cLx3CK"
   ]
 }
