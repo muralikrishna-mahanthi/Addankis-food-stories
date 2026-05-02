@@ -46,10 +46,74 @@
         "subheading_color": "#ffffff",
         "subheading_weight": "700"
       }
+    },
+    "afspl_text_ycVwkK": {
+      "type": "afspl-text",
+      "blocks": {
+        "text_block_fLwjhy": {
+          "type": "text_block",
+          "settings": {
+            "text": "<p>Sevyamana Taliyakula is the co-founder of Addanki’s Food Stories Pvt. Ltd. and plays a key role in brand development, operations, and strategic growth initiatives.</p>",
+            "font_family": "sans_serif_n4",
+            "font_size": 22,
+            "font_size_mobile": 16,
+            "font_weight": "700",
+            "text_color": "#727272",
+            "letter_spacing": 1,
+            "word_spacing": 1,
+            "text_alignment": "left",
+            "margin_bottom": 34
+          }
+        },
+        "text_block_bnxBAt": {
+          "type": "text_block",
+          "settings": {
+            "text": "<p>She contributes to building the company’s brands, product strategies, and business expansion efforts.</p>",
+            "font_family": "sans_serif_n4",
+            "font_size": 22,
+            "font_size_mobile": 16,
+            "font_weight": "700",
+            "text_color": "#727272",
+            "letter_spacing": 1,
+            "word_spacing": 1,
+            "text_alignment": "left",
+            "margin_bottom": 34
+          }
+        },
+        "text_block_jJL6JD": {
+          "type": "text_block",
+          "settings": {
+            "text": "<p>Together with the founding team, she is committed to building innovative consumer products that resonate with modern Indian consumers.</p>",
+            "font_family": "sans_serif_n4",
+            "font_size": 22,
+            "font_size_mobile": 16,
+            "font_weight": "700",
+            "text_color": "#727272",
+            "letter_spacing": 1,
+            "word_spacing": 1,
+            "text_alignment": "left",
+            "margin_bottom": 34
+          }
+        }
+      },
+      "block_order": [
+        "text_block_fLwjhy",
+        "text_block_bnxBAt",
+        "text_block_jJL6JD"
+      ],
+      "name": "AFSPL Text",
+      "settings": {
+        "bg_color": "#ffffff",
+        "container_max_width": 1200,
+        "padding_horizontal_desktop": 300,
+        "padding_top": 40,
+        "padding_bottom": 40
+      }
     }
   },
   "order": [
     "main",
-    "afspl_image_with_text_VeQnyg"
+    "afspl_image_with_text_VeQnyg",
+    "afspl_text_ycVwkK"
   ]
 }
