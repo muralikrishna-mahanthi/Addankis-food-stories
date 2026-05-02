@@ -6,48 +6,55 @@
   }
 
   .brands-container-{{ section.id }} {
-    max-width: var(--page-width, 1200px);
+    max-width: {{ section.settings.container_width }}px;
     margin: 0 auto;
     padding: 0 1.5rem;
   }
 
   .brands-header-{{ section.id }} {
     margin-bottom: 40px;
-    text-align: center;
+    text-align: {{ section.settings.header_alignment }};
   }
 
   .brands-heading-{{ section.id }} {
     margin: 0;
-    font-size: 32px;
+    font-size: {{ section.settings.heading_size }}px;
     font-weight: 700;
     color: {{ section.settings.heading_color }};
   }
 
   .brands-grid-{{ section.id }} {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
     gap: {{ section.settings.gap }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .brands-grid-{{ section.id }} {
+      grid-template-columns: repeat({{ section.settings.columns_desktop }}, 1fr);
+      grid-auto-rows: {{ section.settings.row_height }}px;
+    }
   }
 
   .brand-item-{{ section.id }} {
     position: relative;
     border-radius: {{ section.settings.image_radius }}px;
     overflow: hidden;
-    flex-basis: calc(100% - {{ section.settings.gap }}px);
     transition: transform 0.3s ease;
+    height: 100%;
   }
 
-  @media screen and (min-width: 750px) {
+  @media screen and (max-width: 749px) {
     .brand-item-{{ section.id }} {
-      flex-basis: calc(50% - {{ section.settings.gap }}px);
+      aspect-ratio: 1/1;
     }
   }
 
-  /* Per-block width overrides on desktop */
   {%- for block in section.blocks -%}
-    @media screen and (min-width: 990px) {
+    @media screen and (min-width: 750px) {
       .brand-item--{{ block.id }} {
-        flex-basis: calc({{ block.settings.width_desktop }}% - {{ section.settings.gap }}px);
+        grid-column: span {{ block.settings.column_span }};
+        grid-row: span {{ block.settings.row_span }};
       }
     }
   {%- endfor -%}
@@ -58,11 +65,11 @@
     height: 100%;
     text-decoration: none;
     position: relative;
-    aspect-ratio: {{ section.settings.aspect_ratio }};
   }
 
   .brand-item-{{ section.id }}:hover {
     transform: scale(1.02);
+    z-index: 2;
   }
 
   .brand-item-{{ section.id }} img {
@@ -77,24 +84,31 @@
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 50%;
-    background: linear-gradient(transparent, {{ section.settings.overlay_color | color_modify: 'alpha', section.settings.overlay_opacity }});
+    height: 100%;
+    background: linear-gradient(to top, 
+      {{ section.settings.overlay_color | color_modify: 'alpha', section.settings.overlay_opacity }} 0%, 
+      transparent 50%
+    );
     display: flex;
     align-items: flex-end;
-    padding: 20px;
-    transition: height 0.3s ease;
+    padding: 24px;
+    transition: background 0.3s ease;
   }
 
   .brand-item-{{ section.id }}:hover .brand-overlay-{{ section.id }} {
-    height: 60%;
+     background: linear-gradient(to top, 
+      {{ section.settings.overlay_color | color_modify: 'alpha', section.settings.overlay_opacity | plus: 0.1 }} 0%, 
+      transparent 70%
+    );
   }
 
   .brand-title-{{ section.id }} {
     margin: 0;
     color: {{ section.settings.text_color }};
-    font-size: 20px;
-    font-weight: 600;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    font-size: {{ section.settings.block_heading_size }}px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
   }
 {%- endstyle -%}
 
@@ -116,9 +130,9 @@
           {%- endif -%}
             
             {%- if block.settings.image != blank -%}
-              {{ block.settings.image | image_url: width: 1000 | image_tag: loading: 'lazy' }}
+              {{ block.settings.image | image_url: width: 1500 | image_tag: loading: 'lazy' }}
             {%- else -%}
-              {{ 'collection-1' | placeholder_svg_tag: 'placeholder-svg' }}
+              {{ 'collection-' | append: forloop.index | placeholder_svg_tag: 'placeholder-svg' }}
             {%- endif -%}
 
             <div class="brand-overlay-{{ section.id }}">
@@ -138,7 +152,7 @@
 
 {% schema %}
 {
-  "name": "Explore Brands",
+  "name": "Explore Brands Grid",
   "tag": "section",
   "class": "section",
   "settings": [
@@ -147,6 +161,27 @@
       "id": "section_title",
       "label": "Section Heading",
       "default": "Explore Collaborated Brands"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "min": 20,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "label": "Heading Size",
+      "default": 32
+    },
+    {
+      "type": "select",
+      "id": "header_alignment",
+      "label": "Header Alignment",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "center"
     },
     {
       "type": "color",
@@ -162,44 +197,65 @@
     },
     {
       "type": "range",
+      "id": "container_width",
+      "min": 800,
+      "max": 1600,
+      "step": 20,
+      "unit": "px",
+      "label": "Container Max Width",
+      "default": 1200
+    },
+    {
+      "type": "header",
+      "content": "Grid Layout"
+    },
+    {
+      "type": "range",
+      "id": "columns_desktop",
+      "min": 1,
+      "max": 6,
+      "step": 1,
+      "label": "Total Grid Columns",
+      "default": 3
+    },
+    {
+      "type": "range",
+      "id": "row_height",
+      "min": 100,
+      "max": 600,
+      "step": 10,
+      "unit": "px",
+      "label": "Base Row Height",
+      "default": 300
+    },
+    {
+      "type": "range",
       "id": "gap",
       "min": 0,
-      "max": 50,
+      "max": 100,
       "step": 2,
       "unit": "px",
       "label": "Gap between items",
-      "default": 20
+      "default": 16
     },
     {
       "type": "range",
       "id": "image_radius",
       "min": 0,
-      "max": 50,
+      "max": 100,
       "step": 2,
       "unit": "px",
       "label": "Image Border Radius",
-      "default": 16
-    },
-    {
-      "type": "select",
-      "id": "aspect_ratio",
-      "label": "Image Aspect Ratio",
-      "options": [
-        { "value": "1/1", "label": "Square (1:1)" },
-        { "value": "3/4", "label": "Portrait (3:4)" },
-        { "value": "4/3", "label": "Landscape (4:3)" },
-        { "value": "16/9", "label": "Wide (16:9)" }
-      ],
-      "default": "3/4"
+      "default": 32
     },
     {
       "type": "header",
-      "content": "Overlay Settings"
+      "content": "Overlay & Typography"
     },
     {
       "type": "color",
       "id": "overlay_color",
-      "label": "Overlay Color",
+      "label": "Overlay Shadow Color",
       "default": "#000000"
     },
     {
@@ -209,13 +265,23 @@
       "max": 1,
       "step": 0.1,
       "label": "Overlay Opacity",
-      "default": 0.6
+      "default": 0.5
     },
     {
       "type": "color",
       "id": "text_color",
       "label": "Text Color",
       "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "block_heading_size",
+      "min": 12,
+      "max": 48,
+      "step": 1,
+      "unit": "px",
+      "label": "Block Title Size",
+      "default": 24
     },
     {
       "type": "header",
@@ -245,7 +311,7 @@
   "blocks": [
     {
       "type": "brand",
-      "name": "Brand",
+      "name": "Brand Block",
       "settings": [
         {
           "type": "image_picker",
@@ -264,29 +330,38 @@
           "label": "Brand Link"
         },
         {
-          "type": "select",
-          "id": "width_desktop",
-          "label": "Width (Desktop)",
-          "options": [
-            { "value": "25", "label": "25%" },
-            { "value": "33.33", "label": "33%" },
-            { "value": "50", "label": "50%" },
-            { "value": "66.66", "label": "66%" },
-            { "value": "75", "label": "75%" },
-            { "value": "100", "label": "100%" }
-          ],
-          "default": "33.33"
+          "type": "header",
+          "content": "Grid Spacing Control"
+        },
+        {
+          "type": "range",
+          "id": "column_span",
+          "min": 1,
+          "max": 4,
+          "step": 1,
+          "label": "Width (Columns Span)",
+          "default": 1
+        },
+        {
+          "type": "range",
+          "id": "row_span",
+          "min": 1,
+          "max": 3,
+          "step": 1,
+          "label": "Height (Rows Span)",
+          "default": 1
         }
       ]
     }
   ],
   "presets": [
     {
-      "name": "Explore Collaborated Brands",
+      "name": "Explore Brands Grid",
       "blocks": [
-        { "type": "brand" },
-        { "type": "brand" },
-        { "type": "brand" }
+        { "type": "brand", "settings": { "column_span": 1, "row_span": 1 } },
+        { "type": "brand", "settings": { "column_span": 1, "row_span": 1 } },
+        { "type": "brand", "settings": { "column_span": 1, "row_span": 2 } },
+        { "type": "brand", "settings": { "column_span": 2, "row_span": 1 } }
       ]
     }
   ]
