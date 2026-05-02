@@ -16,9 +16,153 @@
         "padding_top": 28,
         "padding_bottom": 28
       }
+    },
+    "afspl_image_with_text_EkWJqG": {
+      "type": "afspl-image-with-text",
+      "name": "AFSPL Image with Text",
+      "settings": {
+        "layout": "image_first",
+        "desktop_min_height": 560,
+        "mobile_min_height": 600,
+        "image_width": 50,
+        "bg_color": "#3481d0",
+        "image_bg_color": "#e2ceb9",
+        "content_padding_v": 90,
+        "content_padding_h": 45,
+        "content_padding_v_mobile": 40,
+        "content_padding_h_mobile": 30,
+        "heading_margin_bottom": 32,
+        "subheading_margin_top": 0,
+        "image": "shopify://shop_images/man-with-folded-arms-poses-for-camera.jpg",
+        "heading": "Nithish\nReddy",
+        "subheading": "Chief Financial Officer",
+        "heading_font": "archivo_black_n4",
+        "heading_size_desktop": 80,
+        "heading_size_mobile": 48,
+        "heading_color": "#002b5e",
+        "heading_weight": "900",
+        "subheading_font": "sans_serif_n4",
+        "subheading_size_desktop": 24,
+        "subheading_size_mobile": 18,
+        "subheading_color": "#ffffff",
+        "subheading_weight": "700"
+      }
+    },
+    "afspl_text_JLfkFJ": {
+      "type": "afspl-text",
+      "blocks": {
+        "text_block_DXbmzi": {
+          "type": "text_block",
+          "settings": {
+            "text": "<p>Nithish Reddy serves as the Chief Financial Officer (CFO) of Addanki’s Food Stories Pvt. Ltd., overseeing the company’s financial strategy, capital planning, and financial governance as the organization expands its FMCG brands and distribution platform.</p>",
+            "font_family": "arimo_n4",
+            "font_size": 22,
+            "font_size_mobile": 16,
+            "font_weight": "700",
+            "text_color": "#727272",
+            "letter_spacing": 1,
+            "word_spacing": 1,
+            "text_alignment": "left",
+            "margin_bottom": 34
+          }
+        },
+        "text_block_YX3V6A": {
+          "type": "text_block",
+          "settings": {
+            "text": "<p>He is responsible for building and managing the company’s financial systems, budgeting frameworks, and performance monitoring mechanisms, ensuring that the business operates with strong financial discipline and transparency.</p>",
+            "font_family": "arimo_n4",
+            "font_size": 22,
+            "font_size_mobile": 16,
+            "font_weight": "700",
+            "text_color": "#727272",
+            "letter_spacing": 1,
+            "word_spacing": 1,
+            "text_alignment": "left",
+            "margin_bottom": 34
+          }
+        },
+        "text_block_a9JfTz": {
+          "type": "text_block",
+          "settings": {
+            "text": "<p>At Addanki’s Food Stories, Nithish leads key areas including:</p><p>· Financial planning and analysis</p><p>· Budgeting and cost management</p><p>· Financial reporting and compliance</p><p>· Investment and capital allocation</p><p>· Profitability tracking across brands and business verticals</p>",
+            "font_family": "arimo_n4",
+            "font_size": 22,
+            "font_size_mobile": 16,
+            "font_weight": "700",
+            "text_color": "#727272",
+            "letter_spacing": 1,
+            "word_spacing": 1,
+            "text_alignment": "left",
+            "margin_bottom": 34
+          }
+        },
+        "text_block_dL37kx": {
+          "type": "text_block",
+          "settings": {
+            "text": "<p>His role is critical in ensuring that the company’s growth across brands such as HAMSAA, JINAA, and FRUROOT is supported by a robust financial foundation.</p>",
+            "font_family": "arimo_n4",
+            "font_size": 22,
+            "font_size_mobile": 16,
+            "font_weight": "700",
+            "text_color": "#727272",
+            "letter_spacing": 1,
+            "word_spacing": 1,
+            "text_alignment": "left",
+            "margin_bottom": 34
+          }
+        },
+        "text_block_jJJq9E": {
+          "type": "text_block",
+          "settings": {
+            "text": "<p>By implementing structured financial controls and data-driven decision-making, Nithish Reddy helps the leadership team scale the business responsibly while maintaining operational efficiency and long-term financial sustainability.</p>",
+            "font_family": "arimo_n4",
+            "font_size": 22,
+            "font_size_mobile": 16,
+            "font_weight": "700",
+            "text_color": "#727272",
+            "letter_spacing": 1,
+            "word_spacing": 1,
+            "text_alignment": "left",
+            "margin_bottom": 34
+          }
+        },
+        "text_block_qAq7t7": {
+          "type": "text_block",
+          "settings": {
+            "text": "<p>Working closely with the founders and leadership team, he contributes to the<br/>company’s goal of building a scalable FMCG ecosystem and distribution platform across India.</p>",
+            "font_family": "arimo_n4",
+            "font_size": 22,
+            "font_size_mobile": 16,
+            "font_weight": "700",
+            "text_color": "#727272",
+            "letter_spacing": 1,
+            "word_spacing": 1,
+            "text_alignment": "left",
+            "margin_bottom": 34
+          }
+        }
+      },
+      "block_order": [
+        "text_block_DXbmzi",
+        "text_block_YX3V6A",
+        "text_block_a9JfTz",
+        "text_block_dL37kx",
+        "text_block_jJJq9E",
+        "text_block_qAq7t7"
+      ],
+      "name": "AFSPL Text",
+      "settings": {
+        "bg_color": "#ffffff",
+        "container_max_width": 1200,
+        "padding_horizontal_desktop": 300,
+        "padding_top": 40,
+        "padding_bottom": 40
+      }
     }
   },
   "order": [
-    "main"
+    "main",
+    "afspl_image_with_text_EkWJqG",
+    "afspl_text_JLfkFJ"
   ]
 }
