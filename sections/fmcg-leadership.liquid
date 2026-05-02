@@ -1,6 +1,45 @@
 {%- style -%}
+  {{ section.settings.heading_font | font_face: font_display: 'swap' }}
+  {{ section.settings.desc_font | font_face: font_display: 'swap' }}
   {{ section.settings.name_font | font_face: font_display: 'swap' }}
   {{ section.settings.role_font | font_face: font_display: 'swap' }}
+
+  .leadership-header-{{ section.id }} {
+    text-align: {{ section.settings.text_alignment }};
+    max-width: var(--page-width, 1200px);
+    margin: 0 auto 40px;
+    padding: 0 1.5rem;
+  }
+
+  .leadership-heading-{{ section.id }} {
+    font-family: {{ section.settings.heading_font.family }}, {{ section.settings.heading_font.fallback_families }};
+    font-size: {{ section.settings.heading_size_mobile }}px;
+    color: {{ section.settings.heading_color }};
+    font-weight: {{ section.settings.heading_weight }};
+    margin: 0 0 16px 0;
+    line-height: 1.2;
+  }
+
+  @media screen and (min-width: 750px) {
+    .leadership-heading-{{ section.id }} {
+      font-size: {{ section.settings.heading_size }}px;
+    }
+  }
+
+  .leadership-desc-{{ section.id }} {
+    font-family: {{ section.settings.desc_font.family }}, {{ section.settings.desc_font.fallback_families }};
+    font-size: {{ section.settings.desc_size_mobile }}px;
+    color: {{ section.settings.desc_color }};
+    font-weight: {{ section.settings.desc_weight }};
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  @media screen and (min-width: 750px) {
+    .leadership-desc-{{ section.id }} {
+      font-size: {{ section.settings.desc_size }}px;
+    }
+  }
 
   .section-{{ section.id }}-padding {
     padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
@@ -109,6 +148,17 @@
 {%- endstyle -%}
 
 <div class="section-{{ section.id }}-padding">
+  {%- if section.settings.section_heading != blank or section.settings.section_description != blank -%}
+    <div class="leadership-header-{{ section.id }}">
+      {%- if section.settings.section_heading != blank -%}
+        <h2 class="leadership-heading-{{ section.id }}">{{ section.settings.section_heading }}</h2>
+      {%- endif -%}
+      {%- if section.settings.section_description != blank -%}
+        <div class="leadership-desc-{{ section.id }}">{{ section.settings.section_description }}</div>
+      {%- endif -%}
+    </div>
+  {%- endif -%}
+
   <div class="leadership-grid-{{ section.id }}">
     {%- for block in section.blocks -%}
       {%- if block.settings.link != blank -%}
@@ -143,6 +193,128 @@
   "tag": "section",
   "class": "section",
   "settings": [
+    {
+      "type": "header",
+      "content": "Section Header Content"
+    },
+    {
+      "type": "text",
+      "id": "section_heading",
+      "label": "Heading",
+      "default": "Our Leadership"
+    },
+    {
+      "type": "richtext",
+      "id": "section_description",
+      "label": "Description",
+      "default": "<p>Meet the team driving our vision forward.</p>"
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "label": "Text Alignment",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "header",
+      "content": "Header Typography"
+    },
+    {
+      "type": "font_picker",
+      "id": "heading_font",
+      "label": "Heading Font",
+      "default": "assistant_n7"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "min": 20,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "label": "Heading Font Size (Desktop)",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "heading_size_mobile",
+      "min": 16,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "label": "Heading Font Size (Mobile)",
+      "default": 32
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading Color",
+      "default": "#003a70"
+    },
+    {
+      "type": "select",
+      "id": "heading_weight",
+      "label": "Heading Font Weight",
+      "options": [
+        { "value": "400", "label": "Normal (400)" },
+        { "value": "500", "label": "Medium (500)" },
+        { "value": "600", "label": "Semi Bold (600)" },
+        { "value": "700", "label": "Bold (700)" },
+        { "value": "800", "label": "Extra Bold (800)" },
+        { "value": "900", "label": "Black (900)" }
+      ],
+      "default": "700"
+    },
+    {
+      "type": "font_picker",
+      "id": "desc_font",
+      "label": "Description Font",
+      "default": "assistant_n4"
+    },
+    {
+      "type": "range",
+      "id": "desc_size",
+      "min": 12,
+      "max": 36,
+      "step": 1,
+      "unit": "px",
+      "label": "Description Font Size (Desktop)",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "desc_size_mobile",
+      "min": 12,
+      "max": 36,
+      "step": 1,
+      "unit": "px",
+      "label": "Description Font Size (Mobile)",
+      "default": 16
+    },
+    {
+      "type": "color",
+      "id": "desc_color",
+      "label": "Description Color",
+      "default": "#666666"
+    },
+    {
+      "type": "select",
+      "id": "desc_weight",
+      "label": "Description Font Weight",
+      "options": [
+        { "value": "300", "label": "Light (300)" },
+        { "value": "400", "label": "Normal (400)" },
+        { "value": "500", "label": "Medium (500)" },
+        { "value": "600", "label": "Semi Bold (600)" },
+        { "value": "700", "label": "Bold (700)" }
+      ],
+      "default": "400"
+    },
     {
       "type": "header",
       "content": "Section Layout"
