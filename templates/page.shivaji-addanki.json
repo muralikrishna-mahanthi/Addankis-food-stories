@@ -16,9 +16,34 @@
         "padding_top": 28,
         "padding_bottom": 28
       }
+    },
+    "afspl_image_with_text_MUcknB": {
+      "type": "afspl-image-with-text",
+      "name": "AFSPL Image with Text",
+      "settings": {
+        "layout": "text_first",
+        "desktop_min_height": 600,
+        "mobile_min_height": 600,
+        "bg_color": "#3481D0",
+        "image_bg_color": "#e2ceb9",
+        "image": "shopify://shop_images/man-with-folded-arms-poses-for-camera.jpg",
+        "heading": "Shivaji\nAddanki",
+        "subheading": "Founder & Chief Marketing Officer",
+        "heading_font": "sans_serif_n4",
+        "heading_size_desktop": 80,
+        "heading_size_mobile": 48,
+        "heading_color": "#002b5e",
+        "heading_weight": "900",
+        "subheading_font": "sans_serif_n4",
+        "subheading_size_desktop": 24,
+        "subheading_size_mobile": 18,
+        "subheading_color": "#ffffff",
+        "subheading_weight": "700"
+      }
     }
   },
   "order": [
-    "main"
+    "main",
+    "afspl_image_with_text_MUcknB"
   ]
 }
