@@ -16,9 +16,60 @@
         "padding_top": 28,
         "padding_bottom": 28
       }
+    },
+    "afspl_explore_brands_kVxcdA": {
+      "type": "afspl-explore-brands",
+      "blocks": {
+        "brand_XVTJf8": {
+          "type": "brand",
+          "settings": {
+            "image": "shopify://shop_images/gemini-3.1-flash-image-preview_nano-banana-2__a_replace_the_first_im.png",
+            "heading": "PHILIPS",
+            "link": "shopify://collections/philips",
+            "width_desktop": "25"
+          }
+        },
+        "brand_3dPjyi": {
+          "type": "brand",
+          "settings": {
+            "image": "shopify://shop_images/Untitled_design_19.png",
+            "heading": "Brand Name",
+            "link": "shopify://collections/ripple-purple",
+            "width_desktop": "25"
+          }
+        },
+        "brand_h7yfyJ": {
+          "type": "brand",
+          "settings": {
+            "heading": "Brand Name",
+            "link": "",
+            "width_desktop": "50"
+          }
+        }
+      },
+      "block_order": [
+        "brand_XVTJf8",
+        "brand_3dPjyi",
+        "brand_h7yfyJ"
+      ],
+      "name": "Explore Collaborated Brands",
+      "settings": {
+        "section_title": "Explore Collaborated Brands",
+        "bg_color": "#ffffff",
+        "heading_color": "#000000",
+        "gap": 20,
+        "image_radius": 16,
+        "aspect_ratio": "3/4",
+        "overlay_color": "#000000",
+        "overlay_opacity": 0.6,
+        "text_color": "#ffffff",
+        "padding_top": 40,
+        "padding_bottom": 40
+      }
     }
   },
   "order": [
-    "main"
+    "main",
+    "afspl_explore_brands_kVxcdA"
   ]
 }
