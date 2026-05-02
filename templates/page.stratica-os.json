@@ -352,7 +352,7 @@
         "tab_pv": 25,
         "tab_ph": 30,
         "btn_label": "Explore brands",
-        "btn_link": "",
+        "btn_link": "shopify://pages/explore-brands",
         "btn_bg_color": "#1b5d9b",
         "btn_text_color": "#ffffff",
         "btn_hover_color": "#004d98",
