@@ -46,10 +46,90 @@
         "subheading_color": "#ffffff",
         "subheading_weight": "700"
       }
+    },
+    "afspl_text_xwPYi7": {
+      "type": "afspl-text",
+      "blocks": {
+        "text_block_rxLBYc": {
+          "type": "text_block",
+          "settings": {
+            "text": "<p>Shivaji Addanki is an entrepreneur with extensive experience in FMCG<br/>sales, distribution development, and market expansion.</p>",
+            "font_family": "sans_serif_n4",
+            "font_size": 22,
+            "font_size_mobile": 16,
+            "font_weight": "700",
+            "text_color": "#727272",
+            "letter_spacing": 1,
+            "word_spacing": 1,
+            "text_alignment": "center",
+            "margin_bottom": 32
+          }
+        },
+        "text_block_ayrbVc": {
+          "type": "text_block",
+          "settings": {
+            "text": "<p>He has worked closely with multiple consumer brands to build distribution<br/>networks, retail penetration strategies, and sales teams across South India.</p>",
+            "font_family": "sans_serif_n4",
+            "font_size": 22,
+            "font_size_mobile": 16,
+            "font_weight": "700",
+            "text_color": "#727272",
+            "letter_spacing": 1,
+            "word_spacing": 1,
+            "text_alignment": "center",
+            "margin_bottom": 32
+          }
+        },
+        "text_block_m6dybm": {
+          "type": "text_block",
+          "settings": {
+            "text": "<p>With deep understanding of general trade markets and rural consumer behavior, he founded Addanki’s Food Stories Pvt. Ltd. to build scalable consumer brands and create a powerful distribution ecosystem.</p>",
+            "font_family": "sans_serif_n4",
+            "font_size": 22,
+            "font_size_mobile": 16,
+            "font_weight": "700",
+            "text_color": "#727272",
+            "letter_spacing": 1,
+            "word_spacing": 1,
+            "text_alignment": "center",
+            "margin_bottom": 32
+          }
+        },
+        "text_block_7eqUJn": {
+          "type": "text_block",
+          "settings": {
+            "text": "<p>His vision is to develop Addanki’s Food Stories into a leading FMCG platform that empowers brands and entrepreneurs across India.</p>",
+            "font_family": "sans_serif_n4",
+            "font_size": 22,
+            "font_size_mobile": 16,
+            "font_weight": "700",
+            "text_color": "#727272",
+            "letter_spacing": 1,
+            "word_spacing": 1,
+            "text_alignment": "center",
+            "margin_bottom": 32
+          }
+        }
+      },
+      "block_order": [
+        "text_block_rxLBYc",
+        "text_block_ayrbVc",
+        "text_block_m6dybm",
+        "text_block_7eqUJn"
+      ],
+      "name": "AFSPL Text",
+      "settings": {
+        "bg_color": "#ffffff",
+        "container_max_width": 1200,
+        "padding_horizontal": 20,
+        "padding_top": 40,
+        "padding_bottom": 40
+      }
     }
   },
   "order": [
     "main",
-    "afspl_image_with_text_MUcknB"
+    "afspl_image_with_text_MUcknB",
+    "afspl_text_xwPYi7"
   ]
 }
