@@ -91,7 +91,7 @@
         "text_3LGDc8": {
           "type": "text",
           "settings": {
-            "text": "<p>To contact our consumer response team, please email <a href=\"mailto:support@afsplcom.com\" title=\"mailto:support@afsplcom.com\">support@afsplcom.com</a> or call us at +91 96662 86789</p>",
+            "text": "<p>To contact our consumer response team, please email <a href=\"#\" title=\"#\">support@afsplcom.com</a> or call us at +91 96662 86789</p>",
             "font": "sans_serif_n4",
             "weight": "400",
             "size": 16,
