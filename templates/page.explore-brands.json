@@ -17,6 +17,61 @@
         "padding_bottom": 28
       }
     },
+    "blocks_PEkpmq": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_4ff1c27_GqLdRX": {
+          "type": "ai_gen_block_4ff1c27",
+          "settings": {
+            "heading": "EXPLORE BRANDS",
+            "text": "",
+            "heading_font": "archivo_black_n4",
+            "heading_weight": "bolder",
+            "heading_size": 40,
+            "heading_size_mobile": 28,
+            "heading_color": "#002e50",
+            "heading_spacing": 20,
+            "heading_padding_top": 0,
+            "heading_padding_bottom": 0,
+            "heading_padding_horizontal": 0,
+            "heading_padding_top_mobile": 0,
+            "heading_padding_bottom_mobile": 0,
+            "heading_padding_horizontal_mobile": 0,
+            "text_font": "assistant_n4",
+            "text_size": 16,
+            "text_size_mobile": 14,
+            "text_color": "#121212",
+            "text_line_height": 1.5,
+            "paragraph_spacing": 16,
+            "text_padding_top": 0,
+            "text_padding_bottom": 0,
+            "text_padding_horizontal": 0,
+            "text_padding_top_mobile": 0,
+            "text_padding_bottom_mobile": 0,
+            "text_padding_horizontal_mobile": 0,
+            "text_alignment": "center",
+            "horizontal_alignment": "center",
+            "vertical_alignment": "center",
+            "desktop_width_percent": 100,
+            "min_height": 100,
+            "min_height_mobile": 200,
+            "padding_top": 64,
+            "padding_bottom": 24,
+            "padding_horizontal": 40,
+            "padding_top_mobile": 24,
+            "padding_bottom_mobile": 24,
+            "padding_horizontal_mobile": 20,
+            "background_color": "#ffffff"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_4ff1c27_GqLdRX"
+      ],
+      "name": "Rich text",
+      "settings": {}
+    },
     "afspl_explore_brands_kVxcdA": {
       "type": "afspl-explore-brands",
       "blocks": {
@@ -69,8 +124,8 @@
       ],
       "name": "Explore Collaborated Brands",
       "settings": {
-        "section_title": "BRANDS",
-        "heading_size": 32,
+        "section_title": "",
+        "heading_size": 20,
         "header_alignment": "center",
         "bg_color": "#ffffff",
         "heading_color": "#334fb4",
@@ -90,6 +145,7 @@
   },
   "order": [
     "main",
+    "blocks_PEkpmq",
     "afspl_explore_brands_kVxcdA"
   ]
 }
