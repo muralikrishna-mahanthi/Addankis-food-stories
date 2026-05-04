@@ -30,7 +30,7 @@
             "heading_size": 74,
             "heading_size_mobile": 28,
             "heading_color": "#02355a",
-            "heading_spacing": 44,
+            "heading_spacing": 0,
             "heading_padding_top": 36,
             "heading_padding_bottom": 0,
             "heading_padding_horizontal": 100,
