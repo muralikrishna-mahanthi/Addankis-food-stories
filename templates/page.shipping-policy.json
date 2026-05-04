@@ -16,9 +16,369 @@
         "padding_top": 28,
         "padding_bottom": 28
       }
+    },
+    "blocks_6YtyHQ": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_4ff1c27_BEBVPY": {
+          "type": "ai_gen_block_4ff1c27",
+          "settings": {
+            "heading": "SHIPPING POLICY",
+            "text": "",
+            "heading_font": "archivo_black_n4",
+            "heading_weight": "bolder",
+            "heading_size": 74,
+            "heading_size_mobile": 28,
+            "heading_color": "#02355a",
+            "heading_spacing": 44,
+            "heading_padding_top": 36,
+            "heading_padding_bottom": 0,
+            "heading_padding_horizontal": 100,
+            "heading_padding_top_mobile": 0,
+            "heading_padding_bottom_mobile": 0,
+            "heading_padding_horizontal_mobile": 0,
+            "text_font": "sans_serif_n7",
+            "text_size": 24,
+            "text_size_mobile": 14,
+            "text_color": "#121212",
+            "text_line_height": 1.5,
+            "paragraph_spacing": 16,
+            "text_padding_top": 0,
+            "text_padding_bottom": 0,
+            "text_padding_horizontal": 100,
+            "text_padding_top_mobile": 0,
+            "text_padding_bottom_mobile": 0,
+            "text_padding_horizontal_mobile": 0,
+            "text_alignment": "center",
+            "horizontal_alignment": "center",
+            "vertical_alignment": "center",
+            "desktop_width_percent": 100,
+            "min_height": 300,
+            "min_height_mobile": 200,
+            "padding_top": 40,
+            "padding_bottom": 40,
+            "padding_horizontal": 40,
+            "padding_top_mobile": 24,
+            "padding_bottom_mobile": 24,
+            "padding_horizontal_mobile": 20,
+            "background_color": "#ffffff"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_4ff1c27_BEBVPY"
+      ],
+      "name": "Rich text",
+      "settings": {}
+    },
+    "afspl_text_C4VJBG": {
+      "type": "afspl-text",
+      "blocks": {
+        "text_block_6aBhr8": {
+          "type": "text_block",
+          "settings": {
+            "text": "<p>Order Processing</p>",
+            "font_family": "sans_serif_n4",
+            "font_size": 30,
+            "font_size_mobile": 16,
+            "font_weight": "700",
+            "text_color": "#727272",
+            "letter_spacing": 0,
+            "word_spacing": 1,
+            "text_alignment": "left",
+            "margin_bottom": 30
+          }
+        },
+        "text_block_JpcBrh": {
+          "type": "text_block",
+          "settings": {
+            "text": "<ul><li>All orders are processed within <strong>1–3 business days</strong> after confirmation.</li><li>Orders placed on weekends or public holidays will be processed on the next working day.</li><li>You will receive an <strong>order confirmation</strong> and <strong>dispatch notification</strong> via email/SMS.</li></ul>",
+            "font_family": "sans_serif_n4",
+            "font_size": 20,
+            "font_size_mobile": 16,
+            "font_weight": "500",
+            "text_color": "#727272",
+            "letter_spacing": 0,
+            "word_spacing": 1,
+            "text_alignment": "left",
+            "margin_bottom": 30
+          }
+        },
+        "text_block_ifkkE3": {
+          "type": "text_block",
+          "settings": {
+            "text": "<p>Shipping Timeline</p>",
+            "font_family": "sans_serif_n4",
+            "font_size": 30,
+            "font_size_mobile": 16,
+            "font_weight": "700",
+            "text_color": "#727272",
+            "letter_spacing": 0,
+            "word_spacing": 1,
+            "text_alignment": "left",
+            "margin_bottom": 30
+          }
+        },
+        "text_block_mG64Bn": {
+          "type": "text_block",
+          "settings": {
+            "text": "<ul><li><strong>Standard Delivery:</strong> 3–7 business days</li><li><strong>Remote Areas:</strong> 5–10 business days<br/></li></ul><p>Delivery timelines may vary depending on location, courier availability, and unforeseen circumstances.</p>",
+            "font_family": "sans_serif_n4",
+            "font_size": 20,
+            "font_size_mobile": 16,
+            "font_weight": "500",
+            "text_color": "#727272",
+            "letter_spacing": 0,
+            "word_spacing": 1,
+            "text_alignment": "left",
+            "margin_bottom": 30
+          }
+        },
+        "text_block_yG8tYa": {
+          "type": "text_block",
+          "settings": {
+            "text": "<p>Shipping Charges</p>",
+            "font_family": "sans_serif_n4",
+            "font_size": 30,
+            "font_size_mobile": 16,
+            "font_weight": "700",
+            "text_color": "#727272",
+            "letter_spacing": 0,
+            "word_spacing": 1,
+            "text_alignment": "left",
+            "margin_bottom": 30
+          }
+        },
+        "text_block_nrde9Q": {
+          "type": "text_block",
+          "settings": {
+            "text": "<ul><li>Shipping charges are calculated at checkout based on your location and order value.</li><li>We may offer <strong>free shipping</strong> on select orders or promotional campaigns.</li></ul>",
+            "font_family": "sans_serif_n4",
+            "font_size": 20,
+            "font_size_mobile": 16,
+            "font_weight": "500",
+            "text_color": "#727272",
+            "letter_spacing": 0,
+            "word_spacing": 1,
+            "text_alignment": "left",
+            "margin_bottom": 30
+          }
+        },
+        "text_block_GKzd9y": {
+          "type": "text_block",
+          "settings": {
+            "text": "<p>Order Tracking</p>",
+            "font_family": "sans_serif_n4",
+            "font_size": 30,
+            "font_size_mobile": 16,
+            "font_weight": "700",
+            "text_color": "#727272",
+            "letter_spacing": 0,
+            "word_spacing": 1,
+            "text_alignment": "left",
+            "margin_bottom": 30
+          }
+        },
+        "text_block_DULtPw": {
+          "type": "text_block",
+          "settings": {
+            "text": "<ul><li>Once your order is shipped, you will receive a <strong>tracking ID/link</strong> to monitor delivery status in real time.</li></ul>",
+            "font_family": "sans_serif_n4",
+            "font_size": 20,
+            "font_size_mobile": 16,
+            "font_weight": "500",
+            "text_color": "#727272",
+            "letter_spacing": 0,
+            "word_spacing": 1,
+            "text_alignment": "left",
+            "margin_bottom": 30
+          }
+        },
+        "text_block_FeE6CD": {
+          "type": "text_block",
+          "settings": {
+            "text": "<p>Delivery Partners</p>",
+            "font_family": "sans_serif_n4",
+            "font_size": 30,
+            "font_size_mobile": 16,
+            "font_weight": "700",
+            "text_color": "#727272",
+            "letter_spacing": 0,
+            "word_spacing": 1,
+            "text_alignment": "left",
+            "margin_bottom": 30
+          }
+        },
+        "text_block_npCPV8": {
+          "type": "text_block",
+          "settings": {
+            "text": "<p>We work with reliable courier partners to ensure timely and safe delivery of your products.</p>",
+            "font_family": "sans_serif_n4",
+            "font_size": 20,
+            "font_size_mobile": 16,
+            "font_weight": "500",
+            "text_color": "#727272",
+            "letter_spacing": 0,
+            "word_spacing": 1,
+            "text_alignment": "left",
+            "margin_bottom": 30
+          }
+        },
+        "text_block_YC7AHM": {
+          "type": "text_block",
+          "settings": {
+            "text": "<p>Delays & Exceptions</p>",
+            "font_family": "sans_serif_n4",
+            "font_size": 30,
+            "font_size_mobile": 16,
+            "font_weight": "700",
+            "text_color": "#727272",
+            "letter_spacing": 0,
+            "word_spacing": 1,
+            "text_alignment": "left",
+            "margin_bottom": 30
+          }
+        },
+        "text_block_B8TF7H": {
+          "type": "text_block",
+          "settings": {
+            "text": "<p>While we strive to deliver on time, delays may occur due to:</p><ul><li>Weather conditions</li><li>Logistics issues</li><li>High order volumes</li><li>Government restrictions or unforeseen events</li></ul><p>We appreciate your patience in such cases.</p>",
+            "font_family": "sans_serif_n4",
+            "font_size": 20,
+            "font_size_mobile": 16,
+            "font_weight": "500",
+            "text_color": "#727272",
+            "letter_spacing": 0,
+            "word_spacing": 1,
+            "text_alignment": "left",
+            "margin_bottom": 30
+          }
+        },
+        "text_block_YqKRpL": {
+          "type": "text_block",
+          "settings": {
+            "text": "<p>Incorrect Address / Failed Delivery</p>",
+            "font_family": "sans_serif_n4",
+            "font_size": 30,
+            "font_size_mobile": 16,
+            "font_weight": "700",
+            "text_color": "#727272",
+            "letter_spacing": 0,
+            "word_spacing": 1,
+            "text_alignment": "left",
+            "margin_bottom": 30
+          }
+        },
+        "text_block_3JYRLE": {
+          "type": "text_block",
+          "settings": {
+            "text": "<ul><li>Please ensure your shipping details are accurate.</li><li>If delivery fails due to incorrect address or unavailability, re-shipping charges may apply.</li></ul>",
+            "font_family": "sans_serif_n4",
+            "font_size": 20,
+            "font_size_mobile": 16,
+            "font_weight": "500",
+            "text_color": "#727272",
+            "letter_spacing": 0,
+            "word_spacing": 1,
+            "text_alignment": "left",
+            "margin_bottom": 30
+          }
+        },
+        "text_block_yJTXEM": {
+          "type": "text_block",
+          "settings": {
+            "text": "<p>Damaged or Missing Items</p>",
+            "font_family": "sans_serif_n4",
+            "font_size": 30,
+            "font_size_mobile": 16,
+            "font_weight": "700",
+            "text_color": "#727272",
+            "letter_spacing": 0,
+            "word_spacing": 1,
+            "text_alignment": "left",
+            "margin_bottom": 30
+          }
+        },
+        "text_block_93yidQ": {
+          "type": "text_block",
+          "settings": {
+            "text": "<p>If you receive:</p><ul><li>A damaged product</li><li>Missing items<br/></li></ul><p>Please contact us within <strong>48 hours of delivery</strong> with photos/videos for quick resolution.</p>",
+            "font_family": "sans_serif_n4",
+            "font_size": 20,
+            "font_size_mobile": 16,
+            "font_weight": "500",
+            "text_color": "#727272",
+            "letter_spacing": 0,
+            "word_spacing": 1,
+            "text_alignment": "left",
+            "margin_bottom": 30
+          }
+        },
+        "text_block_dycnMa": {
+          "type": "text_block",
+          "settings": {
+            "text": "<p>Contact Us</p>",
+            "font_family": "sans_serif_n4",
+            "font_size": 30,
+            "font_size_mobile": 16,
+            "font_weight": "700",
+            "text_color": "#727272",
+            "letter_spacing": 0,
+            "word_spacing": 1,
+            "text_alignment": "left",
+            "margin_bottom": 30
+          }
+        },
+        "text_block_FwPGnV": {
+          "type": "text_block",
+          "settings": {
+            "text": "<p>For shipping-related queries:<br/>Email: support@afsplcom.com<br/>Phone: +91 96662 86789<br/><br/></p>",
+            "font_family": "sans_serif_n4",
+            "font_size": 20,
+            "font_size_mobile": 16,
+            "font_weight": "500",
+            "text_color": "#727272",
+            "letter_spacing": 0,
+            "word_spacing": 1,
+            "text_alignment": "left",
+            "margin_bottom": 30
+          }
+        }
+      },
+      "block_order": [
+        "text_block_6aBhr8",
+        "text_block_JpcBrh",
+        "text_block_ifkkE3",
+        "text_block_mG64Bn",
+        "text_block_yG8tYa",
+        "text_block_nrde9Q",
+        "text_block_GKzd9y",
+        "text_block_DULtPw",
+        "text_block_FeE6CD",
+        "text_block_npCPV8",
+        "text_block_YC7AHM",
+        "text_block_B8TF7H",
+        "text_block_YqKRpL",
+        "text_block_3JYRLE",
+        "text_block_yJTXEM",
+        "text_block_93yidQ",
+        "text_block_dycnMa",
+        "text_block_FwPGnV"
+      ],
+      "name": "AFSPL Text",
+      "settings": {
+        "bg_color": "#ffffff",
+        "container_max_width": 1200,
+        "padding_horizontal_desktop": 300,
+        "padding_top": 40,
+        "padding_bottom": 40
+      }
     }
   },
   "order": [
-    "main"
+    "main",
+    "blocks_6YtyHQ",
+    "afspl_text_C4VJBG"
   ]
 }
