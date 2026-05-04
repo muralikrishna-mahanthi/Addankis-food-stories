@@ -405,36 +405,6 @@
             "margin_bottom": 30
           }
         },
-        "text_block_bTtRAH": {
-          "type": "text_block",
-          "settings": {
-            "text": "<p>International Transfers</p>",
-            "font_family": "sans_serif_n4",
-            "font_size": 30,
-            "font_size_mobile": 16,
-            "font_weight": "700",
-            "text_color": "#727272",
-            "letter_spacing": 0,
-            "word_spacing": 1,
-            "text_alignment": "left",
-            "margin_bottom": 30
-          }
-        },
-        "text_block_yRNtdJ": {
-          "type": "text_block",
-          "settings": {
-            "text": "<p>Please note that we may transfer, store and process your personal information outside the country you live in.</p><p>If we transfer your personal information out of the European Economic Area or the United Kingdom, we will rely on recognized transfer mechanisms like the European Commission's Standard Contractual Clauses, or any equivalent contracts issued by the relevant competent authority of the UK, as relevant, unless the data transfer is to a country that has been determined to provide an adequate level of protection.</p>",
-            "font_family": "sans_serif_n4",
-            "font_size": 20,
-            "font_size_mobile": 16,
-            "font_weight": "500",
-            "text_color": "#727272",
-            "letter_spacing": 0,
-            "word_spacing": 1,
-            "text_alignment": "left",
-            "margin_bottom": 30
-          }
-        },
         "text_block_E4yV9g": {
           "type": "text_block",
           "settings": {
@@ -519,8 +489,6 @@
         "text_block_BkMcPa",
         "text_block_rYgPHz",
         "text_block_a6xhaq",
-        "text_block_bTtRAH",
-        "text_block_yRNtdJ",
         "text_block_E4yV9g",
         "text_block_PK66zz",
         "text_block_9iythE",
