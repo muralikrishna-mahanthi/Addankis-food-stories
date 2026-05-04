@@ -11,13 +11,70 @@
   "sections": {
     "main": {
       "type": "main-page",
+      "disabled": true,
       "settings": {
         "padding_top": 28,
         "padding_bottom": 28
       }
+    },
+    "blocks_BYGaVi": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_4ff1c27_qyCYj9": {
+          "type": "ai_gen_block_4ff1c27",
+          "settings": {
+            "heading": "RETURN & REFUND POLICY",
+            "text": "",
+            "heading_font": "archivo_black_n4",
+            "heading_weight": "bolder",
+            "heading_size": 74,
+            "heading_size_mobile": 28,
+            "heading_color": "#02355a",
+            "heading_spacing": 44,
+            "heading_padding_top": 36,
+            "heading_padding_bottom": 0,
+            "heading_padding_horizontal": 0,
+            "heading_padding_top_mobile": 0,
+            "heading_padding_bottom_mobile": 0,
+            "heading_padding_horizontal_mobile": 0,
+            "text_font": "sans_serif_n7",
+            "text_size": 24,
+            "text_size_mobile": 14,
+            "text_color": "#121212",
+            "text_line_height": 1.5,
+            "paragraph_spacing": 16,
+            "text_padding_top": 0,
+            "text_padding_bottom": 0,
+            "text_padding_horizontal": 100,
+            "text_padding_top_mobile": 0,
+            "text_padding_bottom_mobile": 0,
+            "text_padding_horizontal_mobile": 0,
+            "text_alignment": "center",
+            "horizontal_alignment": "center",
+            "vertical_alignment": "center",
+            "desktop_width_percent": 100,
+            "min_height": 300,
+            "min_height_mobile": 200,
+            "padding_top": 40,
+            "padding_bottom": 40,
+            "padding_horizontal": 40,
+            "padding_top_mobile": 24,
+            "padding_bottom_mobile": 24,
+            "padding_horizontal_mobile": 20,
+            "background_color": "#ffffff"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_4ff1c27_qyCYj9"
+      ],
+      "name": "Rich text",
+      "settings": {}
     }
   },
   "order": [
-    "main"
+    "main",
+    "blocks_BYGaVi"
   ]
 }
