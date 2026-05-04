@@ -34,9 +34,10 @@
         "profile_a6NYc7": {
           "type": "profile",
           "settings": {
-            "name": "Ramon L. Laguarta",
-            "role": "Chairman and Chief Executive Officer",
-            "link": "",
+            "image": "shopify://shop_images/business-woman-with-arms-crossed.jpg",
+            "name": "Sevyamana Taliyakula",
+            "role": "Co-Founder & Chief Executive Officer",
+            "link": "shopify://pages/sevyamana-taliyakula",
             "layout_mode": "stacked",
             "image_width": 50
           }
@@ -44,9 +45,10 @@
         "profile_qEEeU4": {
           "type": "profile",
           "settings": {
-            "name": "Anne Tse",
-            "role": "Chief Executive Officer, Asia Pacific Foods",
-            "link": "",
+            "image": "shopify://shop_images/man-with-folded-arms-poses-for-camera.jpg",
+            "name": "Rajkumar Muppidi",
+            "role": "Chief Operating Officer",
+            "link": "shopify://pages/rajkumar-muppidi",
             "layout_mode": "stacked",
             "image_width": 50
           }
@@ -54,9 +56,10 @@
         "profile_F7exPp": {
           "type": "profile",
           "settings": {
-            "name": "Athina Kanioura",
-            "role": "Chief Executive Officer, Latin America Foods\nand Executive Vice President, Chief Strategy\n& Transformation Officer",
-            "link": "",
+            "image": "shopify://shop_images/man-with-folded-arms-poses-for-camera.jpg",
+            "name": "Nithish Reddy",
+            "role": "Chief Financial Officer",
+            "link": "shopify://pages/nithish-reddy",
             "layout_mode": "stacked",
             "image_width": 50
           }

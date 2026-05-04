@@ -11,13 +11,99 @@
   "sections": {
     "main": {
       "type": "main-page",
+      "disabled": true,
       "settings": {
         "padding_top": 28,
         "padding_bottom": 28
       }
+    },
+    "fmcg_leadership_BmAegJ": {
+      "type": "fmcg-leadership",
+      "blocks": {
+        "profile_gRRtgc": {
+          "type": "profile",
+          "settings": {
+            "image": "shopify://shop_images/man-with-folded-arms-poses-for-camera.jpg",
+            "name": "Shivaji Addanki",
+            "role": "Founder & Chief Marketing Officer",
+            "link": "shopify://pages/shivaji-addanki",
+            "layout_mode": "stacked",
+            "image_width": 50
+          }
+        },
+        "profile_a6NYc7": {
+          "type": "profile",
+          "settings": {
+            "name": "Ramon L. Laguarta",
+            "role": "Chairman and Chief Executive Officer",
+            "link": "",
+            "layout_mode": "stacked",
+            "image_width": 50
+          }
+        },
+        "profile_qEEeU4": {
+          "type": "profile",
+          "settings": {
+            "name": "Anne Tse",
+            "role": "Chief Executive Officer, Asia Pacific Foods",
+            "link": "",
+            "layout_mode": "stacked",
+            "image_width": 50
+          }
+        },
+        "profile_F7exPp": {
+          "type": "profile",
+          "settings": {
+            "name": "Athina Kanioura",
+            "role": "Chief Executive Officer, Latin America Foods\nand Executive Vice President, Chief Strategy\n& Transformation Officer",
+            "link": "",
+            "layout_mode": "stacked",
+            "image_width": 50
+          }
+        }
+      },
+      "block_order": [
+        "profile_gRRtgc",
+        "profile_a6NYc7",
+        "profile_qEEeU4",
+        "profile_F7exPp"
+      ],
+      "name": "FMCG Leadership",
+      "settings": {
+        "section_heading": "Our Leadership",
+        "section_description": "<p>Meet the team driving our vision forward.</p>",
+        "text_alignment": "center",
+        "heading_font": "sans_serif_n7",
+        "heading_size": 40,
+        "heading_size_mobile": 32,
+        "heading_color": "#003a70",
+        "heading_weight": "700",
+        "desc_font": "sans_serif_n4",
+        "desc_size": 18,
+        "desc_size_mobile": 16,
+        "desc_color": "#666666",
+        "desc_weight": "400",
+        "columns_desktop": 3,
+        "bg_color": "#ffffff",
+        "image_bg_color": "#e2ceb9",
+        "image_radius": 20,
+        "name_font": "sans_serif_n7",
+        "name_size": 24,
+        "name_size_mobile": 20,
+        "name_color": "#003a70",
+        "name_weight": "700",
+        "role_font": "sans_serif_n4",
+        "role_size": 16,
+        "role_size_mobile": 14,
+        "role_color": "#666666",
+        "role_weight": "400",
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
     }
   },
   "order": [
-    "main"
+    "main",
+    "fmcg_leadership_BmAegJ"
   ]
 }
