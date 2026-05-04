@@ -17,6 +17,61 @@
         "padding_bottom": 28
       }
     },
+    "blocks_HEEnpr": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_4ff1c27_x9EzHf": {
+          "type": "ai_gen_block_4ff1c27",
+          "settings": {
+            "heading": "LEADERSHIP",
+            "text": "",
+            "heading_font": "archivo_black_n4",
+            "heading_weight": "bolder",
+            "heading_size": 82,
+            "heading_size_mobile": 28,
+            "heading_color": "#ffffff",
+            "heading_spacing": 0,
+            "heading_padding_top": 0,
+            "heading_padding_bottom": 0,
+            "heading_padding_horizontal": 0,
+            "heading_padding_top_mobile": 0,
+            "heading_padding_bottom_mobile": 0,
+            "heading_padding_horizontal_mobile": 0,
+            "text_font": "assistant_n4",
+            "text_size": 16,
+            "text_size_mobile": 14,
+            "text_color": "#121212",
+            "text_line_height": 1.5,
+            "paragraph_spacing": 16,
+            "text_padding_top": 0,
+            "text_padding_bottom": 0,
+            "text_padding_horizontal": 0,
+            "text_padding_top_mobile": 0,
+            "text_padding_bottom_mobile": 0,
+            "text_padding_horizontal_mobile": 0,
+            "text_alignment": "center",
+            "horizontal_alignment": "center",
+            "vertical_alignment": "center",
+            "desktop_width_percent": 100,
+            "min_height": 500,
+            "min_height_mobile": 200,
+            "padding_top": 60,
+            "padding_bottom": 60,
+            "padding_horizontal": 40,
+            "padding_top_mobile": 24,
+            "padding_bottom_mobile": 24,
+            "padding_horizontal_mobile": 20,
+            "background_color": "#002b5e"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_4ff1c27_x9EzHf"
+      ],
+      "name": "Rich text",
+      "settings": {}
+    },
     "fmcg_leadership_BmAegJ": {
       "type": "fmcg-leadership",
       "blocks": {
@@ -73,7 +128,7 @@
       ],
       "name": "FMCG Leadership",
       "settings": {
-        "section_heading": "Our Leadership",
+        "section_heading": "Our Leaders",
         "section_description": "<p>Meet the team driving our vision forward.</p>",
         "text_alignment": "center",
         "heading_font": "sans_serif_n7",
@@ -107,6 +162,7 @@
   },
   "order": [
     "main",
+    "blocks_HEEnpr",
     "fmcg_leadership_BmAegJ"
   ]
 }
