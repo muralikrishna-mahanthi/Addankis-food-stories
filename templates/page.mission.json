@@ -401,7 +401,7 @@
             "heading": "Join the Journey",
             "content": "<p>Whether you are a brand seeking distribution, an entrepreneur with a product idea, or an investor who sees the opportunity — Addanki's Food Stories is where your chapter begins.</p>",
             "button_text": "PARTNER WITH US",
-            "button_link": "",
+            "button_link": "shopify://pages/distributor",
             "text_alignment": "center",
             "button_alignment": "center",
             "container_width": 800,
