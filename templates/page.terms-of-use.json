@@ -16,9 +16,97 @@
         "padding_top": 28,
         "padding_bottom": 28
       }
+    },
+    "blocks_NtBqtG": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_4ff1c27_GXcXHN": {
+          "type": "ai_gen_block_4ff1c27",
+          "settings": {
+            "heading": "Rich text heading",
+            "text": "<p>Use this section to create unique side-by-side layouts with various content blocks. Pair text with images, newsletter blocks, products, videos, testimonials and more.</p>",
+            "heading_font": "assistant_n4",
+            "heading_weight": "bold",
+            "heading_size": 40,
+            "heading_size_mobile": 28,
+            "heading_color": "#121212",
+            "heading_spacing": 20,
+            "heading_padding_top": 0,
+            "heading_padding_bottom": 0,
+            "heading_padding_horizontal": 0,
+            "heading_padding_top_mobile": 0,
+            "heading_padding_bottom_mobile": 0,
+            "heading_padding_horizontal_mobile": 0,
+            "text_font": "assistant_n4",
+            "text_size": 16,
+            "text_size_mobile": 14,
+            "text_color": "#121212",
+            "text_line_height": 1.5,
+            "paragraph_spacing": 16,
+            "text_padding_top": 0,
+            "text_padding_bottom": 0,
+            "text_padding_horizontal": 0,
+            "text_padding_top_mobile": 0,
+            "text_padding_bottom_mobile": 0,
+            "text_padding_horizontal_mobile": 0,
+            "text_alignment": "left",
+            "horizontal_alignment": "flex-start",
+            "vertical_alignment": "flex-start",
+            "desktop_width_percent": 100,
+            "min_height": 300,
+            "min_height_mobile": 200,
+            "padding_top": 40,
+            "padding_bottom": 40,
+            "padding_horizontal": 40,
+            "padding_top_mobile": 24,
+            "padding_bottom_mobile": 24,
+            "padding_horizontal_mobile": 20,
+            "background_color": "#f3f3f3"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_4ff1c27_GXcXHN"
+      ],
+      "name": "Rich text",
+      "settings": {}
+    },
+    "afspl_text_qPGp7E": {
+      "type": "afspl-text",
+      "blocks": {
+        "text_block_GCAUw8": {
+          "type": "text_block",
+          "settings": {
+            "text": "<p>1. Introduction<br/><br/>Welcome to Addanki Food Stories Pvt. Ltd. (“AFSPL”, “we”, “our”, or “us”). These Terms of Use govern your access to and use of our website, products, and services. By accessing or using our platform, you agree to comply with and be bound by these terms.<br/><br/>If you do not agree with these Terms, please do not use our services.</p>",
+            "font_family": "sans_serif_n4",
+            "font_size": 18,
+            "font_size_mobile": 16,
+            "font_weight": "400",
+            "text_color": "#000000",
+            "letter_spacing": 0,
+            "word_spacing": 0,
+            "text_alignment": "left",
+            "margin_bottom": 16
+          }
+        }
+      },
+      "block_order": [
+        "text_block_GCAUw8"
+      ],
+      "name": "AFSPL Text",
+      "settings": {
+        "bg_color": "#ffffff",
+        "container_max_width": 1200,
+        "padding_horizontal_desktop": 45,
+        "padding_top": 40,
+        "padding_bottom": 40
+      }
     }
   },
   "order": [
-    "main"
+    "main",
+    "blocks_NtBqtG",
+    "afspl_text_qPGp7E"
   ]
 }

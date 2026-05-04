@@ -41,9 +41,10 @@
         "link_weight": "700",
         "show_social": true,
         "copyright_text": "©AFSPL 2026",
-        "sub_menu": "",
+        "sub_menu": "footer",
         "padding_top": 35,
-        "padding_bottom": 35
+        "padding_bottom": 35,
+        "mobile_alignment": "left"
       }
     }
   },
