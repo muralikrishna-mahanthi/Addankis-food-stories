@@ -78,27 +78,91 @@
         "text_block_GCAUw8": {
           "type": "text_block",
           "settings": {
-            "text": "<p>1. Introduction<br/><br/>Welcome to Addanki Food Stories Pvt. Ltd. (“AFSPL”, “we”, “our”, or “us”). These Terms of Use govern your access to and use of our website, products, and services. By accessing or using our platform, you agree to comply with and be bound by these terms.<br/><br/>If you do not agree with these Terms, please do not use our services.</p>",
+            "text": "<p>Welcome to Addanki Food Stories Pvt. Ltd. (“AFSPL”, “we”, “our”, or “us”). These Terms of Use govern your access to and use of our website, products, and services. By accessing or using our platform, you agree to comply with and be bound by these terms.<br/><br/>If you do not agree with these Terms, please do not use our services.</p>",
             "font_family": "sans_serif_n4",
-            "font_size": 18,
+            "font_size": 20,
             "font_size_mobile": 16,
-            "font_weight": "400",
-            "text_color": "#000000",
+            "font_weight": "500",
+            "text_color": "#727272",
             "letter_spacing": 0,
             "word_spacing": 0,
             "text_alignment": "left",
-            "margin_bottom": 16
+            "margin_bottom": 30
+          }
+        },
+        "text_block_hyVr6r": {
+          "type": "text_block",
+          "settings": {
+            "text": "<p><strong>By using our services, you confirm that:</strong><br/><br/>* You are at least 18 years old, or<br/>* You are using the platform under the supervision of a parent or legal guardian.</p>",
+            "font_family": "sans_serif_n4",
+            "font_size": 20,
+            "font_size_mobile": 16,
+            "font_weight": "500",
+            "text_color": "#727272",
+            "letter_spacing": 0,
+            "word_spacing": 0,
+            "text_alignment": "left",
+            "margin_bottom": 30
+          }
+        },
+        "text_block_Tt6Mtz": {
+          "type": "text_block",
+          "settings": {
+            "text": "<p><strong>Products and Services</strong><br/><br/>AFSPL offers natural and consumer products under its brands (including but not limited to Hamsaa). All products are subject to availability.<br/><br/>We reserve the right to:<br/>* Modify or discontinue products without prior notice<br/>* Limit quantities per order<br/>* Refuse service to anyone for any reason</p>",
+            "font_family": "sans_serif_n4",
+            "font_size": 20,
+            "font_size_mobile": 16,
+            "font_weight": "500",
+            "text_color": "#727272",
+            "letter_spacing": 0,
+            "word_spacing": 0,
+            "text_alignment": "left",
+            "margin_bottom": 30
+          }
+        },
+        "text_block_H9jRVk": {
+          "type": "text_block",
+          "settings": {
+            "text": "<p><strong>Pricing and Payments</strong><br/><br/>* All prices are listed in Indian Rupees (INR) unless otherwise specified<br/>* Prices are subject to change without prior notice<br/>* We accept payments through authorized payment gateways only<br/>* You agree to provide accurate and complete payment details</p>",
+            "font_family": "sans_serif_n4",
+            "font_size": 20,
+            "font_size_mobile": 16,
+            "font_weight": "500",
+            "text_color": "#727272",
+            "letter_spacing": 0,
+            "word_spacing": 0,
+            "text_alignment": "left",
+            "margin_bottom": 30
+          }
+        },
+        "text_block_DTBUDG": {
+          "type": "text_block",
+          "settings": {
+            "text": "<p><strong>Order Acceptance and Cancellation</strong><br/><br/>* Your order is confirmed only after payment is successfully processed<br/>* We reserve the right to cancel or refuse any order due to:<br/><br/>  * Product unavailability<br/>  * Pricing errors<br/>  * Suspected fraudulent activity<br/><br/>If your order is cancelled, the refund will be processed as per our Refund Policy.</p>",
+            "font_family": "sans_serif_n4",
+            "font_size": 20,
+            "font_size_mobile": 16,
+            "font_weight": "500",
+            "text_color": "#727272",
+            "letter_spacing": 0,
+            "word_spacing": 0,
+            "text_alignment": "left",
+            "margin_bottom": 30
           }
         }
       },
       "block_order": [
-        "text_block_GCAUw8"
+        "text_block_GCAUw8",
+        "text_block_hyVr6r",
+        "text_block_Tt6Mtz",
+        "text_block_H9jRVk",
+        "text_block_DTBUDG"
       ],
       "name": "AFSPL Text",
       "settings": {
         "bg_color": "#ffffff",
         "container_max_width": 1200,
-        "padding_horizontal_desktop": 45,
+        "padding_horizontal_desktop": 300,
         "padding_top": 40,
         "padding_bottom": 40
       }
