@@ -71,10 +71,234 @@
       ],
       "name": "Rich text",
       "settings": {}
+    },
+    "afspl_text_WggkCX": {
+      "type": "afspl-text",
+      "blocks": {
+        "text_block_g7kewi": {
+          "type": "text_block",
+          "settings": {
+            "text": "<p>Returns Policy</p>",
+            "font_family": "sans_serif_n4",
+            "font_size": 30,
+            "font_size_mobile": 16,
+            "font_weight": "700",
+            "text_color": "#727272",
+            "letter_spacing": 0,
+            "word_spacing": 1,
+            "text_alignment": "left",
+            "margin_bottom": 30
+          }
+        },
+        "text_block_MX7GTd": {
+          "type": "text_block",
+          "settings": {
+            "text": "<p>We strive to ensure that all our products reach you in perfect condition. However, we accept returns under the following conditions:</p><ul><li>The product is <strong>damaged, defective, or incorrect</strong> at the time of delivery</li><li>The return request is raised within <strong>3–5 days of delivery</strong></li><li>The product is <strong>unused, unopened, and in original packaging</strong></li></ul>",
+            "font_family": "sans_serif_n4",
+            "font_size": 20,
+            "font_size_mobile": 16,
+            "font_weight": "500",
+            "text_color": "#727272",
+            "letter_spacing": 0,
+            "word_spacing": 1,
+            "text_alignment": "left",
+            "margin_bottom": 30
+          }
+        },
+        "text_block_Qr7Vt3": {
+          "type": "text_block",
+          "settings": {
+            "text": "<p>     <strong>Non-Returnable Items:</strong></p><ul><li>Used or opened products</li><li>Products damaged due to misuse or mishandling</li><li>Items returned without original packaging</li></ul>",
+            "font_family": "sans_serif_n4",
+            "font_size": 20,
+            "font_size_mobile": 16,
+            "font_weight": "500",
+            "text_color": "#727272",
+            "letter_spacing": 0,
+            "word_spacing": 1,
+            "text_alignment": "left",
+            "margin_bottom": 30
+          }
+        },
+        "text_block_CTEQwQ": {
+          "type": "text_block",
+          "settings": {
+            "text": "<p>Return Process</p>",
+            "font_family": "sans_serif_n4",
+            "font_size": 30,
+            "font_size_mobile": 16,
+            "font_weight": "700",
+            "text_color": "#727272",
+            "letter_spacing": 0,
+            "word_spacing": 1,
+            "text_alignment": "left",
+            "margin_bottom": 30
+          }
+        },
+        "text_block_jiUhaf": {
+          "type": "text_block",
+          "settings": {
+            "text": "<p>To initiate a return:</p><ol><li>Email us at support@afsplcom.com with:<br/>Order ID<br/>Product details<br/>Clear photos/videos of the issue<br/></li><li>Our team will review and respond within <strong>2–3 business days</strong><br/></li><li>If approved, we will arrange a <strong>pickup or guide you on return shipping</strong></li></ol>",
+            "font_family": "sans_serif_n4",
+            "font_size": 20,
+            "font_size_mobile": 16,
+            "font_weight": "500",
+            "text_color": "#727272",
+            "letter_spacing": 0,
+            "word_spacing": 1,
+            "text_alignment": "left",
+            "margin_bottom": 30
+          }
+        },
+        "text_block_YkDKfB": {
+          "type": "text_block",
+          "settings": {
+            "text": "<p>Refund Policy</p>",
+            "font_family": "sans_serif_n4",
+            "font_size": 30,
+            "font_size_mobile": 16,
+            "font_weight": "700",
+            "text_color": "#727272",
+            "letter_spacing": 0,
+            "word_spacing": 1,
+            "text_alignment": "left",
+            "margin_bottom": 30
+          }
+        },
+        "text_block_ntRh9H": {
+          "type": "text_block",
+          "settings": {
+            "text": "<p>Refunds will be processed under the following conditions:</p><ul><li>Return request is <strong>approved after inspection</strong></li><li>Product is received back in acceptable condition</li></ul><p>  <strong>Refund Modes:</strong></p><ul><li>Original payment method (preferred)</li><li>Bank transfer (if required)<br/></li></ul><p> <strong>Refund Timeline:</strong></p><ul><li>Initiated within <strong>5–7 business days</strong> after approval</li><li>It may take additional time depending on your bank/payment provider</li></ul>",
+            "font_family": "sans_serif_n4",
+            "font_size": 20,
+            "font_size_mobile": 16,
+            "font_weight": "500",
+            "text_color": "#727272",
+            "letter_spacing": 0,
+            "word_spacing": 1,
+            "text_alignment": "left",
+            "margin_bottom": 30
+          }
+        },
+        "text_block_UM4mXe": {
+          "type": "text_block",
+          "settings": {
+            "text": "<p>Replacement Policy</p>",
+            "font_family": "sans_serif_n4",
+            "font_size": 30,
+            "font_size_mobile": 16,
+            "font_weight": "700",
+            "text_color": "#727272",
+            "letter_spacing": 0,
+            "word_spacing": 1,
+            "text_alignment": "left",
+            "margin_bottom": 30
+          }
+        },
+        "text_block_pgygKW": {
+          "type": "text_block",
+          "settings": {
+            "text": "<ul><li>In case of damaged or defective products, we may offer a <strong>replacement instead of refund</strong>, based on availability</li></ul>",
+            "font_family": "sans_serif_n4",
+            "font_size": 20,
+            "font_size_mobile": 16,
+            "font_weight": "500",
+            "text_color": "#727272",
+            "letter_spacing": 0,
+            "word_spacing": 1,
+            "text_alignment": "left",
+            "margin_bottom": 30
+          }
+        },
+        "text_block_LEciEP": {
+          "type": "text_block",
+          "settings": {
+            "text": "<p>Cancellation Policy</p>",
+            "font_family": "sans_serif_n4",
+            "font_size": 30,
+            "font_size_mobile": 16,
+            "font_weight": "700",
+            "text_color": "#727272",
+            "letter_spacing": 0,
+            "word_spacing": 1,
+            "text_alignment": "left",
+            "margin_bottom": 30
+          }
+        },
+        "text_block_tJwdYm": {
+          "type": "text_block",
+          "settings": {
+            "text": "<ul><li>Orders can be cancelled <strong>before dispatch only</strong></li><li>Once shipped, cancellation is not allowed</li></ul>",
+            "font_family": "sans_serif_n4",
+            "font_size": 20,
+            "font_size_mobile": 16,
+            "font_weight": "500",
+            "text_color": "#727272",
+            "letter_spacing": 0,
+            "word_spacing": 1,
+            "text_alignment": "left",
+            "margin_bottom": 30
+          }
+        },
+        "text_block_ieUD6h": {
+          "type": "text_block",
+          "settings": {
+            "text": "<p>Shipping Charges</p>",
+            "font_family": "sans_serif_n4",
+            "font_size": 30,
+            "font_size_mobile": 16,
+            "font_weight": "700",
+            "text_color": "#727272",
+            "letter_spacing": 0,
+            "word_spacing": 1,
+            "text_alignment": "left",
+            "margin_bottom": 30
+          }
+        },
+        "text_block_9wCXym": {
+          "type": "text_block",
+          "settings": {
+            "text": "<ul><li><strong>Free return shipping</strong> for damaged/incorrect items</li><li>For other cases, shipping charges may be borne by the customer</li></ul>",
+            "font_family": "sans_serif_n4",
+            "font_size": 20,
+            "font_size_mobile": 16,
+            "font_weight": "500",
+            "text_color": "#727272",
+            "letter_spacing": 0,
+            "word_spacing": 1,
+            "text_alignment": "left",
+            "margin_bottom": 30
+          }
+        }
+      },
+      "block_order": [
+        "text_block_g7kewi",
+        "text_block_MX7GTd",
+        "text_block_Qr7Vt3",
+        "text_block_CTEQwQ",
+        "text_block_jiUhaf",
+        "text_block_YkDKfB",
+        "text_block_ntRh9H",
+        "text_block_UM4mXe",
+        "text_block_pgygKW",
+        "text_block_LEciEP",
+        "text_block_tJwdYm",
+        "text_block_ieUD6h",
+        "text_block_9wCXym"
+      ],
+      "name": "AFSPL Text",
+      "settings": {
+        "bg_color": "#ffffff",
+        "container_max_width": 1200,
+        "padding_horizontal_desktop": 300,
+        "padding_top": 40,
+        "padding_bottom": 40
+      }
     }
   },
   "order": [
     "main",
-    "blocks_BYGaVi"
+    "blocks_BYGaVi",
+    "afspl_text_WggkCX"
   ]
 }
