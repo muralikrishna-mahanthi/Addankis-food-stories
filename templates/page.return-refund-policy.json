@@ -33,7 +33,7 @@
             "heading_spacing": 44,
             "heading_padding_top": 36,
             "heading_padding_bottom": 0,
-            "heading_padding_horizontal": 0,
+            "heading_padding_horizontal": 100,
             "heading_padding_top_mobile": 0,
             "heading_padding_bottom_mobile": 0,
             "heading_padding_horizontal_mobile": 0,
