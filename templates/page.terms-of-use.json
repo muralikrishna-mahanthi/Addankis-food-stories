@@ -85,7 +85,7 @@
             "font_weight": "500",
             "text_color": "#727272",
             "letter_spacing": 0,
-            "word_spacing": 0,
+            "word_spacing": 1,
             "text_alignment": "left",
             "margin_bottom": 30
           }
@@ -100,7 +100,7 @@
             "font_weight": "500",
             "text_color": "#727272",
             "letter_spacing": 0,
-            "word_spacing": 0,
+            "word_spacing": 1,
             "text_alignment": "left",
             "margin_bottom": 30
           }
@@ -115,7 +115,7 @@
             "font_weight": "500",
             "text_color": "#727272",
             "letter_spacing": 0,
-            "word_spacing": 0,
+            "word_spacing": 1,
             "text_alignment": "left",
             "margin_bottom": 30
           }
@@ -130,7 +130,7 @@
             "font_weight": "500",
             "text_color": "#727272",
             "letter_spacing": 0,
-            "word_spacing": 0,
+            "word_spacing": 1,
             "text_alignment": "left",
             "margin_bottom": 30
           }
@@ -139,13 +139,118 @@
           "type": "text_block",
           "settings": {
             "text": "<p><strong>Order Acceptance and Cancellation</strong><br/><br/>* Your order is confirmed only after payment is successfully processed<br/>* We reserve the right to cancel or refuse any order due to:<br/><br/>  * Product unavailability<br/>  * Pricing errors<br/>  * Suspected fraudulent activity<br/><br/>If your order is cancelled, the refund will be processed as per our Refund Policy.</p>",
-            "font_family": "anybody_n4",
+            "font_family": "sans_serif_n4",
             "font_size": 20,
             "font_size_mobile": 16,
             "font_weight": "500",
             "text_color": "#727272",
             "letter_spacing": 0,
-            "word_spacing": 0,
+            "word_spacing": 1,
+            "text_alignment": "left",
+            "margin_bottom": 30
+          }
+        },
+        "text_block_Kf3YTV": {
+          "type": "text_block",
+          "settings": {
+            "text": "<p><strong>Intellectual Property</strong><br/><br/>All content on this platform, including:<br/><br/>* Logos<br/>* Product designs<br/>* Text, graphics, images<br/><br/>are the property of AFSPL and are protected under applicable intellectual property laws.<br/>You may not copy, reproduce, or use any content without written permission.</p>",
+            "font_family": "sans_serif_n4",
+            "font_size": 20,
+            "font_size_mobile": 16,
+            "font_weight": "500",
+            "text_color": "#727272",
+            "letter_spacing": 0,
+            "word_spacing": 1,
+            "text_alignment": "left",
+            "margin_bottom": 30
+          }
+        },
+        "text_block_nry9dP": {
+          "type": "text_block",
+          "settings": {
+            "text": "<p><strong>User Conduct</strong><br/><br/>You agree not to:<br/><br/>* Use the platform for unlawful purposes<br/>* Attempt to gain unauthorized access to systems<br/>* Interfere with the website’s functionality<br/>* Provide false or misleading information</p>",
+            "font_family": "sans_serif_n4",
+            "font_size": 20,
+            "font_size_mobile": 16,
+            "font_weight": "500",
+            "text_color": "#727272",
+            "letter_spacing": 0,
+            "word_spacing": 1,
+            "text_alignment": "left",
+            "margin_bottom": 30
+          }
+        },
+        "text_block_3y466h": {
+          "type": "text_block",
+          "settings": {
+            "text": "<p><strong>Limitation of Liability</strong><br/><br/>AFSPL shall not be liable for:<br/><br/>* Any indirect, incidental, or consequential damages<br/>* Loss of data or profits<br/>* Delays or interruptions in service<br/><br/>Use of our products and services is at your own risk.</p>",
+            "font_family": "sans_serif_n4",
+            "font_size": 20,
+            "font_size_mobile": 16,
+            "font_weight": "500",
+            "text_color": "#727272",
+            "letter_spacing": 0,
+            "word_spacing": 1,
+            "text_alignment": "left",
+            "margin_bottom": 30
+          }
+        },
+        "text_block_bRRHDd": {
+          "type": "text_block",
+          "settings": {
+            "text": "<p><strong>Disclaimer</strong><br/><br/>All products are provided “as is” without warranties of any kind, either express or implied. We do not guarantee that:<br/><br/>* The website will be error-free<br/>* The products will meet individual expectations in all cases</p>",
+            "font_family": "sans_serif_n4",
+            "font_size": 20,
+            "font_size_mobile": 16,
+            "font_weight": "500",
+            "text_color": "#727272",
+            "letter_spacing": 0,
+            "word_spacing": 1,
+            "text_alignment": "left",
+            "margin_bottom": 30
+          }
+        },
+        "text_block_TfqN9k": {
+          "type": "text_block",
+          "settings": {
+            "text": "<p><strong>Changes to Terms<br/></strong><br/>AFSPL reserves the right to update these Terms at any time. Changes will be effective immediately upon posting.</p>",
+            "font_family": "sans_serif_n4",
+            "font_size": 20,
+            "font_size_mobile": 16,
+            "font_weight": "500",
+            "text_color": "#727272",
+            "letter_spacing": 0,
+            "word_spacing": 1,
+            "text_alignment": "left",
+            "margin_bottom": 30
+          }
+        },
+        "text_block_nLgJqk": {
+          "type": "text_block",
+          "settings": {
+            "text": "<p><strong>Governing Law</strong><br/><br/>These Terms shall be governed by and interpreted in accordance with the laws of India. Any disputes shall be subject to the jurisdiction of courts in Telangana.</p>",
+            "font_family": "sans_serif_n4",
+            "font_size": 20,
+            "font_size_mobile": 16,
+            "font_weight": "500",
+            "text_color": "#727272",
+            "letter_spacing": 0,
+            "word_spacing": 1,
+            "text_alignment": "left",
+            "margin_bottom": 30
+          }
+        },
+        "text_block_R7tkrk": {
+          "type": "text_block",
+          "settings": {
+            "text": "<p>By using our website and services, you acknowledge that you have read, understood, and agreed to these Terms of Use.</p>",
+            "font_family": "sans_serif_n4",
+            "font_size": 20,
+            "font_size_mobile": 16,
+            "font_weight": "500",
+            "text_color": "#727272",
+            "letter_spacing": 0,
+            "word_spacing": 1,
             "text_alignment": "left",
             "margin_bottom": 30
           }
@@ -156,7 +261,14 @@
         "text_block_hyVr6r",
         "text_block_Tt6Mtz",
         "text_block_H9jRVk",
-        "text_block_DTBUDG"
+        "text_block_DTBUDG",
+        "text_block_Kf3YTV",
+        "text_block_nry9dP",
+        "text_block_3y466h",
+        "text_block_bRRHDd",
+        "text_block_TfqN9k",
+        "text_block_nLgJqk",
+        "text_block_R7tkrk"
       ],
       "name": "AFSPL Text",
       "settings": {
