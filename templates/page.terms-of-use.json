@@ -24,7 +24,7 @@
           "type": "ai_gen_block_4ff1c27",
           "settings": {
             "heading": "TERMS OF USE",
-            "text": "<p><strong>Please Read the following Terms of Use and Disclaimers carefully before using this web site.</strong></p>",
+            "text": "<p>Please Read the following Terms of Use and Disclaimers carefully before using this web site.</p>",
             "heading_font": "archivo_black_n4",
             "heading_weight": "bolder",
             "heading_size": 64,
@@ -38,7 +38,7 @@
             "heading_padding_bottom_mobile": 0,
             "heading_padding_horizontal_mobile": 0,
             "text_font": "sans_serif_n7",
-            "text_size": 22,
+            "text_size": 24,
             "text_size_mobile": 14,
             "text_color": "#121212",
             "text_line_height": 1.5,
