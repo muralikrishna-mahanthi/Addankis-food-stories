@@ -45,7 +45,7 @@
             "paragraph_spacing": 16,
             "text_padding_top": 0,
             "text_padding_bottom": 0,
-            "text_padding_horizontal": 0,
+            "text_padding_horizontal": 100,
             "text_padding_top_mobile": 0,
             "text_padding_bottom_mobile": 0,
             "text_padding_horizontal_mobile": 0,
