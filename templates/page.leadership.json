@@ -139,8 +139,8 @@
         "desc_font": "sans_serif_n4",
         "desc_size": 18,
         "desc_size_mobile": 16,
-        "desc_color": "#666666",
-        "desc_weight": "400",
+        "desc_color": "#afafaf",
+        "desc_weight": "600",
         "columns_desktop": 3,
         "bg_color": "#ffffff",
         "image_bg_color": "#e2ceb9",
@@ -153,8 +153,8 @@
         "role_font": "sans_serif_n4",
         "role_size": 16,
         "role_size_mobile": 14,
-        "role_color": "#666666",
-        "role_weight": "400",
+        "role_color": "#afafaf",
+        "role_weight": "600",
         "padding_top": 60,
         "padding_bottom": 60
       }
