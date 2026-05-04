@@ -115,7 +115,7 @@
         "middle_column_width": 50,
         "column_gap": 10,
         "border_radius": 16,
-        "mobile_height": 500,
+        "mobile_height": 450,
         "border_radius_mobile": 24,
         "autoplay_speed": 5,
         "transition_type": "fade",
