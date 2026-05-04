@@ -139,7 +139,7 @@
           "type": "text_block",
           "settings": {
             "text": "<p><strong>Order Acceptance and Cancellation</strong><br/><br/>* Your order is confirmed only after payment is successfully processed<br/>* We reserve the right to cancel or refuse any order due to:<br/><br/>  * Product unavailability<br/>  * Pricing errors<br/>  * Suspected fraudulent activity<br/><br/>If your order is cancelled, the refund will be processed as per our Refund Policy.</p>",
-            "font_family": "sans_serif_n4",
+            "font_family": "anybody_n4",
             "font_size": 20,
             "font_size_mobile": 16,
             "font_weight": "500",
