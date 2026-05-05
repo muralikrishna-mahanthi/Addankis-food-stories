@@ -20,10 +20,28 @@
     "blocks_WTVjJc": {
       "type": "_blocks",
       "blocks": {
+        "ai_gen_block_978656e_FPmpkx": {
+          "type": "ai_gen_block_978656e",
+          "settings": {
+            "image": "shopify://shop_images/Gemini_Generated_Image_rfbfeorfbfeorfbf.png",
+            "image_width": 150,
+            "image_height": 150,
+            "image_fit": "contain",
+            "border_radius": 0,
+            "horizontal_alignment": "center",
+            "vertical_alignment": "center",
+            "padding_top": 0,
+            "padding_bottom": 0,
+            "padding_left": 0,
+            "padding_right": 0,
+            "desktop_width_percent": 100
+          },
+          "blocks": {}
+        },
         "ai_gen_block_4ff1c27_tHPc44": {
           "type": "ai_gen_block_4ff1c27",
           "settings": {
-            "heading": "HAMSAA",
+            "heading": "",
             "text": "<p>Wellness and home-care brand created to bring purity, comfort, and natural well-being into everyday living<strong>.</strong></p>",
             "heading_font": "archivo_black_n4",
             "heading_weight": "bolder",
@@ -67,6 +85,7 @@
         }
       },
       "block_order": [
+        "ai_gen_block_978656e_FPmpkx",
         "ai_gen_block_4ff1c27_tHPc44"
       ],
       "name": "Rich text",
