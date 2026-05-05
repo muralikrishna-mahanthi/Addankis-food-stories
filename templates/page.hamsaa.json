@@ -72,11 +72,11 @@
             "vertical_alignment": "center",
             "desktop_width_percent": 100,
             "min_height": 100,
-            "min_height_mobile": 200,
+            "min_height_mobile": 100,
             "padding_top": 0,
             "padding_bottom": 100,
             "padding_horizontal": 48,
-            "padding_top_mobile": 44,
+            "padding_top_mobile": 0,
             "padding_bottom_mobile": 40,
             "padding_horizontal_mobile": 20,
             "background_color": "#ffffff"
