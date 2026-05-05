@@ -71,7 +71,7 @@
             "horizontal_alignment": "center",
             "vertical_alignment": "center",
             "desktop_width_percent": 100,
-            "min_height": 400,
+            "min_height": 200,
             "min_height_mobile": 200,
             "padding_top": 0,
             "padding_bottom": 100,
