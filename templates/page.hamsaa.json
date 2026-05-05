@@ -24,8 +24,8 @@
           "type": "ai_gen_block_978656e",
           "settings": {
             "image": "shopify://shop_images/Gemini_Generated_Image_rfbfeorfbfeorfbf.png",
-            "image_width": 150,
-            "image_height": 150,
+            "image_width": 200,
+            "image_height": 200,
             "image_fit": "contain",
             "border_radius": 0,
             "horizontal_alignment": "center",
