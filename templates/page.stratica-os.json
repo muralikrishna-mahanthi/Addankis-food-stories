@@ -327,6 +327,15 @@
             "title": "Mangalam"
           }
         },
+        "product_Fic9Cn": {
+          "type": "product",
+          "settings": {
+            "tab_name": "Mangalam",
+            "image": "shopify://shop_images/MangalamCamphorTabletsp1.png",
+            "title": "",
+            "link": "shopify://products/camphor-tablets"
+          }
+        },
         "tab_bMUeVX": {
           "type": "tab",
           "settings": {
@@ -356,6 +365,7 @@
         "product_p4FjMt",
         "product_Q4q3AQ",
         "tab_hF6nxB",
+        "product_Fic9Cn",
         "tab_bMUeVX"
       ],
       "name": "Heading Sliding Products",
