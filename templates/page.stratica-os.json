@@ -336,6 +336,15 @@
             "link": "shopify://products/camphor-tablets"
           }
         },
+        "product_RGBqi3": {
+          "type": "product",
+          "settings": {
+            "tab_name": "Mangalam",
+            "image": "shopify://shop_images/Mangalam_Camphor_Pouches_p1.8.png",
+            "title": "",
+            "link": "shopify://products/camphor-pouch"
+          }
+        },
         "tab_bMUeVX": {
           "type": "tab",
           "settings": {
@@ -366,6 +375,7 @@
         "product_Q4q3AQ",
         "tab_hF6nxB",
         "product_Fic9Cn",
+        "product_RGBqi3",
         "tab_bMUeVX"
       ],
       "name": "Heading Sliding Products",
